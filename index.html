@@ -91,7 +91,12 @@
             font-weight: 600;
             color: var(--text-primary);
         }
-        .logo img { height: 45px; width: auto; border-radius: 10px; }
+        .logo img {
+            height: 45px;
+            width: auto;
+            border-radius: 10px;
+            object-fit: contain;
+        }
         .logo-text span { color: #6b8f6b; font-weight: 700; }
         .nav-links {
             display: flex;
@@ -943,7 +948,7 @@
     <div class="container">
         <nav class="navbar">
             <div class="logo">
-                <img src="https://sun9-42.vkuserphoto.ru/s/v1/ig2/lI4Ux3MweDZnXw0ZNgkx6EuV6zdeUShsq7UrLU23dieTK9VmjdTCfQE-QoAv66uEXq5AUafhUpVgBsTUJofNQImj.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1024x1024&from=bu&u=FFDqhODQaOhtxta9wgPgdUx5GuNKMgbt01phxcSkqEA&cs=1024x0" alt="Logo">
+                <img id="siteLogo" src="" alt="МобилМаш">
                 <div class="logo-text">Мобил<span>Маш</span></div>
             </div>
             <div class="nav-links">
@@ -1316,7 +1321,7 @@
 
     <script>
         // ============================================================
-        // ========== ЗАГРУЗКА ДАННЫХ ИЗ localStorage ==========
+        // ========== ЗАГРУЗКА ДАННЫХ ==========
         // ============================================================
 
         function loadData(key, defaultData) {
@@ -1333,6 +1338,11 @@
                 }
             }
             return defaultData;
+        }
+
+        function loadString(key, defaultVal) {
+            const saved = localStorage.getItem(key);
+            return saved !== null ? saved : defaultVal;
         }
 
         // ============================================================
@@ -1400,6 +1410,7 @@
         let products = loadData('mobilmash_products', defaultProducts);
         let reviews = loadData('mobilmash_reviews', []);
         let events = loadData('mobilmash_events', defaultEvents);
+        let logoData = loadString('mobilmash_logo', '');
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
@@ -1410,6 +1421,21 @@
         let currentSort = 'default';
         let priceMin = 0;
         let priceMax = Infinity;
+
+        // ============================================================
+        // ========== ЗАГРУЗКА ЛОГОТИПА ==========
+        // ============================================================
+
+        function loadLogo() {
+            const logoImg = document.getElementById('siteLogo');
+            if (logoData && logoData.length > 100) {
+                logoImg.src = logoData;
+                logoImg.style.display = 'block';
+            } else {
+                // Если логотипа нет — используем текстовый вариант
+                logoImg.style.display = 'none';
+            }
+        }
 
         // ============================================================
         // ========== ФУНКЦИИ ==========
@@ -1509,7 +1535,6 @@
                 const isCompare = compareList.includes(prod.id);
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                // Используем загруженное фото или fallback
                 const imgSrc = prod.imageData || 'https://placehold.co/400x300/2a3a2a/6b8f6b?text=' + encodeURIComponent(prod
                     .name);
                 card.innerHTML = `
@@ -1998,6 +2023,7 @@
             const savedProducts = localStorage.getItem('mobilmash_products');
             const savedReviews = localStorage.getItem('mobilmash_reviews');
             const savedEvents = localStorage.getItem('mobilmash_events');
+            const savedLogo = localStorage.getItem('mobilmash_logo');
 
             let needUpdate = false;
 
@@ -2031,6 +2057,12 @@
                 } catch (e) {}
             }
 
+            if (savedLogo !== null && savedLogo !== logoData) {
+                logoData = savedLogo;
+                loadLogo();
+                needUpdate = true;
+            }
+
             if (needUpdate) {
                 renderCatalog();
                 renderEvents();
@@ -2043,6 +2075,9 @@
         // ============================================================
 
         function init() {
+            // Загружаем логотип
+            loadLogo();
+
             const savedCart = localStorage.getItem('mobilmash_cart');
             if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
             updateCartUI();
