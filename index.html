@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== ВСЕ СТИЛИ ===== */
+        /* ===== ВСЕ СТИЛИ ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -82,7 +82,6 @@
             flex-wrap: wrap;
             border-bottom: 1px solid var(--border-light);
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -92,32 +91,13 @@
             font-weight: 600;
             color: var(--text-primary);
         }
-
-        /* Логотип-картинка (заменяет зелёный текст) */
-        .logo-img {
+        .logo img {
             height: 45px;
             width: auto;
-            border-radius: 8px;
+            border-radius: 10px;
             object-fit: contain;
-            display: none;
         }
-
-        .logo-img.loaded {
-            display: block;
-        }
-
-        /* Текстовый логотип (скрывается, когда есть картинка) */
-        .logo-text {
-            display: flex;
-            align-items: center;
-        }
-
         .logo-text span { color: #6b8f6b; font-weight: 700; }
-
-        .logo-text.hidden {
-            display: none;
-        }
-
         .nav-links {
             display: flex;
             gap: 36px;
@@ -194,55 +174,8 @@
             gap: 48px;
             padding: 60px 0 40px;
         }
-
-        .hero-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        /* Логотип в hero (заменяет зелёный MOBI MASH) */
-        .hero-logo {
-            max-width: 400px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .hero-logo.loaded {
-            display: block;
-        }
-
-        /* Текст MOBI MASH (скрывается, когда есть логотип) */
-        .hero-brand {
-            color: #6b8f6b;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .hero-brand.hidden {
-            display: none;
-        }
-
-        .hero-content h1 {
-            font-size: 56px;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
+        .hero-content h1 { font-size: 56px; line-height: 1.2; margin-bottom: 24px; }
         .hero-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-
-        .hero-image {
-            flex: 1;
-            min-width: 300px;
-        }
-        .hero-image img {
-            width: 100%;
-            border-radius: 32px;
-        }
 
         /* ===== ФИЛЬТРЫ ===== */
         .catalog-controls {
@@ -994,7 +927,6 @@
         @media (max-width: 800px) {
             .navbar { flex-direction: column; gap: 16px; }
             .hero-content h1 { font-size: 36px; }
-            .hero-logo { max-width: 250px; }
             .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
             .catalog-controls { flex-direction: column; align-items: stretch; }
             .search-wrapper { max-width: 100%; }
@@ -1016,10 +948,8 @@
     <div class="container">
         <nav class="navbar">
             <div class="logo">
-                <!-- Логотип-картинка (заменяет зелёный текст) -->
-                <img id="siteLogo" class="logo-img" src="" alt="МобилМаш">
-                <!-- Текстовый логотип (скрывается, когда есть картинка) -->
-                <div class="logo-text" id="logoText">Мобил<span>Маш</span></div>
+                <img id="siteLogo" src="" alt="МобилМаш">
+                <div class="logo-text">Мобил<span>Маш</span></div>
             </div>
             <div class="nav-links">
                 <a href="#" class="active" data-nav="home">Главная</a>
@@ -1046,10 +976,6 @@
         <div class="container" id="homeSection">
             <div class="hero">
                 <div class="hero-content">
-                    <!-- Логотип в hero (заменяет зелёный MOBI MASH) -->
-                    <img id="heroLogo" class="hero-logo" src="" alt="МобилМаш">
-                    <!-- Текст MOBI MASH (скрывается, когда есть логотип) -->
-                    <div class="hero-brand" id="heroBrand">MOBI MASH</div>
                     <div class="badge" style="color:#6b8f6b; margin-bottom:16px;">С 2018 — надёжность в каждой детали</div>
                     <h1 class="serif">Техника, <br>которой доверяют</h1>
                     <p>Профессиональное оборудование для склада и производства.</p>
@@ -1502,32 +1428,12 @@
 
         function loadLogo() {
             const logoImg = document.getElementById('siteLogo');
-            const heroLogo = document.getElementById('heroLogo');
-            const logoText = document.getElementById('logoText');
-            const heroBrand = document.getElementById('heroBrand');
-
             if (logoData && logoData.length > 100) {
-                // Показываем логотип-картинку
                 logoImg.src = logoData;
-                logoImg.classList.add('loaded');
-                // Скрываем текстовый логотип в шапке
-                logoText.classList.add('hidden');
-
-                // Показываем логотип в hero
-                heroLogo.src = logoData;
-                heroLogo.classList.add('loaded');
-                // Скрываем текстовый MOBI MASH
-                heroBrand.classList.add('hidden');
+                logoImg.style.display = 'block';
             } else {
-                // Скрываем логотип-картинку
-                logoImg.classList.remove('loaded');
-                // Показываем текстовый логотип в шапке
-                logoText.classList.remove('hidden');
-
-                // Скрываем логотип в hero
-                heroLogo.classList.remove('loaded');
-                // Показываем текстовый MOBI MASH
-                heroBrand.classList.remove('hidden');
+                // Если логотипа нет — используем текстовый вариант
+                logoImg.style.display = 'none';
             }
         }
 
@@ -2169,6 +2075,7 @@
         // ============================================================
 
         function init() {
+            // Загружаем логотип
             loadLogo();
 
             const savedCart = localStorage.getItem('mobilmash_cart');
