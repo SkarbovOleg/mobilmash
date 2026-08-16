@@ -7,7 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --bg-primary: #121212;
@@ -18,14 +22,13 @@
             --text-primary: #e8e2dc;
             --text-secondary: #b8b0a8;
             --text-muted: #9a8e86;
-            --border-light: rgba(255,255,255,0.1);
+            --border-light: rgba(255, 255, 255, 0.1);
             --border-card: #2d2a28;
             --border-form: #3d3530;
             --btn-bg: #6b8f6b;
             --btn-hover: #5a7a5a;
             --btn-outline: #6b8f6b;
             --add-to-cart-bg: #2a2522;
-            --add-to-cart-hover: #3d3530;
             --modal-bg: #1e1e1e;
             --footer-border: #2d2a28;
             --icon-color: #6b8f6b;
@@ -34,7 +37,6 @@
             --rating-star: #ffc107;
             --rating-star-empty: #4a4a4a;
             --filter-active: #6b8f6b;
-            --filter-hover: #3a5a3a;
             --favorite-color: #ff4757;
         }
 
@@ -46,10 +48,16 @@
             line-height: 1.4;
         }
 
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-        .serif { font-family: 'Cormorant Garamond', serif; }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
 
-        /* Кнопка "Наверх" */
+        /* ===== КНОПКА НАВЕРХ ===== */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -67,14 +75,20 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             border: none;
             font-size: 20px;
         }
-        .scroll-top.show { opacity: 1; visibility: visible; }
-        .scroll-top:hover { background: var(--btn-hover); transform: translateY(-3px); }
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            background: var(--btn-hover);
+            transform: translateY(-3px);
+        }
 
-        /* Шапка */
+        /* ===== ШАПКА ===== */
         .navbar {
             padding: 24px 0;
             display: flex;
@@ -92,8 +106,15 @@
             font-weight: 600;
             color: var(--text-primary);
         }
-        .logo img { height: 45px; width: auto; border-radius: 10px; }
-        .logo-text span { color: #6b8f6b; font-weight: 700; }
+        .logo img {
+            height: 45px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text span {
+            color: #6b8f6b;
+            font-weight: 700;
+        }
         .nav-links {
             display: flex;
             gap: 36px;
@@ -107,8 +128,11 @@
             font-size: 16px;
             transition: 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active { color: #6b8f6b; }
-        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #6b8f6b;
+        }
+
         .cart-icon {
             position: relative;
             font-size: 20px;
@@ -142,7 +166,19 @@
             cursor: pointer;
             font-size: 15px;
         }
-        .btn:hover { background: var(--btn-hover); transform: translateY(-2px); }
+        .btn:hover {
+            background: var(--btn-hover);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--btn-outline);
+            color: var(--btn-outline);
+        }
+        .btn-outline:hover {
+            background: var(--btn-outline);
+            color: var(--bg-primary);
+        }
 
         .rating {
             display: flex;
@@ -150,12 +186,23 @@
             gap: 8px;
             margin: 10px 0;
         }
-        .stars { display: flex; gap: 3px; }
-        .stars i { color: var(--rating-star); font-size: 14px; }
-        .stars i.empty { color: var(--rating-star-empty); }
-        .rating-count { font-size: 13px; color: var(--text-muted); }
+        .stars {
+            display: flex;
+            gap: 3px;
+        }
+        .stars i {
+            color: var(--rating-star);
+            font-size: 14px;
+        }
+        .stars i.empty {
+            color: var(--rating-star-empty);
+        }
+        .rating-count {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
 
-        /* Hero */
+        /* ===== HERO ===== */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -164,8 +211,16 @@
             gap: 48px;
             padding: 60px 0 40px;
         }
-        .hero-content h1 { font-size: 56px; line-height: 1.2; margin-bottom: 24px; }
-        .hero-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
+        .hero-content h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
 
         /* ===== ФИЛЬТРЫ, ПОИСК, СОРТИРОВКА ===== */
         .catalog-controls {
@@ -176,7 +231,6 @@
             align-items: center;
             justify-content: space-between;
         }
-
         .search-wrapper {
             display: flex;
             gap: 12px;
@@ -195,7 +249,9 @@
             outline: none;
             transition: border 0.3s;
         }
-        .search-wrapper input:focus { border-color: #6b8f6b; }
+        .search-wrapper input:focus {
+            border-color: #6b8f6b;
+        }
         .search-wrapper button {
             padding: 10px 18px;
             background: var(--btn-bg);
@@ -223,7 +279,9 @@
             min-width: 120px;
         }
         .filter-sort-group select:focus,
-        .filter-sort-group input:focus { border-color: #6b8f6b; }
+        .filter-sort-group input:focus {
+            border-color: #6b8f6b;
+        }
 
         .price-filter {
             display: flex;
@@ -240,8 +298,12 @@
             font-size: 13px;
             outline: none;
         }
-        .price-filter input[type="number"]:focus { border-color: #6b8f6b; }
-        .price-filter span { color: var(--text-muted); }
+        .price-filter input[type="number"]:focus {
+            border-color: #6b8f6b;
+        }
+        .price-filter span {
+            color: var(--text-muted);
+        }
 
         .filter-bar {
             display: flex;
@@ -262,7 +324,11 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
         }
-        .filter-btn:hover { border-color: #6b8f6b; color: var(--text-primary); transform: translateY(-2px); }
+        .filter-btn:hover {
+            border-color: #6b8f6b;
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
         .filter-btn.active {
             background: var(--filter-active);
             border-color: var(--filter-active);
@@ -270,7 +336,7 @@
             box-shadow: 0 4px 20px rgba(107, 143, 107, 0.3);
         }
 
-        /* ===== КАРТОЧКИ ===== */
+        /* ===== КАРТОЧКИ ТОВАРОВ ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -285,13 +351,16 @@
             transition: 0.3s;
             position: relative;
         }
-        .product-card:hover { transform: translateY(-8px); border-color: #6b8f6b; }
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: #6b8f6b;
+        }
 
         .product-card .favorite-btn {
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             border: none;
             border-radius: 50%;
             width: 36px;
@@ -302,14 +371,19 @@
             transition: 0.3s;
             z-index: 5;
         }
-        .product-card .favorite-btn:hover { transform: scale(1.1); }
-        .product-card .favorite-btn.active { color: var(--favorite-color); background: rgba(255,71,87,0.2); }
+        .product-card .favorite-btn:hover {
+            transform: scale(1.1);
+        }
+        .product-card .favorite-btn.active {
+            color: var(--favorite-color);
+            background: rgba(255, 71, 87, 0.2);
+        }
 
         .product-card .compare-btn {
             position: absolute;
             top: 16px;
             left: 16px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             border: none;
             border-radius: 50%;
             width: 36px;
@@ -320,15 +394,20 @@
             transition: 0.3s;
             z-index: 5;
         }
-        .product-card .compare-btn.active { color: #6b8f6b; background: rgba(107,143,107,0.2); }
-        .product-card .compare-btn:hover { transform: scale(1.1); }
+        .product-card .compare-btn.active {
+            color: #6b8f6b;
+            background: rgba(107, 143, 107, 0.2);
+        }
+        .product-card .compare-btn:hover {
+            transform: scale(1.1);
+        }
 
         .product-card .quick-view-btn {
             position: absolute;
             bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             border: none;
             padding: 8px 20px;
@@ -339,7 +418,9 @@
             transition: 0.3s;
             z-index: 5;
         }
-        .product-card:hover .quick-view-btn { opacity: 1; }
+        .product-card:hover .quick-view-btn {
+            opacity: 1;
+        }
 
         .product-img {
             background: var(--bg-primary);
@@ -350,11 +431,29 @@
             padding: 20px;
             position: relative;
         }
-        .product-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
-        .product-info { padding: 18px 20px 20px; }
-        .product-category { font-size: 13px; color: #6b8f6b; font-weight: 600; }
-        .card-title { font-size: 20px; font-weight: 600; margin: 6px 0; }
-        .price { font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+        .product-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 18px 20px 20px;
+        }
+        .product-category {
+            font-size: 13px;
+            color: #6b8f6b;
+            font-weight: 600;
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 6px 0;
+        }
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
         .add-to-cart {
             width: 100%;
             background: var(--add-to-cart-bg);
@@ -366,7 +465,10 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .add-to-cart:hover { background: var(--btn-bg); color: white; }
+        .add-to-cart:hover {
+            background: var(--btn-bg);
+            color: white;
+        }
 
         /* ===== ПАГИНАЦИЯ ===== */
         .pagination {
@@ -386,15 +488,21 @@
             transition: 0.3s;
             font-size: 14px;
         }
-        .pagination button:hover { border-color: #6b8f6b; color: var(--text-primary); }
+        .pagination button:hover {
+            border-color: #6b8f6b;
+            color: var(--text-primary);
+        }
         .pagination button.active {
             background: var(--btn-bg);
             border-color: var(--btn-bg);
             color: white;
         }
-        .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .pagination button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
 
-        /* ===== СРАВНЕНИЕ (плашка) ===== */
+        /* ===== ПЛАШКА СРАВНЕНИЯ ===== */
         .compare-bar {
             position: fixed;
             bottom: 0;
@@ -410,7 +518,9 @@
             gap: 12px;
             z-index: 100;
         }
-        .compare-bar.show { display: flex; }
+        .compare-bar.show {
+            display: flex;
+        }
         .compare-bar .compare-items {
             display: flex;
             gap: 12px;
@@ -438,10 +548,197 @@
             cursor: pointer;
             font-size: 14px;
         }
-        .compare-bar .compare-item .remove-compare:hover { color: var(--favorite-color); }
+        .compare-bar .compare-item .remove-compare:hover {
+            color: var(--favorite-color);
+        }
+
+        /* ===== СТРАНИЦА «О КОМПАНИИ» ===== */
+        .about-page {
+            padding: 40px 0 60px;
+        }
+        .about-page h1 {
+            font-size: 48px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 12px;
+        }
+        .about-page .subtitle {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .about-grid .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .about-grid .about-image img {
+            width: 100%;
+            border-radius: 28px;
+            height: 100%;
+            object-fit: cover;
+            min-height: 300px;
+        }
+
+        /* Миссия и ценности */
+        .mission-block {
+            background: var(--bg-about);
+            border-radius: 32px;
+            padding: 48px;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+            text-align: center;
+        }
+        .mission-block .mission-item i {
+            font-size: 36px;
+            color: #6b8f6b;
+            margin-bottom: 16px;
+        }
+        .mission-block .mission-item h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .mission-block .mission-item p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Команда */
+        .team-section {
+            margin-bottom: 60px;
+        }
+        .team-section h2 {
+            font-size: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 24px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .team-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid var(--border-card);
+            transition: 0.3s;
+        }
+        .team-card:hover {
+            border-color: #6b8f6b;
+            transform: translateY(-4px);
+        }
+        .team-card .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #6b8f6b;
+        }
+        .team-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .team-card .team-role {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* Партнёры */
+        .partners-section {
+            margin-bottom: 60px;
+        }
+        .partners-section h2 {
+            font-size: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 24px;
+        }
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            align-items: center;
+        }
+        .partners-grid .partner {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border-card);
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+        .partners-grid .partner:hover {
+            border-color: #6b8f6b;
+        }
+        .partners-grid .partner i {
+            font-size: 28px;
+            color: #6b8f6b;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Сертификаты */
+        .certificates-section {
+            margin-bottom: 60px;
+        }
+        .certificates-section h2 {
+            font-size: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 24px;
+        }
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+        }
+        .certificates-grid .cert {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid var(--border-card);
+            transition: 0.3s;
+        }
+        .certificates-grid .cert:hover {
+            border-color: #6b8f6b;
+        }
+        .certificates-grid .cert i {
+            font-size: 40px;
+            color: #6b8f6b;
+            margin-bottom: 12px;
+        }
+        .certificates-grid .cert h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .certificates-grid .cert p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
 
         /* ===== БЛОГ ===== */
-        .blog-section { margin: 60px 0; }
+        .blog-section {
+            margin: 60px 0;
+        }
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -455,26 +752,40 @@
             border: 1px solid var(--border-card);
             transition: 0.3s;
         }
-        .blog-card:hover { transform: translateY(-5px); border-color: #6b8f6b; }
-        .blog-img { height: 180px; background-size: cover; background-position: center; }
-        .blog-content { padding: 20px; }
-        .blog-tag { font-size: 12px; color: #6b8f6b; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-        .blog-title { font-size: 20px; font-weight: 600; margin: 10px 0; }
-        .blog-excerpt { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
-
-        /* ===== О КОМПАНИИ ===== */
-        .about-section {
-            background: var(--bg-about);
-            border-radius: 48px;
-            margin: 60px 0;
-            padding: 50px 40px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: #6b8f6b;
+        }
+        .blog-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        .blog-content {
+            padding: 20px;
+        }
+        .blog-tag {
+            font-size: 12px;
+            color: #6b8f6b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .blog-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .blog-excerpt {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         /* ===== ОТЗЫВЫ ===== */
-        .reviews-section { margin: 40px 0 60px; }
+        .reviews-section {
+            margin: 40px 0 60px;
+        }
         .reviews-title {
             font-size: 24px;
             font-weight: 600;
@@ -493,8 +804,16 @@
             border-radius: 40px;
             border: 1px solid var(--border-card);
         }
-        .average-number { font-size: 28px; font-weight: 700; }
-        .reviews-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
+        .average-number {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
         .review-card {
             background: var(--bg-card);
             border-radius: 20px;
@@ -509,16 +828,27 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-        .review-author { font-weight: 600; }
-        .review-date { font-size: 12px; color: var(--text-muted); }
-        .review-text { color: var(--text-secondary); line-height: 1.5; margin-top: 6px; }
+        .review-author {
+            font-weight: 600;
+        }
+        .review-date {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .review-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: 6px;
+        }
         .add-review {
             background: var(--bg-card);
             border-radius: 20px;
             padding: 24px;
             border: 1px solid var(--border-card);
         }
-        .add-review h4 { margin-bottom: 16px; }
+        .add-review h4 {
+            margin-bottom: 16px;
+        }
         .review-input {
             width: 100%;
             padding: 12px;
@@ -542,7 +872,9 @@
             transition: 0.1s;
             cursor: pointer;
         }
-        .review-stars-input i.active { color: var(--rating-star); }
+        .review-stars-input i.active {
+            color: var(--rating-star);
+        }
 
         /* ===== КОНТАКТЫ ===== */
         .contact-form {
@@ -552,15 +884,27 @@
             border: 1px solid var(--border-form);
             margin-bottom: 60px;
         }
-        .contact-form h2 { font-size: 32px; font-family: 'Cormorant Garamond', serif; margin-bottom: 8px; }
-        .contact-form .subtitle { color: var(--text-muted); margin-bottom: 24px; font-size: 16px; }
+        .contact-form h2 {
+            font-size: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 8px;
+        }
+        .contact-form .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
         .form-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
-        .form-group { flex: 1; min-width: 200px; }
-        .form-group input, .form-group textarea {
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 14px 18px;
             border: 1px solid var(--border-form);
@@ -572,30 +916,51 @@
             transition: border-color 0.3s ease;
             outline: none;
         }
-        .form-group input:focus, .form-group textarea:focus { border-color: #6b8f6b; }
-        .form-group textarea { border-radius: 20px; resize: vertical; min-height: 80px; }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #6b8f6b;
+        }
+        .form-group textarea {
+            border-radius: 20px;
+            resize: vertical;
+            min-height: 80px;
+        }
         .form-group .error-message {
             color: #e74c3c;
             font-size: 12px;
             margin-top: 6px;
             display: none;
         }
-        .form-group.error input, .form-group.error textarea { border-color: #e74c3c; }
-        .form-group.error .error-message { display: block; }
-        .contact-form .btn-submit { margin-top: 8px; width: 100%; padding: 14px; font-size: 16px; }
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #e74c3c;
+        }
+        .form-group.error .error-message {
+            display: block;
+        }
+        .contact-form .btn-submit {
+            margin-top: 8px;
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+        }
 
         /* ===== МОДАЛКИ ===== */
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
-        .modal.show { display: flex; }
+        .modal.show {
+            display: flex;
+        }
         .modal-content {
             background: var(--modal-bg);
             max-width: 520px;
@@ -616,8 +981,15 @@
             background: none;
             border: none;
         }
-        .modal-content .close-modal:hover { color: var(--text-primary); }
-        .cart-items { max-height: 350px; overflow-y: auto; margin: 16px 0; }
+        .modal-content .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        .cart-items {
+            max-height: 350px;
+            overflow-y: auto;
+            margin: 16px 0;
+        }
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -643,8 +1015,38 @@
             font-weight: bold;
             transition: 0.2s;
         }
-        .cart-item-controls button:hover { background: var(--btn-bg); color: white; }
-        .cart-item-quantity { min-width: 30px; text-align: center; font-weight: 600; }
+        .cart-item-controls button:hover {
+            background: var(--btn-bg);
+            color: white;
+        }
+        .cart-item-quantity {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .compare-modal .modal-content {
+            max-width: 800px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .compare-table th,
+        .compare-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-card);
+            text-align: left;
+        }
+        .compare-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .compare-table .compare-product-name {
+            font-weight: 600;
+        }
 
         .toast-notification {
             position: fixed;
@@ -659,23 +1061,15 @@
             animation: fadeInUp 0.3s ease;
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
-
-        .compare-modal .modal-content { max-width: 800px; }
-        .compare-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-        }
-        .compare-table th, .compare-table td {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border-card);
-            text-align: left;
-        }
-        .compare-table th { color: var(--text-muted); font-weight: 500; font-size: 14px; }
-        .compare-table .compare-product-name { font-weight: 600; }
 
         footer {
             border-top: 1px solid var(--footer-border);
@@ -683,12 +1077,18 @@
             text-align: center;
             color: var(--text-muted);
         }
-        .empty-cart-msg, .empty-reviews-msg, .empty-filter-msg {
+
+        .empty-cart-msg,
+        .empty-reviews-msg,
+        .empty-filter-msg {
             text-align: center;
             padding: 40px 0;
             color: var(--text-muted);
         }
-        .empty-filter-msg { grid-column: 1 / -1; font-size: 18px; }
+        .empty-filter-msg {
+            grid-column: 1 / -1;
+            font-size: 18px;
+        }
 
         .favorites-indicator {
             position: relative;
@@ -697,7 +1097,9 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .favorites-indicator:hover { color: var(--favorite-color); }
+        .favorites-indicator:hover {
+            color: var(--favorite-color);
+        }
         .favorites-indicator .fav-count {
             position: absolute;
             top: -8px;
@@ -713,15 +1115,47 @@
         }
 
         @media (max-width: 800px) {
-            .navbar { flex-direction: column; gap: 16px; }
-            .hero-content h1 { font-size: 36px; }
-            .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
-            .catalog-controls { flex-direction: column; align-items: stretch; }
-            .search-wrapper { max-width: 100%; }
-            .filter-sort-group { justify-content: center; }
-            .compare-bar { padding: 10px 16px; flex-direction: column; align-items: stretch; }
-            .contact-form { padding: 24px; }
-            .modal-content { padding: 20px; }
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+            .catalog-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-wrapper {
+                max-width: 100%;
+            }
+            .filter-sort-group {
+                justify-content: center;
+            }
+            .compare-bar {
+                padding: 10px 16px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .contact-form {
+                padding: 24px;
+            }
+            .modal-content {
+                padding: 20px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .mission-block {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
@@ -753,7 +1187,7 @@
     </div>
 
     <main>
-        <!-- Hero -->
+        <!-- ===== HERO ===== -->
         <div class="container" id="homeSection">
             <div class="hero">
                 <div class="hero-content">
@@ -768,11 +1202,10 @@
             </div>
         </div>
 
-        <!-- Каталог -->
+        <!-- ===== КАТАЛОГ ===== -->
         <div class="container" id="catalogSection">
             <h2 class="section-title" style="font-size:34px; text-align:center; margin:40px 0 10px;">Надёжная техника для бизнеса</h2>
-            
-            <!-- Кнопки категорий -->
+
             <div class="filter-bar">
                 <button class="filter-btn active" data-filter="all">Все</button>
                 <button class="filter-btn" data-filter="товары">Товары</button>
@@ -780,7 +1213,6 @@
                 <button class="filter-btn" data-filter="прочие">Прочие</button>
             </div>
 
-            <!-- Поиск, сортировка, фильтр по цене -->
             <div class="catalog-controls">
                 <div class="search-wrapper">
                     <input type="text" id="searchInput" placeholder="🔍 Поиск по каталогу...">
@@ -804,12 +1236,130 @@
             </div>
 
             <div class="products-grid" id="productsGrid"></div>
-
-            <!-- Пагинация -->
             <div class="pagination" id="paginationContainer"></div>
         </div>
 
-        <!-- Блог -->
+        <!-- ===== СТРАНИЦА «О КОМПАНИИ» ===== -->
+        <div class="container" id="aboutSection">
+            <div class="about-page">
+                <h1>О компании МобилМаш</h1>
+                <p class="subtitle">Надёжность, проверенная временем — с 2018 года мы помогаем бизнесу работать эффективнее.</p>
+
+                <!-- История и фото -->
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p><strong>МобилМаш</strong> — это команда профессионалов, которая специализируется на поставках складской и промышленной техники. Мы работаем с 2018 года и за это время помогли более 120 компаниям оптимизировать логистику и производственные процессы.</p>
+                        <p>Наша миссия — делать сложную технику доступной и понятной. Мы тщательно отбираем оборудование, тестируем его и предоставляем только те решения, в которых уверены сами.</p>
+                        <p>Мы гордимся тем, что наши клиенты возвращаются к нам снова и снова. Благодаря их доверию мы выросли в одного из лидеров на рынке складской техники в регионе.</p>
+                        <a href="#" class="btn" data-nav="contact" style="margin-top:12px;">Связаться с нами</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://placehold.co/600x400/1a2a1a/6b8f6b?text=Наш+офис" alt="Офис МобилМаш">
+                    </div>
+                </div>
+
+                <!-- Миссия и ценности -->
+                <div class="mission-block">
+                    <div class="mission-item">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Наша миссия</h3>
+                        <p>Сделать складскую и промышленную технику доступной, понятной и надёжной для каждого бизнеса.</p>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Доверие</h3>
+                        <p>Мы строим долгосрочные отношения с клиентами, основанные на честности и профессионализме.</p>
+                    </div>
+                    <div class="mission-item">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Развитие</h3>
+                        <p>Мы постоянно ищем новые решения, чтобы ваша работа была эффективнее и удобнее.</p>
+                    </div>
+                </div>
+
+                <!-- Команда -->
+                <div class="team-section">
+                    <h2>Наша команда</h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-avatar"><i class="fas fa-user"></i></div>
+                            <h4>Алексей Морозов</h4>
+                            <div class="team-role">Основатель, CEO</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar"><i class="fas fa-user"></i></div>
+                            <h4>Елена Смирнова</h4>
+                            <div class="team-role">Руководитель отдела продаж</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar"><i class="fas fa-user"></i></div>
+                            <h4>Игорь Петров</h4>
+                            <div class="team-role">Главный инженер</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar"><i class="fas fa-user"></i></div>
+                            <h4>Мария Кузнецова</h4>
+                            <div class="team-role">Менеджер по работе с клиентами</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar"><i class="fas fa-user"></i></div>
+                            <h4>Дмитрий Волков</h4>
+                            <div class="team-role">Специалист по сервису</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Партнёры -->
+                <div class="partners-section">
+                    <h2>Наши партнёры</h2>
+                    <div class="partners-grid">
+                        <div class="partner"><i class="fas fa-building"></i> ТехноСклад</div>
+                        <div class="partner"><i class="fas fa-building"></i> ЛогистикПро</div>
+                        <div class="partner"><i class="fas fa-building"></i> СтройМаш</div>
+                        <div class="partner"><i class="fas fa-building"></i> АгроТехника</div>
+                        <div class="partner"><i class="fas fa-building"></i> ПромРесурс</div>
+                        <div class="partner"><i class="fas fa-building"></i> СкладСервис</div>
+                    </div>
+                </div>
+
+                <!-- Сертификаты -->
+                <div class="certificates-section">
+                    <h2>Сертификаты и лицензии</h2>
+                    <div class="certificates-grid">
+                        <div class="cert">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Сертификат ISO 9001</h4>
+                            <p>Управление качеством</p>
+                        </div>
+                        <div class="cert">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Лицензия Минпромторга</h4>
+                            <p>На поставку техники</p>
+                        </div>
+                        <div class="cert">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Сертификат соответствия</h4>
+                            <p>Вся техника сертифицирована</p>
+                        </div>
+                        <div class="cert">
+                            <i class="fas fa-certificate"></i>
+                            <h4>Награда «Лучший поставщик 2024»</h4>
+                            <p>По версии СкладСоюза</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Статистика -->
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:24px; background:var(--bg-about); border-radius:32px; padding:40px; text-align:center;">
+                    <div><div style="font-size:40px; font-weight:700; color:#6b8f6b;">6+</div><div style="color:var(--text-muted);">лет на рынке</div></div>
+                    <div><div style="font-size:40px; font-weight:700; color:#6b8f6b;">120+</div><div style="color:var(--text-muted);">довольных клиентов</div></div>
+                    <div><div style="font-size:40px; font-weight:700; color:#6b8f6b;">98%</div><div style="color:var(--text-muted);">положительных отзывов</div></div>
+                    <div><div style="font-size:40px; font-weight:700; color:#6b8f6b;">15</div><div style="color:var(--text-muted);">отраслевых наград</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== БЛОГ ===== -->
         <div class="container" id="blogSection">
             <div class="blog-section">
                 <h2 class="section-title" style="font-size:34px; text-align:center;">Полезные статьи</h2>
@@ -818,23 +1368,7 @@
             </div>
         </div>
 
-        <!-- О компании -->
-        <div class="container" id="aboutSection">
-            <div class="about-section">
-                <div class="about-text">
-                    <h2 class="serif">Надёжность, проверенная временем</h2>
-                    <p>МобилМаш — это более 6 лет опыта в поставках складской и промышленной техники. Мы предлагаем оборудование, которое проходит строгий контроль качества.</p>
-                    <div class="about-stats" style="display:flex; gap:32px; margin-top:24px;">
-                        <div class="stat">6+<span style="display:block; font-size:14px; color:var(--text-muted);">лет на рынке</span></div>
-                        <div class="stat">120+<span style="display:block; font-size:14px; color:var(--text-muted);">клиентов</span></div>
-                        <div class="stat">15<span style="display:block; font-size:14px; color:var(--text-muted);">наград</span></div>
-                    </div>
-                </div>
-                <div class="about-image"><img src="https://placehold.co/400x480/1a1f1a/6b8f6b?text=О+компании" style="width:100%; border-radius:32px;"></div>
-            </div>
-        </div>
-
-        <!-- Отзывы -->
+        <!-- ===== ОТЗЫВЫ ===== -->
         <div class="container" id="reviewsSection">
             <div class="reviews-section">
                 <div class="reviews-title">
@@ -862,7 +1396,7 @@
             </div>
         </div>
 
-        <!-- Контакты -->
+        <!-- ===== КОНТАКТЫ ===== -->
         <div class="container" id="contactSection">
             <div class="contact-form">
                 <h2>Нужна консультация?</h2>
@@ -896,7 +1430,7 @@
         </div>
     </footer>
 
-    <!-- Модалка корзины -->
+    <!-- ===== МОДАЛКИ ===== -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <button class="close-modal" id="cartCloseBtn">&times;</button>
@@ -907,7 +1441,6 @@
         </div>
     </div>
 
-    <!-- Модалка быстрого просмотра -->
     <div id="quickViewModal" class="modal">
         <div class="modal-content">
             <button class="close-modal" id="quickViewCloseBtn">&times;</button>
@@ -915,7 +1448,6 @@
         </div>
     </div>
 
-    <!-- Модалка сравнения -->
     <div id="compareModal" class="modal compare-modal">
         <div class="modal-content">
             <button class="close-modal" id="compareCloseBtn">&times;</button>
@@ -924,7 +1456,6 @@
         </div>
     </div>
 
-    <!-- Плашка сравнения (внизу) -->
     <div class="compare-bar" id="compareBar">
         <div class="compare-items" id="compareItemsList"></div>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -938,23 +1469,34 @@
         // ========== ДАННЫЕ ==========
         // ============================================================
         const allProducts = [
-            // Товары
-            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviewsCount: 12 },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviewsCount: 8 },
-            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviewsCount: 15 },
-            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviewsCount: 9 },
-            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviewsCount: 6 },
-            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviewsCount: 11 },
-            { id: 7, name: "Погрузчик ММ-400", category: "товары", type: "Дизельный", price: 1480000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-400", rating: 4.9, reviewsCount: 7 },
-            { id: 8, name: "Штабелёр ММ-Про", category: "товары", type: "Электрический", price: 1050000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр+Про", rating: 4.7, reviewsCount: 5 },
-            // Услуги
-            { id: 9, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9, reviewsCount: 24 },
-            { id: 10, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики", rating: 4.7, reviewsCount: 18 },
-            { id: 11, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8, reviewsCount: 14 },
-            // Прочие
-            { id: 12, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6, reviewsCount: 32 },
-            { id: 13, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7, reviewsCount: 21 },
-            { id: 14, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4, reviewsCount: 9 }
+            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8,
+                reviewsCount: 12 },
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9,
+                reviewsCount: 8 },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7,
+                reviewsCount: 15 },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6,
+                reviewsCount: 9 },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5,
+                reviewsCount: 6 },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8,
+                reviewsCount: 11 },
+            { id: 7, name: "Погрузчик ММ-400", category: "товары", type: "Дизельный", price: 1480000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-400",
+                rating: 4.9, reviewsCount: 7 },
+            { id: 8, name: "Штабелёр ММ-Про", category: "товары", type: "Электрический", price: 1050000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр+Про",
+                rating: 4.7, reviewsCount: 5 },
+            { id: 9, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9,
+                reviewsCount: 24 },
+            { id: 10, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики",
+                rating: 4.7, reviewsCount: 18 },
+            { id: 11, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8,
+                reviewsCount: 14 },
+            { id: 12, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6,
+                reviewsCount: 32 },
+            { id: 13, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7,
+                reviewsCount: 21 },
+            { id: 14, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4,
+                reviewsCount: 9 }
         ];
 
         // ============================================================
@@ -976,28 +1518,32 @@
         // ========== ФУНКЦИИ ==========
         // ============================================================
         function getProducts() {
-            let filtered = currentFilter === 'all' 
-                ? [...allProducts] 
-                : allProducts.filter(p => p.category === currentFilter);
+            let filtered = currentFilter === 'all' ?
+                [...allProducts] :
+                allProducts.filter(p => p.category === currentFilter);
 
-            // Поиск
             if (currentSearch.trim()) {
                 const query = currentSearch.trim().toLowerCase();
-                filtered = filtered.filter(p => 
-                    p.name.toLowerCase().includes(query) || 
+                filtered = filtered.filter(p =>
+                    p.name.toLowerCase().includes(query) ||
                     p.type.toLowerCase().includes(query)
                 );
             }
 
-            // Фильтр по цене
             filtered = filtered.filter(p => p.price >= priceMin && p.price <= priceMax);
 
-            // Сортировка
             switch (currentSort) {
-                case 'price-asc': filtered.sort((a, b) => a.price - b.price); break;
-                case 'price-desc': filtered.sort((a, b) => b.price - a.price); break;
-                case 'rating': filtered.sort((a, b) => b.rating - a.rating); break;
-                default: break;
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    filtered.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    break;
             }
 
             return filtered;
@@ -1050,7 +1596,7 @@
         // ============================================================
         function renderCatalog() {
             const grid = document.getElementById('productsGrid');
-            const { items, totalPages, totalItems } = getPaginatedProducts();
+            const { items, totalPages } = getPaginatedProducts();
 
             if (items.length === 0) {
                 grid.innerHTML = '<div class="empty-filter-msg">Ничего не найдено. Попробуйте изменить фильтры.</div>';
@@ -1065,28 +1611,25 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
-                    <button class="favorite-btn ${isFav ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-heart"></i></button>
-                    <button class="compare-btn ${isCompare ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-balance-scale"></i></button>
-                    <button class="quick-view-btn" data-id="${prod.id}">Быстрый просмотр</button>
-                    <div class="product-img"><img src="${prod.img}" alt="${prod.name}"></div>
-                    <div class="product-info">
-                        <div class="product-category">${prod.type}</div>
-                        <div class="card-title">${prod.name}</div>
-                        <div class="rating">
-                            <div class="stars">${getStarsHtml(prod.rating)}</div>
-                            <span class="rating-count">(${prod.reviewsCount} отзывов)</span>
+                        <button class="favorite-btn ${isFav ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-heart"></i></button>
+                        <button class="compare-btn ${isCompare ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-balance-scale"></i></button>
+                        <button class="quick-view-btn" data-id="${prod.id}">Быстрый просмотр</button>
+                        <div class="product-img"><img src="${prod.img}" alt="${prod.name}"></div>
+                        <div class="product-info">
+                            <div class="product-category">${prod.type}</div>
+                            <div class="card-title">${prod.name}</div>
+                            <div class="rating">
+                                <div class="stars">${getStarsHtml(prod.rating)}</div>
+                                <span class="rating-count">(${prod.reviewsCount} отзывов)</span>
+                            </div>
+                            <div class="price">${prod.price.toLocaleString()} ₽</div>
+                            <button class="add-to-cart" data-id="${prod.id}"><i class="fas fa-shopping-bag"></i> В корзину</button>
                         </div>
-                        <div class="price">${prod.price.toLocaleString()} ₽</div>
-                        <button class="add-to-cart" data-id="${prod.id}"><i class="fas fa-shopping-bag"></i> В корзину</button>
-                    </div>
-                `;
+                    `;
                 grid.appendChild(card);
             });
 
-            // Пагинация
             renderPagination(totalPages);
-
-            // Обновляем счётчики
             document.getElementById('favCount').textContent = favorites.length;
         }
 
@@ -1110,7 +1653,8 @@
                     if (page >= 1 && page <= totalPages) {
                         currentPage = page;
                         renderCatalog();
-                        window.scrollTo({ top: document.getElementById('catalogSection').offsetTop - 100, behavior: 'smooth' });
+                        window.scrollTo({ top: document.getElementById('catalogSection').offsetTop - 100,
+                            behavior: 'smooth' });
                     }
                 });
             });
@@ -1167,17 +1711,17 @@
             let html = '';
             cart.forEach(item => {
                 html += `
-                    <div class="cart-item">
-                        <div><strong>${item.name}</strong></div>
-                        <div class="cart-item-controls">
-                            <button class="cart-decr" data-id="${item.id}">-</button>
-                            <span class="cart-item-quantity">${item.quantity}</span>
-                            <button class="cart-incr" data-id="${item.id}">+</button>
-                            <span style="min-width:70px; text-align:right;">${(item.price * item.quantity).toLocaleString()} ₽</span>
-                            <button class="remove-item-btn" data-id="${item.id}" style="background:none; border:none; color:#6b8f6b; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
+                        <div class="cart-item">
+                            <div><strong>${item.name}</strong></div>
+                            <div class="cart-item-controls">
+                                <button class="cart-decr" data-id="${item.id}">-</button>
+                                <span class="cart-item-quantity">${item.quantity}</span>
+                                <button class="cart-incr" data-id="${item.id}">+</button>
+                                <span style="min-width:70px; text-align:right;">${(item.price * item.quantity).toLocaleString()} ₽</span>
+                                <button class="remove-item-btn" data-id="${item.id}" style="background:none; border:none; color:#6b8f6b; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
             });
             container.innerHTML = html;
             document.getElementById('cartTotalPrice').innerHTML = `Итого: ${getTotal().toLocaleString()} ₽`;
@@ -1247,12 +1791,12 @@
                 const p = allProducts.find(pr => pr.id === id);
                 if (!p) return '';
                 return `
-                    <div class="compare-item">
-                        <img src="${p.img}" alt="${p.name}">
-                        <span style="font-size:13px;">${p.name}</span>
-                        <button class="remove-compare" data-id="${p.id}"><i class="fas fa-times"></i></button>
-                    </div>
-                `;
+                        <div class="compare-item">
+                            <img src="${p.img}" alt="${p.name}">
+                            <span style="font-size:13px;">${p.name}</span>
+                            <button class="remove-compare" data-id="${p.id}"><i class="fas fa-times"></i></button>
+                        </div>
+                    `;
             }).join('');
 
             list.querySelectorAll('.remove-compare').forEach(btn => {
@@ -1273,9 +1817,11 @@
                 return;
             }
             const products = compareList.map(id => allProducts.find(p => p.id === id)).filter(Boolean);
-            let html = `<table class="compare-table"><tr><th>Характеристика</th>`;
+            let html =
+                `<table class="compare-table"><tr><th>Характеристика</th>`;
             products.forEach(p => {
-                html += `<th><div class="compare-product-name">${p.name}</div><img src="${p.img}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
+                html +=
+                    `<th><div class="compare-product-name">${p.name}</div><img src="${p.img}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
             });
             html += `</tr>`;
             html += `<tr><td>Цена</td>`;
@@ -1302,27 +1848,27 @@
             if (!product) return;
             const container = document.getElementById('quickViewContent');
             container.innerHTML = `
-                <div style="display:flex; flex-wrap:wrap; gap:20px;">
-                    <div style="flex:1; min-width:200px;">
-                        <img src="${product.img}" alt="${product.name}" style="width:100%; border-radius:20px;">
-                    </div>
-                    <div style="flex:1; min-width:200px;">
-                        <div style="color:#6b8f6b; font-weight:600;">${product.type}</div>
-                        <h2 style="font-size:28px; margin:8px 0;">${product.name}</h2>
-                        <div class="rating">
-                            <div class="stars">${getStarsHtml(product.rating)}</div>
-                            <span class="rating-count">(${product.reviewsCount} отзывов)</span>
+                    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+                        <div style="flex:1; min-width:200px;">
+                            <img src="${product.img}" alt="${product.name}" style="width:100%; border-radius:20px;">
                         </div>
-                        <div style="font-size:32px; font-weight:700; margin:12px 0;">${product.price.toLocaleString()} ₽</div>
-                        <p style="color:var(--text-secondary); margin-bottom:16px;">Категория: ${product.category}</p>
-                        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                            <button class="btn" onclick="addToCart(${product.id}); document.getElementById('quickViewModal').classList.remove('show');">Добавить в корзину</button>
-                            <button class="btn btn-outline" onclick="toggleFavorite(${product.id}); renderCatalog();">❤️ Избранное</button>
-                            <button class="btn btn-outline" onclick="toggleCompare(${product.id}); renderCatalog(); updateCompareBar();">📊 Сравнить</button>
+                        <div style="flex:1; min-width:200px;">
+                            <div style="color:#6b8f6b; font-weight:600;">${product.type}</div>
+                            <h2 style="font-size:28px; margin:8px 0;">${product.name}</h2>
+                            <div class="rating">
+                                <div class="stars">${getStarsHtml(product.rating)}</div>
+                                <span class="rating-count">(${product.reviewsCount} отзывов)</span>
+                            </div>
+                            <div style="font-size:32px; font-weight:700; margin:12px 0;">${product.price.toLocaleString()} ₽</div>
+                            <p style="color:var(--text-secondary); margin-bottom:16px;">Категория: ${product.category}</p>
+                            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                                <button class="btn" onclick="addToCart(${product.id}); document.getElementById('quickViewModal').classList.remove('show');">Добавить в корзину</button>
+                                <button class="btn btn-outline" onclick="toggleFavorite(${product.id}); renderCatalog();">❤️ Избранное</button>
+                                <button class="btn btn-outline" onclick="toggleCompare(${product.id}); renderCatalog(); updateCompareBar();">📊 Сравнить</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
             document.getElementById('quickViewModal').classList.add('show');
         }
 
@@ -1338,17 +1884,17 @@
                 return;
             }
             container.innerHTML = reviews.map(rev => `
-                <div class="review-card">
-                    <div class="review-header">
-                        <div>
-                            <span class="review-author">${escapeHtml(rev.author)}</span>
-                            <div class="stars" style="margin-top:5px;">${getStarsHtml(rev.rating)}</div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div>
+                                <span class="review-author">${escapeHtml(rev.author)}</span>
+                                <div class="stars" style="margin-top:5px;">${getStarsHtml(rev.rating)}</div>
+                            </div>
+                            <div class="review-date">${rev.date}</div>
                         </div>
-                        <div class="review-date">${rev.date}</div>
+                        <div class="review-text">${escapeHtml(rev.text)}</div>
                     </div>
-                    <div class="review-text">${escapeHtml(rev.text)}</div>
-                </div>
-            `).join('');
+                `).join('');
             updateAverageRating();
         }
 
@@ -1363,6 +1909,7 @@
         }
 
         let selectedRating = 0;
+
         function initReviewStars() {
             const stars = document.querySelectorAll('#reviewStarsInput i');
             stars.forEach(star => {
@@ -1412,24 +1959,53 @@
         // ========== БЛОГ ==========
         // ============================================================
         const blogPosts = [
-            { tag: "СОВЕТЫ", title: "Как выбрать складской погрузчик", excerpt: "Разбираем типы погрузчиков, грузоподъёмность и высоту подъёма.", img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Выбор+погрузчика" },
-            { tag: "УХОД", title: "Обслуживание электрических штабелёров", excerpt: "Чистка, зарядка и продление срока службы техники.", img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Обслуживание" },
-            { tag: "НОВОСТИ", title: "История компании МобилМаш", excerpt: "Как мы стали лидерами в поставке складской техники.", img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=История" }
+            { tag: "СОВЕТЫ", title: "Как выбрать складской погрузчик",
+                excerpt: "Разбираем типы погрузчиков, грузоподъёмность и высоту подъёма.",
+                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Выбор+погрузчика" },
+            { tag: "УХОД", title: "Обслуживание электрических штабелёров",
+                excerpt: "Чистка, зарядка и продление срока службы техники.",
+                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Обслуживание" },
+            { tag: "НОВОСТИ", title: "История компании МобилМаш",
+                excerpt: "Как мы стали лидерами в поставке складской техники.",
+                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=История" }
         ];
 
         function renderBlog() {
             const grid = document.getElementById('blogGrid');
             if (!grid) return;
             grid.innerHTML = blogPosts.map(post => `
-                <div class="blog-card">
-                    <div class="blog-img" style="background-image: url('${post.img}');"></div>
-                    <div class="blog-content">
-                        <div class="blog-tag">${post.tag}</div>
-                        <div class="blog-title">${post.title}</div>
-                        <div class="blog-excerpt">${post.excerpt}</div>
+                    <div class="blog-card">
+                        <div class="blog-img" style="background-image: url('${post.img}');"></div>
+                        <div class="blog-content">
+                            <div class="blog-tag">${post.tag}</div>
+                            <div class="blog-title">${post.title}</div>
+                            <div class="blog-excerpt">${post.excerpt}</div>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+        }
+
+        // ============================================================
+        // ========== НАВИГАЦИЯ ==========
+        // ============================================================
+        function initNavigation() {
+            document.querySelectorAll('[data-nav]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = link.dataset.nav;
+                    const ids = {
+                        home: 'homeSection',
+                        catalog: 'catalogSection',
+                        blog: 'blogSection',
+                        about: 'aboutSection',
+                        contact: 'contactSection'
+                    };
+                    const el = document.getElementById(ids[target]);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
         }
 
         // ============================================================
@@ -1438,7 +2014,7 @@
         function init() {
             // Загружаем корзину
             const savedCart = localStorage.getItem('mobilmash_cart');
-            if (savedCart) try { cart = JSON.parse(savedCart); } catch(e) { cart = []; }
+            if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
             updateCartUI();
 
             // Загружаем сравнение
@@ -1462,24 +2038,7 @@
             scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
             // Навигация
-            document.querySelectorAll('[data-nav]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = link.dataset.nav;
-                    const sections = ['homeSection', 'catalogSection', 'blogSection', 'aboutSection', 'contactSection'];
-                    const ids = {
-                        home: 'homeSection',
-                        catalog: 'catalogSection',
-                        blog: 'blogSection',
-                        about: 'aboutSection',
-                        contact: 'contactSection'
-                    };
-                    const el = document.getElementById(ids[target]);
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-                    link.classList.add('active');
-                });
-            });
+            initNavigation();
 
             // === Обработчики событий ===
 
@@ -1577,12 +2136,14 @@
                 const email = document.getElementById('userEmail').value.trim();
                 const msg = document.getElementById('userMsg').value.trim();
                 let isValid = true;
-                if (!name) { document.getElementById('nameGroup').classList.add('error'); isValid = false; }
-                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { 
-                    document.getElementById('emailGroup').classList.add('error'); 
-                    isValid = false; 
+                if (!name) { document.getElementById('nameGroup').classList.add('error');
+                    isValid = false; }
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    document.getElementById('emailGroup').classList.add('error');
+                    isValid = false;
                 }
-                if (!msg) { document.getElementById('msgGroup').classList.add('error'); isValid = false; }
+                if (!msg) { document.getElementById('msgGroup').classList.add('error');
+                    isValid = false; }
                 if (!isValid) return;
 
                 const btn = document.getElementById('submitFormBtn');
