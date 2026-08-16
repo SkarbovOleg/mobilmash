@@ -3,103 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Тест</title>
+  <title>StrokeArt | Премиальные ручки</title>
   <style>
+    /* ----- Сброс и шрифты ----- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     }
 
     body {
-      background: #f5f7fb;
+      background: #f8f6f2;
+      color: #1a1a1a;
+      padding: 2rem 1rem;
       display: flex;
       justify-content: center;
-      padding: 2rem 1rem;
     }
 
     .app {
-      max-width: 1200px;
+      max-width: 1300px;
       width: 100%;
-      background: white;
-      border-radius: 2rem;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-      padding: 2rem 1.5rem 3rem;
-      transition: all 0.2s;
     }
 
-    h1 {
-      font-size: 2.6rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #0b1a33;
-      margin-bottom: 0.3rem;
+    /* ----- Шапка (как на вашем сайте) ----- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 0.5rem 0 1.5rem;
+      border-bottom: 1px solid #e5dfd7;
+      margin-bottom: 2rem;
     }
 
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #1e1e1e;
+    }
+
+    .logo span {
+      font-weight: 300;
+      color: #7a6e5e;
+      font-size: 0.9rem;
+      display: block;
+      margin-top: -0.2rem;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: #5a4f40;
+      background: #f0ebe4;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+    }
+
+    /* ----- Описание (тест) ----- */
     .site-description {
       font-size: 1.1rem;
-      color: #4a5b6e;
+      color: #3d352a;
+      background: #f0ebe4;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      display: inline-block;
       margin-bottom: 2rem;
-      border-left: 4px solid #3b82f6;
-      padding-left: 1rem;
-      background: #f8faff;
-      border-radius: 0 12px 12px 0;
-      line-height: 1.5;
-      width: fit-content;
-      padding: 0.5rem 1.2rem;
+      border: 1px solid #e0d7cc;
     }
 
-    /* три кнопки */
+    /* ----- Три кнопки (фильтры) ----- */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem 1rem;
-      margin: 1.8rem 0 2.5rem;
-      border-bottom: 1px solid #e9edf4;
+      gap: 0.8rem 1.2rem;
+      margin-bottom: 2.5rem;
       padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e5dfd7;
     }
 
     .filter-btn {
       background: transparent;
-      border: none;
-      padding: 0.6rem 1.8rem;
-      font-size: 1.1rem;
+      border: 1px solid #d6cdc0;
+      padding: 0.5rem 1.8rem;
+      font-size: 1rem;
       font-weight: 500;
-      border-radius: 60px;
-      color: #2c3e50;
+      border-radius: 40px;
+      color: #3d352a;
       cursor: pointer;
-      transition: 0.2s ease;
-      background: #f0f3f9;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+      transition: all 0.2s ease;
+      background: #fcfaf7;
     }
 
     .filter-btn:hover {
-      background: #e3e9f4;
+      background: #e8e0d6;
+      border-color: #b3a694;
       transform: translateY(-1px);
     }
 
     .filter-btn.active {
-      background: #0b1a33;
+      background: #1e1e1e;
       color: white;
-      box-shadow: 0 6px 14px rgba(11, 26, 51, 0.18);
+      border-color: #1e1e1e;
     }
 
-    /* сетка карточек */
+    /* ----- Сетка карточек (как на вашем сайте) ----- */
     .catalog {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 2rem 1.5rem;
+      gap: 2rem 1.8rem;
       margin-top: 0.5rem;
     }
 
     .card {
       background: white;
-      border-radius: 1.6rem;
-      padding: 1.2rem 1rem 1.2rem;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1rem 1.4rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-      border: 1px solid #edf2f9;
-      transition: all 0.2s;
+      border: 1px solid #ece6de;
+      transition: all 0.25s ease;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -107,69 +129,68 @@
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      border-color: #bdd3f0;
-      box-shadow: 0 16px 28px -8px rgba(0, 20, 50, 0.08);
-      background: #fafcff;
+      transform: translateY(-6px);
+      border-color: #b3a694;
+      box-shadow: 0 16px 32px -10px rgba(30, 30, 30, 0.08);
+      background: #fefcf9;
     }
 
     .card-image {
       width: 100%;
       aspect-ratio: 1 / 1;
-      background: #eef3fa;
-      border-radius: 1.2rem;
+      background: #f4f0ea;
+      border-radius: 1rem;
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.8rem;
-      font-weight: 300;
-      color: #2f4057;
-      background: #e8edf6;
+      color: #3d352a;
+      background: #ede7df;
       transition: 0.2s;
     }
 
     .card-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #0b1a33;
-      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #1e1e1e;
+      margin-bottom: 0.15rem;
       line-height: 1.3;
     }
 
     .card-price {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 500;
-      color: #1f3a6b;
-      background: #eef4fe;
-      padding: 0.2rem 1rem;
+      color: #4d3f2e;
+      background: #f0ebe4;
+      padding: 0.1rem 1rem;
       border-radius: 40px;
       margin-top: 0.3rem;
-      display: inline-block;
     }
 
     .card-description-preview {
-      font-size: 0.9rem;
-      color: #5b6f87;
-      margin-top: 0.4rem;
-      opacity: 0.7;
+      font-size: 0.85rem;
+      color: #6b5f4f;
+      margin-top: 0.5rem;
+      opacity: 0.8;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      line-height: 1.4;
     }
 
-    /* модальное окно (детали) */
+    /* ----- Модальное окно (детали) ----- */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.25);
-      backdrop-filter: blur(3px);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      padding: 1rem;
+      padding: 1.5rem;
       animation: fadeIn 0.25s ease;
     }
 
@@ -177,9 +198,9 @@
       background: white;
       max-width: 420px;
       width: 100%;
-      border-radius: 2.4rem;
-      padding: 2.2rem 1.8rem 2rem;
-      box-shadow: 0 40px 70px rgba(0, 0, 0, 0.15);
+      border-radius: 2rem;
+      padding: 2rem 1.8rem 2rem;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12);
       animation: slideUp 0.3s ease;
       position: relative;
     }
@@ -187,62 +208,64 @@
     .modal-close {
       position: absolute;
       top: 1rem;
-      right: 1.4rem;
-      background: #f0f3f9;
+      right: 1.2rem;
+      background: #f0ebe4;
       border: none;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       line-height: 1;
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 2.2rem;
+      height: 2.2rem;
       border-radius: 60px;
       cursor: pointer;
       transition: 0.15s;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #1f2a3f;
+      color: #1e1e1e;
     }
 
     .modal-close:hover {
-      background: #dce3ef;
+      background: #ddd3c8;
     }
 
     .modal-title {
-      font-size: 2rem;
-      font-weight: 600;
-      color: #0b1a33;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #1e1e1e;
       margin-right: 2rem;
+      letter-spacing: -0.3px;
     }
 
     .modal-price {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #1f3a6b;
-      background: #eef4fe;
-      padding: 0.2rem 1.4rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #2d2419;
+      background: #f0ebe4;
+      padding: 0.1rem 1.4rem;
       border-radius: 60px;
       display: inline-block;
-      margin: 0.6rem 0 0.8rem;
+      margin: 0.5rem 0 0.8rem;
     }
 
     .modal-description {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.6;
-      color: #1e334b;
+      color: #2d2419;
       margin-top: 0.5rem;
       padding-top: 1rem;
-      border-top: 1px solid #e4ebf5;
+      border-top: 1px solid #ece6de;
     }
 
     .modal-category-tag {
       display: inline-block;
       margin-top: 1rem;
-      font-size: 0.8rem;
-      background: #eef2f8;
+      font-size: 0.75rem;
+      background: #ede7df;
       padding: 0.2rem 1rem;
       border-radius: 30px;
-      color: #2b4b77;
-      letter-spacing: 0.3px;
+      color: #4d3f2e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     @keyframes fadeIn {
@@ -259,26 +282,35 @@
       grid-column: 1 / -1;
       text-align: center;
       padding: 3rem 0;
-      color: #667b97;
-      background: #f9fbfe;
+      color: #6b5f4f;
+      background: #faf7f3;
       border-radius: 2rem;
       font-size: 1.1rem;
     }
 
-    /* адаптив */
+    /* ----- Адаптив ----- */
     @media (max-width: 600px) {
-      .app { padding: 1.5rem 1rem; }
-      h1 { font-size: 2rem; }
-      .filter-btn { padding: 0.4rem 1.2rem; font-size: 1rem; }
+      .header { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+      .logo h1 { font-size: 1.6rem; }
+      .filter-btn { padding: 0.4rem 1.2rem; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
 <div class="app">
-  <h1>Тест</h1>
+  <!-- Шапка в стиле вашего сайта -->
+  <div class="header">
+    <div class="logo">
+      <h1>StrokeArt</h1>
+      <span>премиальные ручки</span>
+    </div>
+    <div class="tagline">С 2012 — искусство письма</div>
+  </div>
+
+  <!-- Описание (тест) -->
   <div class="site-description">Тест — описание сайта</div>
 
-  <!-- три кнопки -->
+  <!-- Три кнопки -->
   <div class="filter-bar">
     <button class="filter-btn active" data-category="all">Все</button>
     <button class="filter-btn" data-category="товары">Товары</button>
@@ -286,29 +318,31 @@
     <button class="filter-btn" data-category="прочие">Прочие</button>
   </div>
 
-  <!-- контейнер карточек -->
+  <!-- Контейнер карточек -->
   <div id="catalogContainer" class="catalog"></div>
 </div>
 
 <script>
   (function() {
-    // ----- ДАННЫЕ -----
+    // ----- ТОВАРЫ (в стиле ваших ручек + услуги/прочее) -----
     const products = [
-      // Товары
-      { id: 1, name: 'Смартфон X', price: '49 990 ₽', description: '6.7" AMOLED, 128 ГБ, тройная камера 108 Мп, батарея 5000 мАч', category: 'товары' },
-      { id: 2, name: 'Наушники Pro', price: '12 300 ₽', description: 'Активное шумоподавление, 40 ч работы, Hi-Res Audio', category: 'товары' },
-      { id: 3, name: 'Ноутбук Ultra', price: '89 990 ₽', description: '16" OLED, Intel i7, 16 ГБ RAM, SSD 1 ТБ, графика RTX', category: 'товары' },
-      { id: 4, name: 'Умные часы', price: '22 500 ₽', description: 'AMOLED, GPS, пульсоксиметр, ЭКГ, 7 дней автономии', category: 'товары' },
+      // Товары (ручки и аксессуары)
+      { id: 1, name: 'StrokeArt Legacy', price: '990 ₽', description: 'Классическая модель с золотым пером. Корпус из чёрного акрила.', category: 'товары' },
+      { id: 2, name: 'StrokeArt Aurora', price: '1,250 ₽', description: 'Лимитированная серия. Перламутровый корпус, родиевое покрытие.', category: 'товары' },
+      { id: 3, name: 'StrokeArt Carbon', price: '870 ₽', description: 'Современный дизайн. Карбоновое волокно, матовый финиш.', category: 'товары' },
+      { id: 4, name: 'StrokeArt Petite', price: '540 ₽', description: 'Компактная ручка для ежедневного использования. Стальной наконечник.', category: 'товары' },
+      { id: 5, name: 'StrokeArt Royal', price: '1,890 ₽', description: 'Премиум-класс. Корпус из эбенового дерева, инкрустация.', category: 'товары' },
+      { id: 6, name: 'StrokeArt Minimal', price: '690 ₽', description: 'Минималистичный алюминиевый корпус. Идеальный баланс.', category: 'товары' },
       // Услуги
-      { id: 5, name: 'Ремонт ПК', price: 'от 1 500 ₽', description: 'Диагностика, замена комплектующих, чистка от пыли, настройка ПО', category: 'услуги' },
-      { id: 6, name: 'Настройка Wi-Fi', price: '2 200 ₽', description: 'Оптимизация сети, усиление сигнала, настройка роутера и Mesh', category: 'услуги' },
-      { id: 7, name: 'Установка софта', price: '1 800 ₽', description: 'Установка ОС, драйверов, офисных пакетов и антивируса', category: 'услуги' },
-      { id: 8, name: 'Консультация IT', price: '3 000 ₽/час', description: 'Помощь в выборе оборудования, архитектура, аудит', category: 'услуги' },
+      { id: 7, name: 'Гравировка на ручке', price: 'от 450 ₽', description: 'Именная гравировка на корпусе или клипе. До 20 символов.', category: 'услуги' },
+      { id: 8, name: 'Ремонт и замена пера', price: 'от 800 ₽', description: 'Диагностика, замена пера, чистка подающего механизма.', category: 'услуги' },
+      { id: 9, name: 'Набор чернил 5 цветов', price: '1,200 ₽', description: 'Подарочный набор чернил для вашей ручки. 5 оттенков.', category: 'услуги' },
+      { id: 10, name: 'Футляр для ручки', price: 'от 650 ₽', description: 'Экокожаный футляр с отделением для ручки и чернил.', category: 'услуги' },
       // Прочие
-      { id: 9, name: 'USB-хаб 4 в 1', price: '1 290 ₽', description: 'USB-C, HDMI, кардридер, зарядка 100 Вт', category: 'прочие' },
-      { id: 10, name: 'Кабель USB-C', price: '890 ₽', description: '1.8 м, тканевая оплётка, поддержка быстрой зарядки', category: 'прочие' },
-      { id: 11, name: 'Подставка для ноутбука', price: '2 490 ₽', description: 'Алюминий, регулировка высоты, складная', category: 'прочие' },
-      { id: 12, name: 'Блок питания 65W', price: '3 100 ₽', description: 'GaN, 2 порта USB-C, 1 USB-A, компактный', category: 'прочие' }
+      { id: 11, name: 'Блокнот премиум', price: '390 ₽', description: 'Бумага 90 г/м², твёрдая обложка, закладка-ляссе.', category: 'прочие' },
+      { id: 12, name: 'Салфетка для полировки', price: '250 ₽', description: 'Мягкая микрофибра для ухода за корпусом и пером.', category: 'прочие' },
+      { id: 13, name: 'Подставка для ручек', price: '890 ₽', description: 'Деревянная подставка на 3 ручки. Устойчивая.', category: 'прочие' },
+      { id: 14, name: 'Подарочная упаковка', price: '350 ₽', description: 'Крафтовый короб с лентой и открыткой.', category: 'прочие' }
     ];
 
     // ----- ЭЛЕМЕНТЫ -----
@@ -329,26 +363,25 @@
 
       let html = '';
       filtered.forEach((item) => {
-        // Используем первую букву имени как иконку (или эмодзи-заглушку)
         const emoji = getCategoryEmoji(item.category);
         html += `
           <div class="card" data-id="${item.id}" data-category="${item.category}">
             <div class="card-image">${emoji}</div>
             <div class="card-title">${item.name}</div>
             <div class="card-price">${item.price}</div>
-            <div class="card-description-preview">${item.description.substring(0, 50)}${item.description.length > 50 ? '…' : ''}</div>
+            <div class="card-description-preview">${item.description.substring(0, 55)}${item.description.length > 55 ? '…' : ''}</div>
           </div>
         `;
       });
       catalog.innerHTML = html;
     }
 
-    // вспомогательный эмодзи по категории (для красоты)
+    // Эмодзи для карточек
     function getCategoryEmoji(cat) {
       const map = {
-        'товары': '📱',
-        'услуги': '🛠️',
-        'прочие': '🔌'
+        'товары': '🖊️',
+        'услуги': '⚙️',
+        'прочие': '📎'
       };
       return map[cat] || '📦';
     }
@@ -358,7 +391,6 @@
       const product = products.find(p => p.id === productId);
       if (!product) return;
 
-      // удаляем старое модальное окно, если есть
       const oldModal = document.querySelector('.modal-overlay');
       if (oldModal) oldModal.remove();
 
@@ -370,19 +402,18 @@
           <div class="modal-title">${product.name}</div>
           <div class="modal-price">${product.price}</div>
           <div class="modal-description">${product.description}</div>
-          <div class="modal-category-tag">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+          <div class="modal-category-tag">${product.category}</div>
         </div>
       `;
       document.body.appendChild(overlay);
 
-      // закрытие по клику на оверлей (фон) или крестик
+      // Закрытие
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay || e.target.closest('#modalCloseBtn')) {
           overlay.remove();
         }
       });
 
-      // закрытие по Escape
       const escHandler = (e) => {
         if (e.key === 'Escape') {
           overlay.remove();
@@ -391,7 +422,6 @@
       };
       document.addEventListener('keydown', escHandler);
 
-      // при удалении модалки очищаем обработчик
       const observer = new MutationObserver(() => {
         if (!document.body.contains(overlay)) {
           document.removeEventListener('keydown', escHandler);
@@ -401,26 +431,22 @@
       observer.observe(document.body, { childList: true, subtree: false });
     }
 
-    // ----- ОБРАБОТЧИК КЛИКОВ ПО КАРТОЧКАМ (делегирование) -----
+    // ----- КЛИК ПО КАРТОЧКЕ -----
     catalog.addEventListener('click', (e) => {
       const card = e.target.closest('.card');
       if (!card) return;
       const id = card.dataset.id;
-      if (id) {
-        showModal(Number(id));
-      }
+      if (id) showModal(Number(id));
     });
 
-    // ----- ФИЛЬТРАЦИЯ ПО КНОПКАМ -----
+    // ----- ФИЛЬТРАЦИЯ -----
     filterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        // убираем active у всех
         filterBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
 
-        const category = this.dataset.category;
-        currentCategory = category;
-        renderCards(category);
+        currentCategory = this.dataset.category;
+        renderCards(currentCategory);
       });
     });
 
