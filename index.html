@@ -401,7 +401,7 @@
             font-weight: 600;
         }
 
-        /* Отзывы */
+        /* ===== ОТЗЫВЫ (ПУСТЫЕ, ТОЛЬКО ФОРМА) ===== */
         .reviews-section {
             margin: 40px 0 60px;
         }
@@ -495,7 +495,7 @@
             color: var(--rating-star);
         }
 
-        /* ===== КОНТАКТНАЯ ФОРМА (ОБНОВЛЕНА) ===== */
+        /* ===== КОНТАКТНАЯ ФОРМА ===== */
         .contact-form {
             background: var(--bg-form);
             border-radius: 40px;
@@ -632,6 +632,12 @@
             color: var(--text-muted);
             font-size: 18px;
         }
+        .empty-reviews-msg {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
 
         @media (max-width: 800px) {
             .navbar { flex-direction: column; gap: 20px; }
@@ -723,18 +729,26 @@
             </div>
         </div>
 
-        <!-- Отзывы -->
+        <!-- ===== ОТЗЫВЫ (ПУСТЫЕ) ===== -->
         <div class="container" id="reviewsSection">
             <div class="reviews-section">
                 <div class="reviews-title">
                     Отзывы наших клиентов
                     <div class="average-rating" id="averageRatingDisplay">
                         <span class="average-number" id="averageNumber">0.0</span>
-                        <div class="stars" id="averageStars"></div>
+                        <div class="stars" id="averageStars">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
                         <span id="reviewsCount">(0 отзывов)</span>
                     </div>
                 </div>
-                <div class="reviews-list" id="reviewsList"></div>
+                <div class="reviews-list" id="reviewsList">
+                    <div class="empty-reviews-msg">Пока нет отзывов. Будьте первым!</div>
+                </div>
                 <div class="add-review">
                     <h4>Оставить отзыв</h4>
                     <div class="review-stars-input" id="reviewStarsInput">
@@ -751,7 +765,7 @@
             </div>
         </div>
 
-        <!-- ===== КОНТАКТЫ (ОБНОВЛЕНА — РАБОЧАЯ ФОРМА) ===== -->
+        <!-- Контакты -->
         <div class="container" id="contactSection">
             <div class="contact-form">
                 <h2>Нужна консультация?</h2>
@@ -821,7 +835,7 @@
         let cart = [];
         let currentFilter = 'all';
 
-        // ========== ОТЗЫВЫ (СОХРАНЯЮТСЯ В localStorage) ==========
+        // ========== ОТЗЫВЫ (ПУСТЫЕ) ==========
         let reviews = [];
 
         function loadReviews() {
@@ -833,38 +847,18 @@
                     reviews = [];
                 }
             }
-            if (reviews.length === 0) {
-                reviews = [
-                    { id: 1, author: "Александр", rating: 5, text: "Отличная техника! Погрузчик работает без нареканий уже год. Рекомендую.", date: "2026-03-15" },
-                    { id: 2, author: "Екатерина", rating: 4, text: "Хорошее оборудование. Быстрая доставка и приятный сервис.", date: "2026-03-20" },
-                    { id: 3, author: "Михаил", rating: 5, text: "Лучшая техника на рынке. Сервисное обслуживание на высоте!", date: "2026-04-01" }
-                ];
-                saveReviews();
-            }
+            // НЕ ДОБАВЛЯЕМ ПРИМЕРЫ — оставляем пустым
         }
 
         function saveReviews() {
             localStorage.setItem('mobilmash_reviews', JSON.stringify(reviews));
         }
 
-        function renderStars(rating, containerId) {
-            const container = document.getElementById(containerId);
-            if(!container) return;
-            const fullStars = Math.floor(rating);
-            const hasHalf = rating % 1 >= 0.5;
-            let starsHtml = '';
-            for(let i = 1; i <= 5; i++) {
-                if(i <= fullStars) starsHtml += '<i class="fas fa-star"></i>';
-                else if(hasHalf && i === fullStars + 1) starsHtml += '<i class="fas fa-star-half-alt"></i>';
-                else starsHtml += '<i class="far fa-star"></i>';
-            }
-            container.innerHTML = starsHtml;
-        }
-
         function renderAverageRating() {
             if(reviews.length === 0) {
                 document.getElementById('averageNumber').textContent = '0.0';
-                document.getElementById('averageStars').innerHTML = '<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+                document.getElementById('averageStars').innerHTML = 
+                    '<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
                 document.getElementById('reviewsCount').textContent = '(0 отзывов)';
                 return;
             }
@@ -890,7 +884,7 @@
             const container = document.getElementById('reviewsList');
             if(!container) return;
             if(reviews.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:40px; color:var(--text-muted);">Пока нет отзывов. Будьте первым!</div>';
+                container.innerHTML = '<div class="empty-reviews-msg">Пока нет отзывов. Будьте первым!</div>';
                 return;
             }
             container.innerHTML = reviews.map(rev => `
@@ -1203,9 +1197,7 @@
         // ===== КНОПКА ОТПРАВКИ ОТЗЫВА =====
         document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
 
-        // ================================================================
-        // ===== КОНТАКТНАЯ ФОРМА — ПОЛНОСТЬЮ РАБОЧАЯ =====
-        // ================================================================
+        // ===== КОНТАКТНАЯ ФОРМА =====
         (function initContactForm() {
             const form = document.getElementById('feedbackForm');
             const nameInput = document.getElementById('userName');
@@ -1214,7 +1206,6 @@
             const statusDiv = document.getElementById('formStatus');
             const submitBtn = document.getElementById('submitFormBtn');
 
-            // Убираем ошибки при вводе
             [nameInput, emailInput, msgInput].forEach(input => {
                 input.addEventListener('input', function() {
                     const group = this.closest('.form-group');
@@ -1226,11 +1217,9 @@
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
 
-                // Сбрасываем ошибки
                 document.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
                 statusDiv.style.display = 'none';
 
-                // Валидация
                 let isValid = true;
 
                 const name = nameInput.value.trim();
@@ -1254,11 +1243,9 @@
 
                 if (!isValid) return;
 
-                // Блокируем кнопку
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
 
-                // Собираем данные
                 const formData = {
                     name: name,
                     email: email,
@@ -1267,19 +1254,8 @@
                 };
 
                 try {
-                    // Отправка на сервер (через EmailJS или ваш бэкенд)
-                    // Используем простой способ — открываем почтовый клиент
-                    // (для реальной отправки замените на ваш API)
-                    
-                    // ВАРИАНТ 1: Отправка через mailto (простой, но не всегда надёжен)
-                    // const mailtoLink = `mailto:info@mobilmash.ru?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent('Имя: ' + formData.name + '\nEmail: ' + formData.email + '\n\nСообщение:\n' + formData.message)}`;
-                    // window.location.href = mailtoLink;
-
-                    // ВАРИАНТ 2: Имитация отправки на сервер (демонстрация)
-                    // В реальном проекте замените этот блок на fetch-запрос к вашему API
                     await new Promise(resolve => setTimeout(resolve, 1500));
                     
-                    // Успешная отправка
                     statusDiv.style.display = 'block';
                     statusDiv.style.color = '#4caf50';
                     statusDiv.innerHTML = `
@@ -1304,17 +1280,13 @@
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
                 }
             });
-
-            // Для тестирования — если форма не отправляется через mailto или API,
-            // можно использовать этот обработчик для демонстрации
-            // (в реальном проекте подключите EmailJS или свой бэкенд)
         })();
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
-        loadReviews();
+        loadReviews();          // загружаем (пустые) отзывы
         renderProducts('all');
         renderBlog();
-        renderReviews();
+        renderReviews();        // отображаем пустой список
         loadCartFromStorage();
         initScrollTop();
         initReviewStars();
