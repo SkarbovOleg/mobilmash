@@ -7,11 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ===== ВСЕ СТИЛИ ОСТАЮТСЯ БЕЗ ИЗМЕНЕНИЙ ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --bg-primary: #121212;
@@ -22,7 +19,7 @@
             --text-primary: #e8e2dc;
             --text-secondary: #b8b0a8;
             --text-muted: #9a8e86;
-            --border-light: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(255,255,255,0.1);
             --border-card: #2d2a28;
             --border-form: #3d3530;
             --btn-bg: #6b8f6b;
@@ -48,14 +45,8 @@
             line-height: 1.4;
         }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        .serif {
-            font-family: 'Cormorant Garamond', serif;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        .serif { font-family: 'Cormorant Garamond', serif; }
 
         /* ===== КНОПКА НАВЕРХ ===== */
         .scroll-top {
@@ -75,18 +66,12 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 999;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             border: none;
             font-size: 20px;
         }
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        .scroll-top:hover {
-            background: var(--btn-hover);
-            transform: translateY(-3px);
-        }
+        .scroll-top.show { opacity: 1; visibility: visible; }
+        .scroll-top:hover { background: var(--btn-hover); transform: translateY(-3px); }
 
         /* ===== ШАПКА ===== */
         .navbar {
@@ -106,15 +91,8 @@
             font-weight: 600;
             color: var(--text-primary);
         }
-        .logo img {
-            height: 45px;
-            width: auto;
-            border-radius: 10px;
-        }
-        .logo-text span {
-            color: #6b8f6b;
-            font-weight: 700;
-        }
+        .logo img { height: 45px; width: auto; border-radius: 10px; }
+        .logo-text span { color: #6b8f6b; font-weight: 700; }
         .nav-links {
             display: flex;
             gap: 36px;
@@ -128,10 +106,7 @@
             font-size: 16px;
             transition: 0.2s;
         }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #6b8f6b;
-        }
+        .nav-links a:hover, .nav-links a.active { color: #6b8f6b; }
 
         .cart-icon {
             position: relative;
@@ -166,19 +141,13 @@
             cursor: pointer;
             font-size: 15px;
         }
-        .btn:hover {
-            background: var(--btn-hover);
-            transform: translateY(-2px);
-        }
+        .btn:hover { background: var(--btn-hover); transform: translateY(-2px); }
         .btn-outline {
             background: transparent;
             border: 1.5px solid var(--btn-outline);
             color: var(--btn-outline);
         }
-        .btn-outline:hover {
-            background: var(--btn-outline);
-            color: var(--bg-primary);
-        }
+        .btn-outline:hover { background: var(--btn-outline); color: var(--bg-primary); }
 
         .rating {
             display: flex;
@@ -186,21 +155,10 @@
             gap: 8px;
             margin: 10px 0;
         }
-        .stars {
-            display: flex;
-            gap: 3px;
-        }
-        .stars i {
-            color: var(--rating-star);
-            font-size: 14px;
-        }
-        .stars i.empty {
-            color: var(--rating-star-empty);
-        }
-        .rating-count {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+        .stars { display: flex; gap: 3px; }
+        .stars i { color: var(--rating-star); font-size: 14px; }
+        .stars i.empty { color: var(--rating-star-empty); }
+        .rating-count { font-size: 13px; color: var(--text-muted); }
 
         /* ===== HERO ===== */
         .hero {
@@ -211,18 +169,10 @@
             gap: 48px;
             padding: 60px 0 40px;
         }
-        .hero-content h1 {
-            font-size: 56px;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-        .hero-content p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-        }
+        .hero-content h1 { font-size: 56px; line-height: 1.2; margin-bottom: 24px; }
+        .hero-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
 
-        /* ===== ФИЛЬТРЫ, ПОИСК, СОРТИРОВКА ===== */
+        /* ===== ФИЛЬТРЫ ===== */
         .catalog-controls {
             display: flex;
             flex-wrap: wrap;
@@ -249,9 +199,7 @@
             outline: none;
             transition: border 0.3s;
         }
-        .search-wrapper input:focus {
-            border-color: #6b8f6b;
-        }
+        .search-wrapper input:focus { border-color: #6b8f6b; }
         .search-wrapper button {
             padding: 10px 18px;
             background: var(--btn-bg);
@@ -279,9 +227,7 @@
             min-width: 120px;
         }
         .filter-sort-group select:focus,
-        .filter-sort-group input:focus {
-            border-color: #6b8f6b;
-        }
+        .filter-sort-group input:focus { border-color: #6b8f6b; }
 
         .price-filter {
             display: flex;
@@ -298,12 +244,8 @@
             font-size: 13px;
             outline: none;
         }
-        .price-filter input[type="number"]:focus {
-            border-color: #6b8f6b;
-        }
-        .price-filter span {
-            color: var(--text-muted);
-        }
+        .price-filter input[type="number"]:focus { border-color: #6b8f6b; }
+        .price-filter span { color: var(--text-muted); }
 
         .filter-bar {
             display: flex;
@@ -324,16 +266,12 @@
             transition: all 0.3s ease;
             font-family: 'Inter', sans-serif;
         }
-        .filter-btn:hover {
-            border-color: #6b8f6b;
-            color: var(--text-primary);
-            transform: translateY(-2px);
-        }
+        .filter-btn:hover { border-color: #6b8f6b; color: var(--text-primary); transform: translateY(-2px); }
         .filter-btn.active {
             background: var(--filter-active);
             border-color: var(--filter-active);
             color: white;
-            box-shadow: 0 4px 20px rgba(107, 143, 107, 0.3);
+            box-shadow: 0 4px 20px rgba(107,143,107,0.3);
         }
 
         /* ===== КАРТОЧКИ ТОВАРОВ ===== */
@@ -351,16 +289,13 @@
             transition: 0.3s;
             position: relative;
         }
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: #6b8f6b;
-        }
+        .product-card:hover { transform: translateY(-8px); border-color: #6b8f6b; }
 
         .product-card .favorite-btn {
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0,0,0,0.6);
             border: none;
             border-radius: 50%;
             width: 36px;
@@ -371,19 +306,14 @@
             transition: 0.3s;
             z-index: 5;
         }
-        .product-card .favorite-btn:hover {
-            transform: scale(1.1);
-        }
-        .product-card .favorite-btn.active {
-            color: var(--favorite-color);
-            background: rgba(255, 71, 87, 0.2);
-        }
+        .product-card .favorite-btn:hover { transform: scale(1.1); }
+        .product-card .favorite-btn.active { color: var(--favorite-color); background: rgba(255,71,87,0.2); }
 
         .product-card .compare-btn {
             position: absolute;
             top: 16px;
             left: 16px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0,0,0,0.6);
             border: none;
             border-radius: 50%;
             width: 36px;
@@ -394,20 +324,15 @@
             transition: 0.3s;
             z-index: 5;
         }
-        .product-card .compare-btn.active {
-            color: #6b8f6b;
-            background: rgba(107, 143, 107, 0.2);
-        }
-        .product-card .compare-btn:hover {
-            transform: scale(1.1);
-        }
+        .product-card .compare-btn.active { color: #6b8f6b; background: rgba(107,143,107,0.2); }
+        .product-card .compare-btn:hover { transform: scale(1.1); }
 
         .product-card .quick-view-btn {
             position: absolute;
             bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.8);
             color: white;
             border: none;
             padding: 8px 20px;
@@ -418,9 +343,7 @@
             transition: 0.3s;
             z-index: 5;
         }
-        .product-card:hover .quick-view-btn {
-            opacity: 1;
-        }
+        .product-card:hover .quick-view-btn { opacity: 1; }
 
         .product-img {
             background: var(--bg-primary);
@@ -430,30 +353,19 @@
             justify-content: center;
             padding: 20px;
             position: relative;
+            overflow: hidden;
         }
         .product-img img {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
+            border-radius: 8px;
         }
-        .product-info {
-            padding: 18px 20px 20px;
-        }
-        .product-category {
-            font-size: 13px;
-            color: #6b8f6b;
-            font-weight: 600;
-        }
-        .card-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 6px 0;
-        }
-        .price {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
+
+        .product-info { padding: 18px 20px 20px; }
+        .product-category { font-size: 13px; color: #6b8f6b; font-weight: 600; }
+        .card-title { font-size: 20px; font-weight: 600; margin: 6px 0; }
+        .price { font-size: 22px; font-weight: 700; margin-bottom: 14px; }
         .add-to-cart {
             width: 100%;
             background: var(--add-to-cart-bg);
@@ -465,10 +377,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .add-to-cart:hover {
-            background: var(--btn-bg);
-            color: white;
-        }
+        .add-to-cart:hover { background: var(--btn-bg); color: white; }
 
         /* ===== ПАГИНАЦИЯ ===== */
         .pagination {
@@ -488,19 +397,9 @@
             transition: 0.3s;
             font-size: 14px;
         }
-        .pagination button:hover {
-            border-color: #6b8f6b;
-            color: var(--text-primary);
-        }
-        .pagination button.active {
-            background: var(--btn-bg);
-            border-color: var(--btn-bg);
-            color: white;
-        }
-        .pagination button:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
+        .pagination button:hover { border-color: #6b8f6b; color: var(--text-primary); }
+        .pagination button.active { background: var(--btn-bg); border-color: var(--btn-bg); color: white; }
+        .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
 
         /* ===== ПЛАШКА СРАВНЕНИЯ ===== */
         .compare-bar {
@@ -518,14 +417,8 @@
             gap: 12px;
             z-index: 100;
         }
-        .compare-bar.show {
-            display: flex;
-        }
-        .compare-bar .compare-items {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .compare-bar.show { display: flex; }
+        .compare-bar .compare-items { display: flex; gap: 12px; flex-wrap: wrap; }
         .compare-bar .compare-item {
             background: var(--bg-card);
             padding: 4px 12px 4px 4px;
@@ -548,24 +441,12 @@
             cursor: pointer;
             font-size: 14px;
         }
-        .compare-bar .compare-item .remove-compare:hover {
-            color: var(--favorite-color);
-        }
+        .compare-bar .compare-item .remove-compare:hover { color: var(--favorite-color); }
 
         /* ===== СТРАНИЦА «О КОМПАНИИ» ===== */
-        .about-page {
-            padding: 40px 0 60px;
-        }
-        .about-page h1 {
-            font-size: 48px;
-            font-family: 'Cormorant Garamond', serif;
-            margin-bottom: 12px;
-        }
-        .about-page .subtitle {
-            color: var(--text-muted);
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
+        .about-page { padding: 40px 0 60px; }
+        .about-page h1 { font-size: 48px; font-family: 'Cormorant Garamond', serif; margin-bottom: 12px; }
+        .about-page .subtitle { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; }
 
         .about-grid {
             display: grid;
@@ -573,18 +454,8 @@
             gap: 40px;
             margin-bottom: 60px;
         }
-        .about-grid .about-text p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-        .about-grid .about-image img {
-            width: 100%;
-            border-radius: 28px;
-            height: 100%;
-            object-fit: cover;
-            min-height: 300px;
-        }
+        .about-grid .about-text p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+        .about-grid .about-image img { width: 100%; border-radius: 28px; height: 100%; object-fit: cover; min-height: 300px; }
 
         .mission-block {
             background: var(--bg-about);
@@ -596,30 +467,13 @@
             gap: 32px;
             text-align: center;
         }
-        .mission-block .mission-item i {
-            font-size: 36px;
-            color: #6b8f6b;
-            margin-bottom: 16px;
-        }
-        .mission-block .mission-item h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-        .mission-block .mission-item p {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-        }
+        .mission-block .mission-item i { font-size: 36px; color: #6b8f6b; margin-bottom: 16px; }
+        .mission-block .mission-item h3 { font-size: 20px; margin-bottom: 8px; }
+        .mission-block .mission-item p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
         /* Команда */
-        .team-section {
-            margin-bottom: 60px;
-        }
-        .team-section h2 {
-            font-size: 32px;
-            font-family: 'Cormorant Garamond', serif;
-            margin-bottom: 24px;
-        }
+        .team-section { margin-bottom: 60px; }
+        .team-section h2 { font-size: 32px; font-family: 'Cormorant Garamond', serif; margin-bottom: 24px; }
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -633,10 +487,7 @@
             border: 1px solid var(--border-card);
             transition: 0.3s;
         }
-        .team-card:hover {
-            border-color: #6b8f6b;
-            transform: translateY(-4px);
-        }
+        .team-card:hover { border-color: #6b8f6b; transform: translateY(-4px); }
         .team-card .team-avatar {
             width: 80px;
             height: 80px;
@@ -649,25 +500,12 @@
             font-size: 32px;
             color: #6b8f6b;
         }
-        .team-card h4 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .team-card .team-role {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-top: 4px;
-        }
+        .team-card h4 { font-size: 18px; font-weight: 600; }
+        .team-card .team-role { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
 
         /* Партнёры */
-        .partners-section {
-            margin-bottom: 60px;
-        }
-        .partners-section h2 {
-            font-size: 32px;
-            font-family: 'Cormorant Garamond', serif;
-            margin-bottom: 24px;
-        }
+        .partners-section { margin-bottom: 60px; }
+        .partners-section h2 { font-size: 32px; font-family: 'Cormorant Garamond', serif; margin-bottom: 24px; }
         .partners-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -684,25 +522,12 @@
             color: var(--text-muted);
             transition: 0.3s;
         }
-        .partners-grid .partner:hover {
-            border-color: #6b8f6b;
-        }
-        .partners-grid .partner i {
-            font-size: 28px;
-            color: #6b8f6b;
-            margin-bottom: 8px;
-            display: block;
-        }
+        .partners-grid .partner:hover { border-color: #6b8f6b; }
+        .partners-grid .partner i { font-size: 28px; color: #6b8f6b; margin-bottom: 8px; display: block; }
 
         /* Сертификаты */
-        .certificates-section {
-            margin-bottom: 60px;
-        }
-        .certificates-section h2 {
-            font-size: 32px;
-            font-family: 'Cormorant Garamond', serif;
-            margin-bottom: 24px;
-        }
+        .certificates-section { margin-bottom: 60px; }
+        .certificates-section h2 { font-size: 32px; font-family: 'Cormorant Garamond', serif; margin-bottom: 24px; }
         .certificates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -716,40 +541,15 @@
             border: 1px solid var(--border-card);
             transition: 0.3s;
         }
-        .certificates-grid .cert:hover {
-            border-color: #6b8f6b;
-        }
-        .certificates-grid .cert i {
-            font-size: 40px;
-            color: #6b8f6b;
-            margin-bottom: 12px;
-        }
-        .certificates-grid .cert h4 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .certificates-grid .cert p {
-            color: var(--text-muted);
-            font-size: 13px;
-            margin-top: 4px;
-        }
+        .certificates-grid .cert:hover { border-color: #6b8f6b; }
+        .certificates-grid .cert i { font-size: 40px; color: #6b8f6b; margin-bottom: 12px; }
+        .certificates-grid .cert h4 { font-size: 16px; font-weight: 600; }
+        .certificates-grid .cert p { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
 
         /* ===== ЗАЯВКА НА ПОДБОР ТЕХНИКИ ===== */
-        .selection-section {
-            margin: 60px 0;
-        }
-        .selection-section h2 {
-            font-size: 34px;
-            font-family: 'Cormorant Garamond', serif;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .selection-section .subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
+        .selection-section { margin: 60px 0; }
+        .selection-section h2 { font-size: 34px; font-family: 'Cormorant Garamond', serif; text-align: center; margin-bottom: 10px; }
+        .selection-section .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 16px; }
         .selection-form {
             background: var(--bg-card);
             border-radius: 32px;
@@ -758,24 +558,10 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .selection-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .selection-form .form-group {
-            margin-bottom: 16px;
-        }
-        .selection-form .form-group label {
-            display: block;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 6px;
-        }
-        .selection-form .form-group label span {
-            color: #e74c3c;
-        }
+        .selection-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .selection-form .form-group { margin-bottom: 16px; }
+        .selection-form .form-group label { display: block; color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+        .selection-form .form-group label span { color: #e74c3c; }
         .selection-form .form-group input,
         .selection-form .form-group select,
         .selection-form .form-group textarea {
@@ -792,53 +578,18 @@
         }
         .selection-form .form-group input:focus,
         .selection-form .form-group select:focus,
-        .selection-form .form-group textarea:focus {
-            border-color: #6b8f6b;
-        }
-        .selection-form .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        .selection-form .form-group select option {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-        }
-        .selection-form .btn-submit {
-            width: 100%;
-            padding: 14px;
-            font-size: 16px;
-            margin-top: 8px;
-        }
-        .selection-form .form-status {
-            margin-top: 16px;
-            text-align: center;
-            display: none;
-        }
-        .selection-form .form-status.success {
-            display: block;
-            color: #4caf50;
-        }
-        .selection-form .form-status.error {
-            display: block;
-            color: #e74c3c;
-        }
+        .selection-form .form-group textarea:focus { border-color: #6b8f6b; }
+        .selection-form .form-group textarea { resize: vertical; min-height: 80px; }
+        .selection-form .form-group select option { background: var(--bg-primary); color: var(--text-primary); }
+        .selection-form .btn-submit { width: 100%; padding: 14px; font-size: 16px; margin-top: 8px; }
+        .selection-form .form-status { margin-top: 16px; text-align: center; display: none; }
+        .selection-form .form-status.success { display: block; color: #4caf50; }
+        .selection-form .form-status.error { display: block; color: #e74c3c; }
 
         /* ===== КАЛЕНДАРЬ СОБЫТИЙ ===== */
-        .events-section {
-            margin: 60px 0;
-        }
-        .events-section h2 {
-            font-size: 34px;
-            font-family: 'Cormorant Garamond', serif;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .events-section .subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
+        .events-section { margin: 60px 0; }
+        .events-section h2 { font-size: 34px; font-family: 'Cormorant Garamond', serif; text-align: center; margin-bottom: 10px; }
+        .events-section .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 16px; }
         .events-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -853,10 +604,7 @@
             position: relative;
             overflow: hidden;
         }
-        .event-card:hover {
-            transform: translateY(-6px);
-            border-color: #6b8f6b;
-        }
+        .event-card:hover { transform: translateY(-6px); border-color: #6b8f6b; }
         .event-card .event-date {
             display: inline-block;
             background: var(--btn-bg);
@@ -876,16 +624,8 @@
             font-weight: 600;
             margin-left: 10px;
         }
-        .event-card h3 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .event-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
+        .event-card h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+        .event-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
         .event-card .event-meta {
             display: flex;
             flex-wrap: wrap;
@@ -893,15 +633,8 @@
             font-size: 14px;
             color: var(--text-secondary);
         }
-        .event-card .event-meta i {
-            width: 18px;
-            color: #6b8f6b;
-        }
-        .event-card .event-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .event-card .event-meta i { width: 18px; color: #6b8f6b; }
+        .event-card .event-meta span { display: flex; align-items: center; gap: 6px; }
         .event-card .event-status {
             position: absolute;
             top: 16px;
@@ -911,23 +644,12 @@
             padding: 4px 14px;
             border-radius: 40px;
         }
-        .event-card .event-status.upcoming {
-            background: rgba(107, 143, 107, 0.2);
-            color: #6b8f6b;
-        }
-        .event-card .event-status.past {
-            background: rgba(255, 71, 87, 0.2);
-            color: #ff4757;
-        }
-        .event-card .event-status.ongoing {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-        }
+        .event-card .event-status.upcoming { background: rgba(107,143,107,0.2); color: #6b8f6b; }
+        .event-card .event-status.past { background: rgba(255,71,87,0.2); color: #ff4757; }
+        .event-card .event-status.ongoing { background: rgba(255,193,7,0.2); color: #ffc107; }
 
         /* ===== БЛОГ ===== */
-        .blog-section {
-            margin: 60px 0;
-        }
+        .blog-section { margin: 60px 0; }
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -941,40 +663,15 @@
             border: 1px solid var(--border-card);
             transition: 0.3s;
         }
-        .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: #6b8f6b;
-        }
-        .blog-img {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-        }
-        .blog-content {
-            padding: 20px;
-        }
-        .blog-tag {
-            font-size: 12px;
-            color: #6b8f6b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-        .blog-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 10px 0;
-        }
-        .blog-excerpt {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-        }
+        .blog-card:hover { transform: translateY(-5px); border-color: #6b8f6b; }
+        .blog-img { height: 180px; background-size: cover; background-position: center; }
+        .blog-content { padding: 20px; }
+        .blog-tag { font-size: 12px; color: #6b8f6b; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .blog-title { font-size: 20px; font-weight: 600; margin: 10px 0; }
+        .blog-excerpt { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
 
         /* ===== ОТЗЫВЫ ===== */
-        .reviews-section {
-            margin: 40px 0 60px;
-        }
+        .reviews-section { margin: 40px 0 60px; }
         .reviews-title {
             font-size: 24px;
             font-weight: 600;
@@ -993,16 +690,8 @@
             border-radius: 40px;
             border: 1px solid var(--border-card);
         }
-        .average-number {
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .reviews-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 30px;
-        }
+        .average-number { font-size: 28px; font-weight: 700; }
+        .reviews-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
         .review-card {
             background: var(--bg-card);
             border-radius: 20px;
@@ -1017,27 +706,16 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-        .review-author {
-            font-weight: 600;
-        }
-        .review-date {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .review-text {
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-top: 6px;
-        }
+        .review-author { font-weight: 600; }
+        .review-date { font-size: 12px; color: var(--text-muted); }
+        .review-text { color: var(--text-secondary); line-height: 1.5; margin-top: 6px; }
         .add-review {
             background: var(--bg-card);
             border-radius: 20px;
             padding: 24px;
             border: 1px solid var(--border-card);
         }
-        .add-review h4 {
-            margin-bottom: 16px;
-        }
+        .add-review h4 { margin-bottom: 16px; }
         .review-input {
             width: 100%;
             padding: 12px;
@@ -1061,9 +739,7 @@
             transition: 0.1s;
             cursor: pointer;
         }
-        .review-stars-input i.active {
-            color: var(--rating-star);
-        }
+        .review-stars-input i.active { color: var(--rating-star); }
 
         /* ===== КОНТАКТЫ ===== */
         .contact-form {
@@ -1073,25 +749,14 @@
             border: 1px solid var(--border-form);
             margin-bottom: 60px;
         }
-        .contact-form h2 {
-            font-size: 32px;
-            font-family: 'Cormorant Garamond', serif;
-            margin-bottom: 8px;
-        }
-        .contact-form .subtitle {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            font-size: 16px;
-        }
+        .contact-form h2 { font-size: 32px; font-family: 'Cormorant Garamond', serif; margin-bottom: 8px; }
+        .contact-form .subtitle { color: var(--text-muted); margin-bottom: 24px; font-size: 16px; }
         .form-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
-        .form-group {
-            flex: 1;
-            min-width: 200px;
-        }
+        .form-group { flex: 1; min-width: 200px; }
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -1106,14 +771,8 @@
             outline: none;
         }
         .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #6b8f6b;
-        }
-        .form-group textarea {
-            border-radius: 20px;
-            resize: vertical;
-            min-height: 80px;
-        }
+        .form-group textarea:focus { border-color: #6b8f6b; }
+        .form-group textarea { border-radius: 20px; resize: vertical; min-height: 80px; }
         .form-group .error-message {
             color: #e74c3c;
             font-size: 12px;
@@ -1121,18 +780,9 @@
             display: none;
         }
         .form-group.error input,
-        .form-group.error textarea {
-            border-color: #e74c3c;
-        }
-        .form-group.error .error-message {
-            display: block;
-        }
-        .contact-form .btn-submit {
-            margin-top: 8px;
-            width: 100%;
-            padding: 14px;
-            font-size: 16px;
-        }
+        .form-group.error textarea { border-color: #e74c3c; }
+        .form-group.error .error-message { display: block; }
+        .contact-form .btn-submit { margin-top: 8px; width: 100%; padding: 14px; font-size: 16px; }
 
         /* ===== МОДАЛКИ ===== */
         .modal {
@@ -1142,14 +792,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
-        .modal.show {
-            display: flex;
-        }
+        .modal.show { display: flex; }
         .modal-content {
             background: var(--modal-bg);
             max-width: 520px;
@@ -1170,15 +818,9 @@
             background: none;
             border: none;
         }
-        .modal-content .close-modal:hover {
-            color: var(--text-primary);
-        }
+        .modal-content .close-modal:hover { color: var(--text-primary); }
 
-        .cart-items {
-            max-height: 350px;
-            overflow-y: auto;
-            margin: 16px 0;
-        }
+        .cart-items { max-height: 350px; overflow-y: auto; margin: 16px 0; }
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -1204,19 +846,10 @@
             font-weight: bold;
             transition: 0.2s;
         }
-        .cart-item-controls button:hover {
-            background: var(--btn-bg);
-            color: white;
-        }
-        .cart-item-quantity {
-            min-width: 30px;
-            text-align: center;
-            font-weight: 600;
-        }
+        .cart-item-controls button:hover { background: var(--btn-bg); color: white; }
+        .cart-item-quantity { min-width: 30px; text-align: center; font-weight: 600; }
 
-        .compare-modal .modal-content {
-            max-width: 800px;
-        }
+        .compare-modal .modal-content { max-width: 800px; }
         .compare-table {
             width: 100%;
             border-collapse: collapse;
@@ -1228,14 +861,8 @@
             border-bottom: 1px solid var(--border-card);
             text-align: left;
         }
-        .compare-table th {
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 14px;
-        }
-        .compare-table .compare-product-name {
-            font-weight: 600;
-        }
+        .compare-table th { color: var(--text-muted); font-weight: 500; font-size: 14px; }
+        .compare-table .compare-product-name { font-weight: 600; }
 
         .toast-notification {
             position: fixed;
@@ -1250,14 +877,8 @@
             animation: fadeInUp 0.3s ease;
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         footer {
@@ -1274,10 +895,7 @@
             padding: 40px 0;
             color: var(--text-muted);
         }
-        .empty-filter-msg {
-            grid-column: 1 / -1;
-            font-size: 18px;
-        }
+        .empty-filter-msg { grid-column: 1 / -1; font-size: 18px; }
 
         .favorites-indicator {
             position: relative;
@@ -1286,9 +904,7 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .favorites-indicator:hover {
-            color: var(--favorite-color);
-        }
+        .favorites-indicator:hover { color: var(--favorite-color); }
         .favorites-indicator .fav-count {
             position: absolute;
             top: -8px;
@@ -1303,58 +919,21 @@
             text-align: center;
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 800px) {
-            .navbar {
-                flex-direction: column;
-                gap: 16px;
-            }
-            .hero-content h1 {
-                font-size: 36px;
-            }
-            .scroll-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-            }
-            .catalog-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .search-wrapper {
-                max-width: 100%;
-            }
-            .filter-sort-group {
-                justify-content: center;
-            }
-            .compare-bar {
-                padding: 10px 16px;
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .contact-form {
-                padding: 24px;
-            }
-            .modal-content {
-                padding: 20px;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .mission-block {
-                grid-template-columns: 1fr;
-                padding: 30px 20px;
-            }
-            .selection-form .form-row {
-                grid-template-columns: 1fr;
-            }
-            .selection-form {
-                padding: 24px;
-            }
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
+            .navbar { flex-direction: column; gap: 16px; }
+            .hero-content h1 { font-size: 36px; }
+            .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .catalog-controls { flex-direction: column; align-items: stretch; }
+            .search-wrapper { max-width: 100%; }
+            .filter-sort-group { justify-content: center; }
+            .compare-bar { padding: 10px 16px; flex-direction: column; align-items: stretch; }
+            .contact-form { padding: 24px; }
+            .modal-content { padding: 20px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .mission-block { grid-template-columns: 1fr; padding: 30px 20px; }
+            .selection-form .form-row { grid-template-columns: 1fr; }
+            .selection-form { padding: 24px; }
+            .events-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1697,7 +1276,7 @@
     <footer>
         <div class="container">
             <p>© 2026 МобилМаш — надёжная техника для вашего бизнеса.</p>
-            <p style="margin-top:12px;"><i class="fab fa-instagram"></i>  <i class="fab fa-youtube"></i>  <i class="fab fa-telegram"></i>  @mobilmash</p>
+            <p style="margin-top:12px;"><i class="fas fa-instagram"></i>  <i class="fas fa-youtube"></i>  <i class="fas fa-telegram"></i>  @mobilmash</p>
         </div>
     </footer>
 
@@ -1762,29 +1341,29 @@
 
         const defaultProducts = [
             { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviewsCount: 12 },
+                imageData: "", rating: 4.8, reviewsCount: 12 },
             { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviewsCount: 8 },
+                imageData: "", rating: 4.9, reviewsCount: 8 },
             { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviewsCount: 15 },
+                imageData: "", rating: 4.7, reviewsCount: 15 },
             { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviewsCount: 9 },
+                imageData: "", rating: 4.6, reviewsCount: 9 },
             { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviewsCount: 6 },
+                imageData: "", rating: 4.5, reviewsCount: 6 },
             { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviewsCount: 11 },
+                imageData: "", rating: 4.8, reviewsCount: 11 },
             { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9, reviewsCount: 24 },
+                imageData: "", rating: 4.9, reviewsCount: 24 },
             { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики", rating: 4.7, reviewsCount: 18 },
+                imageData: "", rating: 4.7, reviewsCount: 18 },
             { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8, reviewsCount: 14 },
+                imageData: "", rating: 4.8, reviewsCount: 14 },
             { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6, reviewsCount: 32 },
+                imageData: "", rating: 4.6, reviewsCount: 32 },
             { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7, reviewsCount: 21 },
+                imageData: "", rating: 4.7, reviewsCount: 21 },
             { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100,
-                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4, reviewsCount: 9 }
+                imageData: "", rating: 4.4, reviewsCount: 9 }
         ];
 
         const defaultEvents = [
@@ -1930,11 +1509,14 @@
                 const isCompare = compareList.includes(prod.id);
                 const card = document.createElement('div');
                 card.className = 'product-card';
+                // Используем загруженное фото или fallback
+                const imgSrc = prod.imageData || 'https://placehold.co/400x300/2a3a2a/6b8f6b?text=' + encodeURIComponent(prod
+                    .name);
                 card.innerHTML = `
                         <button class="favorite-btn ${isFav ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-heart"></i></button>
                         <button class="compare-btn ${isCompare ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-balance-scale"></i></button>
                         <button class="quick-view-btn" data-id="${prod.id}">Быстрый просмотр</button>
-                        <div class="product-img"><img src="${prod.img}" alt="${prod.name}"></div>
+                        <div class="product-img"><img src="${imgSrc}" alt="${prod.name}" loading="lazy"></div>
                         <div class="product-info">
                             <div class="product-category">${prod.type}</div>
                             <div class="card-title">${prod.name}</div>
@@ -2115,7 +1697,7 @@
                 if (!p) return '';
                 return `
                         <div class="compare-item">
-                            <img src="${p.img}" alt="${p.name}">
+                            <img src="${p.imageData || 'https://placehold.co/30x30/2a3a2a/6b8f6b?text=?'}" alt="${p.name}">
                             <span style="font-size:13px;">${p.name}</span>
                             <button class="remove-compare" data-id="${p.id}"><i class="fas fa-times"></i></button>
                         </div>
@@ -2143,8 +1725,9 @@
             let html =
                 `<table class="compare-table"><tr><th>Характеристика</th>`;
             compareProducts.forEach(p => {
+                const imgSrc = p.imageData || 'https://placehold.co/60x60/2a3a2a/6b8f6b?text=?';
                 html +=
-                    `<th><div class="compare-product-name">${p.name}</div><img src="${p.img}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
+                    `<th><div class="compare-product-name">${p.name}</div><img src="${imgSrc}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
             });
             html += `</tr>`;
             html += `<tr><td>Цена</td>`;
@@ -2171,10 +1754,12 @@
             const product = products.find(p => p.id === productId);
             if (!product) return;
             const container = document.getElementById('quickViewContent');
+            const imgSrc = product.imageData || 'https://placehold.co/400x300/2a3a2a/6b8f6b?text=' + encodeURIComponent(product
+                .name);
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1; min-width:200px;">
-                            <img src="${product.img}" alt="${product.name}" style="width:100%; border-radius:20px;">
+                            <img src="${imgSrc}" alt="${product.name}" style="width:100%; border-radius:20px; object-fit:contain; background:var(--bg-primary);">
                         </div>
                         <div style="flex:1; min-width:200px;">
                             <div style="color:#6b8f6b; font-weight:600;">${product.type}</div>
@@ -2450,7 +2035,6 @@
                 renderCatalog();
                 renderEvents();
                 renderReviews();
-                // Не показываем тост, чтобы не отвлекать пользователя
             }
         }
 
@@ -2459,46 +2043,33 @@
         // ============================================================
 
         function init() {
-            // Загружаем корзину
             const savedCart = localStorage.getItem('mobilmash_cart');
             if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
             updateCartUI();
 
-            // Загружаем сравнение
             updateCompareBar();
 
-            // Отзывы
             renderReviews();
             initReviewStars();
 
-            // Блог
             renderBlog();
 
-            // События
             renderEvents();
 
-            // Каталог
             renderCatalog();
 
-            // Форма подбора техники
             initSelectionForm();
 
-            // Кнопка "Наверх"
             const scrollBtn = document.getElementById('scrollTopBtn');
             window.addEventListener('scroll', () => {
                 scrollBtn.classList.toggle('show', window.scrollY > 300);
             });
             scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-            // Навигация
             initNavigation();
 
-            // === Авто-обновление каждые 5 секунд (тихо, без уведомлений) ===
             setInterval(checkForUpdates, 5000);
 
-            // === Обработчики событий ===
-
-            // Корзина
             document.getElementById('cartIconBtn').addEventListener('click', () => {
                 renderCartModal();
                 document.getElementById('cartModal').classList.add('show');
@@ -2507,12 +2078,10 @@
                 document.getElementById('cartModal').classList.remove('show');
             });
 
-            // Быстрый просмотр
             document.getElementById('quickViewCloseBtn').addEventListener('click', () => {
                 document.getElementById('quickViewModal').classList.remove('show');
             });
 
-            // Сравнение
             document.getElementById('compareOpenBtn').addEventListener('click', () => {
                 renderCompareModal();
                 document.getElementById('compareModal').classList.add('show');
@@ -2528,7 +2097,6 @@
                 showToast('Список сравнения очищен');
             });
 
-            // Клики по карточкам (делегирование)
             document.getElementById('productsGrid').addEventListener('click', (e) => {
                 const btn = e.target.closest('.add-to-cart');
                 if (btn) { addToCart(parseInt(btn.dataset.id)); return; }
@@ -2543,7 +2111,6 @@
                 if (quick) { showQuickView(parseInt(quick.dataset.id)); return; }
             });
 
-            // Поиск
             document.getElementById('searchBtn').addEventListener('click', () => {
                 currentSearch = document.getElementById('searchInput').value;
                 currentPage = 1;
@@ -2557,14 +2124,12 @@
                 }
             });
 
-            // Сортировка
             document.getElementById('sortSelect').addEventListener('change', (e) => {
                 currentSort = e.target.value;
                 currentPage = 1;
                 renderCatalog();
             });
 
-            // Фильтр по цене
             document.getElementById('priceFilterBtn').addEventListener('click', () => {
                 const min = parseInt(document.getElementById('priceMin').value) || 0;
                 const max = parseInt(document.getElementById('priceMax').value) || Infinity;
@@ -2574,7 +2139,6 @@
                 renderCatalog();
             });
 
-            // Фильтры категорий
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -2585,7 +2149,6 @@
                 });
             });
 
-            // Форма обратной связи
             document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('userName').value.trim();
@@ -2615,17 +2178,14 @@
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
             });
 
-            // Отзывы
             document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
 
-            // Закрытие модалок по клику вне
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', (e) => {
                     if (e.target === modal) modal.classList.remove('show');
                 });
             });
 
-            // Избранное (иконка в шапке)
             document.getElementById('favoritesIndicator').addEventListener('click', () => {
                 if (favorites.length === 0) {
                     showToast('У вас пока нет избранных товаров', true);
@@ -2638,7 +2198,6 @@
                 showToast(`❤️ Избранное: ${names}`);
             });
 
-            // Корзина (оформление)
             document.getElementById('checkoutBtn').addEventListener('click', () => {
                 if (cart.length === 0) { showToast('Корзина пуста', true); return; }
                 const total = getTotal();
@@ -2651,7 +2210,6 @@
             });
         }
 
-        // Запуск
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
