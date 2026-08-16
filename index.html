@@ -57,37 +57,6 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* ===== КНОПКА "АДМИНКА" ===== */
-        .admin-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            color: var(--text-secondary);
-            padding: 10px 16px;
-            border-radius: 40px;
-            font-size: 13px;
-            cursor: pointer;
-            z-index: 50;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .admin-btn:hover {
-            border-color: var(--accent, #6b8f6b);
-            color: var(--text-primary);
-            transform: translateY(-2px);
-        }
-
-        .admin-btn i {
-            color: #6b8f6b;
-        }
-
         /* ===== КНОПКА НАВЕРХ ===== */
         .scroll-top {
             position: fixed;
@@ -1349,12 +1318,6 @@
                 width: 40px;
                 height: 40px;
             }
-            .admin-btn {
-                bottom: 80px;
-                left: 20px;
-                padding: 8px 14px;
-                font-size: 12px;
-            }
             .catalog-controls {
                 flex-direction: column;
                 align-items: stretch;
@@ -1396,12 +1359,6 @@
     </style>
 </head>
 <body>
-    <!-- ===== КНОПКА "АДМИНКА" ===== -->
-    <a href="admin.html" class="admin-btn" title="Перейти в админ-панель">
-        <i class="fas fa-shield-alt"></i>
-        <span>Админ-панель</span>
-    </a>
-
     <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
 
     <div class="container">
@@ -1788,36 +1745,13 @@
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
-                    // Если данные есть и это массив — используем их
                     if (Array.isArray(parsed) && parsed.length > 0) {
                         return parsed;
-                    }
-                    // Если пустой массив — проверяем админский ключ
-                    const adminKey = key.replace('mobilmash_', 'mobilmash_');
-                    const adminSaved = localStorage.getItem(adminKey);
-                    if (adminSaved) {
-                        try {
-                            const adminParsed = JSON.parse(adminSaved);
-                            if (Array.isArray(adminParsed) && adminParsed.length > 0) {
-                                return adminParsed;
-                            }
-                        } catch (e) {}
                     }
                     return defaultData;
                 } catch (e) {
                     return defaultData;
                 }
-            }
-            // Если нет данных — пробуем загрузить из админских ключей
-            const adminKey = key.replace('mobilmash_', 'mobilmash_');
-            const adminSaved = localStorage.getItem(adminKey);
-            if (adminSaved) {
-                try {
-                    const adminParsed = JSON.parse(adminSaved);
-                    if (Array.isArray(adminParsed) && adminParsed.length > 0) {
-                        return adminParsed;
-                    }
-                } catch (e) {}
             }
             return defaultData;
         }
@@ -2476,7 +2410,6 @@
         // ============================================================
 
         function checkForUpdates() {
-            // Проверяем, изменились ли данные в localStorage
             const savedProducts = localStorage.getItem('mobilmash_products');
             const savedReviews = localStorage.getItem('mobilmash_reviews');
             const savedEvents = localStorage.getItem('mobilmash_events');
@@ -2517,7 +2450,7 @@
                 renderCatalog();
                 renderEvents();
                 renderReviews();
-                showToast('🔄 Данные обновлены из админ-панели');
+                // Не показываем тост, чтобы не отвлекать пользователя
             }
         }
 
@@ -2560,7 +2493,7 @@
             // Навигация
             initNavigation();
 
-            // === Авто-обновление каждые 5 секунд ===
+            // === Авто-обновление каждые 5 секунд (тихо, без уведомлений) ===
             setInterval(checkForUpdates, 5000);
 
             // === Обработчики событий ===
