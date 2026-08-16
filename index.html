@@ -57,6 +57,37 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
+        /* ===== КНОПКА "АДМИНКА" ===== */
+        .admin-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            color: var(--text-secondary);
+            padding: 10px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            cursor: pointer;
+            z-index: 50;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .admin-btn:hover {
+            border-color: var(--accent, #6b8f6b);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .admin-btn i {
+            color: #6b8f6b;
+        }
+
         /* ===== КНОПКА НАВЕРХ ===== */
         .scroll-top {
             position: fixed;
@@ -586,7 +617,6 @@
             min-height: 300px;
         }
 
-        /* Миссия и ценности */
         .mission-block {
             background: var(--bg-about);
             border-radius: 32px;
@@ -1304,6 +1334,7 @@
             text-align: center;
         }
 
+        /* ===== АДАПТИВ ===== */
         @media (max-width: 800px) {
             .navbar {
                 flex-direction: column;
@@ -1317,6 +1348,12 @@
                 right: 20px;
                 width: 40px;
                 height: 40px;
+            }
+            .admin-btn {
+                bottom: 80px;
+                left: 20px;
+                padding: 8px 14px;
+                font-size: 12px;
             }
             .catalog-controls {
                 flex-direction: column;
@@ -1359,6 +1396,12 @@
     </style>
 </head>
 <body>
+    <!-- ===== КНОПКА "АДМИНКА" ===== -->
+    <a href="admin.html" class="admin-btn" title="Перейти в админ-панель">
+        <i class="fas fa-shield-alt"></i>
+        <span>Админ-панель</span>
+    </a>
+
     <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
 
     <div class="container">
@@ -1507,9 +1550,7 @@
             <div class="events-section">
                 <h2>Календарь событий</h2>
                 <p class="subtitle">Выставки, семинары и вебинары, в которых мы участвуем</p>
-                <div class="events-grid" id="eventsGrid">
-                    <!-- События генерируются через JavaScript -->
-                </div>
+                <div class="events-grid" id="eventsGrid"></div>
             </div>
         </div>
 
@@ -1739,68 +1780,116 @@
 
     <script>
         // ============================================================
-        // ========== ДАННЫЕ ==========
+        // ========== ЗАГРУЗКА ДАННЫХ ИЗ localStorage ==========
         // ============================================================
-        const allProducts = [
-            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8,
-                reviewsCount: 12 },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9,
-                reviewsCount: 8 },
-            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7,
-                reviewsCount: 15 },
-            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6,
-                reviewsCount: 9 },
-            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5,
-                reviewsCount: 6 },
-            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8,
-                reviewsCount: 11 },
-            { id: 7, name: "Погрузчик ММ-400", category: "товары", type: "Дизельный", price: 1480000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-400",
-                rating: 4.9, reviewsCount: 7 },
-            { id: 8, name: "Штабелёр ММ-Про", category: "товары", type: "Электрический", price: 1050000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр+Про",
-                rating: 4.7, reviewsCount: 5 },
-            { id: 9, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9,
-                reviewsCount: 24 },
-            { id: 10, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики",
-                rating: 4.7, reviewsCount: 18 },
-            { id: 11, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8,
-                reviewsCount: 14 },
-            { id: 12, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6,
-                reviewsCount: 32 },
-            { id: 13, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7,
-                reviewsCount: 21 },
-            { id: 14, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4,
-                reviewsCount: 9 }
+
+        function loadData(key, defaultData) {
+            const saved = localStorage.getItem(key);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    // Если данные есть и это массив — используем их
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        return parsed;
+                    }
+                    // Если пустой массив — проверяем админский ключ
+                    const adminKey = key.replace('mobilmash_', 'mobilmash_');
+                    const adminSaved = localStorage.getItem(adminKey);
+                    if (adminSaved) {
+                        try {
+                            const adminParsed = JSON.parse(adminSaved);
+                            if (Array.isArray(adminParsed) && adminParsed.length > 0) {
+                                return adminParsed;
+                            }
+                        } catch (e) {}
+                    }
+                    return defaultData;
+                } catch (e) {
+                    return defaultData;
+                }
+            }
+            // Если нет данных — пробуем загрузить из админских ключей
+            const adminKey = key.replace('mobilmash_', 'mobilmash_');
+            const adminSaved = localStorage.getItem(adminKey);
+            if (adminSaved) {
+                try {
+                    const adminParsed = JSON.parse(adminSaved);
+                    if (Array.isArray(adminParsed) && adminParsed.length > 0) {
+                        return adminParsed;
+                    }
+                } catch (e) {}
+            }
+            return defaultData;
+        }
+
+        // ============================================================
+        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ ==========
+        // ============================================================
+
+        const defaultProducts = [
+            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviewsCount: 12 },
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviewsCount: 8 },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviewsCount: 15 },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviewsCount: 9 },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviewsCount: 6 },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviewsCount: 11 },
+            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9, reviewsCount: 24 },
+            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики", rating: 4.7, reviewsCount: 18 },
+            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8, reviewsCount: 14 },
+            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6, reviewsCount: 32 },
+            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7, reviewsCount: 21 },
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100,
+                img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4, reviewsCount: 9 }
         ];
 
-        // ===== СОБЫТИЯ =====
-        const eventsData = [
+        const defaultEvents = [
             { id: 1, title: "СкладТех-2026", type: "Выставка", date: "2026-09-15", location: "Москва, Экспоцентр",
-                description: "Крупнейшая в России выставка складской и промышленной техники. Наш стенд — павильон 3, место 42.",
+                description: "Крупнейшая в России выставка складской техники.",
                 status: "upcoming" },
-            { id: 2, title: "Эффективный склад", type: "Семинар", date: "2026-10-05", location: "Санкт-Петербург, Отель Астория",
-                description: "Однодневный семинар по оптимизации складских процессов. Выступают эксперты МобилМаш.",
-                status: "upcoming" },
+            { id: 2, title: "Эффективный склад", type: "Семинар", date: "2026-10-05", location: "Санкт-Петербург",
+                description: "Однодневный семинар по оптимизации складских процессов.", status: "upcoming" },
             { id: 3, title: "МобилМаш: техника будущего", type: "Вебинар", date: "2026-08-20", location: "Онлайн (Zoom)",
-                description: "Интерактивный вебинар о новых моделях погрузчиков и штабелёров с демонстрацией в реальном времени.",
-                status: "ongoing" },
-            { id: 4, title: "Логистика и автоматизация", type: "Конференция", date: "2026-07-10", location: "Екатеринбург, Космос-Холл",
-                description: "Двухдневная конференция с участием лидеров рынка. МобилМаш выступает генеральным партнёром.",
-                status: "past" },
+                description: "Вебинар о новых моделях погрузчиков и штабелёров.", status: "ongoing" },
+            { id: 4, title: "Логистика и автоматизация", type: "Конференция", date: "2026-07-10",
+                location: "Екатеринбург, Космос-Холл",
+                description: "Двухдневная конференция с участием лидеров рынка.", status: "past" },
             { id: 5, title: "Технофорум-2026", type: "Выставка", date: "2026-11-12", location: "Новосибирск, Экспоцентр",
-                description: "Сибирский форум промышленных технологий. Наш стенд — центральный зал.",
-                status: "upcoming" },
-            { id: 6, title: "Сервисное обслуживание техники", type: "Семинар", date: "2026-06-25", location: "Ростов-на-Дону, Дон-Плаза",
-                description: "Практический семинар по обслуживанию складской техники. Вход свободный для клиентов МобилМаш.",
-                status: "past" }
+                description: "Сибирский форум промышленных технологий.", status: "upcoming" }
+        ];
+
+        const blogPosts = [
+            { tag: "СОВЕТЫ", title: "Как выбрать складской погрузчик",
+                excerpt: "Разбираем типы погрузчиков, грузоподъёмность и высоту подъёма.",
+                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Выбор+погрузчика" },
+            { tag: "УХОД", title: "Обслуживание электрических штабелёров",
+                excerpt: "Чистка, зарядка и продление срока службы техники.",
+                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Обслуживание" },
+            { tag: "НОВОСТИ", title: "История компании МобилМаш",
+                excerpt: "Как мы стали лидерами в поставке складской техники.",
+                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=История" }
         ];
 
         // ============================================================
-        // ========== СОСТОЯНИЕ ==========
+        // ========== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ==========
         // ============================================================
+
+        let products = loadData('mobilmash_products', defaultProducts);
+        let reviews = loadData('mobilmash_reviews', []);
+        let events = loadData('mobilmash_events', defaultEvents);
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
-        let reviews = JSON.parse(localStorage.getItem('mobilmash_reviews') || '[]');
         let currentFilter = 'all';
         let currentPage = 1;
         const itemsPerPage = 6;
@@ -1812,10 +1901,44 @@
         // ============================================================
         // ========== ФУНКЦИИ ==========
         // ============================================================
+
+        function getStarsHtml(rating) {
+            const full = Math.floor(rating);
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= full) html += '<i class="fas fa-star" style="color:var(--rating-star);"></i>';
+                else html += '<i class="far fa-star" style="color:var(--rating-star-empty);"></i>';
+            }
+            return html;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, m => {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.style.backgroundColor = isError ? '#c25b3a' : '#2c5a3e';
+            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i> ${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2200);
+        }
+
+        // ============================================================
+        // ========== РЕНДЕР КАТАЛОГА ==========
+        // ============================================================
+
         function getProducts() {
             let filtered = currentFilter === 'all' ?
-                [...allProducts] :
-                allProducts.filter(p => p.category === currentFilter);
+                [...products] :
+                products.filter(p => p.category === currentFilter);
 
             if (currentSearch.trim()) {
                 const query = currentSearch.trim().toLowerCase();
@@ -1857,38 +1980,6 @@
             };
         }
 
-        function getStarsHtml(rating) {
-            const full = Math.floor(rating);
-            let html = '';
-            for (let i = 1; i <= 5; i++) {
-                if (i <= full) html += '<i class="fas fa-star" style="color:var(--rating-star);"></i>';
-                else html += '<i class="far fa-star" style="color:var(--rating-star-empty);"></i>';
-            }
-            return html;
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, m => {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
-        }
-
-        function showToast(msg, isError = false) {
-            const toast = document.createElement('div');
-            toast.className = 'toast-notification';
-            toast.style.backgroundColor = isError ? '#c25b3a' : '#2c5a3e';
-            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i> ${msg}`;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2200);
-        }
-
-        // ============================================================
-        // ========== РЕНДЕР КАТАЛОГА ==========
-        // ============================================================
         function renderCatalog() {
             const grid = document.getElementById('productsGrid');
             const { items, totalPages } = getPaginatedProducts();
@@ -1958,8 +2049,9 @@
         // ============================================================
         // ========== КОРЗИНА ==========
         // ============================================================
+
         function addToCart(productId) {
-            const product = allProducts.find(p => p.id === productId);
+            const product = products.find(p => p.id === productId);
             if (!product) return;
             const existing = cart.find(i => i.id === productId);
             if (existing) {
@@ -2039,6 +2131,7 @@
         // ============================================================
         // ========== ИЗБРАННОЕ ==========
         // ============================================================
+
         function toggleFavorite(productId) {
             const idx = favorites.indexOf(productId);
             if (idx === -1) {
@@ -2056,6 +2149,7 @@
         // ============================================================
         // ========== СРАВНЕНИЕ ==========
         // ============================================================
+
         function toggleCompare(productId) {
             const idx = compareList.indexOf(productId);
             if (idx === -1) {
@@ -2083,7 +2177,7 @@
             }
             bar.classList.add('show');
             list.innerHTML = compareList.map(id => {
-                const p = allProducts.find(pr => pr.id === id);
+                const p = products.find(pr => pr.id === id);
                 if (!p) return '';
                 return `
                         <div class="compare-item">
@@ -2111,25 +2205,25 @@
                 container.innerHTML = '<p style="text-align:center; padding:30px; color:var(--text-muted);">Нет товаров для сравнения</p>';
                 return;
             }
-            const products = compareList.map(id => allProducts.find(p => p.id === id)).filter(Boolean);
+            const compareProducts = compareList.map(id => products.find(p => p.id === id)).filter(Boolean);
             let html =
                 `<table class="compare-table"><tr><th>Характеристика</th>`;
-            products.forEach(p => {
+            compareProducts.forEach(p => {
                 html +=
                     `<th><div class="compare-product-name">${p.name}</div><img src="${p.img}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
             });
             html += `</tr>`;
             html += `<tr><td>Цена</td>`;
-            products.forEach(p => html += `<td><strong>${p.price.toLocaleString()} ₽</strong></td>`);
+            compareProducts.forEach(p => html += `<td><strong>${p.price.toLocaleString()} ₽</strong></td>`);
             html += `</tr>`;
             html += `<tr><td>Категория</td>`;
-            products.forEach(p => html += `<td>${p.type}</td>`);
+            compareProducts.forEach(p => html += `<td>${p.type}</td>`);
             html += `</tr>`;
             html += `<tr><td>Рейтинг</td>`;
-            products.forEach(p => html += `<td>${getStarsHtml(p.rating)} (${p.rating})</td>`);
+            compareProducts.forEach(p => html += `<td>${getStarsHtml(p.rating)} (${p.rating})</td>`);
             html += `</tr>`;
             html += `<tr><td>Отзывы</td>`;
-            products.forEach(p => html += `<td>${p.reviewsCount}</td>`);
+            compareProducts.forEach(p => html += `<td>${p.reviewsCount}</td>`);
             html += `</tr>`;
             html += `</table>`;
             container.innerHTML = html;
@@ -2138,8 +2232,9 @@
         // ============================================================
         // ========== БЫСТРЫЙ ПРОСМОТР ==========
         // ============================================================
+
         function showQuickView(productId) {
-            const product = allProducts.find(p => p.id === productId);
+            const product = products.find(p => p.id === productId);
             if (!product) return;
             const container = document.getElementById('quickViewContent');
             container.innerHTML = `
@@ -2170,6 +2265,7 @@
         // ============================================================
         // ========== ОТЗЫВЫ ==========
         // ============================================================
+
         function renderReviews() {
             const container = document.getElementById('reviewsList');
             if (!container) return;
@@ -2231,13 +2327,15 @@
             if (!text) { showToast('Напишите текст отзыва', true); return; }
             if (selectedRating === 0) { showToast('Поставьте оценку', true); return; }
 
-            reviews.unshift({
+            const newReview = {
                 id: Date.now(),
                 author: author,
                 rating: selectedRating,
                 text: text,
                 date: new Date().toISOString().slice(0, 10)
-            });
+            };
+
+            reviews.unshift(newReview);
             localStorage.setItem('mobilmash_reviews', JSON.stringify(reviews));
             renderReviews();
             document.getElementById('reviewAuthorInput').value = '';
@@ -2251,19 +2349,48 @@
         }
 
         // ============================================================
+        // ========== СОБЫТИЯ ==========
+        // ============================================================
+
+        function renderEvents() {
+            const grid = document.getElementById('eventsGrid');
+            if (!grid) return;
+
+            const statusLabels = {
+                upcoming: 'Скоро',
+                ongoing: 'Идёт сейчас',
+                past: 'Завершено'
+            };
+
+            if (events.length === 0) {
+                grid.innerHTML = `
+                        <div class="empty-filter-msg" style="grid-column:1/-1;">
+                            Нет запланированных событий
+                        </div>
+                    `;
+                return;
+            }
+
+            grid.innerHTML = events.map(event => `
+                    <div class="event-card">
+                        <span class="event-status ${event.status}">${statusLabels[event.status] || event.status}</span>
+                        <div>
+                            <span class="event-date">${event.date}</span>
+                            <span class="event-type">${event.type}</span>
+                        </div>
+                        <h3>${event.title}</h3>
+                        <p>${event.description || ''}</p>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${event.location || 'Не указано'}</span>
+                            <span><i class="far fa-calendar-alt"></i> ${event.date}</span>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        // ============================================================
         // ========== БЛОГ ==========
         // ============================================================
-        const blogPosts = [
-            { tag: "СОВЕТЫ", title: "Как выбрать складской погрузчик",
-                excerpt: "Разбираем типы погрузчиков, грузоподъёмность и высоту подъёма.",
-                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Выбор+погрузчика" },
-            { tag: "УХОД", title: "Обслуживание электрических штабелёров",
-                excerpt: "Чистка, зарядка и продление срока службы техники.",
-                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Обслуживание" },
-            { tag: "НОВОСТИ", title: "История компании МобилМаш",
-                excerpt: "Как мы стали лидерами в поставке складской техники.",
-                img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=История" }
-        ];
 
         function renderBlog() {
             const grid = document.getElementById('blogGrid');
@@ -2281,38 +2408,9 @@
         }
 
         // ============================================================
-        // ========== СОБЫТИЯ ==========
-        // ============================================================
-        function renderEvents() {
-            const grid = document.getElementById('eventsGrid');
-            if (!grid) return;
-
-            const statusLabels = {
-                upcoming: 'Скоро',
-                ongoing: 'Идёт сейчас',
-                past: 'Завершено'
-            };
-
-            grid.innerHTML = eventsData.map(event => `
-                    <div class="event-card">
-                        <span class="event-status ${event.status}">${statusLabels[event.status]}</span>
-                        <div>
-                            <span class="event-date">${event.date}</span>
-                            <span class="event-type">${event.type}</span>
-                        </div>
-                        <h3>${event.title}</h3>
-                        <p>${event.description}</p>
-                        <div class="event-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
-                            <span><i class="far fa-calendar-alt"></i> ${event.date}</span>
-                        </div>
-                    </div>
-                `).join('');
-        }
-
-        // ============================================================
         // ========== ЗАЯВКА НА ПОДБОР ==========
         // ============================================================
+
         function initSelectionForm() {
             const form = document.getElementById('selectionForm');
             const statusDiv = document.getElementById('selStatus');
@@ -2338,7 +2436,7 @@
 
                 statusDiv.className = 'form-status success';
                 statusDiv.innerHTML = `
-                        ✅ Спасибо, ${escapeHtml(name)}! Ваша заявка принята. Менеджер свяжется с вами в ближайшее время для уточнения деталей.
+                        ✅ Спасибо, ${escapeHtml(name)}! Ваша заявка принята. Менеджер свяжется с вами в ближайшее время.
                     `;
                 showToast('✅ Заявка отправлена! Менеджер свяжется с вами.');
                 form.reset();
@@ -2350,6 +2448,7 @@
         // ============================================================
         // ========== НАВИГАЦИЯ ==========
         // ============================================================
+
         function initNavigation() {
             document.querySelectorAll('[data-nav]').forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -2373,8 +2472,59 @@
         }
 
         // ============================================================
+        // ========== АВТО-ОБНОВЛЕНИЕ ==========
+        // ============================================================
+
+        function checkForUpdates() {
+            // Проверяем, изменились ли данные в localStorage
+            const savedProducts = localStorage.getItem('mobilmash_products');
+            const savedReviews = localStorage.getItem('mobilmash_reviews');
+            const savedEvents = localStorage.getItem('mobilmash_events');
+
+            let needUpdate = false;
+
+            if (savedProducts) {
+                try {
+                    const parsed = JSON.parse(savedProducts);
+                    if (JSON.stringify(parsed) !== JSON.stringify(products)) {
+                        products = parsed;
+                        needUpdate = true;
+                    }
+                } catch (e) {}
+            }
+
+            if (savedReviews) {
+                try {
+                    const parsed = JSON.parse(savedReviews);
+                    if (JSON.stringify(parsed) !== JSON.stringify(reviews)) {
+                        reviews = parsed;
+                        needUpdate = true;
+                    }
+                } catch (e) {}
+            }
+
+            if (savedEvents) {
+                try {
+                    const parsed = JSON.parse(savedEvents);
+                    if (JSON.stringify(parsed) !== JSON.stringify(events)) {
+                        events = parsed;
+                        needUpdate = true;
+                    }
+                } catch (e) {}
+            }
+
+            if (needUpdate) {
+                renderCatalog();
+                renderEvents();
+                renderReviews();
+                showToast('🔄 Данные обновлены из админ-панели');
+            }
+        }
+
+        // ============================================================
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
         // ============================================================
+
         function init() {
             // Загружаем корзину
             const savedCart = localStorage.getItem('mobilmash_cart');
@@ -2409,6 +2559,9 @@
 
             // Навигация
             initNavigation();
+
+            // === Авто-обновление каждые 5 секунд ===
+            setInterval(checkForUpdates, 5000);
 
             // === Обработчики событий ===
 
@@ -2546,7 +2699,7 @@
                     return;
                 }
                 const names = favorites.map(id => {
-                    const p = allProducts.find(pr => pr.id === id);
+                    const p = products.find(pr => pr.id === id);
                     return p ? p.name : '';
                 }).filter(Boolean).join(', ');
                 showToast(`❤️ Избранное: ${names}`);
