@@ -401,7 +401,7 @@
             font-weight: 600;
         }
 
-        /* ===== ОТЗЫВЫ (ПУСТЫЕ, ТОЛЬКО ФОРМА) ===== */
+        /* ===== ОТЗЫВЫ (ПУСТЫЕ) ===== */
         .reviews-section {
             margin: 40px 0 60px;
         }
@@ -729,7 +729,7 @@
             </div>
         </div>
 
-        <!-- ===== ОТЗЫВЫ (ПУСТЫЕ) ===== -->
+        <!-- ===== ОТЗЫВЫ (ПОЛНОСТЬЮ ПУСТЫЕ) ===== -->
         <div class="container" id="reviewsSection">
             <div class="reviews-section">
                 <div class="reviews-title">
@@ -835,19 +835,14 @@
         let cart = [];
         let currentFilter = 'all';
 
-        // ========== ОТЗЫВЫ (ПУСТЫЕ) ==========
+        // ========== ОТЗЫВЫ (ПОЛНОСТЬЮ ПУСТЫЕ) ==========
         let reviews = [];
 
         function loadReviews() {
-            const saved = localStorage.getItem('mobilmash_reviews');
-            if (saved) {
-                try {
-                    reviews = JSON.parse(saved);
-                } catch(e) {
-                    reviews = [];
-                }
-            }
-            // НЕ ДОБАВЛЯЕМ ПРИМЕРЫ — оставляем пустым
+            // ПРИНУДИТЕЛЬНО ОЧИЩАЕМ localStorage при загрузке
+            // чтобы удалить все старые тестовые отзывы
+            localStorage.removeItem('mobilmash_reviews');
+            reviews = [];
         }
 
         function saveReviews() {
@@ -1283,7 +1278,7 @@
         })();
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
-        loadReviews();          // загружаем (пустые) отзывы
+        loadReviews();          // ПРИНУДИТЕЛЬНО очищает localStorage
         renderProducts('all');
         renderBlog();
         renderReviews();        // отображаем пустой список
