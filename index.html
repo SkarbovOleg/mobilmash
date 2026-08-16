@@ -41,6 +41,8 @@
             --blog-bg: #1e1e1e;
             --rating-star: #ffc107;
             --rating-star-empty: #4a4a4a;
+            --filter-active: #6b8f6b;
+            --filter-hover: #3a5a3a;
         }
 
         body {
@@ -256,6 +258,47 @@
             letter-spacing: 1px;
         }
 
+        /* ===== ФИЛЬТРЫ (кнопки над карточками) ===== */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--border-card);
+            color: var(--text-secondary);
+            padding: 10px 32px;
+            border-radius: 60px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-btn:hover {
+            border-color: #6b8f6b;
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--filter-active);
+            border-color: var(--filter-active);
+            color: white;
+            box-shadow: 0 4px 20px rgba(107, 143, 107, 0.3);
+        }
+
+        .filter-btn.active:hover {
+            background: var(--filter-hover);
+            border-color: var(--filter-hover);
+        }
+
         /* Блог */
         .blog-section {
             margin: 80px 0;
@@ -438,6 +481,8 @@
         }
         .hero-content h1 { font-size: 56px; line-height: 1.2; margin-bottom: 24px; }
         .hero-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
+        
+        /* ===== СЕТКА КАРТОЧЕК ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -450,6 +495,7 @@
             overflow: hidden;
             border: 1px solid var(--border-card);
             transition: 0.3s;
+            display: block;
         }
         .product-card:hover { transform: translateY(-8px); border-color: #6b8f6b; }
         .product-img {
@@ -551,6 +597,13 @@
             padding: 40px 0;
             color: var(--text-muted);
         }
+        .empty-filter-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-muted);
+            font-size: 18px;
+        }
         @media (max-width: 800px) {
             .navbar { flex-direction: column; gap: 20px; }
             .hero-content h1 { font-size: 40px; }
@@ -558,6 +611,8 @@
             .timer-box { padding: 8px 12px; min-width: 55px; }
             .timer-number { font-size: 24px; }
             .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .filter-bar { gap: 8px; }
+            .filter-btn { padding: 8px 20px; font-size: 14px; }
         }
     </style>
 </head>
@@ -617,7 +672,16 @@
 
         <!-- Каталог -->
         <div class="container" id="catalogSection">
-            <h2 class="section-title" style="font-size:36px; text-align:center; margin:60px 0 20px;">Надёжная техника для бизнеса</h2>
+            <h2 class="section-title" style="font-size:36px; text-align:center; margin:60px 0 10px;">Надёжная техника для бизнеса</h2>
+            
+            <!-- ===== ТРИ КНОПКИ-ФИЛЬТРА ===== -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="товары">Товары</button>
+                <button class="filter-btn" data-filter="услуги">Услуги</button>
+                <button class="filter-btn" data-filter="прочие">Прочие</button>
+            </div>
+
             <div class="products-grid" id="productsGrid"></div>
         </div>
 
@@ -712,15 +776,25 @@
     <script>
         // ========== ТОВАРЫ (МобилМаш) ==========
         const products = [
-            { id: 1, name: "Погрузчик ММ-300", category: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviews: 12 },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviews: 8 },
-            { id: 3, name: "Ричтрак ММ-500", category: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviews: 15 },
-            { id: 4, name: "Тележка гидравл.", category: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviews: 9 },
-            { id: 5, name: "Рампа складская", category: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviews: 6 },
-            { id: 6, name: "Зарядная станция", category: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviews: 11 }
+            // Товары
+            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviews: 12 },
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviews: 8 },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviews: 15 },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviews: 9 },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviews: 6 },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviews: 11 },
+            // Услуги
+            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9, reviews: 24 },
+            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики", rating: 4.7, reviews: 18 },
+            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8, reviews: 14 },
+            // Прочие
+            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6, reviews: 32 },
+            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7, reviews: 21 },
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4, reviews: 9 }
         ];
 
         let cart = [];
+        let currentFilter = 'all';
 
         // ========== ОТЗЫВЫ ==========
         let reviews = [
@@ -829,18 +903,28 @@
             });
         }
 
-        // ========== РЕНДЕР КАТАЛОГА ==========
-        function renderProducts() {
+        // ========== РЕНДЕР КАТАЛОГА С ФИЛЬТРАЦИЕЙ ==========
+        function renderProducts(filter = 'all') {
             const grid = document.getElementById('productsGrid');
             if(!grid) return;
+            
+            const filtered = filter === 'all' 
+                ? products 
+                : products.filter(p => p.category === filter);
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="empty-filter-msg">Нет товаров в этой категории</div>`;
+                return;
+            }
+
             grid.innerHTML = '';
-            products.forEach(prod => {
+            filtered.forEach(prod => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
                     <div class="product-img"><img src="${prod.img}" alt="${prod.name}"></div>
                     <div class="product-info">
-                        <div class="product-category">${prod.category}</div>
+                        <div class="product-category">${prod.type}</div>
                         <div class="card-title">${prod.name}</div>
                         <div class="rating">
                             <div class="stars">${getStarsHtml(prod.rating)}</div>
@@ -852,10 +936,24 @@
                 `;
                 grid.appendChild(card);
             });
+            
             document.querySelectorAll('.add-to-cart').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const id = parseInt(btn.getAttribute('data-id'));
                     addToCart(id);
+                });
+            });
+        }
+
+        // ========== ФИЛЬТРЫ ==========
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-filter');
+                    renderProducts(currentFilter);
                 });
             });
         }
@@ -1087,13 +1185,14 @@
         });
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
-        renderProducts();
+        renderProducts('all');
         renderBlog();
         renderReviews();
         loadCartFromStorage();
         startCountdown();
         initScrollTop();
         initReviewStars();
+        initFilters();
     </script>
 </body>
 </html>
