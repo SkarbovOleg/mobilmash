@@ -93,6 +93,7 @@
             color: var(--text-primary);
         }
 
+        /* Логотип-картинка (заменяет зелёный текст) */
         .logo-img {
             height: 45px;
             width: auto;
@@ -105,7 +106,17 @@
             display: block;
         }
 
+        /* Текстовый логотип (скрывается, когда есть картинка) */
+        .logo-text {
+            display: flex;
+            align-items: center;
+        }
+
         .logo-text span { color: #6b8f6b; font-weight: 700; }
+
+        .logo-text.hidden {
+            display: none;
+        }
 
         .nav-links {
             display: flex;
@@ -189,6 +200,7 @@
             min-width: 300px;
         }
 
+        /* Логотип в hero (заменяет зелёный MOBI MASH) */
         .hero-logo {
             max-width: 400px;
             width: 100%;
@@ -199,6 +211,21 @@
 
         .hero-logo.loaded {
             display: block;
+        }
+
+        /* Текст MOBI MASH (скрывается, когда есть логотип) */
+        .hero-brand {
+            color: #6b8f6b;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero-brand.hidden {
+            display: none;
         }
 
         .hero-content h1 {
@@ -989,8 +1016,10 @@
     <div class="container">
         <nav class="navbar">
             <div class="logo">
+                <!-- Логотип-картинка (заменяет зелёный текст) -->
                 <img id="siteLogo" class="logo-img" src="" alt="МобилМаш">
-                <div class="logo-text">Мобил<span>Маш</span></div>
+                <!-- Текстовый логотип (скрывается, когда есть картинка) -->
+                <div class="logo-text" id="logoText">Мобил<span>Маш</span></div>
             </div>
             <div class="nav-links">
                 <a href="#" class="active" data-nav="home">Главная</a>
@@ -1017,7 +1046,10 @@
         <div class="container" id="homeSection">
             <div class="hero">
                 <div class="hero-content">
+                    <!-- Логотип в hero (заменяет зелёный MOBI MASH) -->
                     <img id="heroLogo" class="hero-logo" src="" alt="МобилМаш">
+                    <!-- Текст MOBI MASH (скрывается, когда есть логотип) -->
+                    <div class="hero-brand" id="heroBrand">MOBI MASH</div>
                     <div class="badge" style="color:#6b8f6b; margin-bottom:16px;">С 2018 — надёжность в каждой детали</div>
                     <h1 class="serif">Техника, <br>которой доверяют</h1>
                     <p>Профессиональное оборудование для склада и производства.</p>
@@ -1471,15 +1503,31 @@
         function loadLogo() {
             const logoImg = document.getElementById('siteLogo');
             const heroLogo = document.getElementById('heroLogo');
+            const logoText = document.getElementById('logoText');
+            const heroBrand = document.getElementById('heroBrand');
 
             if (logoData && logoData.length > 100) {
+                // Показываем логотип-картинку
                 logoImg.src = logoData;
                 logoImg.classList.add('loaded');
+                // Скрываем текстовый логотип в шапке
+                logoText.classList.add('hidden');
+
+                // Показываем логотип в hero
                 heroLogo.src = logoData;
                 heroLogo.classList.add('loaded');
+                // Скрываем текстовый MOBI MASH
+                heroBrand.classList.add('hidden');
             } else {
+                // Скрываем логотип-картинку
                 logoImg.classList.remove('loaded');
+                // Показываем текстовый логотип в шапке
+                logoText.classList.remove('hidden');
+
+                // Скрываем логотип в hero
                 heroLogo.classList.remove('loaded');
+                // Показываем текстовый MOBI MASH
+                heroBrand.classList.remove('hidden');
             }
         }
 
