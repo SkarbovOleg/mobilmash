@@ -215,50 +215,19 @@
             color: var(--text-muted);
         }
 
-        /* Акция / Баннер с таймером */
-        .sale-banner {
-            background: linear-gradient(135deg, #4a6b4a 0%, #3a5a3a 100%);
-            border-radius: 24px;
-            padding: 32px 40px;
-            margin: 40px 0;
+        /* Hero */
+        .hero {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
             align-items: center;
-            gap: 24px;
-            color: white;
+            justify-content: space-between;
+            gap: 48px;
+            padding: 60px 0 40px;
         }
-        .sale-text h3 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-        .sale-text p {
-            opacity: 0.95;
-        }
-        .timer {
-            display: flex;
-            gap: 16px;
-            text-align: center;
-        }
-        .timer-box {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 12px 18px;
-            min-width: 70px;
-        }
-        .timer-number {
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1;
-        }
-        .timer-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ===== ФИЛЬТРЫ (кнопки над карточками) ===== */
+        .hero-content h1 { font-size: 56px; line-height: 1.2; margin-bottom: 24px; }
+        .hero-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
+        
+        /* ===== ФИЛЬТРЫ ===== */
         .filter-bar {
             display: flex;
             gap: 12px;
@@ -297,6 +266,51 @@
         .filter-btn.active:hover {
             background: var(--filter-hover);
             border-color: var(--filter-hover);
+        }
+
+        /* ===== СЕТКА КАРТОЧЕК ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            transition: 0.3s;
+            display: block;
+        }
+        .product-card:hover { transform: translateY(-8px); border-color: #6b8f6b; }
+        .product-img {
+            background: var(--bg-primary);
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .product-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
+        .product-info { padding: 20px; }
+        .product-category { font-size: 13px; color: #6b8f6b; font-weight: 600; }
+        .card-title { font-size: 22px; font-weight: 600; margin: 8px 0; }
+        .price { font-size: 24px; font-weight: 700; margin-bottom: 18px; }
+        .add-to-cart {
+            width: 100%;
+            background: var(--add-to-cart-bg);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .add-to-cart:hover {
+            background: var(--btn-bg);
+            color: white;
         }
 
         /* Блог */
@@ -347,6 +361,17 @@
             color: var(--text-muted);
             font-size: 14px;
             line-height: 1.5;
+        }
+
+        /* О компании */
+        .about-section {
+            background: var(--bg-about);
+            border-radius: 48px;
+            margin: 80px 0;
+            padding: 60px 48px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
         }
 
         /* Корзина */
@@ -470,71 +495,7 @@
             color: var(--rating-star);
         }
 
-        /* Hero */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 48px;
-            padding: 60px 0 40px;
-        }
-        .hero-content h1 { font-size: 56px; line-height: 1.2; margin-bottom: 24px; }
-        .hero-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
-        
-        /* ===== СЕТКА КАРТОЧЕК ===== */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        .product-card {
-            background: var(--bg-card);
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid var(--border-card);
-            transition: 0.3s;
-            display: block;
-        }
-        .product-card:hover { transform: translateY(-8px); border-color: #6b8f6b; }
-        .product-img {
-            background: var(--bg-primary);
-            height: 260px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-        .product-img img { max-height: 100%; max-width: 100%; object-fit: contain; }
-        .product-info { padding: 20px; }
-        .product-category { font-size: 13px; color: #6b8f6b; font-weight: 600; }
-        .card-title { font-size: 22px; font-weight: 600; margin: 8px 0; }
-        .price { font-size: 24px; font-weight: 700; margin-bottom: 18px; }
-        .add-to-cart {
-            width: 100%;
-            background: var(--add-to-cart-bg);
-            color: var(--text-primary);
-            border: none;
-            padding: 12px;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .add-to-cart:hover {
-            background: var(--btn-bg);
-            color: white;
-        }
-        .about-section {
-            background: var(--bg-about);
-            border-radius: 48px;
-            margin: 80px 0;
-            padding: 60px 48px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 48px;
-        }
+        /* Контакты */
         .contact-form {
             background: var(--bg-form);
             border-radius: 40px;
@@ -550,6 +511,8 @@
             background: var(--bg-primary);
             color: var(--text-primary);
         }
+
+        /* Модалка */
         .modal {
             display: none;
             position: fixed;
@@ -570,6 +533,7 @@
         }
         .cart-items { max-height: 350px; overflow-y: auto; margin: 20px 0; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-form); flex-wrap: wrap; gap: 10px; }
+
         .toast-notification {
             position: fixed;
             bottom: 30px;
@@ -586,6 +550,7 @@
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+
         footer {
             border-top: 1px solid var(--footer-border);
             padding: 40px 0;
@@ -604,12 +569,10 @@
             color: var(--text-muted);
             font-size: 18px;
         }
+
         @media (max-width: 800px) {
             .navbar { flex-direction: column; gap: 20px; }
             .hero-content h1 { font-size: 40px; }
-            .timer { gap: 8px; }
-            .timer-box { padding: 8px 12px; min-width: 55px; }
-            .timer-number { font-size: 24px; }
             .scroll-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
             .filter-bar { gap: 8px; }
             .filter-btn { padding: 8px 20px; font-size: 14px; }
@@ -644,19 +607,6 @@
 
     <main>
         <div class="container" id="homeSection">
-            <div class="sale-banner">
-                <div class="sale-text">
-                    <h3>🔥 Спецпредложение</h3>
-                    <p>Скидка 15% на весь каталог техники</p>
-                </div>
-                <div class="timer" id="countdownTimer">
-                    <div class="timer-box"><div class="timer-number" id="days">00</div><div class="timer-label">Дни</div></div>
-                    <div class="timer-box"><div class="timer-number" id="hours">00</div><div class="timer-label">Часы</div></div>
-                    <div class="timer-box"><div class="timer-number" id="minutes">00</div><div class="timer-label">Минуты</div></div>
-                    <div class="timer-box"><div class="timer-number" id="seconds">00</div><div class="timer-label">Секунды</div></div>
-                </div>
-            </div>
-
             <div class="hero">
                 <div class="hero-content">
                     <div class="badge" style="color:#6b8f6b; margin-bottom:16px;">С 2018 — надёжность в каждой детали</div>
@@ -710,15 +660,15 @@
             </div>
         </div>
 
-        <!-- Отзывы -->
+        <!-- ===== ОТЗЫВЫ (РАБОТАЮТ) ===== -->
         <div class="container" id="reviewsSection">
             <div class="reviews-section">
                 <div class="reviews-title">
                     Отзывы наших клиентов
                     <div class="average-rating" id="averageRatingDisplay">
-                        <span class="average-number">0.0</span>
+                        <span class="average-number" id="averageNumber">0.0</span>
                         <div class="stars" id="averageStars"></div>
-                        <span>(0 отзывов)</span>
+                        <span id="reviewsCount">(0 отзывов)</span>
                     </div>
                 </div>
                 <div class="reviews-list" id="reviewsList"></div>
@@ -777,31 +727,52 @@
         // ========== ТОВАРЫ (МобилМаш) ==========
         const products = [
             // Товары
-            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviews: 12 },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviews: 8 },
-            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviews: 15 },
-            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviews: 9 },
-            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviews: 6 },
-            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviews: 11 },
+            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Погрузчик+ММ-300", rating: 4.8, reviewsCount: 12 },
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Штабелёр", rating: 4.9, reviewsCount: 8 },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ричтрак", rating: 4.7, reviewsCount: 15 },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Тележка", rating: 4.6, reviewsCount: 9 },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Рампа", rating: 4.5, reviewsCount: 6 },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Зарядка", rating: 4.8, reviewsCount: 11 },
             // Услуги
-            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9, reviews: 24 },
-            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики", rating: 4.7, reviews: 18 },
-            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8, reviews: 14 },
+            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Техобслуживание", rating: 4.9, reviewsCount: 24 },
+            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Ремонт+гидравлики", rating: 4.7, reviewsCount: 18 },
+            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Обучение", rating: 4.8, reviewsCount: 14 },
             // Прочие
-            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6, reviews: 32 },
-            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7, reviews: 21 },
-            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4, reviews: 9 }
+            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Запчасти", rating: 4.6, reviewsCount: 32 },
+            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Масло", rating: 4.7, reviewsCount: 21 },
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100, img: "https://placehold.co/400x300/2a3a2a/6b8f6b?text=Чехол", rating: 4.4, reviewsCount: 9 }
         ];
 
         let cart = [];
         let currentFilter = 'all';
 
-        // ========== ОТЗЫВЫ ==========
-        let reviews = [
-            { id: 1, author: "Александр", rating: 5, text: "Отличная техника! Погрузчик работает без нареканий уже год. Рекомендую.", date: "2026-03-15" },
-            { id: 2, author: "Екатерина", rating: 4, text: "Хорошее оборудование. Быстрая доставка и приятный сервис.", date: "2026-03-20" },
-            { id: 3, author: "Михаил", rating: 5, text: "Лучшая техника на рынке. Сервисное обслуживание на высоте!", date: "2026-04-01" }
-        ];
+        // ========== ОТЗЫВЫ (СОХРАНЯЮТСЯ В localStorage) ==========
+        let reviews = [];
+
+        // Загружаем отзывы из localStorage
+        function loadReviews() {
+            const saved = localStorage.getItem('mobilmash_reviews');
+            if (saved) {
+                try {
+                    reviews = JSON.parse(saved);
+                } catch(e) {
+                    reviews = [];
+                }
+            }
+            // Если отзывов нет — добавляем примеры
+            if (reviews.length === 0) {
+                reviews = [
+                    { id: 1, author: "Александр", rating: 5, text: "Отличная техника! Погрузчик работает без нареканий уже год. Рекомендую.", date: "2026-03-15" },
+                    { id: 2, author: "Екатерина", rating: 4, text: "Хорошее оборудование. Быстрая доставка и приятный сервис.", date: "2026-03-20" },
+                    { id: 3, author: "Михаил", rating: 5, text: "Лучшая техника на рынке. Сервисное обслуживание на высоте!", date: "2026-04-01" }
+                ];
+                saveReviews();
+            }
+        }
+
+        function saveReviews() {
+            localStorage.setItem('mobilmash_reviews', JSON.stringify(reviews));
+        }
 
         function renderStars(rating, containerId) {
             const container = document.getElementById(containerId);
@@ -821,10 +792,13 @@
             if(reviews.length === 0) {
                 document.getElementById('averageNumber').textContent = '0.0';
                 document.getElementById('averageStars').innerHTML = '<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+                document.getElementById('reviewsCount').textContent = '(0 отзывов)';
                 return;
             }
             const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
             document.getElementById('averageNumber').textContent = avg.toFixed(1);
+            document.getElementById('reviewsCount').textContent = `(${reviews.length} отзывов)`;
+            
             const starsContainer = document.getElementById('averageStars');
             if(starsContainer) {
                 const fullStars = Math.floor(avg);
@@ -903,6 +877,36 @@
             });
         }
 
+        // ========== ОТПРАВКА ОТЗЫВА ==========
+        function submitReview() {
+            const author = document.getElementById('reviewAuthorInput').value.trim();
+            const text = document.getElementById('reviewTextInput').value.trim();
+            
+            if(!author) { showToast('Введите ваше имя', true); return; }
+            if(!text) { showToast('Напишите текст отзыва', true); return; }
+            if(selectedRating === 0) { showToast('Поставьте оценку', true); return; }
+            
+            const newReview = {
+                id: Date.now(),
+                author: author,
+                rating: selectedRating,
+                text: text,
+                date: new Date().toISOString().slice(0,10)
+            };
+            
+            reviews.unshift(newReview);
+            saveReviews();
+            renderReviews();
+            
+            document.getElementById('reviewAuthorInput').value = '';
+            document.getElementById('reviewTextInput').value = '';
+            selectedRating = 0;
+            const stars = document.querySelectorAll('#reviewStarsInput i');
+            stars.forEach(s => { s.className = 'far fa-star'; s.style.color = 'var(--rating-star-empty)'; });
+            
+            showToast('✅ Спасибо за ваш отзыв!');
+        }
+
         // ========== РЕНДЕР КАТАЛОГА С ФИЛЬТРАЦИЕЙ ==========
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('productsGrid');
@@ -928,7 +932,7 @@
                         <div class="card-title">${prod.name}</div>
                         <div class="rating">
                             <div class="stars">${getStarsHtml(prod.rating)}</div>
-                            <span class="rating-count">(${prod.reviews} отзывов)</span>
+                            <span class="rating-count">(${prod.reviewsCount} отзывов)</span>
                         </div>
                         <div class="price">${prod.price.toLocaleString()} ₽</div>
                         <button class="add-to-cart" data-id="${prod.id}"><i class="fas fa-shopping-bag"></i> В корзину</button>
@@ -1044,34 +1048,7 @@
             });
         }
 
-        // ========== ТАЙМЕР ==========
-        function startCountdown() {
-            const endDate = new Date();
-            endDate.setMonth(endDate.getMonth() + 1);
-            endDate.setDate(1);
-            endDate.setHours(23, 59, 59);
-            
-            function updateTimer() {
-                const now = new Date();
-                const diff = endDate - now;
-                if(diff <= 0) {
-                    document.getElementById('countdownTimer').innerHTML = '<div class="timer-box">Акция завершена</div>';
-                    return;
-                }
-                const days = Math.floor(diff / (1000*60*60*24));
-                const hours = Math.floor((diff % (86400000)) / 3600000);
-                const minutes = Math.floor((diff % 3600000) / 60000);
-                const seconds = Math.floor((diff % 60000) / 1000);
-                document.getElementById('days').innerText = String(days).padStart(2,'0');
-                document.getElementById('hours').innerText = String(hours).padStart(2,'0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2,'0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2,'0');
-            }
-            updateTimer();
-            setInterval(updateTimer, 1000);
-        }
-
-        // ========== БЛОГ (МобилМаш) ==========
+        // ========== БЛОГ ==========
         const blogPosts = [
             { tag: "СОВЕТЫ", title: "Как выбрать складской погрузчик", excerpt: "Разбираем типы погрузчиков, грузоподъёмность и высоту подъёма.", img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Выбор+погрузчика" },
             { tag: "УХОД", title: "Обслуживание электрических штабелёров", excerpt: "Чистка, зарядка и продление срока службы техники.", img: "https://placehold.co/600x400/2a3a2a/6b8f6b?text=Обслуживание" },
@@ -1157,39 +1134,15 @@
             e.target.reset();
         });
 
-        // Отправка отзыва
-        document.getElementById('submitReviewBtn')?.addEventListener('click', () => {
-            const author = document.getElementById('reviewAuthorInput').value.trim();
-            const text = document.getElementById('reviewTextInput').value.trim();
-            if(!author) { showToast('Введите ваше имя', true); return; }
-            if(!text) { showToast('Напишите текст отзыва', true); return; }
-            if(selectedRating === 0) { showToast('Поставьте оценку', true); return; }
-            
-            const newReview = {
-                id: Date.now(),
-                author: author,
-                rating: selectedRating,
-                text: text,
-                date: new Date().toISOString().slice(0,10)
-            };
-            reviews.unshift(newReview);
-            renderReviews();
-            
-            document.getElementById('reviewAuthorInput').value = '';
-            document.getElementById('reviewTextInput').value = '';
-            selectedRating = 0;
-            const stars = document.querySelectorAll('#reviewStarsInput i');
-            stars.forEach(s => { s.className = 'far fa-star'; s.style.color = 'var(--rating-star-empty)'; });
-            
-            showToast('Спасибо за ваш отзыв!');
-        });
+        // ===== КНОПКА ОТПРАВКИ ОТЗЫВА =====
+        document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        loadReviews();          // загружаем отзывы из localStorage
         renderProducts('all');
         renderBlog();
-        renderReviews();
+        renderReviews();        // отображаем отзывы
         loadCartFromStorage();
-        startCountdown();
         initScrollTop();
         initReviewStars();
         initFilters();
