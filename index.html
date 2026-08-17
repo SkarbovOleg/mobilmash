@@ -16,7 +16,7 @@
             --color-red-light: rgba(204, 0, 0, 0.08);
             --color-red-dark: #990000;
             
-            /* Светлый фон */
+            /* Светлый фон (будет перекрыт фоновым изображением) */
             --bg-primary: #f5f2ed;
             --bg-secondary: #ece8e1;
             --bg-card: #ffffff;
@@ -65,17 +65,28 @@
             box-sizing: border-box;
         }
 
+        /* ===== ФОН САЙТА (загружается из админки) ===== */
         body {
             background-color: var(--bg-primary);
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
             scroll-behavior: smooth;
             line-height: 1.4;
-            /* Легкий чертежный фон */
+            /* Легкий чертежный фон по умолчанию */
             background-image: 
                 linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
             background-size: 30px 30px;
+            background-attachment: fixed;
+            transition: background-image 0.5s ease;
+        }
+
+        /* Фоновое изображение из админки (применяется через JS) */
+        body.has-bg-image {
+            background-image: var(--bg-image, none) !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
         }
 
         .container {
@@ -1994,6 +2005,7 @@
         let reviews = loadData('mobilmash_reviews', []);
         let events = loadData('mobilmash_events', defaultEvents);
         let logoData = loadString('mobilmash_logo', '');
+        let bgData = loadString('mobilmash_background', '');
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
@@ -2016,6 +2028,21 @@
                 logoImg.style.display = 'block';
             } else {
                 logoImg.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // ========== ЗАГРУЗКА ФОНА ==========
+        // ============================================================
+
+        function loadBackground() {
+            const body = document.body;
+            if (bgData && bgData.length > 100) {
+                body.style.setProperty('--bg-image', `url("${bgData}")`);
+                body.classList.add('has-bg-image');
+            } else {
+                body.classList.remove('has-bg-image');
+                body.style.setProperty('--bg-image', 'none');
             }
         }
 
@@ -2607,6 +2634,7 @@
             const savedReviews = localStorage.getItem('mobilmash_reviews');
             const savedEvents = localStorage.getItem('mobilmash_events');
             const savedLogo = localStorage.getItem('mobilmash_logo');
+            const savedBg = localStorage.getItem('mobilmash_background');
 
             let needUpdate = false;
 
@@ -2646,6 +2674,12 @@
                 needUpdate = true;
             }
 
+            if (savedBg !== null && savedBg !== bgData) {
+                bgData = savedBg;
+                loadBackground();
+                needUpdate = true;
+            }
+
             if (needUpdate) {
                 renderCatalog();
                 renderEvents();
@@ -2659,6 +2693,7 @@
 
         function init() {
             loadLogo();
+            loadBackground();
 
             const savedCart = localStorage.getItem('mobilmash_cart');
             if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
