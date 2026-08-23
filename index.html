@@ -65,11 +65,20 @@
             color: var(--text-primary);
             scroll-behavior: smooth;
             line-height: 1.4;
+            /* Легкий чертежный фон по умолчанию */
             background-image: 
                 linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
             background-size: 30px 30px;
             background-attachment: fixed;
+        }
+
+        /* Фоновое изображение из админки (применяется через JS) */
+        body.has-bg-image {
+            background-image: var(--bg-image, none) !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
         }
 
         .container {
@@ -1931,6 +1940,7 @@
         let reviews = loadData('mobilmash_reviews', []);
         let events = loadData('mobilmash_events', defaultEvents);
         let logoData = loadString('mobilmash_logo', '');
+        let bgData = loadString('mobilmash_background', '');
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
@@ -1953,6 +1963,33 @@
                 logoImg.style.display = 'block';
             } else {
                 logoImg.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // ========== ЗАГРУЗКА ФОНА ==========
+        // ============================================================
+
+        function loadBackground() {
+            const body = document.body;
+            const bgDataFromStorage = localStorage.getItem('mobilmash_background');
+            
+            console.log('🔍 Проверка фона в localStorage:', bgDataFromStorage ? '✅ есть' : '❌ нет');
+            
+            if (bgDataFromStorage && bgDataFromStorage.length > 100) {
+                // Применяем фон
+                body.style.backgroundImage = `url("${bgDataFromStorage}")`;
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundPosition = 'center';
+                body.style.backgroundAttachment = 'fixed';
+                body.style.backgroundColor = 'transparent';
+                body.classList.add('has-bg-image');
+                console.log('✅ Фон успешно применён!');
+            } else {
+                // Возвращаем стандартный чертёжный фон
+                body.style.backgroundImage = '';
+                body.classList.remove('has-bg-image');
+                console.log('❌ Фон не найден, используем стандартный');
             }
         }
 
@@ -2544,6 +2581,7 @@
             const savedReviews = localStorage.getItem('mobilmash_reviews');
             const savedEvents = localStorage.getItem('mobilmash_events');
             const savedLogo = localStorage.getItem('mobilmash_logo');
+            const savedBg = localStorage.getItem('mobilmash_background');
 
             let needUpdate = false;
 
@@ -2583,6 +2621,12 @@
                 needUpdate = true;
             }
 
+            if (savedBg !== null && savedBg !== bgData) {
+                bgData = savedBg;
+                loadBackground();
+                needUpdate = true;
+            }
+
             if (needUpdate) {
                 renderCatalog();
                 renderEvents();
@@ -2595,7 +2639,9 @@
         // ============================================================
 
         function init() {
+            // СНАЧАЛА загружаем логотип и фон
             loadLogo();
+            loadBackground();
 
             const savedCart = localStorage.getItem('mobilmash_cart');
             if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
@@ -2763,6 +2809,27 @@
                 }
             });
         }
+
+        // ============================================================
+        // ========== НЕМЕДЛЕННОЕ ВОССТАНОВЛЕНИЕ ФОНА ==========
+        // ============================================================
+        // Этот код выполняется сразу при загрузке страницы,
+        // до того как сработает DOMContentLoaded
+        (function immediateRestoreBackground() {
+            try {
+                const bgData = localStorage.getItem('mobilmash_background');
+                if (bgData && bgData.length > 100) {
+                    document.body.style.backgroundImage = `url("${bgData}")`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                    document.body.style.backgroundAttachment = 'fixed';
+                    document.body.style.backgroundColor = 'transparent';
+                    console.log('✅ ФОН ВОССТАНОВЛЕН (немедленно)');
+                }
+            } catch (e) {
+                console.warn('Ошибка немедленного восстановления фона:', e);
+            }
+        })();
 
         document.addEventListener('DOMContentLoaded', init);
     </script>
