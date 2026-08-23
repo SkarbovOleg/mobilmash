@@ -243,13 +243,13 @@
             color: var(--text-muted);
         }
 
-        /* ===== HERO С КРАСНОЙ РАМКОЙ ===== */
+        /* ===== HERO С КРАСНОЙ РАМКОЙ И СЛАЙДЕРОМ ===== */
         .hero {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 48px;
+            gap: 30px;
             background: var(--bg-card);
             border-radius: 16px;
             padding: 40px 48px;
@@ -266,35 +266,9 @@
 
         .hero-content {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
             position: relative;
             z-index: 1;
-        }
-
-        .hero-logo {
-            max-width: 350px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .hero-logo.loaded {
-            display: block;
-        }
-
-        .hero-brand {
-            color: var(--color-red);
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .hero-brand.hidden {
-            display: none;
         }
 
         .hero-content h1 {
@@ -308,16 +282,151 @@
             margin-bottom: 28px;
         }
 
-        .hero-image {
+        /* ===== СЛАЙДЕР (ленточная реклама) ===== */
+        .hero-slider {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
+            max-width: 500px;
             position: relative;
             z-index: 1;
-        }
-        .hero-image img {
-            width: 100%;
+            overflow: hidden;
             border-radius: 12px;
             border: 1px solid var(--border-card);
+            background: var(--bg-primary);
+            height: 280px;
+        }
+
+        .hero-slider .slides-wrapper {
+            display: flex;
+            transition: transform 0.6s ease;
+            height: 100%;
+        }
+
+        .hero-slider .slide {
+            min-width: 100%;
+            height: 100%;
+            padding: 28px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f6f3 0%, #f0ede7 100%);
+            border-right: 1px solid var(--border-card);
+        }
+
+        .hero-slider .slide .slide-icon {
+            font-size: 32px;
+            color: var(--color-red);
+            margin-bottom: 10px;
+        }
+
+        .hero-slider .slide .slide-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .hero-slider .slide .slide-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .hero-slider .slide .slide-btn {
+            display: inline-block;
+            background: var(--color-red);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            align-self: flex-start;
+            transition: 0.2s;
+        }
+
+        .hero-slider .slide .slide-btn:hover {
+            background: var(--color-red-hover);
+            transform: translateY(-2px);
+        }
+
+        .hero-slider .slide .slide-tag {
+            display: inline-block;
+            background: var(--color-red);
+            color: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        /* Кнопки переключения слайдов */
+        .slider-controls {
+            position: absolute;
+            bottom: 16px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .slider-controls button {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border-card);
+            background: rgba(255,255,255,0.9);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-controls button:hover {
+            background: var(--color-red);
+            color: white;
+            border-color: var(--color-red);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .slider-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--border-card);
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .slider-dots .dot.active {
+            background: var(--color-red);
+            border-color: var(--color-red);
+        }
+
+        .slider-dots .dot:hover {
+            transform: scale(1.2);
+        }
+
+        .hero-image {
+            display: none;
         }
 
         /* ===== ФИЛЬТРЫ ===== */
@@ -1439,9 +1548,14 @@
             }
             .hero {
                 padding: 24px;
+                flex-direction: column;
             }
             .hero-content h1 {
                 font-size: 32px;
+            }
+            .hero-slider {
+                max-width: 100%;
+                height: 220px;
             }
             .scroll-top {
                 bottom: 20px;
@@ -1520,7 +1634,7 @@
     </div>
 
     <main>
-        <!-- ===== HERO ===== -->
+        <!-- ===== HERO С ЛЕНТОЧНОЙ РЕКЛАМОЙ ===== -->
         <div class="container" id="homeSection">
             <div class="hero">
                 <div class="hero-content">
@@ -1529,8 +1643,52 @@
                     <p>Профессиональное оборудование для склада и производства.</p>
                     <a href="#" class="btn" data-nav="catalog">Смотреть каталог →</a>
                 </div>
-                <div class="hero-image">
-                    <img src="https://placehold.co/600x400/e8e4dd/cc0000?text=МобилМаш" alt="Техника МобилМаш">
+
+                <!-- ===== СЛАЙДЕР (ленточная реклама) ===== -->
+                <div class="hero-slider" id="heroSlider">
+                    <div class="slides-wrapper" id="slidesWrapper">
+                        <!-- Слайд 1 -->
+                        <div class="slide">
+                            <span class="slide-tag">🔥 Акция</span>
+                            <div class="slide-icon"><i class="fas fa-gift"></i></div>
+                            <div class="slide-title">Скидка 15% на всё!</div>
+                            <div class="slide-desc">При заказе от 500 000 ₽ — дополнительная скидка 5%</div>
+                            <a href="#" class="slide-btn">Узнать подробнее</a>
+                        </div>
+                        <!-- Слайд 2 -->
+                        <div class="slide">
+                            <span class="slide-tag">🚚 Доставка</span>
+                            <div class="slide-icon"><i class="fas fa-truck"></i></div>
+                            <div class="slide-title">Бесплатная доставка</div>
+                            <div class="slide-desc">При заказе техники от 1 000 000 ₽ — доставка по всей России бесплатно</div>
+                            <a href="#" class="slide-btn">Подробнее</a>
+                        </div>
+                        <!-- Слайд 3 -->
+                        <div class="slide">
+                            <span class="slide-tag">⚡ Новинка</span>
+                            <div class="slide-icon"><i class="fas fa-star"></i></div>
+                            <div class="slide-title">ММ-400 — новый погрузчик</div>
+                            <div class="slide-desc">Грузоподъёмность 4 тонны. Экономичный дизельный двигатель.</div>
+                            <a href="#" class="slide-btn">Смотреть</a>
+                        </div>
+                        <!-- Слайд 4 -->
+                        <div class="slide">
+                            <span class="slide-tag">📅 Событие</span>
+                            <div class="slide-icon"><i class="fas fa-calendar-check"></i></div>
+                            <div class="slide-title">СкладТех-2026</div>
+                            <div class="slide-desc">Приходите на наш стенд — павильон 3, место 42</div>
+                            <a href="#" class="slide-btn">Подробнее</a>
+                        </div>
+                    </div>
+
+                    <!-- Кнопки управления -->
+                    <div class="slider-controls">
+                        <button id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+                        <button id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <!-- Точки (индикаторы) -->
+                    <div class="slider-dots" id="sliderDots"></div>
                 </div>
             </div>
         </div>
@@ -1873,6 +2031,75 @@
     </div>
 
     <script>
+        // ============================================================
+        // ========== СЛАЙДЕР ==========
+        // ============================================================
+
+        (function initSlider() {
+            const wrapper = document.getElementById('slidesWrapper');
+            const dotsContainer = document.getElementById('sliderDots');
+            const prevBtn = document.getElementById('sliderPrev');
+            const nextBtn = document.getElementById('sliderNext');
+            const slides = wrapper.querySelectorAll('.slide');
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            let autoPlayInterval = null;
+
+            // Создаём точки
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.className = 'dot' + (index === 0 ? ' active' : '');
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                currentIndex = index;
+                wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+                // Обновляем точки
+                document.querySelectorAll('.dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function nextSlide() { goToSlide(currentIndex + 1); }
+
+            function prevSlide() { goToSlide(currentIndex - 1); }
+
+            // События кнопок
+            prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+            nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+
+            // Автоплей
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(nextSlide, 4500);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+                }
+            }
+
+            function resetAutoPlay() {
+                stopAutoPlay();
+                startAutoPlay();
+            }
+
+            // Пауза при наведении
+            const slider = document.getElementById('heroSlider');
+            slider.addEventListener('mouseenter', stopAutoPlay);
+            slider.addEventListener('mouseleave', startAutoPlay);
+
+            // Запускаем
+            startAutoPlay();
+        })();
+
         // ============================================================
         // ========== ЗАГРУЗКА ДАННЫХ ==========
         // ============================================================
