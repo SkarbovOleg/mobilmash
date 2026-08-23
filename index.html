@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== КОРПОРАТИВНЫЕ ЦВЕТА (СВЕТЛАЯ ТЕМА + ТЕХНИЧЕСКИЙ СТИЛЬ) ===== */
+        /* ===== КОРПОРАТИВНЫЕ ЦВЕТА ===== */
         :root {
             --color-black: #1a1a1a;
             --color-white: #f8f6f3;
@@ -16,31 +16,26 @@
             --color-red-light: rgba(204, 0, 0, 0.08);
             --color-red-dark: #990000;
             
-            /* Светлый фон */
             --bg-primary: #f5f2ed;
             --bg-secondary: #ece8e1;
             --bg-card: #ffffff;
             --bg-about: #f0ede7;
             --bg-form: #ffffff;
             
-            /* Текст */
             --text-primary: #1a1a1a;
             --text-secondary: #444444;
             --text-muted: #777777;
             
-            /* Границы в стиле чертежа */
             --border-light: rgba(0, 0, 0, 0.08);
             --border-card: #d5d0c8;
             --border-form: #d5d0c8;
             
-            /* Кнопки */
             --btn-bg: var(--color-red);
             --btn-hover: var(--color-red-hover);
             --btn-outline: var(--color-red);
             --add-to-cart-bg: #f0ede7;
             --add-to-cart-hover: var(--color-red);
             
-            /* Остальное */
             --modal-bg: #ffffff;
             --footer-border: #d5d0c8;
             --icon-color: var(--color-red);
@@ -54,7 +49,6 @@
             --accent: var(--color-red);
             --accent-hover: var(--color-red-hover);
             
-            /* Чертежный стиль */
             --blueprint-color: #2a2a2a;
             --blueprint-line: rgba(0, 0, 0, 0.06);
         }
@@ -71,11 +65,21 @@
             color: var(--text-primary);
             scroll-behavior: smooth;
             line-height: 1.4;
-            /* Легкий чертежный фон */
+            /* Легкий чертежный фон (если нет загруженного) */
             background-image: 
                 linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
             background-size: 30px 30px;
+            background-attachment: fixed;
+            transition: background-image 0.5s ease;
+        }
+
+        /* Фоновое изображение из админки (применяется через JS) */
+        body.has-bg-image {
+            background-image: var(--bg-image, none) !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
         }
 
         .container {
@@ -85,25 +89,6 @@
         }
         .serif {
             font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* ===== ЧЕРТЕЖНЫЙ ДЕКОР ===== */
-        .blueprint-border {
-            position: relative;
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            background: var(--bg-card);
-        }
-        .blueprint-border::before {
-            content: '';
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            right: 6px;
-            bottom: 6px;
-            border: 1px dashed rgba(0,0,0,0.06);
-            border-radius: 12px;
-            pointer-events: none;
         }
 
         /* ===== КНОПКА НАВЕРХ ===== */
@@ -227,7 +212,7 @@
         .btn:hover {
             background: var(--btn-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(204, 0, 0, 0.3);
         }
         .btn-outline {
             background: transparent;
@@ -261,31 +246,25 @@
             color: var(--text-muted);
         }
 
-        /* ===== HERO ===== */
+        /* ===== HERO С КРАСНОЙ РАМКОЙ ===== */
         .hero {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
             gap: 48px;
-            padding: 40px 0 30px;
             background: var(--bg-card);
             border-radius: 16px;
             padding: 40px 48px;
             margin: 8px 0 30px;
-            border: 1px solid var(--border-card);
+            border: 2px solid var(--color-red);
+            box-shadow: 0 0 30px rgba(204, 0, 0, 0.06);
             position: relative;
+            transition: box-shadow 0.3s ease;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
-            border: 1px dashed rgba(0,0,0,0.06);
-            border-radius: 12px;
-            pointer-events: none;
+
+        .hero:hover {
+            box-shadow: 0 0 40px rgba(204, 0, 0, 0.12);
         }
 
         .hero-content {
@@ -293,32 +272,6 @@
             min-width: 300px;
             position: relative;
             z-index: 1;
-        }
-
-        .hero-logo {
-            max-width: 350px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 16px;
-            display: none;
-        }
-
-        .hero-logo.loaded {
-            display: block;
-        }
-
-        .hero-brand {
-            color: var(--color-red);
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .hero-brand.hidden {
-            display: none;
         }
 
         .hero-content h1 {
@@ -459,10 +412,10 @@
             background: var(--filter-active);
             border-color: var(--filter-active);
             color: white;
-            box-shadow: 0 4px 16px rgba(204, 0, 0, 0.25);
+            box-shadow: 0 4px 16px rgba(204, 0, 0, 0.3);
         }
 
-        /* ===== КАРТОЧКИ ТОВАРОВ ===== */
+        /* ===== КАРТОЧКИ ТОВАРОВ С КРАСНОЙ РАМКОЙ ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -473,25 +426,14 @@
             background: var(--bg-card);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid var(--border-card);
-            transition: 0.3s;
+            border: 2px solid var(--color-red);
+            transition: all 0.3s ease;
             position: relative;
         }
         .product-card:hover {
             transform: translateY(-6px);
-            border-color: var(--color-red);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-        }
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            right: 4px;
-            bottom: 4px;
-            border: 1px dashed rgba(0,0,0,0.04);
-            border-radius: 12px;
-            pointer-events: none;
+            border-color: var(--color-red-hover);
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.12);
         }
 
         .product-card .favorite-btn {
@@ -762,7 +704,7 @@
             line-height: 1.5;
         }
 
-        /* Команда */
+        /* ===== КОМАНДА С КРАСНОЙ РАМКОЙ ===== */
         .team-section {
             margin-bottom: 60px;
         }
@@ -781,12 +723,13 @@
             border-radius: 16px;
             padding: 24px;
             text-align: center;
-            border: 1px solid var(--border-card);
-            transition: 0.3s;
+            border: 2px solid var(--color-red);
+            transition: all 0.3s ease;
         }
         .team-card:hover {
-            border-color: var(--color-red);
+            border-color: var(--color-red-hover);
             transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.12);
         }
         .team-card .team-avatar {
             width: 80px;
@@ -811,7 +754,7 @@
             margin-top: 4px;
         }
 
-        /* Партнёры */
+        /* ===== ПАРТНЁРЫ С КРАСНОЙ РАМКОЙ ===== */
         .partners-section {
             margin-bottom: 60px;
         }
@@ -831,13 +774,14 @@
             padding: 20px;
             border-radius: 12px;
             text-align: center;
-            border: 1px solid var(--border-card);
+            border: 2px solid var(--color-red);
             font-size: 14px;
             color: var(--text-muted);
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
         .partners-grid .partner:hover {
-            border-color: var(--color-red);
+            border-color: var(--color-red-hover);
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.12);
         }
         .partners-grid .partner i {
             font-size: 28px;
@@ -846,7 +790,7 @@
             display: block;
         }
 
-        /* Сертификаты */
+        /* ===== СЕРТИФИКАТЫ С КРАСНОЙ РАМКОЙ ===== */
         .certificates-section {
             margin-bottom: 60px;
         }
@@ -865,11 +809,12 @@
             border-radius: 12px;
             padding: 24px;
             text-align: center;
-            border: 1px solid var(--border-card);
-            transition: 0.3s;
+            border: 2px solid var(--color-red);
+            transition: all 0.3s ease;
         }
         .certificates-grid .cert:hover {
-            border-color: var(--color-red);
+            border-color: var(--color-red-hover);
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.12);
         }
         .certificates-grid .cert i {
             font-size: 40px;
@@ -975,7 +920,7 @@
             color: var(--color-red);
         }
 
-        /* ===== КАЛЕНДАРЬ СОБЫТИЙ ===== */
+        /* ===== КАЛЕНДАРЬ СОБЫТИЙ С КРАСНОЙ РАМКОЙ ===== */
         .events-section {
             margin: 60px 0;
         }
@@ -1000,14 +945,15 @@
             background: var(--bg-card);
             border-radius: 16px;
             padding: 28px;
-            border: 1px solid var(--border-card);
-            transition: 0.3s;
+            border: 2px solid var(--color-red);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         .event-card:hover {
             transform: translateY(-6px);
-            border-color: var(--color-red);
+            border-color: var(--color-red-hover);
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.12);
         }
         .event-card .event-date {
             display: inline-block;
@@ -1076,7 +1022,7 @@
             color: #b8960f;
         }
 
-        /* ===== БЛОГ ===== */
+        /* ===== БЛОГ С КРАСНОЙ РАМКОЙ ===== */
         .blog-section {
             margin: 60px 0;
         }
@@ -1090,12 +1036,13 @@
             background: var(--blog-bg);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid var(--border-card);
-            transition: 0.3s;
+            border: 2px solid var(--color-red);
+            transition: all 0.3s ease;
         }
         .blog-card:hover {
             transform: translateY(-5px);
-            border-color: var(--color-red);
+            border-color: var(--color-red-hover);
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.12);
         }
         .blog-img {
             height: 180px;
@@ -1994,6 +1941,7 @@
         let reviews = loadData('mobilmash_reviews', []);
         let events = loadData('mobilmash_events', defaultEvents);
         let logoData = loadString('mobilmash_logo', '');
+        let bgData = loadString('mobilmash_background', '');
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
@@ -2016,6 +1964,33 @@
                 logoImg.style.display = 'block';
             } else {
                 logoImg.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // ========== ЗАГРУЗКА ФОНА (ИСПРАВЛЕНА) ==========
+        // ============================================================
+
+        function loadBackground() {
+            const body = document.body;
+            const bgDataFromStorage = localStorage.getItem('mobilmash_background');
+            
+            console.log('🔍 Проверка фона в localStorage:', bgDataFromStorage ? '✅ есть' : '❌ нет');
+            
+            if (bgDataFromStorage && bgDataFromStorage.length > 100) {
+                // Применяем фон
+                body.style.backgroundImage = `url("${bgDataFromStorage}")`;
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundPosition = 'center';
+                body.style.backgroundAttachment = 'fixed';
+                body.style.backgroundColor = 'transparent';
+                body.classList.add('has-bg-image');
+                console.log('✅ Фон успешно применён!');
+            } else {
+                // Возвращаем стандартный чертёжный фон
+                body.style.backgroundImage = '';
+                body.classList.remove('has-bg-image');
+                console.log('❌ Фон не найден, используем стандартный');
             }
         }
 
@@ -2607,6 +2582,7 @@
             const savedReviews = localStorage.getItem('mobilmash_reviews');
             const savedEvents = localStorage.getItem('mobilmash_events');
             const savedLogo = localStorage.getItem('mobilmash_logo');
+            const savedBg = localStorage.getItem('mobilmash_background');
 
             let needUpdate = false;
 
@@ -2646,6 +2622,12 @@
                 needUpdate = true;
             }
 
+            if (savedBg !== null && savedBg !== bgData) {
+                bgData = savedBg;
+                loadBackground();
+                needUpdate = true;
+            }
+
             if (needUpdate) {
                 renderCatalog();
                 renderEvents();
@@ -2658,7 +2640,9 @@
         // ============================================================
 
         function init() {
+            // СНАЧАЛА загружаем логотип и фон
             loadLogo();
+            loadBackground();
 
             const savedCart = localStorage.getItem('mobilmash_cart');
             if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
@@ -2826,6 +2810,27 @@
                 }
             });
         }
+
+        // ============================================================
+        // ========== НЕМЕДЛЕННОЕ ВОССТАНОВЛЕНИЕ ФОНА ==========
+        // ============================================================
+        // Этот код выполняется сразу при загрузке страницы,
+        // до того как сработает DOMContentLoaded
+        (function immediateRestoreBackground() {
+            try {
+                const bgData = localStorage.getItem('mobilmash_background');
+                if (bgData && bgData.length > 100) {
+                    document.body.style.backgroundImage = `url("${bgData}")`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                    document.body.style.backgroundAttachment = 'fixed';
+                    document.body.style.backgroundColor = 'transparent';
+                    console.log('✅ ФОН ВОССТАНОВЛЕН (немедленно)');
+                }
+            } catch (e) {
+                console.warn('Ошибка немедленного восстановления фона:', e);
+            }
+        })();
 
         document.addEventListener('DOMContentLoaded', init);
     </script>
