@@ -243,7 +243,7 @@
             color: var(--text-muted);
         }
 
-        /* ===== HERO С КРАСНОЙ РАМКОЙ И СЛАЙДЕРОМ ===== */
+        /* ===== HERO С КРАСНОЙ РАМКОЙ ===== */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -365,7 +365,6 @@
             align-self: flex-start;
         }
 
-        /* Кнопки переключения слайдов */
         .slider-controls {
             position: absolute;
             bottom: 16px;
@@ -423,10 +422,6 @@
 
         .slider-dots .dot:hover {
             transform: scale(1.2);
-        }
-
-        .hero-image {
-            display: none;
         }
 
         /* ===== ФИЛЬТРЫ ===== */
@@ -547,7 +542,7 @@
             box-shadow: 0 4px 16px rgba(204, 0, 0, 0.25);
         }
 
-        /* ===== КАРТОЧКИ ТОВАРОВ С КРАСНОЙ РАМКОЙ ===== */
+        /* ===== КАРТОЧКИ ТОВАРОВ С КРАСНОЙ РАМКОЙ (БЕЗ ЦЕН) ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -670,12 +665,7 @@
             margin: 6px 0;
             color: var(--text-primary);
         }
-        .price {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 14px;
-            color: var(--text-primary);
-        }
+        /* ЦЕНА УДАЛЕНА */
         .add-to-cart {
             width: 100%;
             background: var(--add-to-cart-bg);
@@ -1202,99 +1192,7 @@
             line-height: 1.5;
         }
 
-        /* ===== ОТЗЫВЫ ===== */
-        .reviews-section {
-            margin: 40px 0 60px;
-        }
-        .reviews-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .average-rating {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg-card);
-            padding: 8px 16px;
-            border-radius: 40px;
-            border: 1px solid var(--border-card);
-        }
-        .average-number {
-            font-size: 28px;
-            font-weight: 700;
-        }
-        .reviews-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 30px;
-        }
-        .review-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid var(--border-card);
-        }
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .review-author {
-            font-weight: 600;
-        }
-        .review-date {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .review-text {
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-top: 6px;
-        }
-        .add-review {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid var(--border-card);
-        }
-        .add-review h4 {
-            margin-bottom: 16px;
-        }
-        .review-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-form);
-            border-radius: 8px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            margin-bottom: 12px;
-            resize: vertical;
-        }
-        .review-stars-input {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            cursor: pointer;
-        }
-        .review-stars-input i {
-            font-size: 24px;
-            color: var(--rating-star-empty);
-            transition: 0.1s;
-            cursor: pointer;
-        }
-        .review-stars-input i.active {
-            color: var(--rating-star);
-        }
+        /* ===== ОТЗЫВЫ УДАЛЕНЫ ===== */
 
         /* ===== КОНТАКТЫ ===== */
         .contact-form {
@@ -1505,7 +1403,6 @@
         }
 
         .empty-cart-msg,
-        .empty-reviews-msg,
         .empty-filter-msg {
             text-align: center;
             padding: 40px 0;
@@ -1634,7 +1531,7 @@
     </div>
 
     <main>
-        <!-- ===== HERO С ЛЕНТОЧНОЙ РЕКЛАМОЙ ===== -->
+        <!-- ===== HERO ===== -->
         <div class="container" id="homeSection">
             <div class="hero">
                 <div class="hero-content">
@@ -1644,10 +1541,9 @@
                     <a href="#" class="btn" data-nav="catalog">Смотреть каталог →</a>
                 </div>
 
-                <!-- ===== СЛАЙДЕР (ленточная реклама) ===== -->
+                <!-- ===== СЛАЙДЕР ===== -->
                 <div class="hero-slider" id="heroSlider">
                     <div class="slides-wrapper" id="slidesWrapper">
-                        <!-- Слайд 1 -->
                         <div class="slide">
                             <span class="slide-tag">🔥 Акция</span>
                             <div class="slide-icon"><i class="fas fa-gift"></i></div>
@@ -1655,7 +1551,6 @@
                             <div class="slide-desc">При заказе от 500 000 ₽ — дополнительная скидка 5%</div>
                             <a href="#" class="slide-btn">Узнать подробнее</a>
                         </div>
-                        <!-- Слайд 2 -->
                         <div class="slide">
                             <span class="slide-tag">🚚 Доставка</span>
                             <div class="slide-icon"><i class="fas fa-truck"></i></div>
@@ -1663,7 +1558,6 @@
                             <div class="slide-desc">При заказе техники от 1 000 000 ₽ — доставка по всей России бесплатно</div>
                             <a href="#" class="slide-btn">Подробнее</a>
                         </div>
-                        <!-- Слайд 3 -->
                         <div class="slide">
                             <span class="slide-tag">⚡ Новинка</span>
                             <div class="slide-icon"><i class="fas fa-star"></i></div>
@@ -1671,7 +1565,6 @@
                             <div class="slide-desc">Грузоподъёмность 4 тонны. Экономичный дизельный двигатель.</div>
                             <a href="#" class="slide-btn">Смотреть</a>
                         </div>
-                        <!-- Слайд 4 -->
                         <div class="slide">
                             <span class="slide-tag">📅 Событие</span>
                             <div class="slide-icon"><i class="fas fa-calendar-check"></i></div>
@@ -1681,13 +1574,10 @@
                         </div>
                     </div>
 
-                    <!-- Кнопки управления -->
                     <div class="slider-controls">
                         <button id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
                         <button id="sliderNext"><i class="fas fa-chevron-right"></i></button>
                     </div>
-
-                    <!-- Точки (индикаторы) -->
                     <div class="slider-dots" id="sliderDots"></div>
                 </div>
             </div>
@@ -1929,33 +1819,7 @@
             </div>
         </div>
 
-        <!-- ===== ОТЗЫВЫ ===== -->
-        <div class="container" id="reviewsSection">
-            <div class="reviews-section">
-                <div class="reviews-title">
-                    Отзывы наших клиентов
-                    <div class="average-rating" id="averageRatingDisplay">
-                        <span class="average-number" id="averageNumber">0.0</span>
-                        <div class="stars" id="averageStars"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                        <span id="reviewsCount">(0 отзывов)</span>
-                    </div>
-                </div>
-                <div class="reviews-list" id="reviewsList"><div class="empty-reviews-msg">Пока нет отзывов. Будьте первым!</div></div>
-                <div class="add-review">
-                    <h4>Оставить отзыв</h4>
-                    <div class="review-stars-input" id="reviewStarsInput">
-                        <i class="far fa-star" data-star="1"></i>
-                        <i class="far fa-star" data-star="2"></i>
-                        <i class="far fa-star" data-star="3"></i>
-                        <i class="far fa-star" data-star="4"></i>
-                        <i class="far fa-star" data-star="5"></i>
-                    </div>
-                    <input type="text" id="reviewAuthorInput" class="review-input" placeholder="Ваше имя" maxlength="50">
-                    <textarea id="reviewTextInput" class="review-input" rows="3" placeholder="Поделитесь впечатлениями о технике МобилМаш..."></textarea>
-                    <button class="btn" id="submitReviewBtn">Оставить отзыв</button>
-                </div>
-            </div>
-        </div>
+        <!-- ===== ОТЗЫВЫ УДАЛЕНЫ ===== -->
 
         <!-- ===== КОНТАКТЫ ===== -->
         <div class="container" id="contactSection">
@@ -2045,7 +1909,6 @@
             const totalSlides = slides.length;
             let autoPlayInterval = null;
 
-            // Создаём точки
             slides.forEach((_, index) => {
                 const dot = document.createElement('span');
                 dot.className = 'dot' + (index === 0 ? ' active' : '');
@@ -2059,21 +1922,17 @@
                 if (index >= totalSlides) index = 0;
                 currentIndex = index;
                 wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-                // Обновляем точки
                 document.querySelectorAll('.dot').forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentIndex);
                 });
             }
 
             function nextSlide() { goToSlide(currentIndex + 1); }
-
             function prevSlide() { goToSlide(currentIndex - 1); }
 
-            // События кнопок
             prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
             nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
 
-            // Автоплей
             function startAutoPlay() {
                 stopAutoPlay();
                 autoPlayInterval = setInterval(nextSlide, 4500);
@@ -2091,12 +1950,10 @@
                 startAutoPlay();
             }
 
-            // Пауза при наведении
             const slider = document.getElementById('heroSlider');
             slider.addEventListener('mouseenter', stopAutoPlay);
             slider.addEventListener('mouseleave', startAutoPlay);
 
-            // Запускаем
             startAutoPlay();
         })();
 
@@ -2126,34 +1983,22 @@
         }
 
         // ============================================================
-        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ ==========
+        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ (БЕЗ ЦЕН) ==========
         // ============================================================
 
         const defaultProducts = [
-            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", price: 1250000,
-                imageData: "", rating: 4.8, reviewsCount: 12 },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", price: 890000,
-                imageData: "", rating: 4.9, reviewsCount: 8 },
-            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", price: 2100000,
-                imageData: "", rating: 4.7, reviewsCount: 15 },
-            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", price: 85000,
-                imageData: "", rating: 4.6, reviewsCount: 9 },
-            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", price: 210000,
-                imageData: "", rating: 4.5, reviewsCount: 6 },
-            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", price: 320000,
-                imageData: "", rating: 4.8, reviewsCount: 11 },
-            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", price: 15000,
-                imageData: "", rating: 4.9, reviewsCount: 24 },
-            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", price: 25000,
-                imageData: "", rating: 4.7, reviewsCount: 18 },
-            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", price: 45000,
-                imageData: "", rating: 4.8, reviewsCount: 14 },
-            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", price: 3000,
-                imageData: "", rating: 4.6, reviewsCount: 32 },
-            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", price: 8500,
-                imageData: "", rating: 4.7, reviewsCount: 21 },
-            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", price: 4100,
-                imageData: "", rating: 4.4, reviewsCount: 9 }
+            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", imageData: "", rating: 4.8 },
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", imageData: "", rating: 4.9 },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", imageData: "", rating: 4.7 },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", imageData: "", rating: 4.6 },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", imageData: "", rating: 4.5 },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", imageData: "", rating: 4.8 },
+            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", imageData: "", rating: 4.9 },
+            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", imageData: "", rating: 4.7 },
+            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", imageData: "", rating: 4.8 },
+            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "", rating: 4.6 },
+            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "", rating: 4.7 },
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "", rating: 4.4 }
         ];
 
         const defaultEvents = [
@@ -2188,7 +2033,6 @@
         // ============================================================
 
         let products = loadData('mobilmash_products', defaultProducts);
-        let reviews = loadData('mobilmash_reviews', []);
         let events = loadData('mobilmash_events', defaultEvents);
         let logoData = loadString('mobilmash_logo', '');
         let bgData = loadString('mobilmash_background', '');
@@ -2343,9 +2187,7 @@
                             <div class="card-title">${prod.name}</div>
                             <div class="rating">
                                 <div class="stars">${getStarsHtml(prod.rating)}</div>
-                                <span class="rating-count">(${prod.reviewsCount} отзывов)</span>
                             </div>
-                            <div class="price">${prod.price.toLocaleString()} ₽</div>
                             <button class="add-to-cart" data-id="${prod.id}"><i class="fas fa-shopping-bag"></i> В корзину</button>
                         </div>
                     `;
@@ -2551,17 +2393,11 @@
                     `<th><div class="compare-product-name">${p.name}</div><img src="${imgSrc}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
             });
             html += `</tr>`;
-            html += `<tr><td>Цена</td>`;
-            compareProducts.forEach(p => html += `<td><strong>${p.price.toLocaleString()} ₽</strong></td>`);
-            html += `</tr>`;
             html += `<tr><td>Категория</td>`;
             compareProducts.forEach(p => html += `<td>${p.type}</td>`);
             html += `</tr>`;
             html += `<tr><td>Рейтинг</td>`;
             compareProducts.forEach(p => html += `<td>${getStarsHtml(p.rating)} (${p.rating})</td>`);
-            html += `</tr>`;
-            html += `<tr><td>Отзывы</td>`;
-            compareProducts.forEach(p => html += `<td>${p.reviewsCount}</td>`);
             html += `</tr>`;
             html += `</table>`;
             container.innerHTML = html;
@@ -2587,9 +2423,7 @@
                             <h2 style="font-size:28px; margin:8px 0;">${product.name}</h2>
                             <div class="rating">
                                 <div class="stars">${getStarsHtml(product.rating)}</div>
-                                <span class="rating-count">(${product.reviewsCount} отзывов)</span>
                             </div>
-                            <div style="font-size:32px; font-weight:700; margin:12px 0; color:var(--text-primary);">${product.price.toLocaleString()} ₽</div>
                             <p style="color:var(--text-secondary); margin-bottom:16px;">Категория: ${product.category}</p>
                             <div style="display:flex; gap:12px; flex-wrap:wrap;">
                                 <button class="btn" onclick="addToCart(${product.id}); document.getElementById('quickViewModal').classList.remove('show');">Добавить в корзину</button>
@@ -2600,92 +2434,6 @@
                     </div>
                 `;
             document.getElementById('quickViewModal').classList.add('show');
-        }
-
-        // ============================================================
-        // ========== ОТЗЫВЫ ==========
-        // ============================================================
-
-        function renderReviews() {
-            const container = document.getElementById('reviewsList');
-            if (!container) return;
-            if (reviews.length === 0) {
-                container.innerHTML = '<div class="empty-reviews-msg">Пока нет отзывов. Будьте первым!</div>';
-                updateAverageRating();
-                return;
-            }
-            container.innerHTML = reviews.map(rev => `
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div>
-                                <span class="review-author">${escapeHtml(rev.author)}</span>
-                                <div class="stars" style="margin-top:5px;">${getStarsHtml(rev.rating)}</div>
-                            </div>
-                            <div class="review-date">${rev.date}</div>
-                        </div>
-                        <div class="review-text">${escapeHtml(rev.text)}</div>
-                    </div>
-                `).join('');
-            updateAverageRating();
-        }
-
-        function updateAverageRating() {
-            const avg = reviews.length === 0 ? 0 : reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
-            document.getElementById('averageNumber').textContent = avg.toFixed(1);
-            document.getElementById('reviewsCount').textContent = `(${reviews.length} отзывов)`;
-            const starsContainer = document.getElementById('averageStars');
-            if (starsContainer) {
-                starsContainer.innerHTML = getStarsHtml(avg);
-            }
-        }
-
-        let selectedRating = 0;
-
-        function initReviewStars() {
-            const stars = document.querySelectorAll('#reviewStarsInput i');
-            stars.forEach(star => {
-                star.addEventListener('click', () => {
-                    selectedRating = parseInt(star.dataset.star);
-                    stars.forEach(s => {
-                        const val = parseInt(s.dataset.star);
-                        if (val <= selectedRating) {
-                            s.className = 'fas fa-star';
-                            s.style.color = 'var(--rating-star)';
-                        } else {
-                            s.className = 'far fa-star';
-                            s.style.color = 'var(--rating-star-empty)';
-                        }
-                    });
-                });
-            });
-        }
-
-        function submitReview() {
-            const author = document.getElementById('reviewAuthorInput').value.trim();
-            const text = document.getElementById('reviewTextInput').value.trim();
-            if (!author) { showToast('Введите ваше имя', true); return; }
-            if (!text) { showToast('Напишите текст отзыва', true); return; }
-            if (selectedRating === 0) { showToast('Поставьте оценку', true); return; }
-
-            const newReview = {
-                id: Date.now(),
-                author: author,
-                rating: selectedRating,
-                text: text,
-                date: new Date().toISOString().slice(0, 10)
-            };
-
-            reviews.unshift(newReview);
-            localStorage.setItem('mobilmash_reviews', JSON.stringify(reviews));
-            renderReviews();
-            document.getElementById('reviewAuthorInput').value = '';
-            document.getElementById('reviewTextInput').value = '';
-            selectedRating = 0;
-            document.querySelectorAll('#reviewStarsInput i').forEach(s => {
-                s.className = 'far fa-star';
-                s.style.color = 'var(--rating-star-empty)';
-            });
-            showToast('✅ Спасибо за ваш отзыв!');
         }
 
         // ============================================================
@@ -2817,7 +2565,6 @@
 
         function checkForUpdates() {
             const savedProducts = localStorage.getItem('mobilmash_products');
-            const savedReviews = localStorage.getItem('mobilmash_reviews');
             const savedEvents = localStorage.getItem('mobilmash_events');
             const savedLogo = localStorage.getItem('mobilmash_logo');
             const savedBg = localStorage.getItem('mobilmash_background');
@@ -2829,16 +2576,6 @@
                     const parsed = JSON.parse(savedProducts);
                     if (JSON.stringify(parsed) !== JSON.stringify(products)) {
                         products = parsed;
-                        needUpdate = true;
-                    }
-                } catch (e) {}
-            }
-
-            if (savedReviews) {
-                try {
-                    const parsed = JSON.parse(savedReviews);
-                    if (JSON.stringify(parsed) !== JSON.stringify(reviews)) {
-                        reviews = parsed;
                         needUpdate = true;
                     }
                 } catch (e) {}
@@ -2869,7 +2606,6 @@
             if (needUpdate) {
                 renderCatalog();
                 renderEvents();
-                renderReviews();
             }
         }
 
@@ -2886,9 +2622,6 @@
             updateCartUI();
 
             updateCompareBar();
-
-            renderReviews();
-            initReviewStars();
 
             renderBlog();
 
@@ -3015,8 +2748,6 @@
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
             });
-
-            document.getElementById('submitReviewBtn').addEventListener('click', submitReview);
 
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', (e) => {
