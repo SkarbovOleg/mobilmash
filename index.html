@@ -41,8 +41,6 @@
             --icon-color: var(--color-red);
             --toast-bg: #ffffff;
             --blog-bg: #ffffff;
-            --rating-star: #ffc107;
-            --rating-star-empty: #d5d0c8;
             --filter-active: var(--color-red);
             --filter-hover: var(--color-red-hover);
             --favorite-color: var(--color-red);
@@ -219,28 +217,6 @@
         .btn-outline:hover {
             background: var(--btn-outline);
             color: white;
-        }
-
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 10px 0;
-        }
-        .stars {
-            display: flex;
-            gap: 3px;
-        }
-        .stars i {
-            color: var(--rating-star);
-            font-size: 14px;
-        }
-        .stars i.empty {
-            color: var(--rating-star-empty);
-        }
-        .rating-count {
-            font-size: 13px;
-            color: var(--text-muted);
         }
 
         /* ===== HERO С КРАСНОЙ РАМКОЙ ===== */
@@ -489,27 +465,7 @@
             border-color: var(--color-red);
         }
 
-        .price-filter {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .price-filter input[type="number"] {
-            width: 80px;
-            padding: 6px 10px;
-            border: 1px solid var(--border-form);
-            border-radius: 8px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-size: 13px;
-            outline: none;
-        }
-        .price-filter input[type="number"]:focus {
-            border-color: var(--color-red);
-        }
-        .price-filter span {
-            color: var(--text-muted);
-        }
+        /* Ценовой фильтр убран */
 
         .filter-bar {
             display: flex;
@@ -542,7 +498,7 @@
             box-shadow: 0 4px 16px rgba(204, 0, 0, 0.25);
         }
 
-        /* ===== КАРТОЧКИ ТОВАРОВ С КРАСНОЙ РАМКОЙ (БЕЗ ЦЕН) ===== */
+        /* ===== КАРТОЧКИ ТОВАРОВ (БЕЗ ЦЕН И РЕЙТИНГА) ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -665,7 +621,6 @@
             margin: 6px 0;
             color: var(--text-primary);
         }
-        /* ЦЕНА УДАЛЕНА */
         .add-to-cart {
             width: 100%;
             background: var(--add-to-cart-bg);
@@ -1604,15 +1559,7 @@
                         <option value="default">По умолчанию</option>
                         <option value="price-asc">Сначала дешёвые</option>
                         <option value="price-desc">Сначала дорогие</option>
-                        <option value="rating">По популярности</option>
                     </select>
-                    <div class="price-filter">
-                        <span>Цена:</span>
-                        <input type="number" id="priceMin" placeholder="от" min="0">
-                        <span>—</span>
-                        <input type="number" id="priceMax" placeholder="до" min="0">
-                        <button class="btn" id="priceFilterBtn" style="padding:6px 16px; font-size:13px;">Применить</button>
-                    </div>
                 </div>
             </div>
 
@@ -1819,8 +1766,6 @@
             </div>
         </div>
 
-        <!-- ===== ОТЗЫВЫ УДАЛЕНЫ ===== -->
-
         <!-- ===== КОНТАКТЫ ===== -->
         <div class="container" id="contactSection">
             <div class="contact-form">
@@ -1983,22 +1928,22 @@
         }
 
         // ============================================================
-        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ (БЕЗ ЦЕН) ==========
+        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ (БЕЗ ЦЕН И РЕЙТИНГА) ==========
         // ============================================================
 
         const defaultProducts = [
-            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", imageData: "", rating: 4.8 },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", imageData: "", rating: 4.9 },
-            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", imageData: "", rating: 4.7 },
-            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", imageData: "", rating: 4.6 },
-            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", imageData: "", rating: 4.5 },
-            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", imageData: "", rating: 4.8 },
-            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", imageData: "", rating: 4.9 },
-            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", imageData: "", rating: 4.7 },
-            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", imageData: "", rating: 4.8 },
-            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "", rating: 4.6 },
-            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "", rating: 4.7 },
-            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "", rating: 4.4 }
+            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", imageData: "" },
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", imageData: "" },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", imageData: "" },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", imageData: "" },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", imageData: "" },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", imageData: "" },
+            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", imageData: "" },
+            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", imageData: "" },
+            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", imageData: "" },
+            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "" },
+            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "" },
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "" }
         ];
 
         const defaultEvents = [
@@ -2080,16 +2025,6 @@
         // ========== ФУНКЦИИ ==========
         // ============================================================
 
-        function getStarsHtml(rating) {
-            const full = Math.floor(rating);
-            let html = '';
-            for (let i = 1; i <= 5; i++) {
-                if (i <= full) html += '<i class="fas fa-star" style="color:var(--rating-star);"></i>';
-                else html += '<i class="far fa-star" style="color:var(--rating-star-empty);"></i>';
-            }
-            return html;
-        }
-
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, m => {
@@ -2135,9 +2070,6 @@
                     break;
                 case 'price-desc':
                     filtered.sort((a, b) => b.price - a.price);
-                    break;
-                case 'rating':
-                    filtered.sort((a, b) => b.rating - a.rating);
                     break;
                 default:
                     break;
@@ -2185,9 +2117,6 @@
                         <div class="product-info">
                             <div class="product-category">${prod.type}</div>
                             <div class="card-title">${prod.name}</div>
-                            <div class="rating">
-                                <div class="stars">${getStarsHtml(prod.rating)}</div>
-                            </div>
                             <button class="add-to-cart" data-id="${prod.id}"><i class="fas fa-shopping-bag"></i> В корзину</button>
                         </div>
                     `;
@@ -2396,9 +2325,6 @@
             html += `<tr><td>Категория</td>`;
             compareProducts.forEach(p => html += `<td>${p.type}</td>`);
             html += `</tr>`;
-            html += `<tr><td>Рейтинг</td>`;
-            compareProducts.forEach(p => html += `<td>${getStarsHtml(p.rating)} (${p.rating})</td>`);
-            html += `</tr>`;
             html += `</table>`;
             container.innerHTML = html;
         }
@@ -2421,9 +2347,6 @@
                         <div style="flex:1; min-width:200px;">
                             <div style="color:var(--color-red); font-weight:600;">${product.type}</div>
                             <h2 style="font-size:28px; margin:8px 0;">${product.name}</h2>
-                            <div class="rating">
-                                <div class="stars">${getStarsHtml(product.rating)}</div>
-                            </div>
                             <p style="color:var(--text-secondary); margin-bottom:16px;">Категория: ${product.category}</p>
                             <div style="display:flex; gap:12px; flex-wrap:wrap;">
                                 <button class="btn" onclick="addToCart(${product.id}); document.getElementById('quickViewModal').classList.remove('show');">Добавить в корзину</button>
@@ -2697,15 +2620,6 @@
 
             document.getElementById('sortSelect').addEventListener('change', (e) => {
                 currentSort = e.target.value;
-                currentPage = 1;
-                renderCatalog();
-            });
-
-            document.getElementById('priceFilterBtn').addEventListener('click', () => {
-                const min = parseInt(document.getElementById('priceMin').value) || 0;
-                const max = parseInt(document.getElementById('priceMax').value) || Infinity;
-                priceMin = min;
-                priceMax = max;
                 currentPage = 1;
                 renderCatalog();
             });
