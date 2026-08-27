@@ -15,27 +15,27 @@
             --color-red-hover: #b30000;
             --color-red-light: rgba(204, 0, 0, 0.08);
             --color-red-dark: #990000;
-            
+
             --bg-primary: #f5f2ed;
             --bg-secondary: #ece8e1;
             --bg-card: #ffffff;
             --bg-about: #f0ede7;
             --bg-form: #ffffff;
-            
+
             --text-primary: #1a1a1a;
             --text-secondary: #444444;
             --text-muted: #777777;
-            
+
             --border-light: rgba(0, 0, 0, 0.08);
             --border-card: #d5d0c8;
             --border-form: #d5d0c8;
-            
+
             --btn-bg: var(--color-red);
             --btn-hover: var(--color-red-hover);
             --btn-outline: var(--color-red);
             --add-to-cart-bg: #f0ede7;
             --add-to-cart-hover: var(--color-red);
-            
+
             --modal-bg: #ffffff;
             --footer-border: #d5d0c8;
             --icon-color: var(--color-red);
@@ -46,9 +46,12 @@
             --favorite-color: var(--color-red);
             --accent: var(--color-red);
             --accent-hover: var(--color-red-hover);
-            
+
             --blueprint-color: #2a2a2a;
             --blueprint-line: rgba(0, 0, 0, 0.06);
+
+            /* ===== ФОН САЙТА (ПРЯМАЯ ССЫЛКА) ===== */
+            --bg-image-url: url('https://imgfy.ru/ib/kCFeir5RsmYUV65_1787843111.webp');
         }
 
         * {
@@ -59,22 +62,38 @@
 
         body {
             background-color: var(--bg-primary);
+            background-image: var(--bg-image-url);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: 'Inter', sans-serif;
             color: var(--text-primary);
             scroll-behavior: smooth;
             line-height: 1.4;
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
-            background-size: 30px 30px;
-            background-attachment: fixed;
+            position: relative;
         }
 
-        body.has-bg-image {
-            background-image: var(--bg-image, none) !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-attachment: fixed !important;
+        /* Полупрозрачный оверлей для читаемости */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(245, 242, 237, 0.82);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Все контейнеры поверх оверлея */
+        .container,
+        .navbar,
+        footer,
+        .modal-content,
+        .compare-bar {
+            position: relative;
+            z-index: 1;
         }
 
         .container {
@@ -355,7 +374,7 @@
             height: 34px;
             border-radius: 50%;
             border: 1px solid var(--border-card);
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             color: var(--text-primary);
             cursor: pointer;
             transition: 0.2s;
@@ -386,7 +405,7 @@
             height: 10px;
             border-radius: 50%;
             border: 1px solid var(--border-card);
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: 0.2s;
         }
@@ -465,8 +484,6 @@
             border-color: var(--color-red);
         }
 
-        /* Ценовой фильтр убран */
-
         .filter-bar {
             display: flex;
             gap: 10px;
@@ -498,7 +515,7 @@
             box-shadow: 0 4px 16px rgba(204, 0, 0, 0.25);
         }
 
-        /* ===== КАРТОЧКИ ТОВАРОВ (БЕЗ ЦЕН И РЕЙТИНГА) ===== */
+        /* ===== КАРТОЧКИ ТОВАРОВ ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -523,7 +540,7 @@
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--border-card);
             border-radius: 50%;
             width: 36px;
@@ -548,7 +565,7 @@
             position: absolute;
             top: 16px;
             left: 16px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--border-card);
             border-radius: 50%;
             width: 36px;
@@ -574,7 +591,7 @@
             bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             color: var(--text-primary);
             border: 1px solid var(--border-card);
             padding: 8px 20px;
@@ -1091,7 +1108,7 @@
             color: var(--color-red);
         }
         .event-card .event-status.past {
-            background: rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.05);
             color: var(--text-muted);
         }
         .event-card .event-status.ongoing {
@@ -1146,8 +1163,6 @@
             font-size: 14px;
             line-height: 1.5;
         }
-
-        /* ===== ОТЗЫВЫ УДАЛЕНЫ ===== */
 
         /* ===== КОНТАКТЫ ===== */
         .contact-form {
@@ -1334,7 +1349,7 @@
             z-index: 1100;
             animation: fadeInUp 0.3s ease;
             border: 1px solid var(--border-card);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         @keyframes fadeInUp {
             from {
@@ -1873,10 +1888,13 @@
             }
 
             function nextSlide() { goToSlide(currentIndex + 1); }
+
             function prevSlide() { goToSlide(currentIndex - 1); }
 
-            prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
-            nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+            prevBtn.addEventListener('click', () => { prevSlide();
+                resetAutoPlay(); });
+            nextBtn.addEventListener('click', () => { nextSlide();
+                resetAutoPlay(); });
 
             function startAutoPlay() {
                 stopAutoPlay();
@@ -1928,7 +1946,7 @@
         }
 
         // ============================================================
-        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ (БЕЗ ЦЕН И РЕЙТИНГА) ==========
+        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ ==========
         // ============================================================
 
         const defaultProducts = [
@@ -1980,7 +1998,6 @@
         let products = loadData('mobilmash_products', defaultProducts);
         let events = loadData('mobilmash_events', defaultEvents);
         let logoData = loadString('mobilmash_logo', '');
-        let bgData = loadString('mobilmash_background', '');
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
@@ -2007,21 +2024,6 @@
         }
 
         // ============================================================
-        // ========== ЗАГРУЗКА ФОНА ==========
-        // ============================================================
-
-        function loadBackground() {
-            const body = document.body;
-            if (bgData && bgData.length > 100) {
-                body.style.setProperty('--bg-image', `url("${bgData}")`);
-                body.classList.add('has-bg-image');
-            } else {
-                body.classList.remove('has-bg-image');
-                body.style.setProperty('--bg-image', 'none');
-            }
-        }
-
-        // ============================================================
         // ========== ФУНКЦИИ ==========
         // ============================================================
 
@@ -2040,7 +2042,8 @@
             toast.className = 'toast-notification';
             toast.style.backgroundColor = isError ? '#ffebee' : '#e8f5e9';
             toast.style.borderLeft = isError ? '4px solid var(--color-red)' : '4px solid #2e7d32';
-            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}" style="color:${isError ? 'var(--color-red)' : '#2e7d32'};"></i> ${msg}`;
+            toast.innerHTML =
+                `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}" style="color:${isError ? 'var(--color-red)' : '#2e7d32'};"></i> ${msg}`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 2200);
         }
@@ -2107,8 +2110,8 @@
                 const isCompare = compareList.includes(prod.id);
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                const imgSrc = prod.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(prod
-                    .name);
+                const imgSrc = prod.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(
+                    prod.name);
                 card.innerHTML = `
                         <button class="favorite-btn ${isFav ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-heart"></i></button>
                         <button class="compare-btn ${isCompare ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-balance-scale"></i></button>
@@ -2310,7 +2313,8 @@
         function renderCompareModal() {
             const container = document.getElementById('compareContent');
             if (compareList.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:30px; color:var(--text-muted);">Нет товаров для сравнения</p>';
+                container.innerHTML =
+                    '<p style="text-align:center; padding:30px; color:var(--text-muted);">Нет товаров для сравнения</p>';
                 return;
             }
             const compareProducts = compareList.map(id => products.find(p => p.id === id)).filter(Boolean);
@@ -2337,8 +2341,8 @@
             const product = products.find(p => p.id === productId);
             if (!product) return;
             const container = document.getElementById('quickViewContent');
-            const imgSrc = product.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(product
-                .name);
+            const imgSrc = product.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(
+                product.name);
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1; min-width:200px;">
@@ -2490,7 +2494,6 @@
             const savedProducts = localStorage.getItem('mobilmash_products');
             const savedEvents = localStorage.getItem('mobilmash_events');
             const savedLogo = localStorage.getItem('mobilmash_logo');
-            const savedBg = localStorage.getItem('mobilmash_background');
 
             let needUpdate = false;
 
@@ -2520,12 +2523,6 @@
                 needUpdate = true;
             }
 
-            if (savedBg !== null && savedBg !== bgData) {
-                bgData = savedBg;
-                loadBackground();
-                needUpdate = true;
-            }
-
             if (needUpdate) {
                 renderCatalog();
                 renderEvents();
@@ -2538,7 +2535,6 @@
 
         function init() {
             loadLogo();
-            loadBackground();
 
             const savedCart = localStorage.getItem('mobilmash_cart');
             if (savedCart) try { cart = JSON.parse(savedCart); } catch (e) { cart = []; }
