@@ -71,6 +71,7 @@
             scroll-behavior: smooth;
             line-height: 1.4;
             position: relative;
+            min-height: 100vh;
         }
 
         /* Полупрозрачный оверлей для читаемости */
@@ -1888,13 +1889,10 @@
             }
 
             function nextSlide() { goToSlide(currentIndex + 1); }
-
             function prevSlide() { goToSlide(currentIndex - 1); }
 
-            prevBtn.addEventListener('click', () => { prevSlide();
-                resetAutoPlay(); });
-            nextBtn.addEventListener('click', () => { nextSlide();
-                resetAutoPlay(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+            nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
 
             function startAutoPlay() {
                 stopAutoPlay();
@@ -1946,11 +1944,17 @@
         }
 
         // ============================================================
-        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ ==========
+        // ========== ДАННЫЕ ПО УМОЛЧАНИЮ (С ВАШИМ ФОТО) ==========
         // ============================================================
 
         const defaultProducts = [
-            { id: 1, name: "Погрузчик ММ-300", category: "товары", type: "Дизельный", imageData: "" },
+            { 
+                id: 1, 
+                name: "Погрузчик ММ-300", 
+                category: "товары", 
+                type: "Дизельный", 
+                imageData: "https://i.ibb.co/tPH667pc/c-Zp-KUra-G-Cn1o-W1kz-Ug-APP8j1-OYDnbnrii-ZLy1-AZvc9i-Haeflq-HTQc-JYuu-SI1-T2-Ok-Dj-F1-X7pa-VPu-Vzq-BGYMF.jpg"
+            },
             { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", imageData: "" },
             { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", imageData: "" },
             { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", imageData: "" },
@@ -2042,8 +2046,7 @@
             toast.className = 'toast-notification';
             toast.style.backgroundColor = isError ? '#ffebee' : '#e8f5e9';
             toast.style.borderLeft = isError ? '4px solid var(--color-red)' : '4px solid #2e7d32';
-            toast.innerHTML =
-                `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}" style="color:${isError ? 'var(--color-red)' : '#2e7d32'};"></i> ${msg}`;
+            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}" style="color:${isError ? 'var(--color-red)' : '#2e7d32'};"></i> ${msg}`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 2200);
         }
@@ -2110,8 +2113,7 @@
                 const isCompare = compareList.includes(prod.id);
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                const imgSrc = prod.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(
-                    prod.name);
+                const imgSrc = prod.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(prod.name);
                 card.innerHTML = `
                         <button class="favorite-btn ${isFav ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-heart"></i></button>
                         <button class="compare-btn ${isCompare ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-balance-scale"></i></button>
@@ -2313,17 +2315,14 @@
         function renderCompareModal() {
             const container = document.getElementById('compareContent');
             if (compareList.length === 0) {
-                container.innerHTML =
-                    '<p style="text-align:center; padding:30px; color:var(--text-muted);">Нет товаров для сравнения</p>';
+                container.innerHTML = '<p style="text-align:center; padding:30px; color:var(--text-muted);">Нет товаров для сравнения</p>';
                 return;
             }
             const compareProducts = compareList.map(id => products.find(p => p.id === id)).filter(Boolean);
-            let html =
-                `<table class="compare-table"><tr><th>Характеристика</th>`;
+            let html = `<table class="compare-table"><tr><th>Характеристика</th>`;
             compareProducts.forEach(p => {
                 const imgSrc = p.imageData || 'https://placehold.co/60x60/e8e4dd/cc0000?text=?';
-                html +=
-                    `<th><div class="compare-product-name">${p.name}</div><img src="${imgSrc}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
+                html += `<th><div class="compare-product-name">${p.name}</div><img src="${imgSrc}" style="width:60px; height:60px; border-radius:12px; object-fit:cover; margin-top:6px;"></th>`;
             });
             html += `</tr>`;
             html += `<tr><td>Категория</td>`;
@@ -2341,8 +2340,7 @@
             const product = products.find(p => p.id === productId);
             if (!product) return;
             const container = document.getElementById('quickViewContent');
-            const imgSrc = product.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(
-                product.name);
+            const imgSrc = product.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(product.name);
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1; min-width:200px;">
