@@ -166,6 +166,13 @@
             border-radius: 8px;
             object-fit: contain;
         }
+        .logo-text {
+            font-size: 30px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
         .logo-text span {
             color: var(--color-red);
             font-weight: 700;
@@ -1373,6 +1380,8 @@
             margin-top: 20px;
         }
 
+        .footer-brand { font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-primary); }
+
         .empty-cart-msg,
         .empty-filter-msg {
             text-align: center;
@@ -1487,6 +1496,81 @@
         .vk-link:hover { text-decoration: underline; }
         .vk-empty-cover { display: flex; align-items: center; justify-content: center; height: 100%; min-height: 170px; font-size: 42px; color: var(--color-red); background: linear-gradient(135deg, #f0ede7, #e8e4dd); }
         @media (max-width: 640px) { .vk-grid { grid-template-columns: 1fr; } }
+        /* ===== ЧАТ-ПОМОЩНИК ===== */
+        .mm-chat-btn { position: fixed; left: 24px; bottom: 24px; z-index: 999; width: 60px; height: 60px; border-radius: 50%; background: var(--color-red); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 8px 24px rgba(204,0,0,.35); transition: .2s; }
+        .mm-chat-btn:hover { transform: translateY(-3px); background: var(--color-red-hover); }
+        .mm-chat-btn .mm-dot { position: absolute; top: 9px; right: 9px; width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px var(--color-red); }
+        .mm-chat { position: fixed; left: 24px; bottom: 96px; z-index: 999; width: 360px; max-width: calc(100vw - 32px); height: 500px; max-height: calc(100vh - 120px); background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,.25); display: flex; flex-direction: column; transform: translateY(20px); opacity: 0; pointer-events: none; transition: .25s; }
+        .mm-chat.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .mm-chat-head { background: var(--color-red); color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 10px; }
+        .mm-chat-head .mm-ava { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .mm-chat-head h4 { font-size: 15px; font-weight: 700; margin: 0; }
+        .mm-chat-head p { font-size: 11px; opacity: .85; margin: 0; }
+        .mm-chat-head .mm-close { margin-left: auto; background: transparent; border: none; color: #fff; font-size: 20px; cursor: pointer; line-height: 1; }
+        .mm-chat-body { flex: 1; padding: 16px; overflow-y: auto; background: #f8f6f3; display: flex; flex-direction: column; gap: 10px; }
+        .mm-msg { max-width: 85%; padding: 10px 13px; border-radius: 12px; font-size: 13.5px; line-height: 1.45; }
+        .mm-msg.bot { background: #fff; color: var(--text-primary); align-self: flex-start; border-top-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+        .mm-msg.user { background: var(--color-red); color: #fff; align-self: flex-end; border-top-right-radius: 4px; }
+        .mm-quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; background: #f8f6f3; }
+        .mm-quick button { border: 1px solid var(--border-card); background: #fff; color: var(--text-primary); font-size: 12.5px; padding: 7px 12px; border-radius: 999px; cursor: pointer; font-family: inherit; transition: .2s; }
+        .mm-quick button:hover { border-color: var(--color-red); color: var(--color-red); }
+        .mm-chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border-card); background: #fff; }
+        .mm-chat-form input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-card); border-radius: 10px; font-family: inherit; font-size: 14px; outline: none; }
+        .mm-chat-form input:focus { border-color: var(--color-red); }
+        .mm-chat-form button { width: 44px; height: 40px; border: none; border-radius: 10px; background: var(--color-red); color: #fff; cursor: pointer; font-size: 15px; }
+        @media (max-width: 480px) { .mm-chat { left: 12px; right: 12px; bottom: 88px; width: auto; height: 70vh; max-height: 70vh; } .mm-chat-btn { left: 16px; bottom: 16px; } }
+        .mm-manager { max-width: 92% !important; padding: 12px !important; }
+        .mm-mgr { padding: 10px 0; border-bottom: 1px solid #f0ede7; }
+        .mm-mgr:last-child { border-bottom: none; padding-bottom: 2px; }
+        .mm-mgr-name { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
+        .mm-mgr-role { font-size: 11px; font-weight: 500; color: var(--text-muted); }
+        .mm-choice-q { margin-bottom: 8px; }
+        .mm-choice { display: flex; gap: 8px; flex-wrap: wrap; }
+        .mm-choice button { border: 1px solid var(--color-red); background: #fff; color: var(--color-red); font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 999px; cursor: pointer; font-family: inherit; }
+        .mm-choice button:hover { background: var(--color-red); color: #fff; }
+        .mm-cb-form { max-width: 92% !important; padding: 12px !important; }
+        .mm-cb-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+        .mm-cb-sub { font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px; }
+        .mm-cb-input { display: block; width: 100%; box-sizing: border-box; padding: 9px 12px; border: 1px solid var(--border-card); border-radius: 8px; font-family: inherit; font-size: 14px; margin-bottom: 8px; outline: none; }
+        .mm-cb-input:focus { border-color: var(--color-red); }
+        .mm-cb-btn { display: block; width: 100%; padding: 10px; border: none; border-radius: 8px; background: var(--color-red); color: #fff; font-weight: 600; font-family: inherit; font-size: 14px; cursor: pointer; }
+        .mm-cb-btn:hover { background: var(--color-red-hover); }
+        .mm-cb-status { font-size: 12px; color: var(--color-red); margin-top: 6px; }
+        .mm-mgr-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+        .mm-mgr-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-card); background: #fff; color: var(--text-primary); text-decoration: none; }
+        .mm-mgr-btn.mm-max { background: var(--color-red); color: #fff; border-color: var(--color-red); }
+        .mm-mgr-btn:hover { opacity: .85; }
+        /* ===== БОКОВОЕ МЕНЮ КАТАЛОГА ===== */
+        .catalog-layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; margin-top: 24px; align-items: start; }
+        .catalog-sidebar { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 12px; overflow: hidden; }
+        .cs-top { background: var(--text-primary); color: #fff; font-weight: 700; padding: 16px 18px; font-size: 16px; letter-spacing: .3px; }
+        .cs-group { border-bottom: 1px solid var(--border-light); }
+        .cs-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px 18px; background: var(--bg-secondary); border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 700; color: var(--text-primary); text-align: left; }
+        .cs-head i { transition: transform .2s; font-size: 12px; color: var(--text-muted); }
+        .cs-group.open .cs-head { background: var(--bg-about); }
+        .cs-group.open .cs-head i { transform: rotate(180deg); }
+        .cs-sub { display: none; flex-direction: column; padding: 6px 0; }
+        .cs-group.open .cs-sub { display: flex; }
+        .cs-item { display: block; width: 100%; text-align: left; padding: 9px 18px 9px 28px; background: transparent; border: none; border-left: 3px solid transparent; cursor: pointer; font-family: inherit; font-size: 14px; color: var(--text-secondary); transition: .15s; }
+        .cs-item:hover { color: var(--color-red); background: var(--color-red-light); }
+        .cs-item.active { color: var(--color-red); font-weight: 600; border-left-color: var(--color-red); background: var(--color-red-light); }
+        .cs-all { display: block; width: 100%; padding: 14px 18px; background: transparent; border: none; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--color-red); text-align: left; }
+        .cs-all:hover { background: var(--color-red-light); }
+        @media (max-width: 900px) {
+            .catalog-layout { grid-template-columns: 1fr; }
+            .catalog-sidebar { max-height: 320px; overflow-y: auto; }
+        }
+        /* ===== БАННЕР КАТЕГОРИИ ===== */
+        .catalog-banner { display: flex; align-items: stretch; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+        .cb-black { background: #111; color: #f2f2f2; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -1px; text-transform: uppercase; padding: 12px 18px; display: flex; align-items: center; }
+        .cb-gray { color: #b3b3b3; font-weight: 800; font-size: 22px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0; display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+        .cb-all { margin-left: auto; color: #b5b5b5; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; cursor: pointer; }
+        .cb-all:hover { color: var(--color-red); }
+        @media (max-width: 700px) { .cb-black { font-size: 26px; } .cb-gray { font-size: 15px; } }
+        .catalog-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .catalog-tab { padding: 9px 14px; border: 2px solid var(--color-red); background: #fff; color: #1a1a1a; font-size: 13px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: .15s; }
+        .catalog-tab:hover { border-color: var(--color-red); color: var(--color-red); }
+        .catalog-tab.active { background: #111; color: #fff; border-color: #111; }
     </style>
 </head>
 <body>
@@ -1575,29 +1659,72 @@
         <div class="container" id="catalogSection">
             <h2 class="section-title" style="font-size:34px; text-align:center; margin:40px 0 10px; font-family:'Cormorant Garamond',serif;">Надёжная техника для бизнеса</h2>
 
-            <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">Все</button>
-                <button class="filter-btn" data-filter="товары">Товары</button>
-                <button class="filter-btn" data-filter="услуги">Услуги</button>
-                <button class="filter-btn" data-filter="прочие">Прочие</button>
-            </div>
+            <div class="catalog-layout">
+                <aside class="catalog-sidebar" id="catalogSidebar">
+                    <div class="cs-top">Продукция</div>
+                    <div class="cs-group open" data-cat="товары">
+                        <button class="cs-head" type="button">Буровые установки для бурения и ремонта скважин <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                    <div class="cs-group" data-cat="нефтегаз">
+                        <button class="cs-head" type="button">Нефтегазопромысловое оборудование и инструменты <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                    <div class="cs-group" data-cat="прочие">
+                        <button class="cs-head" type="button">Узлы и запасные части <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                    <div class="cs-group" data-cat="услуги">
+                        <button class="cs-head" type="button">Сервис <i class="fas fa-chevron-down"></i></button>
+                        <div class="cs-sub">
+                            <button class="cs-item" type="button" data-type="Ремонт">Модернизация и ремонт</button>
+                        </div>
+                    </div>
+                    <button class="cs-all" type="button" id="csAll">Показать всё</button>
+                </aside>
 
-            <div class="catalog-controls">
-                <div class="search-wrapper">
-                    <input type="text" id="searchInput" placeholder="🔍 Поиск по каталогу...">
-                    <button id="searchBtn"><i class="fas fa-search"></i></button>
-                </div>
-                <div class="filter-sort-group">
-                    <select id="sortSelect">
-                        <option value="default">По умолчанию</option>
-                        <option value="price-asc">Сначала дешёвые</option>
-                        <option value="price-desc">Сначала дорогие</option>
-                    </select>
+                <div class="catalog-main">
+                    <div id="catalogBanner" class="catalog-banner" style="display:none;"></div>
+
+                    <div class="catalog-controls">
+                        <div class="search-wrapper">
+                            <input type="text" id="searchInput" placeholder="🔍 Поиск по каталогу...">
+                            <button id="searchBtn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="filter-sort-group">
+                            <select id="sortSelect">
+                                <option value="default">По умолчанию</option>
+                                <option value="price-asc">Сначала дешёвые</option>
+                                <option value="price-desc">Сначала дорогие</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="catalog-tabs" id="catalogTabs">
+                        <button class="catalog-tab active" type="button">ВСЕ БУРОВЫЕ УСТАНОВКИ</button>
+                        <button class="catalog-tab" type="button">УРБ 3А3</button>
+                        <button class="catalog-tab" type="button">БА 15</button>
+                        <button class="catalog-tab" type="button">МОБИЛМАШ 20</button>
+                        <button class="catalog-tab" type="button">УРБ 20</button>
+                        <button class="catalog-tab" type="button">АР 32/40</button>
+                        <button class="catalog-tab" type="button">АР 32/40М</button>
+                        <button class="catalog-tab" type="button">А 50М</button>
+                        <button class="catalog-tab" type="button">АР 50</button>
+                        <button class="catalog-tab" type="button">А 60/80</button>
+                        <button class="catalog-tab" type="button">А 60/80М</button>
+                        <button class="catalog-tab" type="button">АР 60</button>
+                        <button class="catalog-tab" type="button">АРБ 100</button>
+                        <button class="catalog-tab" type="button">МБУ 125</button>
+                        <button class="catalog-tab" type="button">МБУ 140</button>
+                        <button class="catalog-tab" type="button">МБС 160</button>
+                        <button class="catalog-tab" type="button">МБУ 160</button>
+                        <button class="catalog-tab" type="button">МБС 180</button>
+                        <button class="catalog-tab" type="button">МБУ 180</button>
+                        <button class="catalog-tab" type="button">МБС 200</button>
+                        <button class="catalog-tab" type="button">МБС 250</button>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid"></div>
+                    <div class="pagination" id="paginationContainer"></div>
                 </div>
             </div>
-
-            <div class="products-grid" id="productsGrid"></div>
-            <div class="pagination" id="paginationContainer"></div>
         </div>
 
         <!-- ===== ЗАЯВКА НА ПОДБОР ТЕХНИКИ ===== -->
@@ -1890,14 +2017,7 @@
 
     <footer>
         <div class="container">
-            <p>© 2026 МобилМаш — надёжная техника для вашего бизнеса.</p>
-            <p style="margin-top:12px;">
-                <a href="https://vk.ru/mobilmash_group" target="_blank" rel="noopener" title="МобилМаш во ВКонтакте" style="color:var(--color-red); margin-right:10px; text-decoration:none;"><i class="fab fa-vk"></i></a>
-                <i class="fab fa-instagram" style="color:var(--color-red);"></i>
-                <i class="fab fa-youtube" style="color:var(--color-red);"></i>
-                <i class="fab fa-telegram" style="color:var(--color-red);"></i>
-                @mobilmash
-            </p>
+            <p>© 2026 <span class="footer-brand">МОБИЛМАШ</span> — надёжная техника для вашего бизнеса.</p>
         </div>
     </footer>
 
@@ -2045,7 +2165,15 @@
             { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", imageData: "" },
             { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "" },
             { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "" },
-            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "" }
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "" },
+            { id: 101, name: "Захват клиньевой пневматический РБУ-560.35.00.000 В", category: "нефтегаз", type: "Захваты", price: 0, imageData: "" },
+            { id: 102, name: "Установка бурового ротора РБ-410 гидроприводная", category: "нефтегаз", type: "Установки", price: 0, imageData: "" },
+            { id: 103, name: "Ротор буровой универсальный РБУ-560", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
+            { id: 104, name: "Ротор буровой гидравлический РБ-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
+            { id: 105, name: "Ротор РБ-80Х400 с реверсивным редуктором", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
+            { id: 106, name: "Ротор буровой РБ-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
+            { id: 107, name: "Ротор буровой РБ-80Х400", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
+            { id: 108, name: "Ротор буровой РБ-410", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" }
         ];
 
         const defaultEvents = [
@@ -2080,12 +2208,14 @@
         // ============================================================
 
         let products = loadData('mobilmash_products', defaultProducts);
+        defaultProducts.forEach(dp => { if (!products.some(p => p.id === dp.id)) products.push(dp); });
         let events = loadData('mobilmash_events', defaultEvents);
         let logoData = loadString('mobilmash_logo', '');
         let cart = [];
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
         let currentFilter = 'all';
+        let currentType = null;
         let currentPage = 1;
         const itemsPerPage = 6;
         let currentSearch = '';
@@ -2140,6 +2270,10 @@
                 [...products] :
                 products.filter(p => p.category === currentFilter);
 
+            if (currentType) {
+                filtered = filtered.filter(p => p.type === currentType);
+            }
+
             if (currentSearch.trim()) {
                 const query = currentSearch.trim().toLowerCase();
                 filtered = filtered.filter(p =>
@@ -2148,7 +2282,7 @@
                 );
             }
 
-            filtered = filtered.filter(p => p.price >= priceMin && p.price <= priceMax);
+            filtered = filtered.filter(p => (p.price == null ? 0 : p.price) >= priceMin && (p.price == null ? 0 : p.price) <= priceMax);
 
             switch (currentSort) {
                 case 'price-asc':
@@ -2611,6 +2745,70 @@
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
         // ============================================================
 
+        function showCatalogBanner(sub, group) {
+            const b = document.getElementById('catalogBanner');
+            if (!b) return;
+            b.innerHTML = '<span class="cb-black">' + escapeHtml(sub) + '</span><span class="cb-gray">' + escapeHtml(group) + '</span><span class="cb-all" id="cbAll">Все узлы</span>';
+            b.style.display = 'flex';
+            const all = document.getElementById('cbAll');
+            if (all) all.addEventListener('click', () => {
+                document.querySelectorAll('.cs-item').forEach(i => i.classList.remove('active'));
+                currentFilter = 'all';
+                currentType = null;
+                currentPage = 1;
+                hideCatalogBanner();
+                renderCatalog();
+            });
+        }
+        function hideCatalogBanner() {
+            const b = document.getElementById('catalogBanner');
+            if (b) b.style.display = 'none';
+        }
+        function initCatalogSidebar() {
+            document.querySelectorAll('.cs-group').forEach(group => {
+                const head = group.querySelector('.cs-head');
+                if (!head) return;
+                head.addEventListener('click', () => {
+                    group.classList.toggle('open');
+                    currentFilter = group.dataset.cat || 'all';
+                    currentType = null;
+                    currentPage = 1;
+                    showCatalogBanner(head.textContent.replace(/\s+/g, ' ').trim(), '');
+                    renderCatalog();
+                });
+            });
+            document.querySelectorAll('.cs-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const group = item.closest('.cs-group');
+                    const groupName = group ? group.querySelector('.cs-head').textContent.replace(/\s+/g, ' ').trim() : '';
+                    document.querySelectorAll('.cs-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentFilter = group ? group.dataset.cat : 'all';
+                    currentType = item.dataset.type || null;
+                    currentPage = 1;
+                    showCatalogBanner(item.textContent.trim(), groupName);
+                    renderCatalog();
+                });
+            });
+            const allBtn = document.getElementById('csAll');
+            if (allBtn) {
+                allBtn.addEventListener('click', () => {
+                    document.querySelectorAll('.cs-item').forEach(i => i.classList.remove('active'));
+                    currentFilter = 'all';
+                    currentType = null;
+                    currentPage = 1;
+                    hideCatalogBanner();
+                    renderCatalog();
+                });
+            }
+            document.querySelectorAll('.catalog-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.catalog-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                });
+            });
+        }
+
         function init() {
             loadLogo();
 
@@ -2625,6 +2823,8 @@
             renderEvents();
 
             renderCatalog();
+
+            initCatalogSidebar();
 
             initSelectionForm();
 
@@ -2768,6 +2968,222 @@
         }
 
         document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+    <!-- ===== ЧАТ-ПОМОЩНИК ===== -->
+    <button class="mm-chat-btn" id="mmChatBtn" aria-label="Открыть чат-помощник">
+        <i class="fas fa-comments"></i><span class="mm-dot"></span>
+    </button>
+    <div class="mm-chat" id="mmChat" role="dialog" aria-label="Чат-помощник">
+        <div class="mm-chat-head">
+            <div class="mm-ava"><i class="fas fa-robot"></i></div>
+            <div>
+                <h4>Помощник МобилМаш</h4>
+                <p>Онлайн · ответим сразу</p>
+            </div>
+            <button class="mm-close" id="mmChatClose" aria-label="Закрыть">&times;</button>
+        </div>
+        <div class="mm-chat-body" id="mmChatBody"></div>
+        <div class="mm-quick" id="mmQuick"></div>
+        <form class="mm-chat-form" id="mmChatForm">
+            <input id="mmChatInput" placeholder="Напишите вопрос..." autocomplete="off">
+            <button type="submit" aria-label="Отправить"><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <script>
+    (function(){
+        var KB = [
+            { k: ['привет','здравств','добрый','хай'], a: 'Здравствуйте! Я помощник МобилМаш. Помогу с выбором техники, доставкой и ценами. С чего начнём?' },
+            { k: ['каталог','товар','техник','погрузчик','штабел','ричтрак','тележк','рамп','зарядн'], a: ['В каталоге: погрузчики, штабелёры, ричтраки, тележки, рампы, зарядные станции. По подбору и покупке техники поможет менеджер Станислав:', ['goods']] },
+            { k: ['услуг','гаранти','сервис','ремонт','обслуж','обучен'], a: ['По услугам — сервис, ремонт, обучение и гарантия — поможет менеджер Иван:', ['service']] },
+            { k: ['подбор','подобрать','выбрать','консультац','расчёт','расчет'], a: ['Заполните форму «Подбор техники» на сайте — инженеры подберут модель под ваши задачи и бюджет. Это бесплатно. Или напрямую свяжитесь со Станиславом:', ['goods']] },
+            { k: ['цен','стоимост','сколько','прайс','дорог'], a: ['Цены указаны в каталоге. Точный расчёт по вашей задаче сделает менеджер Станислав:', ['goods']] },
+            { k: ['менеджер','связат','оператор','человек','перезвон'], a: '@@ask@@' },
+            { k: ['доставк','привез','срок','регион'], a: 'Доставляем по всей России. При заказе техники от 1 000 000 ₽ — доставка бесплатно. Точные сроки зависят от региона и модели.' },
+            { k: ['событ','выставк','семинар','вебинар'], a: 'Актуальные выставки и мероприятия — в разделе «События». Будем рады видеть вас на нашем стенде.' },
+            { k: ['контакт','телефон','почт','email','связ','звон','позвон'], a: 'Свяжитесь с нами через раздел «Контакты» — оставьте имя и телефон, мы перезвоним. Или напишите в наше сообщество ВКонтакте.' },
+            { k: ['вконтакте','вк','vk'], a: 'Мы во ВКонтакте — там новости, акции и наши посты. Ищите блок «Мы во ВКонтакте» на сайте или @mobilmash.' },
+            { k: ['спасиб','благодар'], a: 'Всегда рады помочь! Если появятся вопросы — пишите.' }
+        ];
+        var QUICK = ['Каталог','Доставка','Связаться с менеджером','Цены','Контакты'];
+        var FALLBACK = 'Не нашёл точного ответа. Оставьте заявку в разделе «Контакты» или напишите нам во ВКонтакте — ответим в ближайшее время.';
+
+        var MANAGERS = {
+            goods: { name: 'Станислав Никулин', role: 'по товарам и технике', max: 'https://max.ru/u/f9LHodD0cOJb3e4vy5Pt_GM-RdSwvElwIT8PmXooOIQ_Ddkqf_JRMHLVVqE', phone: '+79024781996' },
+            service: { name: 'Иван Власов', role: 'по услугам и сервису', max: 'https://max.ru/u/f9LHodD0cOIMrM6kAfI__STDgu1vD7VOQWgW8AmI44mwtIHxftgFD9ZBwXw', phone: '+79630181851' }
+        };
+        function addManagerCard(kinds){
+            var list = [];
+            (kinds || ['goods','service']).forEach(function(k){ if (MANAGERS[k]) list.push(MANAGERS[k]); });
+            var d = document.createElement('div');
+            d.className = 'mm-msg bot mm-manager';
+            list.forEach(function(m){
+                var row = document.createElement('div');
+                row.className = 'mm-mgr';
+                var nameEl = document.createElement('div');
+                nameEl.className = 'mm-mgr-name';
+                nameEl.textContent = m.name + ' ';
+                var roleEl = document.createElement('span');
+                roleEl.className = 'mm-mgr-role';
+                roleEl.textContent = m.role;
+                nameEl.appendChild(roleEl);
+                row.appendChild(nameEl);
+
+                var btns = document.createElement('div');
+                btns.className = 'mm-mgr-btns';
+                if (m.max) {
+                    var aMax = document.createElement('a');
+                    aMax.className = 'mm-mgr-btn mm-max';
+                    aMax.href = m.max;
+                    aMax.target = '_blank';
+                    aMax.rel = 'noopener';
+                    aMax.textContent = 'Написать в MAX';
+                    btns.appendChild(aMax);
+                }
+                var bCall = document.createElement('button');
+                bCall.type = 'button';
+                bCall.className = 'mm-mgr-btn';
+                bCall.textContent = 'Позвонить';
+                bCall.addEventListener('click', function(){ showCallbackForm(m); });
+                btns.appendChild(bCall);
+                row.appendChild(btns);
+                d.appendChild(row);
+            });
+            body.appendChild(d);
+            body.scrollTop = body.scrollHeight;
+        }
+        function showCallbackForm(manager){
+            var d = document.createElement('div');
+            d.className = 'mm-msg bot mm-cb-form';
+            var title = document.createElement('div');
+            title.className = 'mm-cb-title';
+            title.textContent = 'Заказать обратный звонок';
+            d.appendChild(title);
+            var sub = document.createElement('div');
+            sub.className = 'mm-cb-sub';
+            sub.textContent = 'Менеджер ' + manager.name + ' перезвонит вам.';
+            d.appendChild(sub);
+
+            var inName = document.createElement('input');
+            inName.type = 'text';
+            inName.className = 'mm-cb-input';
+            inName.placeholder = 'Ваше имя';
+            d.appendChild(inName);
+
+            var inPhone = document.createElement('input');
+            inPhone.type = 'tel';
+            inPhone.className = 'mm-cb-input';
+            inPhone.placeholder = 'Телефон';
+            d.appendChild(inPhone);
+
+            var status = document.createElement('div');
+            status.className = 'mm-cb-status';
+            d.appendChild(status);
+
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'mm-cb-btn';
+            btn.textContent = 'Заказать звонок';
+            d.appendChild(btn);
+
+            btn.addEventListener('click', function(){
+                var name = (inName.value || '').trim();
+                var phone = (inPhone.value || '').trim();
+                var digits = phone.replace(/\D/g, '');
+                if (!name) { status.textContent = 'Укажите имя'; return; }
+                if (digits.length < 10) { status.textContent = 'Укажите корректный телефон'; return; }
+                status.textContent = '';
+                btn.disabled = true;
+                btn.textContent = 'Заявка отправлена ✓';
+                addMsg('Спасибо, ' + name + '! Заявка на обратный звонок принята. ' + manager.name + ' перезвонит на ' + phone + ' в ближайшее время.', 'bot');
+            });
+
+            body.appendChild(d);
+            body.scrollTop = body.scrollHeight;
+        }
+        function addChoicePrompt(){
+            var d = document.createElement('div');
+            d.className = 'mm-msg bot mm-choice-box';
+            var q = document.createElement('div');
+            q.className = 'mm-choice-q';
+            q.textContent = 'По какому вопросу хотите связаться — товары или услуги?';
+            d.appendChild(q);
+            var wrap = document.createElement('div');
+            wrap.className = 'mm-choice';
+            var b1 = document.createElement('button');
+            b1.type = 'button'; b1.textContent = 'Товары';
+            b1.addEventListener('click', function(){ send('Товары'); });
+            var b2 = document.createElement('button');
+            b2.type = 'button'; b2.textContent = 'Услуги';
+            b2.addEventListener('click', function(){ send('Услуги'); });
+            wrap.appendChild(b1); wrap.appendChild(b2);
+            d.appendChild(wrap);
+            body.appendChild(d);
+            body.scrollTop = body.scrollHeight;
+        }
+
+        var btn = document.getElementById('mmChatBtn');
+        var chat = document.getElementById('mmChat');
+        var body = document.getElementById('mmChatBody');
+        var quick = document.getElementById('mmQuick');
+        var form = document.getElementById('mmChatForm');
+        var input = document.getElementById('mmChatInput');
+        var closeBtn = document.getElementById('mmChatClose');
+        if (!btn || !chat) return;
+
+        function addMsg(text, who){
+            var d = document.createElement('div');
+            d.className = 'mm-msg ' + who;
+            d.textContent = text;
+            body.appendChild(d);
+            body.scrollTop = body.scrollHeight;
+        }
+        function reply(text){ setTimeout(function(){ addMsg(text, 'bot'); }, 350); }
+        function answer(text){
+            var t = (text || '').toLowerCase();
+            for (var i = 0; i < KB.length; i++){
+                for (var j = 0; j < KB[i].k.length; j++){
+                    if (t.indexOf(KB[i].k[j]) !== -1) return KB[i].a;
+                }
+            }
+            return FALLBACK;
+        }
+        function send(text){
+            text = (text || '').trim();
+            if (!text) return;
+            addMsg(text, 'user');
+            var a = answer(text);
+            if (a === '@@ask@@') {
+                setTimeout(addChoicePrompt, 450);
+            } else if (Array.isArray(a)) {
+                reply(a[0]);
+                var kinds = a[1];
+                setTimeout(function(){ addManagerCard(kinds); }, 750);
+            } else {
+                reply(a);
+            }
+        }
+        function openChat(){
+            chat.classList.add('open');
+            if (!body.dataset.init){
+                body.dataset.init = '1';
+                addMsg('Здравствуйте! 👋 Я виртуальный помощник МобилМаш. Помогу с выбором техники, доставкой и ценами. Выберите тему ниже или напишите вопрос.', 'bot');
+            }
+            if (input) input.focus();
+        }
+        function closeChat(){ chat.classList.remove('open'); }
+
+        btn.addEventListener('click', function(){ chat.classList.contains('open') ? closeChat() : openChat(); });
+        closeBtn.addEventListener('click', closeChat);
+        form.addEventListener('submit', function(e){ e.preventDefault(); send(input.value); input.value = ''; });
+        QUICK.forEach(function(q){
+            var b = document.createElement('button');
+            b.type = 'button'; b.textContent = q;
+            b.addEventListener('click', function(){ send(q); });
+            quick.appendChild(b);
+        });
+    })();
     </script>
 </body>
 </html>
