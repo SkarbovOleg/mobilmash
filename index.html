@@ -1094,7 +1094,7 @@
             margin-bottom: 8px;
         }
         .event-card p {
-            color: var(--text-muted);
+            color: var(--text-primary);
             line-height: 1.6;
             margin-bottom: 16px;
         }
@@ -1103,7 +1103,7 @@
             flex-wrap: wrap;
             gap: 12px;
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
         .event-card .event-meta i {
             width: 18px;
@@ -2274,18 +2274,6 @@
         ];
 
         const defaultEvents = [
-            { id: 1, title: "СкладТех-2026", type: "Выставка", date: "2026-09-15", location: "Москва, Экспоцентр",
-                description: "Крупнейшая в России выставка складской техники.",
-                status: "upcoming" },
-            { id: 2, title: "Эффективный склад", type: "Семинар", date: "2026-10-05", location: "Санкт-Петербург",
-                description: "Однодневный семинар по оптимизации складских процессов.", status: "upcoming" },
-            { id: 3, title: "МобилМаш: техника будущего", type: "Вебинар", date: "2026-08-20", location: "Онлайн (Zoom)",
-                description: "Вебинар о новых моделях погрузчиков и штабелёров.", status: "ongoing" },
-            { id: 4, title: "Логистика и автоматизация", type: "Конференция", date: "2026-07-10",
-                location: "Екатеринбург, Космос-Холл",
-                description: "Двухдневная конференция с участием лидеров рынка.", status: "past" },
-            { id: 5, title: "Технофорум-2026", type: "Выставка", date: "2026-11-12", location: "Новосибирск, Экспоцентр",
-                description: "Сибирский форум промышленных технологий.", status: "upcoming" },
             { id: 6, title: "Металлообработка. Сварка — 2027", type: "Выставка", date: "16–19 марта 2027",
                 location: "Екатеринбург, МВЦ «Екатеринбург ЭКСПО»",
                 description: "Международная промышленная выставка. МобилМаш участвует — приглашаем на наш стенд! Вход по регистрации. 16 марта 11:00–18:00, 17–18 марта 10:00–18:00, 19 марта 10:00–15:00.",
@@ -2322,6 +2310,7 @@
             if (dp.description && !p.description) p.description = dp.description;
         });
         let events = loadData('mobilmash_events', defaultEvents);
+        events = events.filter(e => ![1,2,3,4,5].includes(e.id));
         defaultEvents.forEach(de => { if (!events.some(e => e.id === de.id)) events.push(de); });
         let logoData = loadString('mobilmash_logo', '');
         let cart = [];
