@@ -1583,6 +1583,7 @@
         .catalog-tab { padding: 9px 14px; border: 2px solid var(--color-red); background: #fff; color: #1a1a1a; font-size: 13px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: .15s; }
         .catalog-tab:hover { border-color: var(--color-red); color: var(--color-red); }
         .catalog-tab.active { background: #111; color: #fff; border-color: #111; }
+        .card-desc { color: var(--text-muted); font-size: 12.5px; line-height: 1.4; margin-top: 4px; }
     </style>
 </head>
 <body>
@@ -1687,6 +1688,13 @@
                         <button class="cs-head" type="button">Сервис <i class="fas fa-chevron-down"></i></button>
                         <div class="cs-sub">
                             <button class="cs-item" type="button" data-type="Ремонт">Модернизация и ремонт</button>
+                        </div>
+                    </div>
+                    <div class="cs-group" data-cat="проект">
+                        <button class="cs-head" type="button">Услуги <i class="fas fa-chevron-down"></i></button>
+                        <div class="cs-sub">
+                            <button class="cs-item" type="button" data-type="Сертификация">Минпромторг — экспертиза ТПП, локализация</button>
+                            <button class="cs-item" type="button" data-type="Проектирование">Проектирование по ТЗ (в т.ч. Реинжиниринг)</button>
                         </div>
                     </div>
                     <button class="cs-all" type="button" id="csAll">Показать всё</button>
@@ -2213,7 +2221,9 @@
             { id: 105, name: "Ротор РБ-80Х400 с реверсивным редуктором", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
             { id: 106, name: "Ротор буровой РБ-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
             { id: 107, name: "Ротор буровой РБ-80Х400", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 108, name: "Ротор буровой РБ-410", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" }
+            { id: 108, name: "Ротор буровой РБ-410", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
+            { id: 201, name: "Минпромторг", category: "проект", type: "Сертификация", price: 0, imageData: "", description: "Помощь в прохождении экспертизы ТПП, локализация и прочее." },
+            { id: 202, name: "Проектирование по ТЗ", category: "проект", type: "Проектирование", price: 0, imageData: "", description: "Проектирование по техническому заданию, в том числе реинжиниринг." }
         ];
 
         const defaultEvents = [
@@ -2381,6 +2391,7 @@
                         <div class="product-info">
                             <div class="product-category">${prod.type}</div>
                             <div class="card-title">${prod.name}</div>
+                            ${prod.description ? '<div class="card-desc">' + escapeHtml(prod.description) + '</div>' : ''}
                             <button class="add-to-cart" data-id="${prod.id}"><i class="fas fa-shopping-bag"></i> В корзину</button>
                         </div>
                     `;
