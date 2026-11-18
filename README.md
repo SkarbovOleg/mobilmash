@@ -17,11 +17,14 @@
 ```
 mobilmash/
 ├── index.html            # ВЕСЬ сайт: разметка + CSS + JS (один файл)
-├── background.jpg        # фон-чертёж за секциями
 ├── vk-feed-data.js       # данные ленты ВКонтакте (window.VK_POSTS)
-├── vk-post-1..5.jpg      # фото постов ВК
 ├── certs/                # PDF-сертификаты (8 файлов)
-├── img/                  # изображения: блог + фото роторов
+├── img/
+│   ├── background.jpg    # фон-чертёж за секциями
+│   ├── products/         # фото товаров (роторы, захваты)
+│   ├── blog/             # картинки статей блога
+│   ├── vk/               # фото постов ВКонтакте
+│   └── brand/            # знак «Сделано в России»
 ├── variants/             # 3 альтернативных дизайна (демо, НЕ подключены к сайту)
 └── README.md
 ```
@@ -31,7 +34,11 @@ mobilmash/
 | Папка | Что лежит | Куда подключается |
 |---|---|---|
 | `certs/` | PDF-сертификаты | карточки в «О компании» |
-| `img/` | `blog-*.png` (статьи), `rotor-*.png` (товары) | `blogPosts`, `imageData` товаров |
+| `img/products/` | фото товаров (роторы, захваты) | `imageData` товаров |
+| `img/blog/` | `blog-*.png` | `blogPosts` |
+| `img/vk/` | `vk-post-*.jpg` | `vk-feed-data.js` |
+| `img/brand/` | знак «Сделано в России» | шапка сайта |
+| `img/background.jpg` | фон-чертёж | CSS `--bg-image-url` |
 | `variants/` | 3 HTML-демо дизайна | открываются отдельно, к сайту не подключены |
 
 ---
@@ -84,7 +91,7 @@ mobilmash/
   category: "нефтегаз",
   type: "Роторы",
   price: 0,
-  imageData: "img/rotor-r410.png",
+  imageData: "img/products/rotor-r410.png",
   subtitle: "механическим",
   specs: [
     "Диаметр проходного отверстия стола: 410 мм",
@@ -113,8 +120,8 @@ mobilmash/
 
 ### Куда класть фото
 
-1. Положите файл в `img/`, например `img/rotor-r410.png`.
-2. В товаре укажите `imageData: "img/rotor-r410.png"`.
+1. Положите файл в `img/`, например `img/products/rotor-r410.png`.
+2. В товаре укажите `imageData: "img/products/rotor-r410.png"`.
 3. ⚠️ **Если у товара задан `icon` — фото НЕ показывается.** Уберите `icon`, чтобы показывать фото.
 
 ### Вкладки буровых установок
@@ -170,7 +177,7 @@ mobilmash/
 ### Блог (`blogPosts`)
 
 ```js
-{ tag: "СОВЕТЫ", title: "Как выбрать …", excerpt: "…", img: "img/blog-1.png" }
+{ tag: "СОВЕТЫ", title: "Как выбрать …", excerpt: "…", img: "img/blog/blog-1.png" }
 ```
 
 ---
@@ -240,7 +247,7 @@ git push origin main
 | Добавить выставку | `defaultEvents` |
 | Добавить статью | `blogPosts` (+ картинка в `img/`) |
 | Поменять менеджера | `MANAGERS` в чате |
-| Поменять фон | `background.jpg` |
+| Поменять фон | `img/background.jpg` |
 | Поменять шрифты/цвета | CSS-переменные в `:root` (в начале `<style>`) |
 
 ---
