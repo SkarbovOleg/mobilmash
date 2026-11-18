@@ -1684,19 +1684,53 @@
             <div class="catalog-layout">
                 <aside class="catalog-sidebar" id="catalogSidebar">
                     <div class="cs-top">Продукция</div>
-                    <div class="cs-group open" data-cat="буровые">
+                    <div class="cs-group" data-cat="буровые">
                         <button class="cs-head" type="button">Буровые установки для бурения и ремонта скважин <i class="fas fa-chevron-down"></i></button>
+                        <div class="cs-sub">
+                            <button class="cs-item" type="button" data-model="УРБ 3А3">УРБ 3А3</button>
+                            <button class="cs-item" type="button" data-model="БА 15">БА 15</button>
+                            <button class="cs-item" type="button" data-model="МОБИЛМАШ 20">МОБИЛМАШ 20</button>
+                            <button class="cs-item" type="button" data-model="УРБ 20">УРБ 20</button>
+                            <button class="cs-item" type="button" data-model="АР 32/40">АР 32/40</button>
+                            <button class="cs-item" type="button" data-model="АР 32/40М">АР 32/40М</button>
+                            <button class="cs-item" type="button" data-model="А 50М">А 50М</button>
+                            <button class="cs-item" type="button" data-model="АР 50">АР 50</button>
+                            <button class="cs-item" type="button" data-model="А 60/80">А 60/80</button>
+                            <button class="cs-item" type="button" data-model="А 60/80М">А 60/80М</button>
+                            <button class="cs-item" type="button" data-model="АР 60">АР 60</button>
+                            <button class="cs-item" type="button" data-model="АРБ 100">АРБ 100</button>
+                            <button class="cs-item" type="button" data-model="МБУ 125">МБУ 125</button>
+                            <button class="cs-item" type="button" data-model="МБУ 140">МБУ 140</button>
+                            <button class="cs-item" type="button" data-model="МБС 160">МБС 160</button>
+                            <button class="cs-item" type="button" data-model="МБУ 160">МБУ 160</button>
+                            <button class="cs-item" type="button" data-model="МБС 180">МБС 180</button>
+                            <button class="cs-item" type="button" data-model="МБУ 180">МБУ 180</button>
+                            <button class="cs-item" type="button" data-model="МБС 200">МБС 200</button>
+                            <button class="cs-item" type="button" data-model="МБС 250">МБС 250</button>
+                        </div>
                     </div>
                     <div class="cs-group" data-cat="нефтегаз">
                         <button class="cs-head" type="button">Нефтегазопромысловое оборудование и инструменты <i class="fas fa-chevron-down"></i></button>
+                        <div class="cs-sub">
+                            <button class="cs-item" type="button" data-type="Роторы">Роторы</button>
+                            <button class="cs-item" type="button" data-type="Захваты">Захваты</button>
+                            <button class="cs-item" type="button" data-type="Установки">Установки</button>
+                        </div>
                     </div>
                     <div class="cs-group" data-cat="прочие">
                         <button class="cs-head" type="button">Узлы и запасные части <i class="fas fa-chevron-down"></i></button>
+                        <div class="cs-sub">
+                            <button class="cs-item" type="button" data-type="Запчасти">Запчасти</button>
+                            <button class="cs-item" type="button" data-type="Расходники">Расходники</button>
+                            <button class="cs-item" type="button" data-type="Аксессуары">Аксессуары</button>
+                        </div>
                     </div>
                     <div class="cs-group" data-cat="услуги">
                         <button class="cs-head" type="button">Сервис <i class="fas fa-chevron-down"></i></button>
                         <div class="cs-sub">
+                            <button class="cs-item" type="button" data-type="Сервис">Техобслуживание</button>
                             <button class="cs-item" type="button" data-type="Ремонт">Модернизация и ремонт</button>
+                            <button class="cs-item" type="button" data-type="Обучение">Обучение операторов</button>
                         </div>
                     </div>
                     <div class="cs-group" data-cat="проект">
@@ -2810,6 +2844,7 @@
                 document.querySelectorAll('.cs-item').forEach(i => i.classList.remove('active'));
                 currentFilter = 'all';
                 currentType = null;
+                currentModel = null;
                 currentPage = 1;
                 hideCatalogBanner();
                 renderCatalog();
@@ -2831,6 +2866,7 @@
                     group.classList.toggle('open');
                     currentFilter = group.dataset.cat || 'all';
                     currentType = null;
+                    currentModel = null;
                     currentPage = 1;
                     showCatalogBanner(head.textContent.replace(/\s+/g, ' ').trim(), '');
                     showCatalogTabs(group.dataset.cat === 'буровые');
@@ -2844,8 +2880,14 @@
                     document.querySelectorAll('.cs-item').forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                     currentFilter = group ? group.dataset.cat : 'all';
-                    currentType = item.dataset.type || null;
                     currentPage = 1;
+                    if (item.dataset.model) {
+                        currentModel = item.dataset.model;
+                        currentType = null;
+                    } else {
+                        currentType = item.dataset.type || null;
+                        currentModel = null;
+                    }
                     showCatalogBanner(item.textContent.trim(), groupName);
                     showCatalogTabs(group && group.dataset.cat === 'буровые');
                     renderCatalog();
@@ -2857,6 +2899,7 @@
                     document.querySelectorAll('.cs-item').forEach(i => i.classList.remove('active'));
                     currentFilter = 'all';
                     currentType = null;
+                    currentModel = null;
                     currentPage = 1;
                     hideCatalogBanner();
                     showCatalogTabs(false);
