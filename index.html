@@ -2224,10 +2224,7 @@
             { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "", icon: "fa-chair" },
             { id: 101, name: "Захват клиньевой пневматический РБУ-560.35.00.000 В", category: "нефтегаз", type: "Захваты", price: 0, imageData: "", icon: "fa-hand" },
             { id: 102, name: "Установка бурового ротора Р-410 гидроприводная", category: "нефтегаз", type: "Установки", price: 0, imageData: "", icon: "fa-industry" },
-            { id: 103, name: "Ротор буровой универсальный РБУ-560", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-fan" },
-            { id: 104, name: "Ротор буровой гидравлический Р-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-circle-notch" },
             { id: 105, name: "Ротор Р-80Х400 с реверсивным редуктором", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-rotate" },
-            { id: 106, name: "Ротор буровой Р-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-fan" },
             { id: 107, name: "Ротор буровой Р-80Х400", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-compact-disc" },
             { id: 108, name: "Ротор буровой Р-410", category: "нефтегаз", type: "Роторы", price: 0, imageData: "img/rotor-r410.png", subtitle: "механическим", specs: ["Диаметр проходного отверстия стола: 410 мм", "Максимальный крутящий момент: 8000 Н·м", "Статическая нагрузка на стол: 200 кН", "Максимальная частота вращения: 300 об/мин", "Привод ротора: механический", "Передаточное отношение: i = 95/16 = 5,94", "Габаритные размеры: 1200 × 870 × 340 мм", "Масса: 800 кг"] },
             { id: 109, name: "Ротор РУП 560", category: "нефтегаз", type: "Роторы", price: 0, imageData: "img/rotor-rup560.png", subtitle: "механическим", specs: ["Диаметр проходного отверстия стола: 560 мм", "Подводимая мощность: 150 кВт", "Максимальный крутящий момент: 20 кН·м", "Статическая нагрузка на стол: 1250 кН", "Максимальная частота вращения: 150 об/мин", "Передаточное отношение: i = 100/17 = 5,88", "Габаритные размеры: 1712 × 1064 × 420 мм", "Масса: 1995 кг"] },
@@ -2296,6 +2293,7 @@
             if (dp.features && !p.features) p.features = dp.features;
             if (dp.description && !p.description) p.description = dp.description;
         });
+        products = products.filter(p => ![103,104,106].includes(p.id));
         let events = loadData('mobilmash_events', defaultEvents);
         events = events.filter(e => ![1,2,3,4,5].includes(e.id));
         defaultEvents.forEach(de => { if (!events.some(e => e.id === de.id)) events.push(de); });
