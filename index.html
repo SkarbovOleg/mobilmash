@@ -2069,22 +2069,6 @@
         </div>
     </div>
 
-    <div id="compareModal" class="modal compare-modal">
-        <div class="modal-content">
-            <button class="close-modal" id="compareCloseBtn">&times;</button>
-            <h3>Сравнение товаров</h3>
-            <div id="compareContent"></div>
-        </div>
-    </div>
-
-    <div class="compare-bar" id="compareBar">
-        <div class="compare-items" id="compareItemsList"></div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <button class="btn" id="compareOpenBtn" style="padding:8px 20px; font-size:14px;">Сравнить</button>
-            <button class="btn" id="compareClearBtn" style="padding:8px 20px; font-size:14px; background:var(--border-form);">Очистить</button>
-        </div>
-    </div>
-
     <script>
         // ============================================================
         // ========== СЛАЙДЕР ==========
@@ -2361,12 +2345,10 @@
             grid.innerHTML = '';
             items.forEach(prod => {
                 const isFav = favorites.includes(prod.id);
-                const isCompare = compareList.includes(prod.id);
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 const imgSrc = prod.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(prod.name);
                 card.innerHTML = `
-                        <button class="compare-btn ${isCompare ? 'active' : ''}" data-id="${prod.id}"><i class="fas fa-balance-scale"></i></button>
                         <button class="quick-view-btn" data-id="${prod.id}">Быстрый просмотр</button>
                         <div class="product-img"><img src="${imgSrc}" alt="${prod.name}" loading="lazy"></div>
                         <div class="product-info">
@@ -2600,7 +2582,6 @@
                             <h2 style="font-size:28px; margin:8px 0;">${product.name}</h2>
                             <p style="color:var(--text-secondary); margin-bottom:16px;">Категория: ${product.category}</p>
                             <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                                <button class="btn btn-outline" onclick="toggleCompare(${product.id}); renderCatalog(); updateCompareBar();">📊 Сравнить</button>
                             </div>
                         </div>
                     </div>
@@ -2845,8 +2826,6 @@
         function init() {
             loadLogo();
 
-            updateCompareBar();
-
             renderBlog();
 
             renderEvents();
@@ -2871,31 +2850,7 @@
                 document.getElementById('quickViewModal').classList.remove('show');
             });
 
-            document.getElementById('compareOpenBtn').addEventListener('click', () => {
-                renderCompareModal();
-                document.getElementById('compareModal').classList.add('show');
-            });
-            document.getElementById('compareCloseBtn').addEventListener('click', () => {
-                document.getElementById('compareModal').classList.remove('show');
-            });
-            document.getElementById('compareClearBtn').addEventListener('click', () => {
-                compareList = [];
-                localStorage.setItem('mobilmash_compare', JSON.stringify(compareList));
-                updateCompareBar();
-                renderCatalog();
-                showToast('Список сравнения очищен');
-            });
-
             document.getElementById('productsGrid').addEventListener('click', (e) => {
-                const btn = e.target.closest('.add-to-cart');
-                if (btn) { addToCart(parseInt(btn.dataset.id)); return; }
-
-                const fav = e.target.closest('.favorite-btn');
-                if (fav) { toggleFavorite(parseInt(fav.dataset.id)); return; }
-
-                const comp = e.target.closest('.compare-btn');
-                if (comp) { toggleCompare(parseInt(comp.dataset.id)); return; }
-
                 const quick = e.target.closest('.quick-view-btn');
                 if (quick) { showQuickView(parseInt(quick.dataset.id)); return; }
             });
