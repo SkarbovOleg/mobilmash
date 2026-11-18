@@ -1644,6 +1644,19 @@
         .sidebar-calc .mc-result { font-size: 12px; padding: 10px 12px; }
         .sidebar-calc .mc-result b { font-size: 16px; }
         .sidebar-calc .btn.btn-submit { width: 100%; padding: 10px; font-size: 13px; }
+        .calc-nav-btn { background: var(--color-red); color: #fff; border: none; border-radius: 8px; padding: 9px 14px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+        .calc-nav-btn:hover { background: var(--color-red-hover); }
+        .calc-panel { position: fixed; top: 96px; right: 20px; z-index: 1200; width: 320px; max-height: 82vh; overflow-y: auto; background: var(--bg-card); border: 2px solid #111; border-radius: 14px; padding: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.18); display: none; }
+        .calc-panel.show { display: block; }
+        .calc-panel .metal-calc-section { padding: 0; border: none; }
+        .calc-panel .metal-calc-section h3 { margin-bottom: 10px; font-size: 16px; }
+        .calc-panel .form-group { margin-bottom: 10px; }
+        .calc-panel .form-group label { font-size: 12px; }
+        .calc-panel .form-group select, .calc-panel .form-group input { font-size: 13px; padding: 8px 10px; }
+        .calc-panel .mc-fields { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
+        .calc-panel .mc-result { font-size: 12px; padding: 10px 12px; }
+        .calc-panel .mc-result b { font-size: 16px; }
+        .calc-panel .btn.btn-submit { width: 100%; padding: 10px; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -1660,13 +1673,53 @@
                 <a href="#" class="active" data-nav="home">Главная</a>
                 <a href="#" data-nav="catalog">Каталог</a>
                 <a href="#" data-nav="selection">Подбор оборудования</a>
-                <a href="#" data-nav="calculator">Калькулятор металла</a>
+                <button class="calc-nav-btn" type="button" id="calcNavBtn"><i class="fas fa-calculator"></i> Калькулятор металла</button>
                 <a href="#" data-nav="events">События</a>
                 <a href="#" data-nav="blog">Блог</a>
                 <a href="#" data-nav="about">О компании</a>
                 <a href="#" data-nav="contact">Контакты</a>
             </div>
         </nav>
+    </div>
+
+    <div id="calcPanel" class="calc-panel">
+        <div class="metal-calc-section">
+            <h3>Калькулятор металла</h3>
+            <div class="metal-calc">
+                <div class="form-group">
+                    <label>Тип проката</label>
+                    <select id="mcType">
+                        <option value="pipe">Труба круглая</option>
+                        <option value="ppipe">Труба профильная</option>
+                        <option value="round">Круг</option>
+                        <option value="square">Квадрат</option>
+                        <option value="hex">Шестигранник</option>
+                        <option value="sheet">Лист</option>
+                        <option value="strip">Полоса</option>
+                        <option value="angle">Уголок</option>
+                        <option value="channel">Швеллер</option>
+                        <option value="beam">Двутавр</option>
+                        <option value="rebar">Арматура</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Материал</label>
+                    <select id="mcMaterial">
+                        <option value="7850">Сталь</option>
+                        <option value="7900">Нержавеющая сталь</option>
+                        <option value="7200">Чугун</option>
+                        <option value="2700">Алюминий</option>
+                        <option value="8900">Медь</option>
+                        <option value="8500">Латунь</option>
+                        <option value="8800">Бронза</option>
+                        <option value="4500">Титан</option>
+                    </select>
+                </div>
+                <div id="mcFields" class="mc-fields"></div>
+                <button type="button" class="btn btn-submit" id="mcCalcBtn"><i class="fas fa-calculator"></i> Рассчитать</button>
+                <div id="mcResult" class="mc-result"></div>
+            </div>
+        </div>
     </div>
 
     <main>
@@ -1839,45 +1892,6 @@
                     <button class="cs-all" type="button" id="csAll">Показать всё</button>
                     </div>
 
-                    <div id="calculatorSection" class="sidebar-calc">
-                        <div class="metal-calc-section">
-                            <h3 style="margin-bottom:10px;">Калькулятор металла</h3>
-                            <div class="metal-calc">
-                                <div class="form-group">
-                                    <label>Тип проката</label>
-                                    <select id="mcType">
-                                        <option value="pipe">Труба круглая</option>
-                                        <option value="ppipe">Труба профильная</option>
-                                        <option value="round">Круг</option>
-                                        <option value="square">Квадрат</option>
-                                        <option value="hex">Шестигранник</option>
-                                        <option value="sheet">Лист</option>
-                                        <option value="strip">Полоса</option>
-                                        <option value="angle">Уголок</option>
-                                        <option value="channel">Швеллер</option>
-                                        <option value="beam">Двутавр</option>
-                                        <option value="rebar">Арматура</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Материал</label>
-                                    <select id="mcMaterial">
-                                        <option value="7850">Сталь</option>
-                                        <option value="7900">Нержавеющая сталь</option>
-                                        <option value="7200">Чугун</option>
-                                        <option value="2700">Алюминий</option>
-                                        <option value="8900">Медь</option>
-                                        <option value="8500">Латунь</option>
-                                        <option value="8800">Бронза</option>
-                                        <option value="4500">Титан</option>
-                                    </select>
-                                </div>
-                                <div id="mcFields" class="mc-fields"></div>
-                                <button type="button" class="btn btn-submit" id="mcCalcBtn"><i class="fas fa-calculator"></i> Рассчитать</button>
-                                <div id="mcResult" class="mc-result"></div>
-                            </div>
-                        </div>
-                    </div>
                 </aside>
 
                 <div class="catalog-main">
@@ -3165,6 +3179,19 @@
             type.addEventListener('change', mcRenderFields);
             document.getElementById('mcCalcBtn').addEventListener('click', mcCalc);
             mcRenderFields();
+        })();
+
+        (function initCalcPanel() {
+            var btn = document.getElementById('calcNavBtn');
+            var panel = document.getElementById('calcPanel');
+            if (!btn || !panel) return;
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                panel.classList.toggle('show');
+            });
+            document.addEventListener('click', function(e) {
+                if (!panel.contains(e.target) && !btn.contains(e.target)) panel.classList.remove('show');
+            });
         })();
 
         document.addEventListener('DOMContentLoaded', init);
