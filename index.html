@@ -1634,6 +1634,16 @@
         .mc-result { margin-top: 18px; padding: 16px 20px; border-radius: 12px; background: var(--bg-about); border: 1px solid var(--border-card); font-size: 15px; color: var(--text-primary); }
         .mc-result b { color: var(--color-red); font-size: 22px; }
         @media (max-width: 600px) { .mc-row { grid-template-columns: 1fr; } }
+        .sidebar-calc { margin-top: 18px; }
+        .sidebar-calc .metal-calc-section { padding: 14px 16px; border-radius: 12px; }
+        .sidebar-calc .metal-calc-section h3 { font-size: 15px; }
+        .sidebar-calc .form-group { margin-bottom: 10px; }
+        .sidebar-calc .form-group label { font-size: 12px; }
+        .sidebar-calc .form-group select, .sidebar-calc .form-group input { font-size: 13px; padding: 8px 10px; }
+        .sidebar-calc .mc-fields { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
+        .sidebar-calc .mc-result { font-size: 12px; padding: 10px 12px; }
+        .sidebar-calc .mc-result b { font-size: 16px; }
+        .sidebar-calc .btn.btn-submit { width: 100%; padding: 10px; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -1828,6 +1838,46 @@
                     </div>
                     <button class="cs-all" type="button" id="csAll">Показать всё</button>
                     </div>
+
+                    <div id="calculatorSection" class="sidebar-calc">
+                        <div class="metal-calc-section">
+                            <h3 style="margin-bottom:10px;">Калькулятор металла</h3>
+                            <div class="metal-calc">
+                                <div class="form-group">
+                                    <label>Тип проката</label>
+                                    <select id="mcType">
+                                        <option value="pipe">Труба круглая</option>
+                                        <option value="ppipe">Труба профильная</option>
+                                        <option value="round">Круг</option>
+                                        <option value="square">Квадрат</option>
+                                        <option value="hex">Шестигранник</option>
+                                        <option value="sheet">Лист</option>
+                                        <option value="strip">Полоса</option>
+                                        <option value="angle">Уголок</option>
+                                        <option value="channel">Швеллер</option>
+                                        <option value="beam">Двутавр</option>
+                                        <option value="rebar">Арматура</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Материал</label>
+                                    <select id="mcMaterial">
+                                        <option value="7850">Сталь</option>
+                                        <option value="7900">Нержавеющая сталь</option>
+                                        <option value="7200">Чугун</option>
+                                        <option value="2700">Алюминий</option>
+                                        <option value="8900">Медь</option>
+                                        <option value="8500">Латунь</option>
+                                        <option value="8800">Бронза</option>
+                                        <option value="4500">Титан</option>
+                                    </select>
+                                </div>
+                                <div id="mcFields" class="mc-fields"></div>
+                                <button type="button" class="btn btn-submit" id="mcCalcBtn"><i class="fas fa-calculator"></i> Рассчитать</button>
+                                <div id="mcResult" class="mc-result"></div>
+                            </div>
+                        </div>
+                    </div>
                 </aside>
 
                 <div class="catalog-main">
@@ -1873,49 +1923,6 @@
 
                     <div class="products-grid" id="productsGrid"></div>
                     <div class="pagination" id="paginationContainer"></div>
-
-                    <div id="calculatorSection" style="margin-top:36px;">
-                        <div class="metal-calc-section">
-                            <h2 style="display:table; margin:0 auto 16px; background:#fff; border:2px solid #111; border-radius:10px; padding:8px 26px; text-align:center;">Калькулятор металла</h2>
-                            <p class="subtitle">Рассчитайте вес металлопроката по размерам и материалу</p>
-                            <div class="metal-calc">
-                                <div class="mc-row">
-                                    <div class="form-group">
-                                        <label>Тип проката</label>
-                                        <select id="mcType">
-                                            <option value="pipe">Труба круглая</option>
-                                            <option value="ppipe">Труба профильная</option>
-                                            <option value="round">Круг</option>
-                                            <option value="square">Квадрат</option>
-                                            <option value="hex">Шестигранник</option>
-                                            <option value="sheet">Лист</option>
-                                            <option value="strip">Полоса</option>
-                                            <option value="angle">Уголок</option>
-                                            <option value="channel">Швеллер</option>
-                                            <option value="beam">Двутавр</option>
-                                            <option value="rebar">Арматура</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Материал</label>
-                                        <select id="mcMaterial">
-                                            <option value="7850">Сталь</option>
-                                            <option value="7900">Нержавеющая сталь</option>
-                                            <option value="7200">Чугун</option>
-                                            <option value="2700">Алюминий</option>
-                                            <option value="8900">Медь</option>
-                                            <option value="8500">Латунь</option>
-                                            <option value="8800">Бронза</option>
-                                            <option value="4500">Титан</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="mcFields" class="mc-fields"></div>
-                                <button type="button" class="btn btn-submit" id="mcCalcBtn"><i class="fas fa-calculator"></i> Рассчитать</button>
-                                <div id="mcResult" class="mc-result"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
