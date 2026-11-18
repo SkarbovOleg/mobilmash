@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="МобилМаш — буровое оборудование, нефтегазопромысловый инструмент, роторы РБ-250, РБ-410, РБУ-560. Проектирование, модернизация, ремонт и сервис 24/7. Екатеринбург.">
+<title>МобилМаш — Буровое оборудование для сложных задач</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+
+<style>
+/* ============ 0. RESET / TOKENS ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  scroll-padding-top:82px;
+}
+:root{
+  --bg:#0d1117;
+  --bg-deep:#080b10;
+  --bg-panel:#11161d;
+  --bg-panel-2:#151c25;
+  --text:#f5f5f5;
+  --steel:#8b95a3;
+  --accent:#e63946;
+  --accent-deep:#b32430;
+  --line:rgba(139,149,163,.16);
+  --line-mid:rgba(139,149,163,.28);
+  --line-strong:rgba(139,149,163,.42);
+  --wrap:1280px;
+  --pad:clamp(18px,4vw,44px);
+  --nav-h:74px;
+  --font-d:"Bebas Neue","Oswald",Impact,"Arial Narrow",sans-serif;
+  --font-b:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-b);
+  font-size:16px;
+  line-height:1.65;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4,p,figure{margin:0}
+button{font:inherit}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+/* ============ 1. HELPERS ============ */
+.wrap{
+  width:100%;
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding-inline:var(--pad);
+}
+.sec{
+  position:relative;
+  padding-block:clamp(64px,9vw,128px);
+  border-top:1px solid var(--line);
+}
+.sec--tight{padding-block:clamp(48px,6vw,80px)}
+.display{
+  font-family:var(--font-d);
+  font-weight:400;
+  text-transform:uppercase;
+  line-height:.92;
+  letter-spacing:.005em;
+}
+.sec-label{
+  display:flex;align-items:center;gap:14px;
+  font-size:.72rem;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--steel);
+  margin-bottom:22px;
+}
+.sec-label::before{
+  content:"";width:46px;height:2px;background:var(--accent);flex:none;
+}
+.sec-label b{color:var(--accent);font-weight:600;letter-spacing:.16em}
+.sec-head{
+  display:grid;
+  gap:clamp(16px,3vw,40px);
+  margin-bottom:clamp(30px,4.5vw,62px);
+}
+@media (min-width:900px){
+  .sec-head{grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr);align-items:end}
+  .sec-head .lead{padding-bottom:8px}
+}
+h2.title{
+  font-family:var(--font-d);
+  text-transform:uppercase;
+  font-size:clamp(2.05rem,5.2vw,4.3rem);
+  line-height:1.06;
+  letter-spacing:.01em;
+  word-spacing:.05em;
+}
+h2.title em{font-style:normal;color:var(--accent)}
+.lead{
+  color:var(--steel);
+  font-size:clamp(.95rem,1.15vw,1.05rem);
+  max-width:62ch;
+  line-height:1.75;
+}
+.hair{height:1px;background:var(--line);border:0;margin:0}
+
+/* ============ 2. BUTTONS ============ */
+.btn{
+  --btn-bg:transparent;
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:16px 28px;
+  font-size:.78rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid var(--line-mid);
+  border-radius:0;
+  background:var(--btn-bg);
+  color:var(--text);
+  cursor:pointer;
+  transition:background .28s var(--ease),border-color .28s var(--ease),color .28s var(--ease),transform .28s var(--ease);
+  white-space:nowrap;
+}
+.btn i{font-size:.85em;transition:transform .28s var(--ease)}
+.btn:hover i{transform:translateX(4px)}
+.btn--primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#0d1117;
+  font-weight:700;
+}
+.btn--primary:hover{background:#ff4d5a;border-color:#ff4d5a;transform:translateY(-2px)}
+.btn--ghost:hover{border-color:var(--accent);color:#fff;background:rgba(230,57,70,.08)}
+.btn--block{width:100%}
+
+/* ============ 3. HEADER / NAV ============ */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,17,23,.86);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.nav-toggle{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.nav-inner{
+  min-height:var(--nav-h);
+  display:flex;align-items:center;gap:clamp(16px,3vw,40px);
+}
+.brand{display:flex;align-items:center;gap:13px;flex:none;padding-block:12px}
+.brand__mark{
+  position:relative;
+  width:42px;height:42px;flex:none;
+  display:grid;place-items:center;
+  background:var(--accent);
+  color:#0d1117;
+  font-family:var(--font-d);
+  font-size:1.6rem;
+  line-height:1;
+  letter-spacing:.02em;
+}
+.brand__mark::after{
+  content:"";position:absolute;inset:4px;border:1px solid rgba(13,17,23,.45);
+}
+.brand__text{display:flex;flex-direction:column;line-height:1}
+.brand__name{
+  font-family:var(--font-d);
+  font-size:1.5rem;letter-spacing:.12em;
+}
+.brand__sub{
+  font-size:.53rem;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--steel);margin-top:5px;
+}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,2vw,28px);margin-left:auto}
+.nav-links a{
+  position:relative;
+  font-size:.72rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel);
+  padding-block:10px;
+  transition:color .24s var(--ease);
+  white-space:nowrap;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:4px;
+  width:0;height:1px;background:var(--accent);
+  transition:width .3s var(--ease);
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  margin-left:6px;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:11px 18px;
+  border:1px solid var(--accent);
+  color:var(--text);
+  font-size:.68rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  transition:background .26s var(--ease),color .26s var(--ease);
+}
+.nav-cta i{color:var(--accent);transition:color .26s var(--ease)}
+.nav-cta:hover{background:var(--accent);color:#0d1117}
+.nav-cta:hover i{color:#0d1117}
+.burger{
+  display:none;
+  width:46px;height:42px;
+  margin-left:auto;
+  border:1px solid var(--line-mid);
+  cursor:pointer;
+  position:relative;
+  flex:none;
+}
+.burger span{
+  position:absolute;left:12px;width:20px;height:1.5px;
+  background:var(--text);
+  transition:transform .3s var(--ease),opacity .2s var(--ease),width .3s var(--ease);
+}
+.burger span:nth-child(1){top:14px}
+.burger span:nth-child(2){top:20px;width:14px}
+.burger span:nth-child(3){top:26px}
+.nav-toggle:focus-visible ~ .nav-inner .burger{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+@media (max-width:1080px){
+  .burger{display:block}
+  .nav-links{
+    position:fixed;
+    top:var(--nav-h);left:0;right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    margin:0;
+    padding:14px var(--pad) 26px;
+    background:#0b0f14;
+    border-bottom:1px solid var(--line-mid);
+    max-height:calc(100dvh - var(--nav-h));
+    overflow-y:auto;
+    transform:translateY(-10px);
+    opacity:0;
+    visibility:hidden;
+    transition:transform .3s var(--ease),opacity .25s var(--ease),visibility .25s;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.85);
+  }
+  .nav-links a{
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-size:.82rem;
+    letter-spacing:.2em;
+  }
+  .nav-links a::after{display:none}
+  .nav-links a:hover{color:var(--accent)}
+  .nav-cta{margin:22px 0 0;justify-content:center;padding:16px}
+  .nav-toggle:checked ~ .nav-inner .nav-links{
+    transform:translateY(0);opacity:1;visibility:visible;
+  }
+  .nav-toggle:checked ~ .nav-inner .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-toggle:checked ~ .nav-inner .burger span:nth-child(2){opacity:0;width:0}
+  .nav-toggle:checked ~ .nav-inner .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  body:has(.nav-toggle:checked){overflow:hidden}
+}
+@media (max-width:420px){
+  .brand__sub{display:none}
+  .brand__name{font-size:1.28rem}
+}
+
+/* ============ 4. HERO ============ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(900px 560px at 82% 4%,rgba(230,57,70,.18),transparent 62%),
+    radial-gradient(760px 480px at 6% 96%,rgba(139,149,163,.10),transparent 65%),
+    linear-gradient(180deg,#0d1117 0%,#0b0f15 62%,#090d12 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(139,149,163,.085) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,149,163,.085) 1px,transparent 1px);
+  background-size:64px 64px;
+  background-position:center top;
+  -webkit-mask-image:radial-gradient(circle at 58% 32%,#000 0%,rgba(0,0,0,.55) 45%,transparent 78%);
+  mask-image:radial-gradient(circle at 58% 32%,#000 0%,rgba(0,0,0,.55) 45%,transparent 78%);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 22%,transparent 22%,transparent 100%);
+}
+.hero__inner{
+  position:relative;z-index:2;
+  min-height:clamp(480px,76vh,740px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding-block:clamp(34px,4.6vw,58px) clamp(26px,3.4vw,40px);
+}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:.7rem;font-weight:600;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--steel);
+  margin-bottom:clamp(20px,3vw,34px);
+}
+.hero__eyebrow span{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 12px;
+  border:1px solid var(--line-mid);
+  background:rgba(139,149,163,.05);
+}
+.hero__eyebrow span i{color:var(--accent);font-size:.85em}
+.hero__eyebrow em{font-style:normal;color:var(--steel)}
+h1.hero__title{
+  font-family:var(--font-d);
+  text-transform:uppercase;
+  font-size:clamp(2.7rem,7.2vw,6.8rem);
+  line-height:1.1;
+  letter-spacing:.004em;
+  max-width:100%;
+  word-spacing:.06em;
+  margin:0 0 clamp(20px,2.6vw,30px);
+  text-wrap:balance;
+}
+h1.hero__title .line{display:block}
+h1.hero__title .accent{
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--accent);
+}
+.hero__grid{
+  display:grid;
+  gap:clamp(30px,5vw,64px);
+  align-items:end;
+}
+@media (min-width:960px){
+  .hero__grid{grid-template-columns:minmax(0,1fr) 300px}
+}
+.hero__lead{
+  color:#c3cad3;
+  font-size:clamp(1rem,1.35vw,1.15rem);
+  font-weight:300;
+  max-width:56ch;
+  line-height:1.75;
+  border-left:2px solid var(--accent);
+  padding-left:clamp(16px,2vw,24px);
+}
+.hero__lead strong{color:var(--text);font-weight:600}
+.hero__actions{
+  display:flex;flex-wrap:wrap;gap:14px;
+  margin-top:clamp(24px,3vw,32px);
+}
+.hero__note{
+  display:flex;align-items:center;gap:10px;
+  margin-top:16px;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--steel);
+}
+.hero__note i{color:var(--accent)}
+/* right spec panel */
+.hero__spec{
+  display:none;
+  border-left:1px solid var(--line-mid);
+  padding-left:clamp(18px,2.4vw,30px);
+}
+@media (min-width:960px){.hero__spec{display:block}}
+.hero__spec dl{margin:0;display:grid;gap:16px}
+.hero__spec dt{
+  font-size:.6rem;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--steel);margin-bottom:3px;
+}
+.hero__spec dd{
+  margin:0;
+  font-family:var(--font-d);
+  font-size:1.42rem;letter-spacing:.06em;
+  line-height:1.1;
+}
+.hero__spec dd small{
+  font-family:var(--font-b);
+  font-size:.62rem;font-weight:500;letter-spacing:.14em;
+  color:var(--steel);text-transform:uppercase;
+  display:block;margin-top:2px;
+}
+/* stats */
+.hero__stats{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--line-mid);
+  background:rgba(8,11,16,.55);
+}
+@media (min-width:760px){.hero__stats{grid-template-columns:repeat(4,1fr)}}
+.stat{
+  padding:clamp(14px,2.2vw,26px) clamp(14px,2.4vw,30px);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  transition:background .3s var(--ease);
+}
+@media (min-width:760px){
+  .stat{border-bottom:0;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+}
+@media (max-width:759px){
+  .stat:nth-child(odd){border-right:1px solid var(--line)}
+}
+.stat:hover{background:rgba(230,57,70,.05)}
+.stat__num{
+  font-family:var(--font-d);
+  font-size:clamp(2.4rem,4.4vw,3.5rem);
+  line-height:.9;
+  display:flex;align-items:baseline;gap:2px;
+}
+.stat__num b{color:var(--accent);font-weight:400}
+.stat__label{
+  margin-top:7px;
+  font-size:.66rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel);line-height:1.5;
+}
+/* decorative ghost */
+.hero__ghost{
+  position:absolute;
+  right:-1vw;bottom:-2.4vw;
+  z-index:1;
+  font-family:var(--font-d);
+  font-size:clamp(7rem,17vw,17rem);
+  line-height:.8;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(139,149,163,.09);
+  letter-spacing:.02em;
+  user-select:none;pointer-events:none;
+  display:none;
+}
+@media (min-width:1200px){.hero__ghost{display:block}}
+.hero__ribbon{
+  position:absolute;top:0;right:clamp(18px,4vw,44px);
+  z-index:3;
+  display:none;
+  writing-mode:vertical-rl;
+  padding:26px 0;
+  font-size:.6rem;font-weight:600;
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--steel);
+  border-bottom:1px solid var(--accent);
+}
+@media (min-width:1200px){.hero__ribbon{display:block}}
+
+/* ============ 5. TICKER ============ */
+.ticker{
+  position:relative;
+  background:var(--bg-deep);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.ticker__track{
+  display:flex;
+  width:max-content;
+  animation:ticker 44s linear infinite;
+}
+.ticker:hover .ticker__track{animation-play-state:paused}
+.ticker__group{
+  display:flex;align-items:center;gap:0;
+  flex:none;
+}
+.ticker__group span{
+  display:inline-flex;align-items:center;gap:22px;
+  padding:15px 0;
+  font-size:.7rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:#a3adba;
+  white-space:nowrap;
+}
+.ticker__group span::after{
+  content:"◆";
+  color:var(--accent);
+  font-size:.55rem;
+  margin-inline:22px;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){
+  .ticker__track{animation:none}
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+
+/* ============ 6. PRODUCTS ============ */
+.products{
+  display:grid;
+  gap:clamp(14px,1.6vw,20px);
+}
+@media (min-width:900px){
+  .products{grid-template-columns:repeat(12,1fr)}
+  .p-card--a{grid-column:span 5}
+  .p-card--b{grid-column:span 7}
+  .p-card--c{grid-column:span 12}
+}
+.p-card{
+  position:relative;
+  display:flex;flex-direction:column;
+  background:
+    linear-gradient(160deg,rgba(139,149,163,.055),transparent 42%),
+    var(--bg-panel);
+  border:1px solid var(--line);
+  padding:clamp(22px,2.8vw,36px);
+  overflow:hidden;
+  transition:border-color .35s var(--ease),transform .35s var(--ease),background .35s var(--ease);
+}
+.p-card::before{
+  content:"";position:absolute;top:0;left:0;width:0;height:2px;
+  background:var(--accent);
+  transition:width .45s var(--ease);
+}
+.p-card::after{
+  content:"";position:absolute;top:0;right:0;width:90px;height:90px;
+  background:repeating-linear-gradient(135deg,var(--line-mid) 0 1px,transparent 1px 9px);
+  opacity:.5;
+  transition:opacity .35s var(--ease);
+  pointer-events:none;
+}
+.p-card:hover{
+  border-color:rgba(230,57,70,.5);
+  background:
+    linear-gradient(160deg,rgba(230,57,70,.06),transparent 46%),
+    var(--bg-panel-2);
+  transform:translateY(-4px);
+}
+.p-card:hover::before{width:100%}
+.p-card:hover::after{opacity:.9}
+.p-card__top{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:16px;margin-bottom:clamp(18px,2.4vw,26px);
+  position:relative;z-index:1;
+}
+.p-card__icon{
+  width:52px;height:52px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--line-mid);
+  color:var(--accent);
+  font-size:1.35rem;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+.p-card:hover .p-card__icon{background:var(--accent);color:#0d1117;border-color:var(--accent)}
+.p-card__idx{
+  font-family:var(--font-d);
+  font-size:1.05rem;letter-spacing:.14em;
+  color:rgba(139,149,163,.55);
+}
+.p-card__title{
+  font-family:var(--font-d);
+  text-transform:uppercase;
+  font-size:clamp(1.65rem,2.5vw,2.35rem);
+  line-height:1.1;
+  letter-spacing:.012em;
+  margin-bottom:14px;
+  position:relative;z-index:1;
+}
+.p-card__desc{
+  color:var(--steel);
+  font-size:.9rem;
+  line-height:1.7;
+  margin-bottom:clamp(18px,2.2vw,24px);
+  max-width:52ch;
+  position:relative;z-index:1;
+}
+.p-list{
+  display:grid;gap:10px;
+  margin-bottom:clamp(20px,2.6vw,28px);
+  position:relative;z-index:1;
+}
+.p-list li{
+  position:relative;
+  padding-left:20px;
+  font-size:.86rem;
+  line-height:1.6;
+  color:#cfd6df;
+}
+.p-list li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:6px;height:6px;
+  background:var(--accent);
+  flex:none;
+}
+.p-list li span{color:var(--steel)}
+.p-card__foot{
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;
+  position:relative;z-index:1;
+}
+.p-card__link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--steel);
+  transition:color .26s var(--ease),gap .26s var(--ease);
+}
+.p-card__link i{color:var(--accent);font-size:.8em}
+.p-card__link:hover{color:#fff;gap:14px}
+.tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 9px;
+  border:1px solid var(--line-mid);
+  font-size:.58rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--steel);
+  white-space:nowrap;
+}
+.tag i{color:var(--accent);font-size:.9em}
+@media (min-width:900px){
+  .p-list--cols{grid-template-columns:1fr 1fr;column-gap:28px}
+}
+/* wide card c */
+.p-card--c{display:block}
+.p-card--c .p-card__body{
+  display:grid;
+  gap:clamp(18px,3vw,40px);
+  align-items:center;
+}
+@media (min-width:860px){
+  .p-card--c .p-card__body{grid-template-columns:minmax(0,1.05fr) minmax(0,1.15fr) auto;align-items:center;gap:clamp(25px,4vw,56px)}
+  .p-card--c .p-card__title{margin-bottom:0}
+  .p-card--c .p-card__desc{margin-bottom:14px}
+  .p-card--c .p-list{grid-template-columns:1fr 1fr;gap:8px 22px;margin-bottom:0}
+  .p-card--c .p-card__top{margin-bottom:14px}
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chips span{
+  padding:5px 9px;
+  background:rgba(139,149,163,.07);
+  border-left:1px solid var(--line-strong);
+  font-size:.63rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--steel);
+  transition:color .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease);
+}
+.chips span:hover{color:#fff;background:rgba(230,57,70,.1);border-color:var(--accent)}
+
+/* ============ 7. SERVICES ============ */
+.services{
+  display:grid;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+@media (min-width:760px){.services{grid-template-columns:1fr 1fr}}
+.srv{
+  position:relative;
+  background:var(--bg);
+  padding:clamp(24px,3.2vw,40px);
+  display:flex;flex-direction:column;gap:14px;
+  transition:background .35s var(--ease);
+  overflow:hidden;
+}
+.srv::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:0;height:2px;background:var(--accent);
+  transition:width .4s var(--ease);
+}
+.srv:hover{background:var(--bg-panel)}
+.srv:hover::after{width:100%}
+.srv__head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin-bottom:4px;
+}
+.srv__icon{
+  width:46px;height:46px;
+  display:grid;place-items:center;
+  border:1px solid var(--line-mid);
+  color:var(--accent);
+  font-size:1.05rem;
+}
+.srv__no{
+  font-family:var(--font-d);
+  font-size:1.05rem;letter-spacing:.14em;
+  color:rgba(139,149,163,.5);
+}
+.srv__title{
+  font-family:var(--font-d);
+  text-transform:uppercase;
+  font-size:clamp(1.35rem,2vw,1.8rem);
+  line-height:1.06;
+  letter-spacing:.015em;
+}
+.srv__text{color:var(--steel);font-size:.88rem;line-height:1.72}
+.srv__meta{
+  margin-top:auto;padding-top:16px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 10px;
+  background:rgba(230,57,70,.1);
+  border:1px solid rgba(230,57,70,.32);
+  color:#ff8a93;
+  font-size:.57rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.badge i{font-size:.85em}
+.badge--steel{
+  background:rgba(139,149,163,.08);
+  border-color:var(--line-mid);
+  color:var(--steel);
+}
+.badge--steel i{color:var(--accent)}
+
+/* ============ 8. ABOUT ============ */
+.about{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(30px,4.5vw,64px);
+  align-items:start;
+}
+.about > *{min-width:0}
+@media (min-width:1000px){
+  .about{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+}
+.about__text p{
+  color:var(--steel);
+  font-size:.98rem;line-height:1.82;
+  margin-top:18px;
+  max-width:58ch;
+}
+.about__text p strong{color:var(--text);font-weight:600}
+.about__quote{
+  margin-top:clamp(24px,3vw,36px);
+  padding:clamp(18px,2.4vw,26px);
+  border-left:2px solid var(--accent);
+  background:linear-gradient(90deg,rgba(230,57,70,.07),transparent 80%);
+  font-family:var(--font-d);
+  font-size:clamp(1.25rem,1.9vw,1.65rem);
+  line-height:1.15;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+.adv{
+  display:grid;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:clamp(24px,3vw,34px);
+}
+@media (min-width:620px){.adv{grid-template-columns:1fr 1fr}}
+.adv__item{
+  background:var(--bg);
+  padding:18px 20px;
+  display:flex;gap:13px;align-items:flex-start;
+  transition:background .3s var(--ease);
+}
+.adv__item:hover{background:var(--bg-panel)}
+.adv__item i{color:var(--accent);font-size:.95rem;margin-top:3px}
+.adv__item b{
+  display:block;
+  font-size:.78rem;font-weight:600;letter-spacing:.05em;
+  color:var(--text);margin-bottom:2px;
+}
+.adv__item span{font-size:.76rem;color:var(--steel);line-height:1.55;display:block}
+/* figure stats block */
+.about__panel{
+  position:relative;
+  border:1px solid var(--line-mid);
+  background:
+    linear-gradient(150deg,rgba(139,149,163,.08),rgba(13,17,23,0) 55%),
+    var(--bg-panel);
+  padding:clamp(22px,3vw,34px);
+  overflow:hidden;
+}
+.about__panel::before{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(135deg,rgba(139,149,163,.05) 0 1px,transparent 1px 12px);
+  pointer-events:none;
+}
+.about__panel > *{position:relative;z-index:1}
+.about__panel .sec-label{margin-bottom:18px}
+.figures{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-bottom:22px;
+}
+.figure{
+  background:rgba(8,11,16,.6);
+  padding:clamp(16px,2.4vw,24px);
+  transition:background .3s var(--ease);
+}
+.figure:hover{background:rgba(230,57,70,.06)}
+.figure__num{
+  font-family:var(--font-d);
+  font-size:clamp(2rem,3.4vw,2.9rem);
+  line-height:.9;
+  color:var(--text);
+}
+.figure__num b{color:var(--accent);font-weight:400}
+.figure__cap{
+  margin-top:7px;
+  font-size:.6rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel);
+  line-height:1.5;
+}
+.about__panel .p-card__link{margin-top:4px}
+.about__panel hr{border:0;height:1px;background:var(--line);margin:20px 0}
+.about__panel p{
+  font-size:.82rem;color:var(--steel);line-height:1.7;
+}
+
+/* ============ 9. CERTIFICATES ============ */
+.certs{
+  display:grid;
+  gap:clamp(12px,1.4vw,18px);
+  grid-template-columns:1fr;
+}
+@media (min-width:560px){.certs{grid-template-columns:1fr 1fr}}
+@media (min-width:900px){.certs{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1280px){.certs{grid-template-columns:repeat(5,1fr)}}
+.cert{
+  position:relative;
+  display:flex;flex-direction:column;
+  background:var(--bg-panel);
+  border:1px solid var(--line);
+  padding:clamp(20px,2.4vw,26px);
+  min-height:190px;
+  transition:border-color .35s var(--ease),transform .35s var(--ease),background .35s var(--ease);
+  overflow:hidden;
+}
+.cert::before{
+  content:"";position:absolute;left:0;top:0;width:2px;height:0;
+  background:var(--accent);
+  transition:height .4s var(--ease);
+}
+.cert:hover{
+  border-color:rgba(230,57,70,.45);
+  transform:translateY(-4px);
+  background:var(--bg-panel-2);
+}
+.cert:hover::before{height:100%}
+.cert__icon{
+  font-size:1.5rem;
+  color:var(--accent);
+  margin-bottom:auto;
+}
+.cert__kind{
+  margin-top:24px;
+  font-size:.55rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(139,149,163,.75);
+}
+.cert__name{
+  font-family:var(--font-d);
+  text-transform:uppercase;
+  font-size:1.28rem;line-height:1.06;
+  letter-spacing:.03em;
+  margin:6px 0 8px;
+}
+.cert__meta{
+  font-size:.71rem;color:var(--steel);line-height:1.5;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.cert__meta a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--steel);
+  font-size:.6rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  white-space:nowrap;
+}
+.cert__meta a:hover{color:var(--accent)}
+.cert__meta i{font-size:.75em}
+
+/* ============ 10. EXPO ============ */
+.expo-sec{padding-block:clamp(56px,7vw,96px)}
+.expo{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:clamp(22px,3.4vw,48px);
+  padding:clamp(24px,4vw,48px);
+  background:
+    radial-gradient(700px 320px at 88% 12%,rgba(230,57,70,.22),transparent 62%),
+    linear-gradient(120deg,#121822,#0b0f15 62%);
+  border:1px solid var(--line-mid);
+  overflow:hidden;
+}
+.expo::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:repeating-linear-gradient(90deg,var(--accent) 0 26px,transparent 26px 52px);
+  opacity:.9;
+}
+.expo::after{
+  content:"";position:absolute;right:-40px;bottom:-40px;
+  width:220px;height:220px;
+  background:repeating-linear-gradient(135deg,rgba(139,149,163,.14) 0 1px,transparent 1px 12px);
+  opacity:.6;pointer-events:none;
+}
+@media (min-width:900px){
+  .expo{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);align-items:center}
+}
+.expo > *{min-width:0}
+.expo__body{position:relative;z-index:1}
+.expo__tag{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:6px 11px;
+  border:1px solid rgba(230,57,70,.4);
+  background:rgba(230,57,70,.1);
+  color:#ff9aa2;
+  font-size:.58rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.expo__title{
+  font-family:var(--font-d);
+  text-transform:uppercase;
+  font-size:clamp(1.62rem,4.4vw,3.6rem);
+  line-height:.96;
+  letter-spacing:.01em;
+  margin-bottom:14px;
+}
+.expo__title em{font-style:normal;color:var(--accent)}
+.expo__sub{
+  color:var(--steel);font-size:.92rem;line-height:1.7;
+  max-width:56ch;
+}
+.expo__sub b{color:var(--text);font-weight:600}
+.expo__aside{
+  position:relative;z-index:1;
+  border-left:1px solid var(--line-mid);
+  padding-left:clamp(18px,2.6vw,32px);
+}
+@media (max-width:899px){
+  .expo__aside{border-left:0;border-top:1px solid var(--line-mid);padding-left:0;padding-top:22px}
+}
+.expo__date{
+  font-family:var(--font-d);
+  font-size:clamp(2.6rem,5.4vw,4.2rem);
+  line-height:.9;
+  color:var(--text);
+}
+.expo__date small{
+  display:block;
+  font-family:var(--font-b);
+  font-size:.62rem;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+.expo__place{
+  margin-top:16px;
+  font-size:.78rem;color:var(--steel);line-height:1.7;
+}
+.expo__place strong{color:var(--text);font-weight:600;display:block;margin-bottom:2px}
+.expo .btn{margin-top:22px}
+
+/* ============ 11. CONTACTS ============ */
+.contacts{
+  display:grid;
+  gap:clamp(22px,3.4vw,46px);
+}
+@media (min-width:1000px){
+  .contacts{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+}
+.contact-list{
+  display:grid;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:24px;
+}
+.contact-row{
+  background:var(--bg);
+  padding:18px 20px;
+  display:flex;gap:14px;align-items:flex-start;
+  transition:background .3s var(--ease);
+}
+.contact-row:hover{background:var(--bg-panel)}
+.contact-row i{
+  width:34px;height:34px;flex:none;
+  display:grid;place-items:center;
+  border:1px solid var(--line-mid);
+  color:var(--accent);
+  font-size:.82rem;
+}
+.contact-row div{min-width:0}
+.contact-row dt{
+  font-size:.58rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--steel);margin-bottom:3px;
+}
+.contact-row dd{
+  margin:0;
+  font-size:.94rem;color:var(--text);line-height:1.5;
+  overflow-wrap:anywhere;
+}
+.contact-row dd a:hover{color:var(--accent)}
+.contact-row dd small{display:block;color:var(--steel);font-size:.72rem;margin-top:3px}
+.managers{
+  display:grid;
+  gap:clamp(12px,1.6vw,18px);
+}
+@media (min-width:640px){.managers{grid-template-columns:1fr 1fr}}
+.mgr{
+  position:relative;
+  display:flex;flex-direction:column;
+  background:
+    linear-gradient(160deg,rgba(139,149,163,.07),transparent 55%),
+    var(--bg-panel);
+  border:1px solid var(--line);
+  padding:clamp(20px,2.6vw,28px);
+  transition:border-color .35s var(--ease),transform .35s var(--ease);
+}
+.mgr:hover{border-color:rgba(230,57,70,.45);transform:translateY(-3px)}
+.mgr__head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.mgr__ava{
+  width:50px;height:50px;flex:none;
+  display:grid;place-items:center;
+  background:rgba(230,57,70,.12);
+  border:1px solid rgba(230,57,70,.32);
+  color:#ff8a93;
+  font-family:var(--font-d);
+  font-size:1.3rem;letter-spacing:.04em;
+}
+.mgr__name{
+  font-family:var(--font-d);
+  font-size:clamp(1.12rem,1.5vw,1.25rem);line-height:1.08;
+  letter-spacing:.02em;text-transform:uppercase;
+}
+.mgr__role{
+  font-size:.58rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--steel);margin-top:6px;
+}
+.mgr__phone{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-d);
+  font-size:clamp(1.35rem,2vw,1.6rem);
+  letter-spacing:.03em;
+  color:var(--text);
+  margin-bottom:16px;
+  transition:color .25s var(--ease);
+}
+.mgr__phone i{color:var(--accent);font-size:.72em}
+.mgr__phone:hover{color:var(--accent)}
+.mgr__actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.mgr__actions .btn{padding:11px 16px;font-size:.62rem;letter-spacing:.14em}
+.vk-card{
+  grid-column:1/-1;
+  display:flex;align-items:center;gap:16px;
+  padding:16px 20px;
+  border:1px solid var(--line-mid);
+  background:rgba(8,11,16,.5);
+  transition:border-color .3s var(--ease),background .3s var(--ease);
+}
+.vk-card:hover{border-color:var(--accent);background:rgba(230,57,70,.06)}
+.vk-card i{
+  font-size:1.35rem;color:var(--accent);flex:none;
+}
+.vk-card b{display:block;font-size:.88rem;font-weight:600}
+.vk-card span{font-size:.7rem;color:var(--steel);letter-spacing:.04em}
+.vk-card .vk-card__arrow{margin-left:auto;color:var(--steel);font-size:.8rem}
+
+/* ============ 12. FOOTER ============ */
+.site-footer{
+  border-top:1px solid var(--line-mid);
+  background:var(--bg-deep);
+  padding-top:clamp(40px,5vw,64px);
+}
+.foot-grid{
+  display:grid;
+  gap:clamp(26px,4vw,48px);
+  padding-bottom:clamp(30px,4vw,48px);
+}
+@media (min-width:820px){
+  .foot-grid{grid-template-columns:1.4fr .8fr .8fr 1.1fr}
+}
+.foot-brand .brand{padding-block:0;margin-bottom:18px}
+.foot-brand p{
+  color:var(--steel);font-size:.8rem;line-height:1.75;
+  max-width:34ch;
+}
+.foot-col h3{
+  font-size:.62rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text);margin:0 0 16px;
+}
+.foot-col ul{display:grid;gap:10px}
+.foot-col a,.foot-col li{
+  color:var(--steel);font-size:.8rem;line-height:1.55;
+  transition:color .24s var(--ease);
+}
+.foot-col a:hover{color:var(--accent)}
+.foot-bottom{
+  border-top:1px solid var(--line);
+  padding-block:20px;
+  display:flex;flex-wrap:wrap;gap:12px 24px;
+  align-items:center;justify-content:space-between;
+  font-size:.68rem;color:rgba(139,149,163,.8);
+}
+.foot-bottom a{color:var(--steel)}
+.foot-bottom a:hover{color:var(--accent)}
+.to-top{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.62rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel);
+  transition:color .25s var(--ease);
+}
+.to-top:hover{color:var(--accent)}
+.to-top i{font-size:.75em}
+
+/* ============ 13. MISC ============ */
+.skip{
+  position:absolute;left:-9999px;top:0;
+  z-index:200;
+  padding:12px 18px;
+  background:var(--accent);color:#0d1117;
+  font-weight:700;font-size:.75rem;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.skip:focus{left:12px;top:12px}
+.section-id{position:absolute;top:0}
+@media (max-width:600px){
+  .hero__eyebrow{
+    flex-direction:column;align-items:flex-start;gap:12px;
+    letter-spacing:.22em;
+  }
+  .hero__eyebrow em{letter-spacing:.14em;line-height:1.7;font-size:.63rem}
+  .hero__actions{flex-direction:column;align-items:stretch}
+  .hero__actions .btn{width:100%}
+  .hero__note{font-size:.6rem;letter-spacing:.1em;line-height:1.6}
+  .btn{padding:15px 20px;white-space:normal;line-height:1.45}
+}
+@media (max-width:480px){
+  .p-card__title{font-size:1.3rem;line-height:1.06}
+}
+@media (prefers-reduced-motion:reduce){
+  .p-card:hover,.cert:hover,.mgr:hover,.btn--primary:hover{transform:none}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#products">Перейти к содержанию</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Открыть меню">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="МобилМаш — на главную">
+      <span class="brand__mark" aria-hidden="true">М</span>
+      <span class="brand__text">
+        <span class="brand__name">МобилМаш</span>
+        <span class="brand__sub">Буровое оборудование</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#products">Продукция</a>
+      <a href="#services">Услуги</a>
+      <a href="#about">О компании</a>
+      <a href="#certs">Сертификаты</a>
+      <a href="#expo">Выставка</a>
+      <a href="#contacts">Контакты</a>
+      <a class="nav-cta" href="#contacts"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Запросить расчёт</a>
+    </nav>
+
+    <label class="burger" for="nav-toggle" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <span class="hero__ribbon" aria-hidden="true">Екатеринбург · Урал · Россия</span>
+
+    <div class="wrap hero__inner">
+      <div class="hero__eyebrow">
+        <span><i class="fa-solid fa-industry" aria-hidden="true"></i> МобилМаш</span>
+        <em>Производство · Инжиниринг · Сервис</em>
+      </div>
+
+      <h1 class="hero__title" id="hero-title">
+        <span class="line">Буровое</span>
+        <span class="line">оборудование</span>
+        <span class="line">для <span class="accent">сложных</span> задач</span>
+      </h1>
+
+      <div class="hero__grid">
+        <div>
+          <p class="hero__lead">
+            Проектируем, производим и модернизируем буровые установки и нефтегазопромысловое
+            оборудование. <strong>Полный цикл — от технического задания до сервиса 24/7</strong>
+            на месторождениях России и ЕАЭС.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#products">
+              Смотреть продукцию <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn--ghost" href="#contacts">
+              Запросить расчёт <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="hero__note">
+            <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+            ISO 9001 · ЕАЭС · «Сделано в России»
+          </div>
+        </div>
+
+        <aside class="hero__spec" aria-label="Краткие данные о компании">
+          <dl>
+            <div>
+              <dt>Год основания</dt>
+              <dd>2018<small>Екатеринбург</small></dd>
+            </div>
+            <div>
+              <dt>Клиенты</dt>
+              <dd>120+<small>Россия и ЕАЭС</small></dd>
+            </div>
+            <div>
+              <dt>Сервис</dt>
+              <dd>24/7<small>Выезд на месторождение</small></dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="hero__stats">
+        <div class="stat">
+          <div class="stat__num">2018</div>
+          <div class="stat__label">Год основания<br>предприятия</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">120<b>+</b></div>
+          <div class="stat__label">Клиентов<br>в отрасли</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">15</div>
+          <div class="stat__label">Наград<br>и премий</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">24/7</div>
+          <div class="stat__label">Сервис<br>и поддержка</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <div class="ticker__group">
+        <span>Роторы РБ-250 · РБ-410 · РБ-80Х400</span>
+        <span>Ротор РБУ-560</span>
+        <span>Захват клиньевой пневматический</span>
+        <span>Вертлюги · Лебёдки · Элеваторы</span>
+        <span>Ключи · Спайдеры · Крюки</span>
+        <span>Реинжиниринг и локализация</span>
+      </div>
+      <div class="ticker__group">
+        <span>Роторы РБ-250 · РБ-410 · РБ-80Х400</span>
+        <span>Ротор РБУ-560</span>
+        <span>Захват клиньевой пневматический</span>
+        <span>Вертлюги · Лебёдки · Элеваторы</span>
+        <span>Ключи · Спайдеры · Крюки</span>
+        <span>Реинжиниринг и локализация</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PRODUCTS ============ -->
+  <section class="sec" id="products" aria-labelledby="products-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label"><b>01</b> / Продукция</div>
+          <h2 class="title" id="products-title">Оборудование<br>для <em>бурения</em> и ремонта</h2>
+        </div>
+        <p class="lead">
+          Три направления поставок: буровые установки, нефтегазопромысловое оборудование
+          и инструмент, узлы и запасные части. Серийные позиции и изготовление по ТЗ заказчика.
+        </p>
+      </div>
+
+      <div class="products">
+
+        <!-- 1 -->
+        <article class="p-card p-card--a">
+          <div class="p-card__top">
+            <div class="p-card__icon"><i class="fa-solid fa-oil-well" aria-hidden="true"></i></div>
+            <div class="p-card__idx">01 /</div>
+          </div>
+          <h3 class="p-card__title">Буровые установки</h3>
+          <p class="p-card__desc">
+            Для бурения и ремонта скважин: стационарные и мобильные решения, агрегаты под
+            конкретные горно-геологические условия.
+          </p>
+          <ul class="p-list">
+            <li>Буровые установки для бурения скважин</li>
+            <li>Установки для ремонта и освоения скважин</li>
+            <li>Мобильные и модульные компоновки</li>
+            <li>Комплектация под ТЗ заказчика</li>
+            <li><span>Мачта, лебёдка, ротор, привод</span></li>
+            <li><span>Шефмонтаж и пусконаладка</span></li>
+          </ul>
+          <div class="p-card__foot">
+            <span class="tag"><i class="fa-solid fa-gears" aria-hidden="true"></i> Под заказ</span>
+            <a class="p-card__link" href="#contacts">Запросить <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="p-card p-card--b">
+          <div class="p-card__top">
+            <div class="p-card__icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+            <div class="p-card__idx">02 /</div>
+          </div>
+          <h3 class="p-card__title">Нефтегазопромысловое оборудование и инструменты</h3>
+          <p class="p-card__desc">
+            Роторы, вертлюги, лебёдки, элеваторы, ключи, спайдеры, крюки и трубы — серийное
+            производство и поставка запасных позиций.
+          </p>
+          <ul class="p-list p-list--cols">
+            <li>Роторы РБ-250, РБ-410</li>
+            <li>Роторы РБ-80Х400, РБУ-560</li>
+            <li>Ротор РБ-80Х400 с реверсивным редуктором</li>
+            <li>Установка ротора РБ-410 гидроприводная</li>
+            <li>Захват клиньевой пневматический РБУ-560.35.00.000 В</li>
+            <li>Вертлюги, лебёдки, элеваторы</li>
+            <li>Ключи, спайдеры, крюки</li>
+            <li>Трубы бурильные и обсадные</li>
+          </ul>
+          <div class="p-card__foot">
+            <span class="tag"><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> Серийно и под заказ</span>
+            <a class="p-card__link" href="#contacts">Каталог <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="p-card p-card--c">
+          <div class="p-card__body">
+            <div class="p-card__intro">
+              <div class="p-card__top">
+                <div class="p-card__icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+                <div class="p-card__idx">03 /</div>
+              </div>
+              <h3 class="p-card__title">Узлы и запасные части</h3>
+              <div class="chips">
+                <span>Редукторы</span>
+                <span>Приводы</span>
+                <span>Уплотнения</span>
+                <span>Подшипниковые узлы</span>
+                <span>Метизы</span>
+              </div>
+            </div>
+            <div class="p-card__detail">
+              <p class="p-card__desc">
+                Поставка узлов и быстроизнашиваемых деталей к оборудованию собственного
+                производства и импортным аналогам. Подбор по чертежу, маркировке или образцу.
+              </p>
+              <ul class="p-list">
+                <li>Оригинальные узлы</li>
+                <li>Импортозамещение</li>
+                <li>Срок поставки от 5 дней</li>
+              </ul>
+            </div>
+            <a class="p-card__link" href="#contacts">Подобрать <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="sec" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label"><b>02</b> / Услуги</div>
+          <h2 class="title" id="services-title">Инжиниринг<br>и <em>сервис</em></h2>
+        </div>
+        <p class="lead">
+          От экспертизы технического проекта до модернизации оборудования на месторождении.
+          Работаем с требованиями Минпромторга России и программами локализации.
+        </p>
+      </div>
+
+      <div class="services">
+        <article class="srv">
+          <div class="srv__head">
+            <div class="srv__icon"><i class="fa-solid fa-stamp" aria-hidden="true"></i></div>
+            <div class="srv__no">01 /</div>
+          </div>
+          <h3 class="srv__title">Экспертиза ТПП и локализация</h3>
+          <p class="srv__text">
+            Подготовка документов для подтверждения производства в России: экспертиза
+            Торгово-промышленной палаты, подтверждение локализации, работа с требованиями
+            Минпромторга России.
+          </p>
+          <div class="srv__meta">
+            <span class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Минпромторг</span>
+            <span class="badge badge--steel"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> ТПП</span>
+          </div>
+        </article>
+
+        <article class="srv">
+          <div class="srv__head">
+            <div class="srv__icon"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i></div>
+            <div class="srv__no">02 /</div>
+          </div>
+          <h3 class="srv__title">Проектирование по ТЗ</h3>
+          <p class="srv__text">
+            Разработка конструкторской документации под конкретные условия эксплуатации,
+            реинжиниринг импортного оборудования и создание аналогов с улучшенными
+            характеристиками.
+          </p>
+          <div class="srv__meta">
+            <span class="badge badge--steel"><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> По ТЗ</span>
+            <span class="badge badge--steel"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Реинжиниринг</span>
+          </div>
+        </article>
+
+        <article class="srv">
+          <div class="srv__head">
+            <div class="srv__icon"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></div>
+            <div class="srv__no">03 /</div>
+          </div>
+          <h3 class="srv__title">Модернизация и ремонт</h3>
+          <p class="srv__text">
+            Восстановление работоспособности роторов, лебёдок и приводов, замена узлов,
+            дооснащение оборудованием и модернизация под новые технологические задачи.
+          </p>
+          <div class="srv__meta">
+            <span class="badge badge--steel"><i class="fa-solid fa-wrench" aria-hidden="true"></i> Ремонт</span>
+            <span class="badge badge--steel"><i class="fa-solid fa-arrow-up-right-dots" aria-hidden="true"></i> Апгрейд</span>
+          </div>
+        </article>
+
+        <article class="srv">
+          <div class="srv__head">
+            <div class="srv__icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
+            <div class="srv__no">04 /</div>
+          </div>
+          <h3 class="srv__title">Сервис 24/7</h3>
+          <p class="srv__text">
+            Круглосуточная техническая поддержка, выезд специалистов на объект, пусконаладка,
+            обучение персонала и складское обеспечение запасными частями.
+          </p>
+          <div class="srv__meta">
+            <span class="badge"><i class="fa-solid fa-clock" aria-hidden="true"></i> 24/7</span>
+            <span class="badge badge--steel"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Выезд</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="sec" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about">
+        <div class="about__text">
+          <div class="sec-label"><b>03</b> / О компании</div>
+          <h2 class="title" id="about-title">Уральская<br>школа <em>машиностроения</em></h2>
+          <p>
+            <strong>«МобилМаш»</strong> — екатеринбургское предприятие, основанное в 2018 году.
+            Мы специализируемся на буровом оборудовании и нефтегазопромысловом инструменте
+            для сложных условий эксплуатации.
+          </p>
+          <p>
+            Собственная конструкторская служба и производственная база позволяют вести проект
+            от эскиза до серийной партии: проектирование по ТЗ, реинжиниринг, изготовление,
+            испытания, модернизация и сервисное сопровождение.
+          </p>
+
+          <div class="about__quote">
+            Сложные задачи —<br>наша штатная работа
+          </div>
+
+          <div class="adv">
+            <div class="adv__item">
+              <i class="fa-solid fa-compass-drafting" aria-hidden="true"></i>
+              <div><b>Собственное КБ</b><span>Проектирование и реинжиниринг под ТЗ</span></div>
+            </div>
+            <div class="adv__item">
+              <i class="fa-solid fa-industry" aria-hidden="true"></i>
+              <div><b>Полный цикл</b><span>От чертежа до пусконаладки</span></div>
+            </div>
+            <div class="adv__item">
+              <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+              <div><b>Подтверждённое качество</b><span>ISO 9001, ЕАЭС, «Сделано в России»</span></div>
+            </div>
+            <div class="adv__item">
+              <i class="fa-solid fa-headset" aria-hidden="true"></i>
+              <div><b>Сервис 24/7</b><span>Реакция в течение часа</span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="about__panel" aria-label="Ключевые показатели">
+          <div class="sec-label">В цифрах</div>
+          <div class="figures">
+            <div class="figure">
+              <div class="figure__num">2018</div>
+              <div class="figure__cap">Год основания</div>
+            </div>
+            <div class="figure">
+              <div class="figure__num">120<b>+</b></div>
+              <div class="figure__cap">Клиентов</div>
+            </div>
+            <div class="figure">
+              <div class="figure__num">15</div>
+              <div class="figure__cap">Наград и премий</div>
+            </div>
+            <div class="figure">
+              <div class="figure__num">24/7</div>
+              <div class="figure__cap">Сервисная поддержка</div>
+            </div>
+          </div>
+          <p>
+            Поставляем оборудование предприятиям ТЭК, буровым подрядчикам и ремонтным
+            управлениям. Работаем по договору с полным комплектом документов.
+          </p>
+          <hr>
+          <a class="p-card__link" href="#certs">Сертификаты и допуски <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATES ============ -->
+  <section class="sec" id="certs" aria-labelledby="certs-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label"><b>04</b> / Сертификаты</div>
+          <h2 class="title" id="certs-title">Документы<br>и <em>допуски</em></h2>
+        </div>
+        <p class="lead">
+          Продукция и система менеджмента подтверждены сертификатами ЕАЭС, ISO 9001,
+          промышленной безопасности и знаком «Сделано в России».
+        </p>
+      </div>
+
+      <div class="certs">
+        <article class="cert">
+          <div class="cert__icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div>
+          <div class="cert__kind">ЕАЭС</div>
+          <h3 class="cert__name">Сертификаты ЕАЭС</h3>
+          <div class="cert__meta">
+            <span>ТР ТС</span>
+            <a href="../certs/eae-tip-produkcii.pdf" target="_blank" rel="noopener">PDF <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="cert">
+          <div class="cert__icon"><i class="fa-solid fa-medal" aria-hidden="true"></i></div>
+          <div class="cert__kind">ISO 9001:2015</div>
+          <h3 class="cert__name">Менеджмент качества</h3>
+          <div class="cert__meta">
+            <span>Действует до 2028</span>
+            <a href="../certs/iso-9001-2028.pdf" target="_blank" rel="noopener">PDF <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="cert">
+          <div class="cert__icon"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i></div>
+          <div class="cert__kind">Промышленная безопасность</div>
+          <h3 class="cert__name">Допуск к работам</h3>
+          <div class="cert__meta">
+            <span>Действует до 2028</span>
+            <a href="../certs/prom-bezopasnost-2028.pdf" target="_blank" rel="noopener">PDF <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="cert">
+          <div class="cert__icon"><i class="fa-solid fa-flag" aria-hidden="true"></i></div>
+          <div class="cert__kind">Реестр Минпромторга</div>
+          <h3 class="cert__name">Сделано в России</h3>
+          <div class="cert__meta">
+            <span>№ СС004509</span>
+            <a href="../certs/sdelano-v-rossii.pdf" target="_blank" rel="noopener">PDF <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="cert">
+          <div class="cert__icon"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i></div>
+          <div class="cert__kind">Оборудование ТЭК</div>
+          <h3 class="cert__name">Сертификат соответствия</h3>
+          <div class="cert__meta">
+            <span>Действует до 2029</span>
+            <a href="../certs/sertifikat-sootvetstviya-2029.pdf" target="_blank" rel="noopener">PDF <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPO ============ -->
+  <section class="sec expo-sec" id="expo" aria-labelledby="expo-title">
+    <div class="wrap">
+      <div class="expo">
+        <div class="expo__body">
+          <span class="expo__tag"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> МобилМаш участвует</span>
+          <h2 class="expo__title" id="expo-title">Металлообработка.<br>Сварка — <em>2027</em></h2>
+          <p class="expo__sub">
+            Международная промышленная выставка в <b>Екатеринбурге</b>. Приглашаем партнёров
+            и заказчиков обсудить проекты, локализацию и поставки оборудования на стенде компании.
+          </p>
+        </div>
+        <div class="expo__aside">
+          <div class="expo__date">
+            <small>Март 2027</small>
+            16–19
+          </div>
+          <div class="expo__place">
+            <strong>МВЦ «Екатеринбург-ЭКСПО»</strong>
+            Екатеринбург, Экспо бульвар, 2<br>
+            Металлообработка и сварка
+          </div>
+          <a class="btn btn--primary" href="#contacts">
+            Запланировать встречу <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTS ============ -->
+  <section class="sec" id="contacts" aria-labelledby="contacts-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-label"><b>05</b> / Контакты</div>
+          <h2 class="title" id="contacts-title">Обсудим<br>вашу <em>задачу</em></h2>
+        </div>
+        <p class="lead">
+          Позвоните менеджеру или напишите — подберём оборудование, рассчитаем стоимость
+          и сроки. Работаем с юридическими лицами по договору.
+        </p>
+      </div>
+
+      <div class="contacts">
+        <div>
+          <div class="sec-label"><b>Офис</b> / Екатеринбург</div>
+          <dl class="contact-list">
+            <div class="contact-row">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <div>
+                <dt>Адрес</dt>
+                <dd>г. Екатеринбург, Свердловская область<small>Отгрузка со склада в Екатеринбурге</small></dd>
+              </div>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              <div>
+                <dt>Режим работы</dt>
+                <dd>Пн–Пт: 09:00–18:00<small>Сервисная линия — круглосуточно</small></dd>
+              </div>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+              <div>
+                <dt>Запросы и КП</dt>
+                <dd>ТЗ и опросные листы — менеджерам<small>Ответим в течение рабочего дня</small></dd>
+              </div>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-globe" aria-hidden="true"></i>
+              <div>
+                <dt>Регионы поставок</dt>
+                <dd>Россия и страны ЕАЭС<small>Доставка до объекта</small></dd>
+              </div>
+            </div>
+          </dl>
+        </div>
+
+        <div class="managers">
+          <article class="mgr">
+            <div class="mgr__head">
+              <div class="mgr__ava" aria-hidden="true">СН</div>
+              <div>
+                <h3 class="mgr__name">Станислав</h3>
+                <div class="mgr__role">Менеджер по продажам</div>
+              </div>
+            </div>
+            <a class="mgr__phone" href="tel:+79024781996">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> +7 902 478-19-96
+            </a>
+            <div class="mgr__actions">
+              <a class="btn btn--ghost" href="tel:+79024781996">Позвонить</a>
+              <a class="btn btn--ghost" href="https://vk.com/mobilmash_group" target="_blank" rel="noopener">Написать</a>
+            </div>
+          </article>
+
+          <article class="mgr">
+            <div class="mgr__head">
+              <div class="mgr__ava" aria-hidden="true">ИВ</div>
+              <div>
+                <h3 class="mgr__name">Иван</h3>
+                <div class="mgr__role">Менеджер по продажам</div>
+              </div>
+            </div>
+            <a class="mgr__phone" href="tel:+79630181851">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> +7 963 018-18-51
+            </a>
+            <div class="mgr__actions">
+              <a class="btn btn--ghost" href="tel:+79630181851">Позвонить</a>
+              <a class="btn btn--ghost" href="https://vk.com/mobilmash_group" target="_blank" rel="noopener">Написать</a>
+            </div>
+          </article>
+
+          <a class="vk-card" href="https://vk.com/mobilmash_group" target="_blank" rel="noopener">
+            <i class="fa-brands fa-vk" aria-hidden="true"></i>
+            <span>
+              <b>ВКонтакте — @mobilmash_group</b>
+              <span>Новости производства, выставки и оборудование</span>
+            </span>
+            <i class="fa-solid fa-arrow-up-right-from-square vk-card__arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="МобилМаш — на главную">
+          <span class="brand__mark" aria-hidden="true">М</span>
+          <span class="brand__text">
+            <span class="brand__name">МобилМаш</span>
+            <span class="brand__sub">Буровое оборудование</span>
+          </span>
+        </a>
+        <p>
+          Производство и инжиниринг бурового оборудования, нефтегазопромыслового инструмента
+          и запасных частей. Екатеринбург, с 2018 года.
+        </p>
+      </div>
+
+      <nav class="foot-col" aria-label="Разделы сайта">
+        <h3>Разделы</h3>
+        <ul>
+          <li><a href="#products">Продукция</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#about">О компании</a></li>
+          <li><a href="#certs">Сертификаты</a></li>
+          <li><a href="#expo">Выставка</a></li>
+        </ul>
+      </nav>
+
+      <div class="foot-col">
+        <h3>Продукция</h3>
+        <ul>
+          <li><a href="#products">Буровые установки</a></li>
+          <li><a href="#products">Роторы РБ-250, РБ-410</a></li>
+          <li><a href="#products">Роторы РБ-80Х400, РБУ-560</a></li>
+          <li><a href="#products">Вертлюги, лебёдки</a></li>
+          <li><a href="#products">Узлы и запчасти</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h3>Контакты</h3>
+        <ul>
+          <li><a href="tel:+79024781996">+7 902 478-19-96</a></li>
+          <li><a href="tel:+79630181851">+7 963 018-18-51</a></li>
+          <li><a href="https://vk.com/mobilmash_group" target="_blank" rel="noopener">@mobilmash_group</a></li>
+          <li><a href="https://vk.com/mobilmash_group" target="_blank" rel="noopener">ВКонтакте</a></li>
+          <li>Екатеринбург</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 «МобилМаш». Все права защищены.</span>
+      <a class="to-top" href="#top">Наверх <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

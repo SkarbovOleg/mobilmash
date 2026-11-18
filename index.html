@@ -1271,10 +1271,10 @@
         }
         .modal-content {
             background: var(--modal-bg);
-            max-width: 520px;
+            max-width: 740px;
             width: 92%;
             border-radius: 16px;
-            padding: 28px;
+            padding: 34px;
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
@@ -1472,7 +1472,7 @@
                 padding: 24px;
             }
             .modal-content {
-                padding: 20px;
+                padding: 24px;
             }
             .about-grid {
                 grid-template-columns: 1fr;
@@ -1584,6 +1584,23 @@
         .catalog-tab:hover { border-color: var(--color-red); color: var(--color-red); }
         .catalog-tab.active { background: #111; color: #fff; border-color: #111; }
         .card-desc { color: var(--text-muted); font-size: 12.5px; line-height: 1.4; margin-top: 4px; }
+        .product-img.service-icon { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #333); }
+        .product-img.service-icon i { font-size: 64px; color: #fff; }
+        .card-features { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+        .card-features li { font-size: 12px; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 999px; padding: 4px 10px; }
+        .qv-service-icon { display: flex; align-items: center; justify-content: center; height: 260px; border-radius: 12px; background: linear-gradient(135deg, #1a1a1a, #333); }
+        .qv-service-icon i { font-size: 96px; color: #fff; }
+        .qv-features { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+        .qv-features li { font-size: 13px; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 999px; padding: 6px 12px; }
+        .card-specs { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+        .card-specs li { font-size: 11.5px; color: var(--text-secondary); line-height: 1.35; border-bottom: 1px dashed var(--border-light); padding-bottom: 3px; }
+        .card-specs li:last-child { border-bottom: none; }
+        .qv-specs { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; }
+        .qv-spec { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; border-bottom: 1px solid var(--border-light); padding-bottom: 6px; }
+        .qv-spec span { color: var(--text-secondary); }
+        .qv-spec b { color: var(--text-primary); font-weight: 600; text-align: right; }
+        .spec-red { color: var(--color-red) !important; }
+        .card-subtitle { color: var(--color-red); font-weight: 600; font-size: 13px; margin-top: 2px; }
     </style>
 </head>
 <body>
@@ -1667,7 +1684,7 @@
             <div class="catalog-layout">
                 <aside class="catalog-sidebar" id="catalogSidebar">
                     <div class="cs-top">Продукция</div>
-                    <div class="cs-group open" data-cat="товары">
+                    <div class="cs-group open" data-cat="буровые">
                         <button class="cs-head" type="button">Буровые установки для бурения и ремонта скважин <i class="fas fa-chevron-down"></i></button>
                     </div>
                     <div class="cs-group" data-cat="нефтегаз">
@@ -1687,6 +1704,8 @@
                         <div class="cs-sub">
                             <button class="cs-item" type="button" data-type="Сертификация">Минпромторг — экспертиза ТПП, локализация</button>
                             <button class="cs-item" type="button" data-type="Проектирование">Проектирование по ТЗ (в т.ч. Реинжиниринг)</button>
+                            <button class="cs-item" type="button" data-type="Производство">Изготовление узлов и оборудования по КД</button>
+                            <button class="cs-item" type="button" data-type="Литьё">Литьевые заготовки (сталь, чугун, алюминий)</button>
                         </div>
                     </div>
                     <button class="cs-all" type="button" id="csAll">Показать всё</button>
@@ -1709,7 +1728,7 @@
                         </div>
                     </div>
 
-                    <div class="catalog-tabs" id="catalogTabs">
+                    <div class="catalog-tabs" id="catalogTabs" style="display:none;">
                         <button class="catalog-tab active" type="button">ВСЕ БУРОВЫЕ УСТАНОВКИ</button>
                         <button class="catalog-tab" type="button">УРБ 3А3</button>
                         <button class="catalog-tab" type="button">БА 15</button>
@@ -1843,54 +1862,6 @@
                         <i class="fas fa-rocket"></i>
                         <h3>Развитие</h3>
                         <p>Мы постоянно ищем новые решения, чтобы ваша работа была эффективнее и удобнее.</p>
-                    </div>
-                </div>
-
-                <div class="team-section">
-                    <h2>Наша команда</h2>
-                    <div class="team-grid">
-                        <div class="team-card">
-                            <div class="team-avatar"><i class="fas fa-user-tie"></i></div>
-                            <h4>Сарапулова Ирина Александровна</h4>
-                            <div class="team-role">Генеральный директор, основатель</div>
-                        </div>
-                        <div class="team-card">
-                            <div class="team-avatar"><i class="fas fa-user"></i></div>
-                            <h4>Алексей Морозов</h4>
-                            <div class="team-role">Исполнительный директор</div>
-                        </div>
-                        <div class="team-card">
-                            <div class="team-avatar"><i class="fas fa-user"></i></div>
-                            <h4>Елена Смирнова</h4>
-                            <div class="team-role">Руководитель отдела продаж</div>
-                        </div>
-                        <div class="team-card">
-                            <div class="team-avatar"><i class="fas fa-user"></i></div>
-                            <h4>Игорь Петров</h4>
-                            <div class="team-role">Главный инженер</div>
-                        </div>
-                        <div class="team-card">
-                            <div class="team-avatar"><i class="fas fa-user"></i></div>
-                            <h4>Мария Кузнецова</h4>
-                            <div class="team-role">Менеджер по работе с клиентами</div>
-                        </div>
-                        <div class="team-card">
-                            <div class="team-avatar"><i class="fas fa-user"></i></div>
-                            <h4>Дмитрий Волков</h4>
-                            <div class="team-role">Специалист по сервису</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="partners-section">
-                    <h2>Наши партнёры</h2>
-                    <div class="partners-grid">
-                        <div class="partner"><i class="fas fa-building"></i> ТехноСклад</div>
-                        <div class="partner"><i class="fas fa-building"></i> ЛогистикПро</div>
-                        <div class="partner"><i class="fas fa-building"></i> СтройМаш</div>
-                        <div class="partner"><i class="fas fa-building"></i> АгроТехника</div>
-                        <div class="partner"><i class="fas fa-building"></i> ПромРесурс</div>
-                        <div class="partner"><i class="fas fa-building"></i> СкладСервис</div>
                     </div>
                 </div>
 
@@ -2167,29 +2138,53 @@
                 name: "Погрузчик ММ-300", 
                 category: "товары", 
                 type: "Дизельный", 
-                imageData: "https://i.ibb.co/tPH667pc/c-Zp-KUra-G-Cn1o-W1kz-Ug-APP8j1-OYDnbnrii-ZLy1-AZvc9i-Haeflq-HTQc-JYuu-SI1-T2-Ok-Dj-F1-X7pa-VPu-Vzq-BGYMF.jpg"
+                imageData: "https://i.ibb.co/tPH667pc/c-Zp-KUra-G-Cn1o-W1kz-Ug-APP8j1-OYDnbnrii-ZLy1-AZvc9i-Haeflq-HTQc-JYuu-SI1-T2-Ok-Dj-F1-X7pa-VPu-Vzq-BGYMF.jpg",
+                icon: "fa-truck"
             },
-            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", imageData: "" },
-            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", imageData: "" },
-            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", imageData: "" },
-            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", imageData: "" },
-            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", imageData: "" },
-            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", imageData: "" },
-            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", imageData: "" },
-            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", imageData: "" },
-            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "" },
-            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "" },
-            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "" },
-            { id: 101, name: "Захват клиньевой пневматический РБУ-560.35.00.000 В", category: "нефтегаз", type: "Захваты", price: 0, imageData: "" },
-            { id: 102, name: "Установка бурового ротора РБ-410 гидроприводная", category: "нефтегаз", type: "Установки", price: 0, imageData: "" },
-            { id: 103, name: "Ротор буровой универсальный РБУ-560", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 104, name: "Ротор буровой гидравлический РБ-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 105, name: "Ротор РБ-80Х400 с реверсивным редуктором", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 106, name: "Ротор буровой РБ-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 107, name: "Ротор буровой РБ-80Х400", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 108, name: "Ротор буровой РБ-410", category: "нефтегаз", type: "Роторы", price: 0, imageData: "" },
-            { id: 201, name: "Минпромторг", category: "проект", type: "Сертификация", price: 0, imageData: "", description: "Помощь в прохождении экспертизы ТПП, локализация и прочее." },
-            { id: 202, name: "Проектирование по ТЗ", category: "проект", type: "Проектирование", price: 0, imageData: "", description: "Проектирование по техническому заданию, в том числе реинжиниринг." }
+            { id: 2, name: "Штабелёр ММ-Эл", category: "товары", type: "Электрический", imageData: "", icon: "fa-pallet" },
+            { id: 3, name: "Ричтрак ММ-500", category: "товары", type: "Складской", imageData: "", icon: "fa-warehouse" },
+            { id: 4, name: "Тележка гидравл.", category: "товары", type: "Складская", imageData: "", icon: "fa-dolly" },
+            { id: 5, name: "Рампа складская", category: "товары", type: "Погрузка", imageData: "", icon: "fa-arrows-up-down" },
+            { id: 6, name: "Зарядная станция", category: "товары", type: "Литиевая", imageData: "", icon: "fa-bolt" },
+            { id: 7, name: "Техобслуживание", category: "услуги", type: "Сервис", imageData: "", icon: "fa-screwdriver-wrench" },
+            { id: 8, name: "Ремонт гидравлики", category: "услуги", type: "Ремонт", imageData: "", icon: "fa-wrench" },
+            { id: 9, name: "Обучение операторов", category: "услуги", type: "Обучение", imageData: "", icon: "fa-graduation-cap" },
+            { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "", icon: "fa-gear" },
+            { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "", icon: "fa-oil-can" },
+            { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "", icon: "fa-chair" },
+            { id: 101, name: "Захват клиньевой пневматический РБУ-560.35.00.000 В", category: "нефтегаз", type: "Захваты", price: 0, imageData: "", icon: "fa-hand" },
+            { id: 102, name: "Установка бурового ротора Р-410 гидроприводная", category: "нефтегаз", type: "Установки", price: 0, imageData: "", icon: "fa-industry" },
+            { id: 103, name: "Ротор буровой универсальный РБУ-560", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-fan" },
+            { id: 104, name: "Ротор буровой гидравлический Р-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-circle-notch" },
+            { id: 105, name: "Ротор Р-80Х400 с реверсивным редуктором", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-rotate" },
+            { id: 106, name: "Ротор буровой Р-250", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-fan" },
+            { id: 107, name: "Ротор буровой Р-80Х400", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-compact-disc" },
+            { id: 108, name: "Ротор буровой Р-410", category: "нефтегаз", type: "Роторы", price: 0, imageData: "img/rotor-r410.png", subtitle: "механическим", specs: ["Диаметр проходного отверстия стола: 410 мм", "Максимальный крутящий момент: 8000 Н·м", "Статическая нагрузка на стол: 200 кН", "Максимальная частота вращения: 300 об/мин", "Привод ротора: механический", "Передаточное отношение: i = 95/16 = 5,94", "Габаритные размеры: 1200 × 870 × 340 мм", "Масса: 800 кг"] },
+            { id: 109, name: "Ротор РУП 560", category: "нефтегаз", type: "Роторы", price: 0, imageData: "img/rotor-rup560.png", subtitle: "механическим", specs: ["Диаметр проходного отверстия стола: 560 мм", "Подводимая мощность: 150 кВт", "Максимальный крутящий момент: 20 кН·м", "Статическая нагрузка на стол: 1250 кН", "Максимальная частота вращения: 150 об/мин", "Передаточное отношение: i = 100/17 = 5,88", "Габаритные размеры: 1712 × 1064 × 420 мм", "Масса: 1995 кг"] },
+            { id: 201, name: "Минпромторг", category: "проект", type: "Сертификация", price: 0, imageData: "", icon: "fa-file-shield", description: "Помощь в прохождении экспертизы ТПП, локализация и прочее.", features: ["Экспертиза ТПП", "Локализация производства", "Сопровождение документов"] },
+            { id: 202, name: "Проектирование по ТЗ", category: "проект", type: "Проектирование", price: 0, imageData: "", icon: "fa-drafting-compass", description: "Проектирование по техническому заданию, в том числе реинжиниринг.", features: ["Разработка по ТЗ", "3D-моделирование", "Реинжиниринг"] },
+            { id: 203, name: "Изготовление узлов по КД", category: "проект", type: "Производство", price: 0, imageData: "", icon: "fa-gears", description: "Изготовление узлов и оборудования по конструкторской документации заказчика или по образцу.", features: ["По КД заказчика", "По образцу", "Механическая обработка"] },
+            { id: 204, name: "Литьевые заготовки", category: "проект", type: "Литьё", price: 0, imageData: "", icon: "fa-fire", description: "Изготовление литьевых заготовок из стали, чугуна, алюминия с последующей механической обработкой.", features: ["Сталь", "Чугун", "Алюминий", "Механическая обработка"] },
+            { id: 301, name: "Буровая установка УРБ 3А3", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "УРБ 3А3", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 302, name: "Буровая установка БА 15", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "БА 15", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 303, name: "Буровая установка МОБИЛМАШ 20", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МОБИЛМАШ 20", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 304, name: "Буровая установка УРБ 20", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "УРБ 20", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 305, name: "Буровая установка АР 32/40", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "АР 32/40", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 306, name: "Буровая установка АР 32/40М", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "АР 32/40М", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 307, name: "Буровая установка А 50М", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "А 50М", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 308, name: "Буровая установка АР 50", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "АР 50", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 309, name: "Буровая установка А 60/80", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "А 60/80", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 310, name: "Буровая установка А 60/80М", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "А 60/80М", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 311, name: "Буровая установка АР 60", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "АР 60", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 312, name: "Буровая установка АРБ 100", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "АРБ 100", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 313, name: "Буровая установка МБУ 125", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБУ 125", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 314, name: "Буровая установка МБУ 140", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБУ 140", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 315, name: "Буровая установка МБС 160", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБС 160", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 316, name: "Буровая установка МБУ 160", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБУ 160", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 317, name: "Буровая установка МБС 180", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБС 180", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 318, name: "Буровая установка МБУ 180", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБУ 180", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 319, name: "Буровая установка МБС 200", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБС 200", description: "Буровая установка для бурения и ремонта скважин." },
+            { id: 320, name: "Буровая установка МБС 250", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МБС 250", description: "Буровая установка для бурения и ремонта скважин." }
         ];
 
         const defaultEvents = [
@@ -2229,6 +2224,13 @@
 
         let products = loadData('mobilmash_products', defaultProducts);
         defaultProducts.forEach(dp => { if (!products.some(p => p.id === dp.id)) products.push(dp); });
+        products.forEach(p => {
+            const dp = defaultProducts.find(d => d.id === p.id);
+            if (!dp) return;
+            if (dp.icon) p.icon = dp.icon;
+            if (dp.features && !p.features) p.features = dp.features;
+            if (dp.description && !p.description) p.description = dp.description;
+        });
         let events = loadData('mobilmash_events', defaultEvents);
         defaultEvents.forEach(de => { if (!events.some(e => e.id === de.id)) events.push(de); });
         let logoData = loadString('mobilmash_logo', '');
@@ -2236,6 +2238,7 @@
         let favorites = JSON.parse(localStorage.getItem('mobilmash_favorites') || '[]');
         let compareList = JSON.parse(localStorage.getItem('mobilmash_compare') || '[]');
         let currentFilter = 'all';
+        let currentModel = null;
         let currentType = null;
         let currentPage = 1;
         const itemsPerPage = 6;
@@ -2295,6 +2298,10 @@
                 filtered = filtered.filter(p => p.type === currentType);
             }
 
+            if (currentModel) {
+                filtered = filtered.filter(p => p.model === currentModel);
+            }
+
             if (currentSearch.trim()) {
                 const query = currentSearch.trim().toLowerCase();
                 filtered = filtered.filter(p =>
@@ -2337,7 +2344,16 @@
             const { items, totalPages } = getPaginatedProducts();
 
             if (items.length === 0) {
-                grid.innerHTML = '<div class="empty-filter-msg">Ничего не найдено. Попробуйте изменить фильтры.</div>';
+                if (currentSearch) {
+                    grid.innerHTML = '<div class="empty-filter-msg">По модели «' + escapeHtml(currentSearch) + '» пока нет позиций в каталоге.<br><button class="btn" style="margin-top:14px;" id="requestModelBtn">Оставить заявку</button></div>';
+                    const rb = document.getElementById('requestModelBtn');
+                    if (rb) rb.addEventListener('click', () => {
+                        const cf = document.getElementById('feedbackForm');
+                        if (cf) cf.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                } else {
+                    grid.innerHTML = '<div class="empty-filter-msg">Ничего не найдено. Попробуйте изменить фильтры.</div>';
+                }
                 document.getElementById('paginationContainer').innerHTML = '';
                 return;
             }
@@ -2348,13 +2364,25 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 const imgSrc = prod.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(prod.name);
+                const mediaHtml = prod.icon
+                    ? '<div class="product-img service-icon"><i class="fas ' + prod.icon + '"></i></div>'
+                    : '<div class="product-img"><img src="' + imgSrc + '" alt="' + prod.name + '" loading="lazy"></div>';
+                const featsHtml = (prod.features && prod.features.length)
+                    ? '<ul class="card-features">' + prod.features.map(f => '<li>' + escapeHtml(f) + '</li>').join('') + '</ul>'
+                    : '';
+                const specsHtml = (prod.specs && prod.specs.length)
+                    ? '<ul class="card-specs">' + prod.specs.map(s => { const p = s.split(':'); const val = p.slice(1).join(':').trim(); const cls = /механическ/i.test(val) ? ' class="spec-red"' : ''; return '<li>' + escapeHtml(p[0]) + ': <b' + cls + '>' + escapeHtml(val) + '</b></li>'; }).join('') + '</ul>'
+                    : '';
                 card.innerHTML = `
                         <button class="quick-view-btn" data-id="${prod.id}">Быстрый просмотр</button>
-                        <div class="product-img"><img src="${imgSrc}" alt="${prod.name}" loading="lazy"></div>
+                        ${mediaHtml}
                         <div class="product-info">
                             <div class="product-category">${prod.type}</div>
                             <div class="card-title">${prod.name}</div>
+                            ${prod.subtitle ? '<div class="card-subtitle">' + escapeHtml(prod.subtitle) + '</div>' : ''}
                             ${prod.description ? '<div class="card-desc">' + escapeHtml(prod.description) + '</div>' : ''}
+                            ${featsHtml}
+                            ${specsHtml}
                         </div>
                     `;
                 grid.appendChild(card);
@@ -2572,18 +2600,31 @@
             if (!product) return;
             const container = document.getElementById('quickViewContent');
             const imgSrc = product.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(product.name);
+            const mediaHtml = product.icon
+                ? '<div class="qv-service-icon"><i class="fas ' + product.icon + '"></i></div>'
+                : '<img src="' + imgSrc + '" alt="' + product.name + '" style="width:100%; border-radius:12px; object-fit:contain; background:var(--bg-primary);">';
+            const featsHtml = (product.features && product.features.length)
+                ? '<ul class="qv-features">' + product.features.map(f => '<li>' + escapeHtml(f) + '</li>').join('') + '</ul>'
+                : '';
+            const specsHtml = (product.specs && product.specs.length)
+                ? '<div class="qv-specs">' + product.specs.map(s => { const p = s.split(':'); const val = p.slice(1).join(':').trim(); const cls = /механическ/i.test(val) ? ' style="color:var(--color-red);"' : ''; return '<div class="qv-spec"><span>' + escapeHtml(p[0]) + '</span><b' + cls + '>' + escapeHtml(val) + '</b></div>'; }).join('') + '</div>'
+                : '';
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
-                        <div style="flex:1; min-width:200px;">
-                            <img src="${imgSrc}" alt="${product.name}" style="width:100%; border-radius:12px; object-fit:contain; background:var(--bg-primary);">
+                        <div style="flex:1.2; min-width:320px;">
+                            ${mediaHtml}
                         </div>
-                        <div style="flex:1; min-width:200px;">
+                        <div style="flex:1; min-width:280px;">
                             <div style="color:var(--color-red); font-weight:600;">${product.type}</div>
                             <h2 style="font-size:28px; margin:8px 0;">${product.name}</h2>
-                            <p style="color:var(--text-secondary); margin-bottom:16px;">Категория: ${product.category}</p>
-                            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                            </div>
+                            ${product.subtitle ? '<div style="color:var(--color-red); font-weight:600; font-size:18px; margin-bottom:8px;">' + escapeHtml(product.subtitle) + '</div>' : ''}
+                            <p style="color:var(--text-secondary); margin-bottom:16px;">${product.description ? escapeHtml(product.description) : 'Категория: ' + product.category}</p>
+                            ${featsHtml}
+                            ${specsHtml}
                         </div>
+                    </div>
+                    <div style="margin-top:22px; padding-top:18px; border-top:1px solid var(--border-light);">
+                        <button class="btn" style="width:100%;" onclick="document.getElementById('quickViewModal').classList.remove('show'); document.getElementById('contactSection').scrollIntoView({behavior:'smooth'});">Связаться с нами</button>
                     </div>
                 `;
             document.getElementById('quickViewModal').classList.add('show');
@@ -2778,6 +2819,10 @@
             const b = document.getElementById('catalogBanner');
             if (b) b.style.display = 'none';
         }
+        function showCatalogTabs(show) {
+            const t = document.getElementById('catalogTabs');
+            if (t) t.style.display = show ? 'flex' : 'none';
+        }
         function initCatalogSidebar() {
             document.querySelectorAll('.cs-group').forEach(group => {
                 const head = group.querySelector('.cs-head');
@@ -2788,6 +2833,7 @@
                     currentType = null;
                     currentPage = 1;
                     showCatalogBanner(head.textContent.replace(/\s+/g, ' ').trim(), '');
+                    showCatalogTabs(group.dataset.cat === 'буровые');
                     renderCatalog();
                 });
             });
@@ -2801,6 +2847,7 @@
                     currentType = item.dataset.type || null;
                     currentPage = 1;
                     showCatalogBanner(item.textContent.trim(), groupName);
+                    showCatalogTabs(group && group.dataset.cat === 'буровые');
                     renderCatalog();
                 });
             });
@@ -2812,6 +2859,7 @@
                     currentType = null;
                     currentPage = 1;
                     hideCatalogBanner();
+                    showCatalogTabs(false);
                     renderCatalog();
                 });
             }
@@ -2819,6 +2867,19 @@
                 tab.addEventListener('click', () => {
                     document.querySelectorAll('.catalog-tab').forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
+                    const label = tab.textContent.replace(/\s+/g, ' ').trim();
+                    const allModels = label === 'ВСЕ БУРОВЫЕ УСТАНОВКИ';
+                    currentFilter = 'буровые';
+                    currentType = null;
+                    currentModel = allModels ? null : label;
+                    currentPage = 1;
+                    currentSearch = '';
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) searchInput.value = '';
+                    showCatalogBanner(allModels ? 'Буровые установки' : 'Буровые установки — ' + label, '');
+                    renderCatalog();
+                    const catalogSection = document.getElementById('catalogSection');
+                    if (catalogSection) catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
         }
@@ -2833,6 +2894,8 @@
             renderCatalog();
 
             initCatalogSidebar();
+
+            showCatalogTabs(currentFilter === 'товары');
 
             initSelectionForm();
 
@@ -2880,6 +2943,7 @@
                     this.classList.add('active');
                     currentFilter = this.dataset.filter;
                     currentPage = 1;
+                    showCatalogTabs(currentFilter === 'буровые');
                     renderCatalog();
                 });
             });
@@ -2932,7 +2996,7 @@
         <div class="mm-chat-head">
             <div class="mm-ava"><i class="fas fa-robot"></i></div>
             <div>
-                <h4>Помощник МобилМаш</h4>
+                <h4>Помощник МОБИЛМАШ</h4>
                 <p>Онлайн · ответим сразу</p>
             </div>
             <button class="mm-close" id="mmChatClose" aria-label="Закрыть">&times;</button>
@@ -2948,7 +3012,7 @@
     <script>
     (function(){
         var KB = [
-            { k: ['привет','здравств','добрый','хай'], a: 'Здравствуйте! Я помощник МобилМаш. Помогу с выбором техники, доставкой и ценами. С чего начнём?' },
+            { k: ['привет','здравств','добрый','хай'], a: 'Здравствуйте! Я помощник МОБИЛМАШ. Помогу с выбором техники, доставкой и ценами. С чего начнём?' },
             { k: ['каталог','товар','техник','погрузчик','штабел','ричтрак','тележк','рамп','зарядн'], a: ['В каталоге: погрузчики, штабелёры, ричтраки, тележки, рампы, зарядные станции. По подбору и покупке техники поможет менеджер Станислав:', ['goods']] },
             { k: ['услуг','гаранти','сервис','ремонт','обслуж','обучен'], a: ['По услугам — сервис, ремонт, обучение и гарантия — поможет менеджер Иван:', ['service']] },
             { k: ['подбор','подобрать','выбрать','консультац','расчёт','расчет'], a: ['Заполните форму «Подбор техники» на сайте — инженеры подберут модель под ваши задачи и бюджет. Это бесплатно. Или напрямую свяжитесь со Станиславом:', ['goods']] },
@@ -2964,8 +3028,8 @@
         var FALLBACK = 'Не нашёл точного ответа. Оставьте заявку в разделе «Контакты» или напишите нам во ВКонтакте — ответим в ближайшее время.';
 
         var MANAGERS = {
-            goods: { name: 'Станислав Никулин', role: 'по товарам и технике', max: 'https://max.ru/u/f9LHodD0cOJb3e4vy5Pt_GM-RdSwvElwIT8PmXooOIQ_Ddkqf_JRMHLVVqE', phone: '+79024781996' },
-            service: { name: 'Иван Власов', role: 'по услугам и сервису', max: 'https://max.ru/u/f9LHodD0cOIMrM6kAfI__STDgu1vD7VOQWgW8AmI44mwtIHxftgFD9ZBwXw', phone: '+79630181851' }
+            goods: { name: 'Станислав', role: 'по товарам и технике', max: 'https://max.ru/u/f9LHodD0cOJb3e4vy5Pt_GM-RdSwvElwIT8PmXooOIQ_Ddkqf_JRMHLVVqE', phone: '+79024781996' },
+            service: { name: 'Иван', role: 'по услугам и сервису', max: 'https://max.ru/u/f9LHodD0cOIMrM6kAfI__STDgu1vD7VOQWgW8AmI44mwtIHxftgFD9ZBwXw', phone: '+79630181851' }
         };
         function addManagerCard(kinds){
             var list = [];
@@ -3122,7 +3186,7 @@
             chat.classList.add('open');
             if (!body.dataset.init){
                 body.dataset.init = '1';
-                addMsg('Здравствуйте! 👋 Я виртуальный помощник МобилМаш. Помогу с выбором техники, доставкой и ценами. Выберите тему ниже или напишите вопрос.', 'bot');
+                addMsg('Здравствуйте! 👋 Я виртуальный помощник МОБИЛМАШ. Помогу с выбором техники, доставкой и ценами. Выберите тему ниже или напишите вопрос.', 'bot');
             }
             if (input) input.focus();
         }

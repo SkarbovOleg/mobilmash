@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c11">
+<meta name="description" content="МобилМаш — инжиниринг, производство и сервис бурового оборудования. Буровые роторы РБ-250, РБ-410, РБ-80Х400, РБУ-560, вертлюги, лебёдки, элеваторы, узлы и запасные части.">
+<title>МобилМаш — инжиниринг для бурения и добычи</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Unbounded:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+
+<style>
+/* ============================================================
+   1. ТОКЕНЫ И БАЗА
+   ============================================================ */
+:root{
+  --bg:#0b0c11;
+  --bg-soft:#0f1118;
+  --text:#f4f5f8;
+  --muted:#a2a7b5;
+  --dim:#7c8190;
+  --accent-1:#ff3b3b;
+  --accent-2:#ff7a3d;
+  --accent-soft:#ffb199;
+  --grad:linear-gradient(120deg,#ff3b3b 0%,#ff7a3d 100%);
+  --grad-soft:linear-gradient(120deg,rgba(255,59,59,.16),rgba(255,122,61,.06));
+  --line:rgba(255,255,255,.09);
+  --line-soft:rgba(255,255,255,.06);
+  --glass:rgba(255,255,255,.045);
+  --max:1240px;
+  --r-lg:32px;
+  --r-md:24px;
+  --ease:cubic-bezier(.22,.68,.32,1);
+  --header-h:78px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#0b0c11;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  color:var(--text);
+  background:transparent;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+h1,h2,h3,h4{font-family:'Unbounded',system-ui,sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance;-webkit-hyphens:auto;hyphens:auto}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+::selection{background:rgba(255,59,59,.4);color:#fff}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:6px}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#0b0c11}
+::-webkit-scrollbar-thumb{background:linear-gradient(#ff3b3b,#ff7a3d);border-radius:99px;border:2px solid #0b0c11}
+
+.wrap{width:min(calc(100% - 48px),var(--max));margin-inline:auto}
+section[id]{scroll-margin-top:calc(var(--header-h) + 24px)}
+
+/* фоновые слои */
+.bg-layers{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(1100px 620px at 82% -10%,rgba(255,59,59,.22),transparent 62%),
+    radial-gradient(900px 700px at -12% 8%,rgba(255,122,61,.11),transparent 60%),
+    radial-gradient(900px 700px at 50% 112%,rgba(255,59,59,.10),transparent 66%),
+    #0b0c11;
+}
+.bg-layers::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 95% 62% at 50% 0%,#000 6%,transparent 76%);
+          mask-image:radial-gradient(ellipse 95% 62% at 50% 0%,#000 6%,transparent 76%);
+}
+
+/* ============================================================
+   2. ТИПОГРАФИКА И ОБЩИЕ БЛОКИ
+   ============================================================ */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11.5px;font-weight:600;line-height:1.4;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent-soft);
+}
+.eyebrow i{color:var(--accent-2);font-size:12px}
+.eyebrow::before{
+  content:"";width:26px;height:1px;flex:0 0 auto;
+  background:var(--grad);box-shadow:0 0 12px rgba(255,59,59,.8);
+}
+
+.grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+}
+
+.section{position:relative;padding:clamp(64px,8vw,112px) 0}
+.sec-head{
+  display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);
+  gap:36px;align-items:end;margin-bottom:clamp(32px,4vw,54px);
+}
+.sec-head h2{font-size:clamp(30px,4.2vw,52px);margin-top:18px;max-width:22ch}
+.sec-head p{color:var(--muted);font-size:16px;max-width:44ch;padding-bottom:6px}
+.sec-head .eyebrow{margin-bottom:0}
+
+/* кнопки */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 26px;border-radius:999px;border:1px solid transparent;
+  font-size:15px;font-weight:600;line-height:1;letter-spacing:.01em;
+  white-space:nowrap;cursor:pointer;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease);
+}
+.btn i{font-size:12px;transition:transform .35s var(--ease)}
+.btn-primary{
+  position:relative;overflow:hidden;
+  background:var(--grad);color:#1a0a06;
+  box-shadow:0 16px 38px -14px rgba(255,59,59,.8),inset 0 1px 0 rgba(255,255,255,.35);
+}
+.btn-primary::after{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-18deg);transition:left .6s var(--ease);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 48px -14px rgba(255,59,59,.9),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-primary:hover::after{left:120%}
+.btn-primary:hover i{transform:translateX(3px)}
+.btn-ghost{
+  background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.15);
+  color:var(--text);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
+.btn-ghost:hover i{transform:translateX(3px)}
+.btn-sm{padding:12px 20px;font-size:13.5px}
+
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:999px;
+  font-size:12px;font-weight:500;line-height:1.3;
+  color:#e6e7ee;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+}
+.chip i{font-size:10px;color:var(--accent-2)}
+.chip-live{border-color:rgba(255,122,61,.32);background:rgba(255,122,61,.09);color:#ffd0bb}
+.chip-live i{color:#7ce38b;animation:pulseDot 2.4s ease-in-out infinite}
+
+.card{
+  position:relative;overflow:hidden;
+  border-radius:var(--r-md);
+  padding:clamp(22px,2.6vw,30px);
+  background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015) 60%);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease);
+}
+.card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(420px 220px at 50% 0%,rgba(255,122,61,.14),transparent 72%);
+  opacity:0;transition:opacity .5s var(--ease);
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(255,122,61,.42);box-shadow:0 34px 64px -34px rgba(255,59,59,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+.card:hover::after{opacity:1}
+.card > *{position:relative;z-index:1}
+
+.card-icon{
+  display:grid;place-items:center;
+  width:56px;height:56px;flex:0 0 auto;
+  border-radius:18px;
+  background:linear-gradient(150deg,rgba(255,122,61,.18),rgba(255,59,59,.06));
+  border:1px solid rgba(255,122,61,.28);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 10px 26px -14px rgba(255,59,59,.7);
+  color:#ff9a63;font-size:20px;
+}
+.card h3{font-size:clamp(19px,2vw,24px);line-height:1.18;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14.5px;line-height:1.62}
+.card-index{
+  position:absolute;top:14px;right:22px;z-index:0;
+  font-family:'Unbounded',sans-serif;font-size:64px;font-weight:800;line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.10);
+  pointer-events:none;user-select:none;
+}
+
+/* градиентная рамка */
+.glow-border{position:relative}
+.glow-border::before{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  border-radius:inherit;padding:1px;
+  background:linear-gradient(145deg,rgba(255,122,61,.75),rgba(255,59,59,.18) 38%,transparent 62%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+          mask-composite:exclude;
+}
+
+/* ============================================================
+   3. ШАПКА
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,12,17,.72);
+  border-bottom:1px solid var(--line-soft);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--header-h)}
+.brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.brand-mark{
+  position:relative;display:grid;place-items:center;
+  width:44px;height:44px;border-radius:14px;
+  background:var(--grad);color:#1a0a06;font-size:17px;
+  box-shadow:0 10px 26px -10px rgba(255,59,59,.9),inset 0 1px 0 rgba(255,255,255,.4);
+}
+.brand-mark::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  border:1px solid rgba(255,255,255,.35);
+  -webkit-mask:linear-gradient(#000,transparent 65%);
+          mask:linear-gradient(#000,transparent 65%);
+}
+.brand-name{display:block;font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;letter-spacing:.07em;line-height:1.15}
+.brand-sub{display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+
+.nav-menu{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{
+  display:block;padding:9px 13px;border-radius:999px;
+  font-size:13.5px;font-weight:500;color:#c6c9d3;
+  transition:color .3s var(--ease),background .3s var(--ease);
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+
+.burger{
+  display:none;place-items:center;
+  width:44px;height:44px;border-radius:13px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);font-size:16px;
+}
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{position:relative;padding:clamp(44px,6vw,84px) 0 clamp(30px,4vw,46px);overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-16%;right:-6%;width:58vw;height:58vw;max-width:820px;max-height:820px;
+  background:radial-gradient(circle,rgba(255,59,59,.22),transparent 66%);
+  filter:blur(18px);pointer-events:none;z-index:0;
+}
+.hero .wrap{position:relative;z-index:1}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:clamp(34px,4.6vw,64px);align-items:center;
+}
+.hero-copy{min-width:0}
+.hero-title{
+  margin:22px 0 22px;
+  font-size:clamp(38px,5.2vw,74px);
+  font-weight:800;line-height:.97;letter-spacing:-.035em;
+  background:linear-gradient(102deg,#ffffff 0%,#f4f5f8 40%,#ffd0bd 64%,#ff7a3d 84%,#ff3b3b 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 22px 54px rgba(255,59,59,.16));
+}
+.hero-lead{
+  color:#b7bbc7;font-size:clamp(15.5px,1.35vw,18.5px);line-height:1.6;
+  max-width:52ch;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero-proof{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line-soft)}
+.hero-proof span{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#969aa8;letter-spacing:.02em}
+.hero-proof i{color:var(--accent-2);font-size:11px}
+
+/* spec-карточка */
+.spec-card{
+  position:relative;overflow:hidden;
+  border-radius:var(--r-lg);padding:clamp(20px,2.4vw,28px);
+  background:
+    radial-gradient(130% 80% at 100% 0%,rgba(255,122,61,.16),transparent 58%),
+    linear-gradient(160deg,rgba(255,255,255,.085),rgba(255,255,255,.018) 58%);
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.1);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+}
+.spec-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.spec-series{
+  font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.14em;color:#ffc2a6;
+  padding:8px 12px;border-radius:10px;
+  border:1px solid rgba(255,122,61,.32);background:rgba(255,122,61,.10);
+}
+
+.rotor{
+  position:relative;display:grid;place-items:center;
+  min-height:236px;margin:20px 0 20px;border-radius:22px;overflow:hidden;
+  background:radial-gradient(80% 80% at 50% 18%,rgba(255,122,61,.14),transparent 70%),rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.06);
+}
+.rotor::before,.rotor::after{content:"";position:absolute;background:rgba(255,255,255,.055);pointer-events:none}
+.rotor::before{left:50%;top:0;bottom:0;width:1px}
+.rotor::after{top:50%;left:0;right:0;height:1px}
+.rotor-orbit{
+  position:absolute;width:min(72%,238px);aspect-ratio:1;border-radius:50%;
+  border:1px dashed rgba(255,255,255,.20);
+  animation:spin 46s linear infinite;
+}
+.rotor-orbit-2{
+  width:min(88%,292px);border-style:solid;
+  border-color:rgba(255,122,61,.20);
+  animation:spinRev 72s linear infinite;
+}
+.rotor-orbit-2::before{
+  content:"";position:absolute;inset:13px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.05);
+}
+.rotor-disc{
+  position:relative;z-index:2;
+  width:min(56%,178px);aspect-ratio:1;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:radial-gradient(circle at 50% 28%,#262b3a,#0e1017 72%);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 26px 60px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.16),0 0 64px rgba(255,59,59,.12);
+}
+.rotor-disc::before{
+  content:"";position:absolute;inset:9px;border-radius:50%;
+  background:conic-gradient(from 0deg,rgba(255,59,59,.55),transparent 22%,transparent 48%,rgba(255,122,61,.5) 72%,transparent);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+          mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+  animation:spin 24s linear infinite;
+}
+.rotor-disc span.lbl{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:#8e93a2}
+.rotor-disc strong{
+  font-family:'Unbounded',sans-serif;font-size:clamp(17px,5.6vw,22px);font-weight:700;line-height:1.15;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.rotor-disc span.sub{font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#9aa0ae}
+
+.spec-title h3{font-size:clamp(20px,1.9vw,23px);margin-bottom:7px}
+.spec-title p{color:var(--muted);font-size:14px;line-height:1.55}
+.spec-list{margin:18px 0 0}
+.spec-list > div{
+  display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+  padding:11px 0;border-top:1px dashed rgba(255,255,255,.10);
+}
+.spec-list dt{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#858a99;flex:0 0 auto}
+.spec-list dd{margin:0;font-size:13px;font-weight:500;color:#e8e9f0;text-align:right;line-height:1.45}
+.spec-list dd.series{font-size:11.5px;letter-spacing:.02em;color:#cfd3de}
+.spec-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:18px}
+.spec-link{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:#ffb199}
+.spec-link i{font-size:11px;transition:transform .3s var(--ease)}
+.spec-link:hover{color:#fff}
+.spec-link:hover i{transform:translateX(4px)}
+.spec-stamp{display:inline-flex;align-items:center;gap:8px;font-size:11px;color:#a8acb9}
+.spec-stamp i{color:var(--accent-2)}
+
+/* ============================================================
+   5. MARQUEE
+   ============================================================ */
+.marquee{
+  position:relative;overflow:hidden;
+  border-block:1px solid var(--line-soft);
+  background:rgba(255,255,255,.022);
+  padding:17px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+}
+.marquee-track{display:flex;width:max-content;animation:marquee 42s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;gap:40px;padding-right:40px}
+.marquee-group span{
+  display:inline-flex;align-items:center;gap:40px;white-space:nowrap;
+  font-family:'Unbounded',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:#d3d6e0;
+}
+.marquee-group i{font-size:9px;color:var(--accent-2)}
+
+/* ============================================================
+   6. ЦИФРЫ
+   ============================================================ */
+.stats{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(20px,3vw,34px);
+  padding:clamp(30px,4vw,44px) 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.stat + .stat{border-left:1px solid var(--line-soft);padding-left:clamp(20px,3vw,34px)}
+.stat-num{
+  display:block;font-family:'Unbounded',sans-serif;font-weight:700;
+  font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.03em;
+  background:linear-gradient(100deg,#fff,#ffb199 55%,#ff7a3d);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat-num.sm{font-size:clamp(18px,2vw,26px);letter-spacing:-.01em;line-height:1.3;white-space:nowrap}
+.stat-label{display:block;margin-top:12px;font-size:12.5px;line-height:1.5;color:#8f94a2;max-width:24ch}
+
+/* ============================================================
+   7. ПРОДУКЦИЯ
+   ============================================================ */
+.prod-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:22px}
+.prod-card{grid-column:span 4;display:flex;flex-direction:column;min-height:372px}
+.prod-card.featured{grid-column:span 8}
+.prod-card.wide{
+  grid-column:span 12;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);
+  gap:clamp(26px,4vw,52px);align-items:center;min-height:0;
+}
+.prod-card .card-icon{margin-bottom:22px}
+.prod-card h3{margin-top:16px;max-width:20ch}
+.prod-card > .card-link{margin-top:auto;padding-top:22px}
+.prod-card.featured h3{font-size:clamp(23px,2.6vw,32px);max-width:22ch}
+.prod-card p{margin-top:10px}
+.prod-card.featured p{max-width:48ch}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.tag{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 13px;border-radius:10px;
+  font-size:12px;font-weight:500;line-height:1.35;color:#dfe1e9;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);
+  transition:border-color .3s var(--ease),background .3s var(--ease),color .3s var(--ease);
+}
+.tag:hover{border-color:rgba(255,122,61,.42);background:rgba(255,122,61,.09);color:#fff}
+.tag i{font-size:9px;color:var(--accent-2)}
+.tag.code{font-size:11.5px;letter-spacing:.01em;color:#cfd3de}
+
+.check-list{display:grid;gap:11px;margin-top:20px}
+.check-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#b0b4c0;line-height:1.5}
+.check-list i{margin-top:4px;font-size:10px;color:var(--accent-2)}
+
+.parts-visual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.part-tile{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  aspect-ratio:4/3;border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+  color:#c8ccd7;font-size:12px;letter-spacing:.02em;
+  transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease);
+}
+.part-tile i{font-size:22px;color:#ff9a63;opacity:.92}
+.part-tile:hover{transform:translateY(-3px);border-color:rgba(255,122,61,.4);background:rgba(255,122,61,.07)}
+
+.card-link{
+  display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+  font-size:13px;font-weight:600;color:#ffb199;width:fit-content;
+}
+.card-link i{font-size:11px;transition:transform .3s var(--ease)}
+.card-link:hover{color:#fff}
+.card-link:hover i{transform:translateX(4px)}
+
+/* ============================================================
+   8. ТЕХНОЛОГИИ
+   ============================================================ */
+.eng-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(34px,5vw,64px);align-items:start}
+.eng-left{position:sticky;top:calc(var(--header-h) + 28px)}
+.eng-left h2{font-size:clamp(30px,4vw,50px);margin-top:18px;max-width:16ch}
+.eng-left > p{color:var(--muted);font-size:15.5px;margin-top:20px;max-width:42ch}
+.flow{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.flow-step{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 14px;border-radius:999px;
+  font-size:12px;color:#d5d8e2;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);
+}
+.flow-step b{font-family:'Unbounded',sans-serif;font-size:9.5px;font-weight:600;color:var(--accent-2);letter-spacing:.08em}
+.eng-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.eng-card{padding:26px}
+.eng-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
+.eng-num{font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#ff9a63}
+.eng-icon{font-size:18px;color:#ffb199;opacity:.85}
+.eng-card h3{font-size:18px;margin-bottom:9px}
+.eng-card p{font-size:13.5px;line-height:1.6}
+
+.blueprint{
+  position:relative;margin-top:30px;border-radius:22px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.09);min-height:210px;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    radial-gradient(90% 90% at 50% 50%,rgba(255,59,59,.10),transparent 70%),
+    #0d0e14;
+  background-size:26px 26px,26px 26px,auto,auto;
+}
+.blueprint::before,.blueprint::after{content:"";position:absolute;background:rgba(255,122,61,.22)}
+.blueprint::before{left:0;right:0;top:50%;height:1px}
+.blueprint::after{top:0;bottom:0;left:50%;width:1px}
+.blueprint-ring{
+  position:absolute;left:50%;top:50%;translate:-50% -50%;
+  width:118px;height:118px;border-radius:50%;
+  border:1px dashed rgba(255,255,255,.25);
+  display:grid;place-items:center;
+  animation:spin 50s linear infinite;
+}
+.blueprint-ring i{font-size:26px;color:#ffb199;animation:spinRev 50s linear infinite}
+.blueprint-label{
+  position:absolute;left:16px;bottom:14px;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#8a8f9d;
+}
+.blueprint-corner{position:absolute;top:14px;right:16px;font-family:'Unbounded',sans-serif;font-size:10px;letter-spacing:.14em;color:#6f7482}
+
+/* ============================================================
+   9. УСЛУГИ
+   ============================================================ */
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.svc-card{display:flex;flex-direction:column;min-height:262px}
+.svc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:auto}
+.svc-num{font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;color:#6f7482}
+.svc-card h3{font-size:clamp(18px,1.9vw,22px);margin:26px 0 10px;max-width:24ch}
+.svc-card p{font-size:13.5px}
+.svc-arrow{
+  display:grid;place-items:center;width:38px;height:38px;margin-top:24px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.14);
+  color:#c9ccd7;font-size:12px;
+  transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);
+}
+.svc-card:hover .svc-arrow{background:var(--grad);color:#1a0a06;border-color:transparent}
+
+/* ============================================================
+   10. СЕРТИФИКАТЫ
+   ============================================================ */
+.cert-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.cert-card{padding:26px;display:flex;flex-direction:column;border-radius:var(--r-md)}
+.cert-featured{
+  grid-column:span 2;flex-direction:row;align-items:center;gap:clamp(22px,3vw,40px);
+  background:linear-gradient(120deg,rgba(255,59,59,.16),rgba(255,122,61,.06) 55%,rgba(255,255,255,.02));
+}
+.cert-seal{
+  position:relative;flex:0 0 auto;width:148px;height:148px;border-radius:50%;
+  display:grid;place-items:center;padding:3px;
+  background:conic-gradient(from 150deg,#ff3b3b,#ff7a3d,#ff3b3b);
+  box-shadow:0 22px 54px -18px rgba(255,59,59,.75);
+}
+.cert-seal::after{
+  content:"";position:absolute;inset:9px;border-radius:50%;
+  border:1px dashed rgba(255,255,255,.42);pointer-events:none;
+}
+.cert-seal-inner{
+  width:100%;height:100%;border-radius:50%;
+  background:radial-gradient(circle at 50% 25%,#181a23,#0b0c11 75%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:14px;
+}
+.cert-seal-inner i{font-size:24px;color:#ffb199}
+.cert-seal-inner span{font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1.45;color:#d8dae2}
+.cert-featured h3{font-size:clamp(22px,2.4vw,30px);margin:10px 0 10px}
+.cert-featured p{font-size:14px;max-width:38ch}
+.cert-kicker{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#ffb199}
+.cert-meta{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+  font-size:12px;color:#e6e7ee;
+  padding:7px 12px;border-radius:8px;width:fit-content;
+  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);
+}
+.cert-card .card-icon{width:46px;height:46px;border-radius:14px;font-size:17px;margin-bottom:18px}
+.cert-card h3{font-size:17px;margin-bottom:8px;max-width:22ch}
+.cert-card p{font-size:13px}
+.cert-card .cert-note{margin-top:auto;padding-top:16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7f8493;border-top:1px dashed rgba(255,255,255,.09)}
+
+/* ============================================================
+   11. ВЫСТАВКА
+   ============================================================ */
+.expo{
+  position:relative;overflow:hidden;border-radius:36px;
+  padding:clamp(26px,4.4vw,60px);
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(760px 380px at 88% 6%,rgba(255,59,59,.30),transparent 62%),
+    radial-gradient(620px 420px at 4% 96%,rgba(255,122,61,.16),transparent 62%),
+    linear-gradient(150deg,#14161f,#0b0c11 72%);
+  box-shadow:0 48px 100px -46px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.expo-year{
+  position:absolute;right:-1%;bottom:-16%;z-index:0;
+  font-family:'Unbounded',sans-serif;font-weight:900;line-height:.8;
+  font-size:clamp(110px,23vw,300px);letter-spacing:-.05em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.075);
+  pointer-events:none;user-select:none;
+}
+.expo-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(30px,4vw,54px);align-items:center}
+.expo h2{font-size:clamp(26px,3.5vw,43px);margin-top:18px;max-width:none}
+.expo-main p{color:#b6bac6;font-size:15.5px;margin-top:18px;max-width:42ch}
+.expo-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.expo-date{
+  border-radius:26px;padding:clamp(22px,2.6vw,30px);
+  background:rgba(11,12,17,.55);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+}
+.expo-dates{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:8px 0 18px}
+.expo-kicker{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#8f94a2}
+.expo-dates .day{
+  font-family:'Unbounded',sans-serif;font-size:clamp(46px,6vw,70px);font-weight:700;line-height:.9;
+  letter-spacing:-.04em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.expo-dates .month{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:500;color:#e7e8ef;letter-spacing:.02em}
+.expo-place{display:flex;align-items:flex-start;gap:12px;padding-top:16px;border-top:1px dashed rgba(255,255,255,.14)}
+.expo-place > i{color:var(--accent-2);font-size:15px;margin-top:3px}
+.expo-place strong{display:block;font-family:'Unbounded',sans-serif;font-size:15px;font-weight:600;letter-spacing:.01em}
+.expo-place span{display:block;font-size:12.5px;color:#9aa0ae;margin-top:3px}
+.expo-note{
+  display:inline-flex;align-items:center;gap:9px;margin-top:20px;
+  font-size:11.5px;color:#8f94a2;letter-spacing:.02em;
+}
+.expo-note i{color:#7ce38b;font-size:11px}
+
+/* ============================================================
+   12. КОНТАКТЫ
+   ============================================================ */
+.contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.contact-card{padding:clamp(24px,2.6vw,30px);display:flex;flex-direction:column;min-height:280px;border-radius:var(--r-md)}
+.contact-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:24px}
+.avatar{
+  display:grid;place-items:center;width:62px;height:62px;border-radius:50%;
+  font-family:'Unbounded',sans-serif;font-size:16px;font-weight:700;color:#1a0a06;
+  background:var(--grad);
+  box-shadow:0 16px 34px -14px rgba(255,59,59,.8),inset 0 1px 0 rgba(255,255,255,.4);
+}
+.contact-status{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#9aa0ae}
+.contact-status i{font-size:7px;color:#7ce38b;animation:pulseDot 2.4s ease-in-out infinite}
+.contact-card h3{font-size:clamp(18px,1.8vw,21px);margin-bottom:4px}
+.contact-role{font-size:12.5px;color:#8f94a2}
+.phone{
+  display:inline-flex;align-items:center;gap:9px;margin-top:auto;padding-top:22px;
+  font-family:'Unbounded',sans-serif;font-size:clamp(17px,1.7vw,21px);font-weight:500;
+  letter-spacing:-.01em;color:#fff;transition:color .3s var(--ease);
+}
+.phone:hover{color:#ffb199}
+.phone i{font-size:12px;color:var(--accent-2)}
+.contact-hint{font-size:11px;color:#767b89;margin-top:8px}
+.contact-vk{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.015))}
+.vk-icon{
+  display:grid;place-items:center;width:62px;height:62px;border-radius:18px;
+  font-size:26px;color:#ffb199;
+  border:1px solid rgba(255,122,61,.3);
+  background:linear-gradient(150deg,rgba(255,122,61,.18),rgba(255,59,59,.05));
+}
+.contact-vk .phone{font-size:clamp(15px,1.5vw,18px);word-break:break-word}
+.contact-vk .phone i{font-size:10px}
+
+/* ============================================================
+   13. ПОДВАЛ
+   ============================================================ */
+.footer{border-top:1px solid var(--line-soft);padding:52px 0 30px;margin-top:12px;position:relative}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(28px,4vw,60px);flex-wrap:wrap}
+.footer-brand{max-width:340px}
+.footer-brand p{color:#8f94a2;font-size:13px;line-height:1.65;margin-top:18px}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13.5px;color:#b3b7c2;max-width:620px}
+.footer-links a{transition:color .3s var(--ease)}
+.footer-links a:hover{color:#fff}
+.footer-cert{
+  display:flex;align-items:center;gap:13px;padding:14px 18px;border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);
+}
+.footer-cert i{font-size:20px;color:#ffb199}
+.footer-cert strong{display:block;font-size:12.5px;font-weight:600}
+.footer-cert span{display:block;font-size:11px;color:#858a99;margin-top:2px;letter-spacing:.06em}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  margin-top:40px;padding-top:22px;border-top:1px solid var(--line-soft);
+  font-size:12px;color:#717685;
+}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:999;
+  padding:12px 18px;border-radius:0 0 12px 0;background:var(--accent-2);color:#1a0a06;font-weight:600;
+}
+.skip-link:focus{left:0}
+
+/* ============================================================
+   14. АНИМАЦИИ
+   ============================================================ */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinRev{to{transform:rotate(-360deg)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+
+/* ============================================================
+   15. АДАПТИВНОСТЬ
+   ============================================================ */
+@media (max-width:1120px){
+  .nav-menu{gap:18px}
+  .nav-links a{padding:9px 10px;font-size:13px}
+  .stat-label{max-width:20ch}
+}
+
+@media (max-width:1024px){
+  :root{--header-h:70px}
+  .burger{display:grid}
+  .nav-menu{
+    position:absolute;top:100%;left:0;right:0;
+    display:none;flex-direction:column;align-items:stretch;gap:6px;
+    padding:16px 24px 24px;
+    background:rgba(11,12,17,.98);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.85);
+    backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  }
+  .nav-menu.is-open{display:flex}
+  .nav-links{flex-direction:column;align-items:stretch;gap:2px}
+  .nav-links a{padding:13px 12px;font-size:15px;border-radius:12px}
+  .nav-cta{margin-top:12px;width:100%}
+
+  .hero{padding-top:40px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:44px}
+  .spec-card{max-width:540px}
+  .sec-head{grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+  .sec-head p{max-width:52ch}
+  .prod-card,.prod-card.featured{grid-column:span 12;min-height:0}
+  .prod-card h3{padding-top:14px}
+  .prod-card.wide{grid-template-columns:minmax(0,1fr);gap:30px}
+  .parts-visual{max-width:520px}
+  .eng-grid{grid-template-columns:minmax(0,1fr);gap:38px}
+  .eng-left{position:static}
+  .eng-left h2{max-width:22ch}
+  .cert-featured{grid-column:span 2}
+  .contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact-vk{grid-column:span 2;min-height:0}
+  .expo-grid{grid-template-columns:minmax(0,1fr);gap:34px}
+  .expo-year{font-size:clamp(100px,26vw,240px);bottom:-12%}
+}
+
+@media (max-width:820px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 20px}
+  .stat:nth-child(odd){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line-soft);padding-top:24px;border-left:0}
+  .stat:nth-child(even){border-left:1px solid var(--line-soft);padding-left:20px}
+  .cert-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cert-featured{grid-column:span 2}
+  .svc-grid{grid-template-columns:minmax(0,1fr)}
+  .svc-card{min-height:0}
+  .svc-card h3{margin-top:20px}
+  .eng-cards{grid-template-columns:minmax(0,1fr)}
+  .eng-card-top{margin-bottom:24px}
+  .footer-top{flex-direction:column;gap:28px}
+  .footer-brand{max-width:none}
+}
+
+@media (max-width:720px){
+  .wrap{width:calc(100% - 32px)}
+  .brand-sub{display:none}
+  .hero-title{letter-spacing:-.03em}
+  .hero-proof{gap:10px 16px}
+  .spec-card{max-width:none;border-radius:24px}
+  .rotor{min-height:210px}
+  .cert-grid{grid-template-columns:minmax(0,1fr)}
+  .cert-featured{grid-column:span 1;flex-direction:column;align-items:flex-start;gap:22px}
+  .contact-grid{grid-template-columns:minmax(0,1fr)}
+  .contact-vk{grid-column:span 1}
+  .contact-card{min-height:0}
+  .card-index{font-size:48px;right:16px}
+  .footer-cert{width:100%}
+  .expo-year{opacity:.7}
+  .marquee-group{gap:28px;padding-right:28px}
+  .marquee-group span{gap:28px;font-size:11.5px}
+  .expo h2{font-size:clamp(19px,5.4vw,26px)}
+}
+
+@media (max-width:520px){
+  :root{--header-h:64px}
+  body{font-size:15.5px}
+  .hero{padding-top:30px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{width:100%}
+  .hero-proof span{font-size:11px}
+  .stats{grid-template-columns:minmax(0,1fr);gap:0}
+  .stat,.stat + .stat{padding:18px 0;border-left:0;padding-left:0;border-top:1px solid var(--line-soft)}
+  .stat:first-child{border-top:0;padding-top:0}
+  .stat-label{max-width:none}
+  .stats{padding-bottom:10px}
+  .prod-card{padding:22px}
+  .parts-visual{gap:9px}
+  .part-tile{font-size:11px}
+  .rotor-disc strong{font-size:19px}
+  .spec-list > div{gap:12px}
+  .spec-list dd.series{font-size:10.5px}
+  .spec-foot{gap:10px}
+  .expo{border-radius:26px}
+  .expo-actions .btn{width:100%}
+  .spec-stamp{font-size:10.5px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+@media (max-width:380px){
+  .hero-title{font-size:33px}
+  .sec-head h2{font-size:26px}
+  .expo h2{font-size:19px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#products">Перейти к продукции</a>
+<div class="bg-layers" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#hero" aria-label="МобилМаш — на главную">
+      <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
+      <span>
+        <span class="brand-name">МОБИЛМАШ</span>
+        <span class="brand-sub">инжиниринг · оборудование</span>
+      </span>
+    </a>
+
+    <nav class="nav-menu" id="navMenu" aria-label="Основная навигация">
+      <ul class="nav-links">
+        <li><a href="#products">Продукция</a></li>
+        <li><a href="#technologies">Технологии</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#certificates">Сертификаты</a></li>
+        <li><a href="#exhibition">Выставка</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a class="btn btn-primary btn-sm nav-cta" href="#contacts">Обсудить проект <i class="fa-solid fa-arrow-right"></i></a>
+    </nav>
+
+    <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navMenu">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><i class="fa-solid fa-bolt"></i> МобилМаш · инжиниринг для нефтегаза</span>
+
+          <h1 class="hero-title">Инжиниринг<br>для бурения<br>и добычи</h1>
+
+          <p class="hero-lead">
+            Проектируем, производим и модернизируем буровое оборудование:
+            роторы, вертлюги, лебёдки, элеваторы и узлы. Под техническое задание,
+            с локализацией в России и сервисом 24/7.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">Смотреть продукцию <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-ghost" href="#contacts">Обсудить проект <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+
+          <div class="hero-proof">
+            <span><i class="fa-solid fa-certificate"></i> Сделано в России · № СС004509</span>
+            <span><i class="fa-solid fa-shield-halved"></i> ISO 9001</span>
+            <span><i class="fa-solid fa-globe"></i> ЕАЭС</span>
+          </div>
+        </div>
+
+        <aside class="spec-card glow-border" aria-label="Карточка продукта: ротор буровой РБ-410">
+          <div class="spec-top">
+            <span class="chip chip-live"><i class="fa-solid fa-circle"></i> Серийное производство</span>
+            <span class="spec-series">РБ-410</span>
+          </div>
+
+          <div class="rotor" aria-hidden="true">
+            <div class="rotor-orbit"></div>
+            <div class="rotor-orbit rotor-orbit-2"></div>
+            <div class="rotor-disc">
+              <span class="lbl">Ротор</span>
+              <strong>РБ-410</strong>
+              <span class="sub">гидроприводный</span>
+            </div>
+          </div>
+
+          <div class="spec-title">
+            <h3>Ротор буровой РБ-410</h3>
+            <p>Гидроприводная установка ротора для бурения и капитального ремонта скважин.</p>
+          </div>
+
+          <dl class="spec-list">
+            <div><dt>Привод</dt><dd>Гидроприводный</dd></div>
+            <div><dt>Модельный ряд</dt><dd class="series">РБ-250 · РБ-410 · РБ-80Х400 · РБУ-560</dd></div>
+            <div><dt>Исполнение</dt><dd>по ТЗ заказчика</dd></div>
+            <div><dt>Сервис</dt><dd>24/7</dd></div>
+          </dl>
+
+          <div class="spec-foot">
+            <a class="spec-link" href="#products">Характеристики <i class="fa-solid fa-arrow-right"></i></a>
+            <span class="spec-stamp"><i class="fa-solid fa-ribbon"></i> Российское происхождение</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="marquee" aria-label="Технологии и оборудование МобилМаш">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>Гидроприводные роторы <i class="fa-solid fa-asterisk"></i></span>
+        <span>Вертлюги <i class="fa-solid fa-asterisk"></i></span>
+        <span>Буровые лебёдки <i class="fa-solid fa-asterisk"></i></span>
+        <span>Элеваторы <i class="fa-solid fa-asterisk"></i></span>
+        <span>Клиньевые захваты <i class="fa-solid fa-asterisk"></i></span>
+        <span>Реинжиниринг <i class="fa-solid fa-asterisk"></i></span>
+        <span>Импортозамещение <i class="fa-solid fa-asterisk"></i></span>
+        <span>Цифровизация <i class="fa-solid fa-asterisk"></i></span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span>Гидроприводные роторы <i class="fa-solid fa-asterisk"></i></span>
+        <span>Вертлюги <i class="fa-solid fa-asterisk"></i></span>
+        <span>Буровые лебёдки <i class="fa-solid fa-asterisk"></i></span>
+        <span>Элеваторы <i class="fa-solid fa-asterisk"></i></span>
+        <span>Клиньевые захваты <i class="fa-solid fa-asterisk"></i></span>
+        <span>Реинжиниринг <i class="fa-solid fa-asterisk"></i></span>
+        <span>Импортозамещение <i class="fa-solid fa-asterisk"></i></span>
+        <span>Цифровизация <i class="fa-solid fa-asterisk"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ЦИФРЫ ================= -->
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">модели буровых роторов в серийной линейке</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">сервисная поддержка оборудования</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num sm">№ СС004509</span>
+        <span class="stat-label">реестровая запись «Сделано в России»</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2027</span>
+        <span class="stat-label">«Металлообработка. Сварка» — Екатеринбург</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ПРОДУКЦИЯ ================= -->
+  <section class="section" id="products">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-layer-group"></i> 01 — Продукция</span>
+          <h2>Оборудование для полного цикла бурения и добычи</h2>
+        </div>
+        <p>
+          Собственная конструкторская база и производство: от комплектных буровых
+          установок до быстроизнашиваемых узлов и ремонтных комплектов.
+        </p>
+      </div>
+
+      <div class="prod-grid">
+        <article class="card prod-card">
+          <span class="card-index" aria-hidden="true">01</span>
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-industry"></i></span>
+          <h3>Буровые установки</h3>
+          <p>Комплектные установки и агрегаты для бурения, освоения и ремонта скважин.</p>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-check"></i> Подбор под горно-геологические условия</li>
+            <li><i class="fa-solid fa-check"></i> Компоновка и обвязка оборудования</li>
+            <li><i class="fa-solid fa-check"></i> Поставка, шеф-монтаж, запуск</li>
+          </ul>
+          <a class="card-link" href="#contacts">Запросить подбор <i class="fa-solid fa-arrow-right"></i></a>
+        </article>
+
+        <article class="card prod-card featured glow-border">
+          <span class="card-index" aria-hidden="true">02</span>
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
+          <h3>Нефтегазо&shy;промысловое оборудование и инструменты</h3>
+          <p>
+            Роторы собственного производства, гидроприводные установки ротора,
+            клиньевые захваты, вертлюги, лебёдки и элеваторы.
+          </p>
+          <div class="tags">
+            <span class="tag"><i class="fa-solid fa-cube"></i> Ротор РБ-250</span>
+            <span class="tag"><i class="fa-solid fa-cube"></i> Ротор РБ-410</span>
+            <span class="tag"><i class="fa-solid fa-cube"></i> Ротор РБ-80Х400</span>
+            <span class="tag"><i class="fa-solid fa-cube"></i> Ротор РБУ-560</span>
+            <span class="tag"><i class="fa-solid fa-bolt"></i> Установка ротора РБ-410 гидроприводная</span>
+            <span class="tag code"><i class="fa-solid fa-screwdriver-wrench"></i> Захват клиньевой РБУ-560.35.00.000 В</span>
+            <span class="tag"><i class="fa-solid fa-circle-notch"></i> Вертлюги</span>
+            <span class="tag"><i class="fa-solid fa-arrow-up-long"></i> Лебёдки</span>
+            <span class="tag"><i class="fa-solid fa-link"></i> Элеваторы</span>
+          </div>
+        </article>
+
+        <article class="card prod-card wide">
+          <span class="card-index" aria-hidden="true">03</span>
+          <div>
+            <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-toolbox"></i></span>
+            <h3>Узлы и запасные части</h3>
+            <p>
+              Запасные части и быстроизнашиваемые узлы для роторов, вертлюгов,
+              лебёдок и элеваторов. Реверс-инжиниринг деталей с изготовлением
+              по обмерам и чертежам.
+            </p>
+            <ul class="check-list">
+              <li><i class="fa-solid fa-check"></i> Ремонтные комплекты и расходные детали</li>
+              <li><i class="fa-solid fa-check"></i> Замена импортных комплектующих</li>
+              <li><i class="fa-solid fa-check"></i> Поставка из наличия и под заказ</li>
+            </ul>
+            <a class="card-link" href="#contacts">Запросить наличие <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="parts-visual" aria-hidden="true">
+            <div class="part-tile"><i class="fa-solid fa-gear"></i><span>Приводы</span></div>
+            <div class="part-tile"><i class="fa-solid fa-ring"></i><span>Уплотнения</span></div>
+            <div class="part-tile"><i class="fa-solid fa-bolt"></i><span>Крепёж</span></div>
+            <div class="part-tile"><i class="fa-solid fa-screwdriver-wrench"></i><span>Оснастка</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ТЕХНОЛОГИИ ================= -->
+  <section class="section" id="technologies">
+    <div class="wrap">
+      <div class="eng-grid">
+        <div class="eng-left">
+          <span class="eyebrow"><i class="fa-solid fa-compass-drafting"></i> 02 — Технологии / Инжиниринг</span>
+          <h2>От технического задания до серийного производства</h2>
+          <p>
+            Инженерная команда закрывает весь путь: анализ условий эксплуатации,
+            расчёты, 3D-моделирование, документация, изготовление и сопровождение.
+          </p>
+          <div class="flow" aria-label="Этапы работы">
+            <span class="flow-step"><b>01</b> ТЗ</span>
+            <span class="flow-step"><b>02</b> 3D-модель</span>
+            <span class="flow-step"><b>03</b> Документация</span>
+            <span class="flow-step"><b>04</b> Серия</span>
+          </div>
+          <div class="blueprint" aria-hidden="true">
+            <span class="blueprint-corner">ENG · 01</span>
+            <div class="blueprint-ring"><i class="fa-solid fa-compass-drafting"></i></div>
+            <span class="blueprint-label">Проектирование под ТЗ</span>
+          </div>
+        </div>
+
+        <div class="eng-cards">
+          <article class="card eng-card">
+            <div class="eng-card-top">
+              <span class="eng-num">01</span>
+              <i class="fa-solid fa-compass-drafting eng-icon" aria-hidden="true"></i>
+            </div>
+            <h3>Проектирование по ТЗ</h3>
+            <p>Разрабатываем конструкцию под условия объекта: компоновка, нагрузки, привод, обвязка и документация.</p>
+          </article>
+
+          <article class="card eng-card">
+            <div class="eng-card-top">
+              <span class="eng-num">02</span>
+              <i class="fa-solid fa-arrows-rotate eng-icon" aria-hidden="true"></i>
+            </div>
+            <h3>Реинжиниринг</h3>
+            <p>Восстанавливаем и улучшаем существующее оборудование: обмеры, 3D-модели, чертежи, замена узлов.</p>
+          </article>
+
+          <article class="card eng-card">
+            <div class="eng-card-top">
+              <span class="eng-num">03</span>
+              <i class="fa-solid fa-shield-halved eng-icon" aria-hidden="true"></i>
+            </div>
+            <h3>Импортоза&shy;мещение</h3>
+            <p>Подбираем и разрабатываем аналоги выбывших комплектующих с подтверждением характеристик и совместимости.</p>
+          </article>
+
+          <article class="card eng-card">
+            <div class="eng-card-top">
+              <span class="eng-num">04</span>
+              <i class="fa-solid fa-microchip eng-icon" aria-hidden="true"></i>
+            </div>
+            <h3>Цифровизация</h3>
+            <p>Электронные каталоги, параметрические модели и цифровые паспорта оборудования для эксплуатации и ремонта.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= УСЛУГИ ================= -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-headset"></i> 03 — Услуги</span>
+          <h2>Полный цикл сопровождения оборудования</h2>
+        </div>
+        <p>
+          От подтверждения локализации и проектирования до модернизации,
+          ремонта и круглосуточной сервисной поддержки.
+        </p>
+      </div>
+
+      <div class="svc-grid">
+        <article class="card svc-card">
+          <div class="svc-head">
+            <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-file-shield"></i></span>
+            <span class="svc-num">01</span>
+          </div>
+          <h3>Минпромторг: экспертиза ТПП, локализация</h3>
+          <p>Сопровождение при прохождении экспертизы Торгово-промышленной палаты и подтверждении локализации продукции.</p>
+          <span class="svc-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </article>
+
+        <article class="card svc-card">
+          <div class="svc-head">
+            <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-compass-drafting"></i></span>
+            <span class="svc-num">02</span>
+          </div>
+          <h3>Проектирование по ТЗ, в т.ч. реинжиниринг</h3>
+          <p>Разработка и восстановление конструкторской документации, адаптация оборудования под конкретные условия эксплуатации.</p>
+          <span class="svc-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </article>
+
+        <article class="card svc-card">
+          <div class="svc-head">
+            <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+            <span class="svc-num">03</span>
+          </div>
+          <h3>Модернизация и ремонт</h3>
+          <p>Восстановление работоспособности, замена узлов, доработка конструкции и продление ресурса бурового оборудования.</p>
+          <span class="svc-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </article>
+
+        <article class="card svc-card">
+          <div class="svc-head">
+            <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></span>
+            <span class="svc-num">04</span>
+          </div>
+          <h3>Сервис 24/7</h3>
+          <p>Круглосуточная техническая поддержка, консультации по эксплуатации и оперативная помощь на объекте.</p>
+          <span class="svc-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= СЕРТИФИКАТЫ ================= -->
+  <section class="section" id="certificates">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-award"></i> 04 — Сертификаты</span>
+          <h2>Соответствие подтверждено документами</h2>
+        </div>
+        <p>
+          Декларации, сертификаты и реестровые записи, необходимые для поставки
+          и эксплуатации оборудования на промышленных объектах.
+        </p>
+      </div>
+
+      <div class="cert-grid">
+        <article class="card cert-card cert-featured glow-border">
+          <div class="cert-seal" aria-hidden="true">
+            <div class="cert-seal-inner">
+              <i class="fa-solid fa-ribbon"></i>
+              <span>Сделано<br>в России</span>
+            </div>
+          </div>
+          <div>
+            <span class="cert-kicker">Реестровая запись</span>
+            <h3>«Сделано в России»</h3>
+            <p>Подтверждённое российское происхождение продукции МобилМаш.</p>
+            <span class="cert-meta"><i class="fa-solid fa-hashtag"></i> № СС004509</span>
+          </div>
+        </article>
+
+        <article class="card cert-card">
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></span>
+          <h3>Декларация ЕАЭС</h3>
+          <p>Декларации и сертификаты на тип продукции: вертлюги, лебёдки, роторы.</p>
+          <span class="cert-note">Евразийский экономический союз</span>
+        </article>
+
+        <article class="card cert-card">
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+          <h3>ISO 9001</h3>
+          <p>Система менеджмента качества проектирования и производства.</p>
+          <span class="cert-note">Международный стандарт</span>
+        </article>
+
+        <article class="card cert-card">
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-helmet-safety"></i></span>
+          <h3>Промышленная безопасность</h3>
+          <p>Документы для эксплуатации оборудования на опасных производственных объектах.</p>
+          <span class="cert-note">Требования Ростехнадзора</span>
+        </article>
+
+        <article class="card cert-card">
+          <span class="card-icon" aria-hidden="true"><i class="fa-solid fa-file-circle-check"></i></span>
+          <h3>Сертификат соответствия</h3>
+          <p>Подтверждение требований технических регламентов Таможенного союза.</p>
+          <span class="cert-note">ТР ТС · ЕАЭС</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ВЫСТАВКА ================= -->
+  <section class="section" id="exhibition">
+    <div class="wrap">
+      <div class="expo glow-border">
+        <span class="expo-year" aria-hidden="true">2027</span>
+        <div class="expo-grid">
+          <div class="expo-main">
+            <span class="eyebrow"><i class="fa-solid fa-calendar-check"></i> 05 — Выставка</span>
+            <h2>Металло&shy;обработка.<br>Сварка — 2027</h2>
+            <p>
+              МобилМаш участвует в выставке в Екатеринбурге. Покажем оборудование
+              и узлы собственного производства, обсудим проекты по ТЗ,
+              реинжиниринг и импортозамещение.
+            </p>
+            <div class="expo-actions">
+              <a class="btn btn-primary" href="#contacts">Запланировать встречу <i class="fa-solid fa-arrow-right"></i></a>
+              <span class="chip chip-live"><i class="fa-solid fa-circle"></i> МобилМаш участвует</span>
+            </div>
+          </div>
+
+          <aside class="expo-date" aria-label="Даты и место выставки">
+            <span class="expo-kicker">Даты проведения</span>
+            <div class="expo-dates">
+              <span class="day">16–19</span>
+              <span class="month">марта 2027</span>
+            </div>
+            <div class="expo-place">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <div>
+                <strong>Екатеринбург</strong>
+                <span>МВЦ «Екатеринбург-ЭКСПО»</span>
+              </div>
+            </div>
+            <span class="expo-note"><i class="fa-solid fa-circle-check"></i> Стенд МобилМаш · встреча по записи</span>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= КОНТАКТЫ ================= -->
+  <section class="section" id="contacts">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-phone"></i> 06 — Контакты</span>
+          <h2>Обсудим ваш проект</h2>
+        </div>
+        <p>
+          Расскажите о задаче — подберём оборудование, рассчитаем поставку
+          или предложим инженерное решение под ТЗ.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <article class="card contact-card">
+          <div class="contact-top">
+            <div class="avatar" aria-hidden="true">СН</div>
+            <span class="contact-status"><i class="fa-solid fa-circle"></i> На связи</span>
+          </div>
+          <h3>Станислав</h3>
+          <p class="contact-role">По товарам и технике</p>
+          <a class="phone" href="tel:+79024781996"><i class="fa-solid fa-phone" aria-hidden="true"></i> +7 902 478-19-96</a>
+          <span class="contact-hint">Звонок или сообщение</span>
+        </article>
+
+        <article class="card contact-card">
+          <div class="contact-top">
+            <div class="avatar" aria-hidden="true">ИВ</div>
+            <span class="contact-status"><i class="fa-solid fa-circle"></i> На связи</span>
+          </div>
+          <h3>Иван</h3>
+          <p class="contact-role">По услугам и сервису</p>
+          <a class="phone" href="tel:+79630181851"><i class="fa-solid fa-phone" aria-hidden="true"></i> +7 963 018-18-51</a>
+          <span class="contact-hint">Сервис, ремонт, модернизация</span>
+        </article>
+
+        <article class="card contact-card contact-vk">
+          <div class="contact-top">
+            <div class="vk-icon" aria-hidden="true"><i class="fa-brands fa-vk"></i></div>
+          </div>
+          <h3>ВКонтакте</h3>
+          <p class="contact-role">Новости, оборудование, выставки</p>
+          <a class="phone" href="https://vk.ru/mobilmash_group" target="_blank" rel="noopener">
+            <i class="fa-brands fa-vk" aria-hidden="true"></i> @mobilmash_group
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+          <span class="contact-hint">Сообщество компании</span>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#hero" aria-label="МобилМаш — наверх">
+          <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
+          <span>
+            <span class="brand-name">МОБИЛМАШ</span>
+            <span class="brand-sub">инжиниринг · оборудование</span>
+          </span>
+        </a>
+        <p>
+          Инжиниринг, производство и сервис бурового оборудования:
+          роторы, вертлюги, лебёдки, элеваторы, узлы и запасные части.
+        </p>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#products">Продукция</a></li>
+        <li><a href="#technologies">Технологии</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#certificates">Сертификаты</a></li>
+        <li><a href="#exhibition">Выставка</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+
+      <div class="footer-cert">
+        <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+        <div>
+          <strong>Сделано в России</strong>
+          <span>№ СС004509</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 МобилМаш. Все права защищены.</span>
+      <span>Екатеринбург · Россия</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('navMenu');
+  var icon = burger.querySelector('i');
+
+  function setMenu(open) {
+    menu.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  }
+
+  burger.addEventListener('click', function (event) {
+    event.stopPropagation();
+    setMenu(!menu.classList.contains('is-open'));
+  });
+
+  menu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () { setMenu(false); });
+  });
+
+  document.addEventListener('click', function (event) {
+    if (menu.classList.contains('is-open') && !menu.contains(event.target) && !burger.contains(event.target)) {
+      setMenu(false);
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+      setMenu(false);
+      burger.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
