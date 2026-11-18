@@ -2222,7 +2222,6 @@
             { id: 10, name: "Запасные части", category: "прочие", type: "Запчасти", imageData: "", icon: "fa-gear" },
             { id: 11, name: "Масло гидравлическое", category: "прочие", type: "Расходники", imageData: "", icon: "fa-oil-can" },
             { id: 12, name: "Чехол для сиденья", category: "прочие", type: "Аксессуары", imageData: "", icon: "fa-chair" },
-            { id: 101, name: "Захват клиньевой пневматический РБУ-560.35.00.000 В", category: "нефтегаз", type: "Захваты", price: 0, imageData: "", icon: "fa-hand" },
             { id: 102, name: "Установка бурового ротора Р-410 гидроприводная", category: "нефтегаз", type: "Установки", price: 0, imageData: "", icon: "fa-industry" },
             { id: 105, name: "Ротор Р-80Х400 с реверсивным редуктором", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-rotate" },
             { id: 107, name: "Ротор буровой Р-80Х400", category: "нефтегаз", type: "Роторы", price: 0, imageData: "", icon: "fa-compact-disc" },
@@ -2296,7 +2295,7 @@
             if (dp.features && !p.features) p.features = dp.features;
             if (dp.description && !p.description) p.description = dp.description;
         });
-        products = products.filter(p => ![103,104,106].includes(p.id));
+        products = products.filter(p => ![101,103,104,106].includes(p.id));
         let events = loadData('mobilmash_events', defaultEvents);
         events = events.filter(e => ![1,2,3,4,5].includes(e.id));
         defaultEvents.forEach(de => { if (!events.some(e => e.id === de.id)) events.push(de); });
