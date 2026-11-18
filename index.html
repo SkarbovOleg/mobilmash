@@ -1601,6 +1601,26 @@
         .qv-spec b { color: var(--text-primary); font-weight: 600; text-align: right; }
         .spec-red { color: var(--color-red) !important; }
         .card-subtitle { color: var(--color-red); font-weight: 600; font-size: 13px; margin-top: 2px; }
+        .hero-slider .slide.slide-process {
+            background: linear-gradient(160deg, #0d1b2e 0%, #16283f 100%);
+            color: #e8eef6;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+        .slide-process .sp-head { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+        .slide-process .sp-kicker { color: #e8eef6; font-weight: 700; }
+        .slide-process .sp-meta { color: #8fa3bd; }
+        .slide-process .sp-steps { display: flex; gap: 8px; margin-top: 6px; }
+        .slide-process .sp-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 10.5px; color: #c9d5e4; text-align: center; }
+        .slide-process .sp-step i { font-size: 22px; color: #7ea6d9; }
+        .slide-process .sp-num { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; border-top: 1px solid rgba(255,255,255,.14); padding-top: 10px; margin-top: 4px; }
+        .slide-process .sp-num b { display: block; color: #7ea6d9; font-size: 11px; }
+        .slide-process .sp-num span { font-size: 12.5px; color: #e8eef6; }
+        .slide-process .sp-desc { font-size: 13px; color: #c9d5e4; margin: 0; line-height: 1.4; }
+        .slide-process .sp-goal { margin-top: auto; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 12px 14px; }
+        .slide-process .sp-goal-label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: #8fa3bd; margin-bottom: 4px; }
+        .slide-process .sp-goal-title { font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+        .slide-process .sp-goal-meta { font-size: 11px; color: #9fb3c8; }
     </style>
 </head>
 <body>
@@ -1651,6 +1671,30 @@
                             <div class="slide-title">Включение в реестр Минпромторга</div>
                             <div class="slide-desc">Помощь во внесении продукции по ПП №719 — от вашего изделия до записи в ГИСП. Разберём требования, подготовим документы, сопроводим экспертизу ТПП и рассмотрение заявки.</div>
                             <a href="#" class="slide-btn" onclick="showQuickView(201); return false;">Подробнее</a>
+                        </div>
+                        <div class="slide slide-process">
+                            <div class="sp-head">
+                                <span class="sp-kicker">Продукция → Реестр</span>
+                                <span class="sp-meta">ПП №719 / ГИСП</span>
+                            </div>
+                            <div class="sp-steps">
+                                <div class="sp-step"><i class="fas fa-industry"></i><span>Производство</span></div>
+                                <div class="sp-step"><i class="fas fa-folder-open"></i><span>Документы</span></div>
+                                <div class="sp-step"><i class="fas fa-landmark"></i><span>Экспертиза ТПП</span></div>
+                                <div class="sp-step"><i class="fas fa-database"></i><span>ГИСП</span></div>
+                            </div>
+                            <div class="sp-num">
+                                <div><b>01</b><span>Разбор</span></div>
+                                <div><b>02</b><span>Документы</span></div>
+                                <div><b>03</b><span>ТПП</span></div>
+                                <div><b>04</b><span>ГИСП</span></div>
+                            </div>
+                            <p class="sp-desc">Разбираем продукцию, код ОКПД2 и требования ПП №719</p>
+                            <div class="sp-goal">
+                                <div class="sp-goal-label"><i class="fas fa-arrow-up-right"></i> Цель сопровождения</div>
+                                <div class="sp-goal-title">Ваша продукция в реестре</div>
+                                <div class="sp-goal-meta">Номер записи · модель · ОКПД2 · срок действия</div>
+                            </div>
                         </div>
                         <div class="slide">
                             <span class="slide-tag">⚙️ Производство</span>
