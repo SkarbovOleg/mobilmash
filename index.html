@@ -3304,6 +3304,13 @@
                 bCall.textContent = 'Написать на почту';
                 bCall.addEventListener('click', function(){ showCallbackForm(m); });
                 btns.appendChild(bCall);
+                if (m.phone) {
+                    var aTel = document.createElement('a');
+                    aTel.className = 'mm-mgr-btn';
+                    aTel.href = 'tel:' + m.phone;
+                    aTel.textContent = 'Позвонить: ' + m.phone.replace(/^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/, '+7 $1 $2-$3-$4');
+                    btns.appendChild(aTel);
+                }
                 row.appendChild(btns);
                 d.appendChild(row);
             });
@@ -3363,6 +3370,12 @@
             btn.className = 'mm-cb-btn';
             btn.textContent = 'Отправить письмо';
             d.appendChild(btn);
+            if (manager.phone) {
+                var phoneLine = document.createElement('div');
+                phoneLine.className = 'mm-cb-status';
+                phoneLine.innerHTML = 'Или позвоните: <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">' + manager.phone.replace(/^\+7(\d{3})(\d{3})(\d{2})(\d{2})$/, '+7 $1 $2-$3-$4') + '</a>';
+                d.appendChild(phoneLine);
+            }
 
             btn.addEventListener('click', async function(){
                 var name = (inName.value || '').trim();
