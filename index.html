@@ -3280,6 +3280,20 @@
             body.appendChild(d);
             body.scrollTop = body.scrollHeight;
         }
+        function mmCopy(text){
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text); return; }
+            } catch(e) {}
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch(e) {}
+            document.body.removeChild(ta);
+        }
+
         function showCallbackForm(manager){
             var d = document.createElement('div');
             d.className = 'mm-msg bot mm-cb-form';
@@ -3321,9 +3335,11 @@
                 if (!name) { status.textContent = 'Укажите имя'; return; }
                 if (digits.length < 10) { status.textContent = 'Укажите корректный телефон'; return; }
                 status.textContent = '';
-                btn.disabled = true;
-                btn.textContent = 'Заявка отправлена ✓';
-                addMsg('Спасибо, ' + name + '! Заявка на обратный звонок принята. ' + manager.name + ' перезвонит на ' + phone + ' в ближайшее время.', 'bot');
+                var text = 'Заявка на обратный звонок\nИмя: ' + name + '\nТелефон: ' + phone + '\nМенеджер: ' + manager.name;
+                mmCopy(text);
+                window.open(manager.max, '_blank');
+                btn.textContent = 'Чат MAX открыт ✓';
+                addMsg('Открыл чат с ' + manager.name + ' в MAX. Текст заявки скопирован — вставьте его в чат (Ctrl+V). Если чат не открылся — позвоните: ' + manager.phone, 'bot');
             });
 
             body.appendChild(d);
