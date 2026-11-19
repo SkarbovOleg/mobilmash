@@ -3292,7 +3292,7 @@
                 if (m.max) {
                     var aMax = document.createElement('a');
                     aMax.className = 'mm-mgr-btn mm-max';
-                    aMax.href = m.max;
+                    aMax.href = MAX_BOT_NAME ? ('https://max.ru/' + MAX_BOT_NAME) : m.max;
                     aMax.target = '_blank';
                     aMax.rel = 'noopener';
                     aMax.textContent = 'Написать в MAX';

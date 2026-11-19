@@ -54,7 +54,11 @@ async function handleUpdate(u) {
     if (type === 'message_created' && u.message) {
         const sender = u.message.sender && u.message.sender.user_id;
         const chat = u.message.recipient && u.message.recipient.chat_id;
-        console.log('Сообщение от user_id=' + sender + ', chat_id=' + chat);
+        const text = (u.message.body && u.message.body.text) || '';
+        console.log('Сообщение от user_id=' + sender + ', chat_id=' + chat + ': ' + text);
+        if (MANAGER_ID && sender && text) {
+            await sendTo(MANAGER_ID, '💬 Сообщение с сайта от ' + sender + ':\n' + text);
+        }
     }
 }
 
