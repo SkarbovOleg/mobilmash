@@ -2838,6 +2838,21 @@
         // ========== ЗАЯВКА НА ПОДБОР ==========
         // ============================================================
 
+        // Отправка письма на почту менеджера через FormSubmit.co (без регистрации)
+        async function sendEmailToManager(subject, fields) {
+            var body = Object.assign({ _subject: subject, _template: 'table', _captcha: 'false' }, fields);
+            try {
+                var res = await fetch('https://formsubmit.co/ajax/Agm159@mail.ru', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                return res.ok;
+            } catch (e) {
+                return false;
+            }
+        }
+
         function initSelectionForm() {
             const form = document.getElementById('selectionForm');
             const statusDiv = document.getElementById('selStatus');
@@ -2859,14 +2874,24 @@
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
 
-                await new Promise(r => setTimeout(r, 1500));
+                const ok = await sendEmailToManager('Заявка на подбор оборудования', {
+                    'Имя': name,
+                    'Контакт': contact,
+                    'Тип оборудования': document.getElementById('selType') ? document.getElementById('selType').value : '',
+                    'Высота подъёма': document.getElementById('selHeight') ? document.getElementById('selHeight').value : '',
+                    'Требования': document.getElementById('selRequirements') ? document.getElementById('selRequirements').value : ''
+                });
 
-                statusDiv.className = 'form-status success';
-                statusDiv.innerHTML = `
-                        ✅ Спасибо, ${escapeHtml(name)}! Ваша заявка принята. Менеджер свяжется с вами в ближайшее время.
-                    `;
-                showToast('✅ Заявка отправлена! Менеджер свяжется с вами.');
-                form.reset();
+                if (ok) {
+                    statusDiv.className = 'form-status success';
+                    statusDiv.innerHTML = `✅ Спасибо, ${escapeHtml(name)}! Заявка отправлена. Менеджер свяжется с вами.`;
+                    showToast('✅ Заявка отправлена!');
+                    form.reset();
+                } else {
+                    statusDiv.className = 'form-status error';
+                    statusDiv.innerHTML = '⚠️ Не удалось отправить. Напишите на <b>Agm159@mail.ru</b> или позвоните.';
+                    showToast('⚠️ Ошибка отправки', true);
+                }
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
             });
@@ -3120,12 +3145,15 @@
                 const btn = document.getElementById('submitFormBtn');
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-                await new Promise(r => setTimeout(r, 1500));
+                const ok = await sendEmailToManager('Сообщение с сайта', {
+                    'Имя': name,
+                    'Email': email,
+                    'Сообщение': msg
+                });
                 document.getElementById('formStatus').style.display = 'block';
                 document.getElementById('formStatus').style.color = 'var(--color-red)';
-                document.getElementById('formStatus').innerHTML = '✅ Спасибо! Мы свяжемся с вами.';
-                document.getElementById('feedbackForm').reset();
-                showToast('✅ Сообщение отправлено!');
+                document.getElementById('formStatus').innerHTML = ok ? '✅ Спасибо! Письмо отправлено, мы свяжемся с вами.' : '⚠️ Не удалось отправить. Напишите на Agm159@mail.ru.';
+                if (ok) { document.getElementById('feedbackForm').reset(); showToast('✅ Письмо отправлено!'); }
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
             });
@@ -3330,21 +3358,29 @@
             btn.textContent = 'Заказать звонок';
             d.appendChild(btn);
 
-            btn.addEventListener('click', function(){
+            btn.addEventListener('click', async function(){
                 var name = (inName.value || '').trim();
                 var phone = (inPhone.value || '').trim();
                 var digits = phone.replace(/\D/g, '');
                 if (!name) { status.textContent = 'Укажите имя'; return; }
                 if (digits.length < 10) { status.textContent = 'Укажите корректный телефон'; return; }
                 status.textContent = '';
-                var text = 'Заявка на обратный звонок\nИмя: ' + name + '\nТелефон: ' + phone + '\nМенеджер: ' + manager.name;
-                var subject = 'Заявка на обратный звонок — ' + name;
-                var mailto = 'mailto:' + CALLBACK_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
-                mmCopy(text);
-                window.location.href = mailto;
-                btn.textContent = 'Письмо открыто ✓';
-                status.innerHTML = 'Открыл почтовую программу — отправьте письмо на <b>' + CALLBACK_EMAIL + '</b>.<br>Если не открылось — <a href="' + mailto + '" style="color:var(--color-red);">открыть письмо</a> или <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">позвоните ' + manager.phone + '</a>.';
-                addMsg('Открыл почтовую программу. Отправьте письмо на ' + CALLBACK_EMAIL + ' — и ' + manager.name + ' перезвонит. Если почта не открылась — позвоните: ' + manager.phone, 'bot');
+                btn.disabled = true;
+                btn.textContent = 'Отправка...';
+                var ok = await sendEmailToManager('Заявка на обратный звонок', {
+                    'Имя': name,
+                    'Телефон': phone,
+                    'Менеджер': manager.name
+                });
+                if (ok) {
+                    btn.textContent = 'Заявка отправлена ✓';
+                    status.innerHTML = 'Письмо ушло на <b>' + CALLBACK_EMAIL + '</b>. ' + manager.name + ' перезвонит вам.';
+                    addMsg('Спасибо, ' + name + '! Заявка отправлена — ' + manager.name + ' перезвонит на ' + phone + '.', 'bot');
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = 'Заказать звонок';
+                    status.innerHTML = '⚠️ Не удалось отправить. Напишите на <b>' + CALLBACK_EMAIL + '</b> или позвоните: ' + manager.phone;
+                }
             });
 
             body.appendChild(d);
