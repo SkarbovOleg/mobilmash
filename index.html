@@ -3237,6 +3237,7 @@
         var FALLBACK = 'Не нашёл точного ответа. Оставьте заявку в разделе «Контакты» или напишите нам во ВКонтакте — ответим в ближайшее время.';
 
         var MAX_BOT_NAME = ''; // ник MAX-бота (например 'mobilmash_bot') — см. bot/README.md
+        var CALLBACK_EMAIL = 'Agm159@mail.ru'; // почта Станислава для заявок
         var MANAGERS = {
             goods: { name: 'Станислав', role: 'по товарам и оборудованию', max: 'https://max.ru/u/f9LHodD0cOJb3e4vy5Pt_GM-RdSwvElwIT8PmXooOIQ_Ddkqf_JRMHLVVqE', phone: '+79024781996' },
             service: { name: 'Иван', role: 'по услугам и сервису', max: 'https://max.ru/u/f9LHodD0cOIMrM6kAfI__STDgu1vD7VOQWgW8AmI44mwtIHxftgFD9ZBwXw', phone: '+79630181851' }
@@ -3337,12 +3338,13 @@
                 if (digits.length < 10) { status.textContent = 'Укажите корректный телефон'; return; }
                 status.textContent = '';
                 var text = 'Заявка на обратный звонок\nИмя: ' + name + '\nТелефон: ' + phone + '\nМенеджер: ' + manager.name;
+                var subject = 'Заявка на обратный звонок — ' + name;
+                var mailto = 'mailto:' + CALLBACK_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
                 mmCopy(text);
-                var maxUrl = MAX_BOT_NAME ? ('https://max.ru/' + MAX_BOT_NAME + '?start=' + encodeURIComponent(text)) : manager.max;
-                window.open(maxUrl, '_blank');
-                btn.textContent = 'Чат MAX открыт ✓';
-                status.innerHTML = 'Текст заявки скопирован — вставьте в чат MAX (Ctrl+V).<br>Если не открылось — <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">позвоните ' + manager.phone + '</a>.';
-                addMsg('Открыл чат с ' + manager.name + ' в MAX. Текст заявки скопирован — вставьте его в чат (Ctrl+V). Если чат не открылся — позвоните: ' + manager.phone, 'bot');
+                window.location.href = mailto;
+                btn.textContent = 'Письмо открыто ✓';
+                status.innerHTML = 'Открыл почтовую программу — отправьте письмо на <b>' + CALLBACK_EMAIL + '</b>.<br>Если не открылось — <a href="' + mailto + '" style="color:var(--color-red);">открыть письмо</a> или <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">позвоните ' + manager.phone + '</a>.';
+                addMsg('Открыл почтовую программу. Отправьте письмо на ' + CALLBACK_EMAIL + ' — и ' + manager.name + ' перезвонит. Если почта не открылась — позвоните: ' + manager.phone, 'bot');
             });
 
             body.appendChild(d);
