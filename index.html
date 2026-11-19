@@ -3236,6 +3236,7 @@
         var QUICK = ['Каталог','Доставка','Связаться с менеджером','Цены','Контакты'];
         var FALLBACK = 'Не нашёл точного ответа. Оставьте заявку в разделе «Контакты» или напишите нам во ВКонтакте — ответим в ближайшее время.';
 
+        var MAX_BOT_NAME = ''; // ник MAX-бота (например 'mobilmash_bot') — см. bot/README.md
         var MANAGERS = {
             goods: { name: 'Станислав', role: 'по товарам и оборудованию', max: 'https://max.ru/u/f9LHodD0cOJb3e4vy5Pt_GM-RdSwvElwIT8PmXooOIQ_Ddkqf_JRMHLVVqE', phone: '+79024781996' },
             service: { name: 'Иван', role: 'по услугам и сервису', max: 'https://max.ru/u/f9LHodD0cOIMrM6kAfI__STDgu1vD7VOQWgW8AmI44mwtIHxftgFD9ZBwXw', phone: '+79630181851' }
@@ -3337,7 +3338,8 @@
                 status.textContent = '';
                 var text = 'Заявка на обратный звонок\nИмя: ' + name + '\nТелефон: ' + phone + '\nМенеджер: ' + manager.name;
                 mmCopy(text);
-                window.open(manager.max, '_blank');
+                var maxUrl = MAX_BOT_NAME ? ('https://max.ru/' + MAX_BOT_NAME + '?start=' + encodeURIComponent(text)) : manager.max;
+                window.open(maxUrl, '_blank');
                 btn.textContent = 'Чат MAX открыт ✓';
                 status.innerHTML = 'Текст заявки скопирован — вставьте в чат MAX (Ctrl+V).<br>Если не открылось — <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">позвоните ' + manager.phone + '</a>.';
                 addMsg('Открыл чат с ' + manager.name + ' в MAX. Текст заявки скопирован — вставьте его в чат (Ctrl+V). Если чат не открылся — позвоните: ' + manager.phone, 'bot');
