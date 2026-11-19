@@ -3339,6 +3339,7 @@
                 mmCopy(text);
                 window.open(manager.max, '_blank');
                 btn.textContent = 'Чат MAX открыт ✓';
+                status.innerHTML = 'Текст заявки скопирован — вставьте в чат MAX (Ctrl+V).<br>Если не открылось — <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">позвоните ' + manager.phone + '</a>.';
                 addMsg('Открыл чат с ' + manager.name + ' в MAX. Текст заявки скопирован — вставьте его в чат (Ctrl+V). Если чат не открылся — позвоните: ' + manager.phone, 'bot');
             });
 
