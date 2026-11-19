@@ -3400,7 +3400,7 @@
                 } else {
                     btn.disabled = false;
                     btn.textContent = 'Отправить письмо';
-                    status.innerHTML = '⚠️ Не удалось отправить. Напишите на <b>' + CALLBACK_EMAIL + '</b>.';
+                    status.innerHTML = '⚠️ Не удалось отправить. <a href="mailto:' + CALLBACK_EMAIL + '?subject=' + encodeURIComponent('Заявка с сайта') + '" style="color:var(--color-red); font-weight:700;">Напишите на ' + CALLBACK_EMAIL + '</a>.';
                 }
             });
 
