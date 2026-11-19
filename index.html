@@ -3301,7 +3301,7 @@
                 var bCall = document.createElement('button');
                 bCall.type = 'button';
                 bCall.className = 'mm-mgr-btn';
-                bCall.textContent = 'Позвонить';
+                bCall.textContent = 'Написать на почту';
                 bCall.addEventListener('click', function(){ showCallbackForm(m); });
                 btns.appendChild(bCall);
                 row.appendChild(btns);
@@ -3329,11 +3329,11 @@
             d.className = 'mm-msg bot mm-cb-form';
             var title = document.createElement('div');
             title.className = 'mm-cb-title';
-            title.textContent = 'Заказать обратный звонок';
+            title.textContent = 'Написать на почту';
             d.appendChild(title);
             var sub = document.createElement('div');
             sub.className = 'mm-cb-sub';
-            sub.textContent = 'Менеджер ' + manager.name + ' перезвонит вам.';
+            sub.textContent = 'Менеджер ' + manager.name + ' ответит на вашу почту.';
             d.appendChild(sub);
 
             var inName = document.createElement('input');
@@ -3342,11 +3342,17 @@
             inName.placeholder = 'Ваше имя';
             d.appendChild(inName);
 
-            var inPhone = document.createElement('input');
-            inPhone.type = 'tel';
-            inPhone.className = 'mm-cb-input';
-            inPhone.placeholder = 'Телефон';
-            d.appendChild(inPhone);
+            var inEmail = document.createElement('input');
+            inEmail.type = 'email';
+            inEmail.className = 'mm-cb-input';
+            inEmail.placeholder = 'Ваша почта (email)';
+            d.appendChild(inEmail);
+
+            var inMsg = document.createElement('textarea');
+            inMsg.className = 'mm-cb-input';
+            inMsg.placeholder = 'Сообщение';
+            inMsg.rows = 2;
+            d.appendChild(inMsg);
 
             var status = document.createElement('div');
             status.className = 'mm-cb-status';
@@ -3355,31 +3361,32 @@
             var btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'mm-cb-btn';
-            btn.textContent = 'Заказать звонок';
+            btn.textContent = 'Отправить письмо';
             d.appendChild(btn);
 
             btn.addEventListener('click', async function(){
                 var name = (inName.value || '').trim();
-                var phone = (inPhone.value || '').trim();
-                var digits = phone.replace(/\D/g, '');
+                var email = (inEmail.value || '').trim();
+                var msg = (inMsg.value || '').trim();
                 if (!name) { status.textContent = 'Укажите имя'; return; }
-                if (digits.length < 10) { status.textContent = 'Укажите корректный телефон'; return; }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = 'Укажите корректную почту'; return; }
                 status.textContent = '';
                 btn.disabled = true;
                 btn.textContent = 'Отправка...';
-                var ok = await sendEmailToManager('Заявка на обратный звонок', {
+                var ok = await sendEmailToManager('Письмо с сайта', {
                     'Имя': name,
-                    'Телефон': phone,
+                    'Почта': email,
+                    'Сообщение': msg,
                     'Менеджер': manager.name
                 });
                 if (ok) {
-                    btn.textContent = 'Заявка отправлена ✓';
-                    status.innerHTML = 'Письмо ушло на <b>' + CALLBACK_EMAIL + '</b>. ' + manager.name + ' перезвонит вам.';
-                    addMsg('Спасибо, ' + name + '! Заявка отправлена — ' + manager.name + ' перезвонит на ' + phone + '.', 'bot');
+                    btn.textContent = 'Письмо отправлено ✓';
+                    status.innerHTML = 'Письмо ушло на <b>' + CALLBACK_EMAIL + '</b>. ' + manager.name + ' ответит на ' + email + '.';
+                    addMsg('Спасибо, ' + name + '! Письмо отправлено — ' + manager.name + ' ответит на ' + email + '.', 'bot');
                 } else {
                     btn.disabled = false;
-                    btn.textContent = 'Заказать звонок';
-                    status.innerHTML = '⚠️ Не удалось отправить. Напишите на <b>' + CALLBACK_EMAIL + '</b> или позвоните: ' + manager.phone;
+                    btn.textContent = 'Отправить письмо';
+                    status.innerHTML = '⚠️ Не удалось отправить. Напишите на <b>' + CALLBACK_EMAIL + '</b>.';
                 }
             });
 
