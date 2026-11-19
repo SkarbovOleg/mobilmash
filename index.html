@@ -2842,7 +2842,7 @@
         async function sendEmailToManager(subject, fields) {
             var body = Object.assign({ _subject: subject, _template: 'table', _captcha: 'false' }, fields);
             try {
-                var res = await fetch('https://formsubmit.co/ajax/Agm159@mail.ru', {
+                var res = await fetch('https://formsubmit.co/ajax/1b75fbdcc5e4261d95950837a77c6957', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(body)
