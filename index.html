@@ -2838,7 +2838,7 @@
         // ========== ЗАЯВКА НА ПОДБОР ==========
         // ============================================================
 
-        // Отправка письма на почту менеджера через FormSubmit.co (без регистрации)
+        // Отправка письма на почту менеджера через FormSubmit.co
         async function sendEmailToManager(subject, fields) {
             var body = Object.assign({ _subject: subject, _template: 'table', _captcha: 'false' }, fields);
             try {
@@ -2847,7 +2847,8 @@
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(body)
                 });
-                return res.ok;
+                var data = await res.json();
+                return String(data.success) === 'true';
             } catch (e) {
                 return false;
             }
