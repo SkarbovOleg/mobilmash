@@ -24,6 +24,39 @@ if (!TOKEN) {
     process.exit(1);
 }
 
+// ===== СОДЕРЖАНИЕ БОТА =====
+const WELCOME =
+    'Здравствуйте! Это бот компании МОБИЛМАШ — производителя оборудования для бурения и нефтегаза.\n\n' +
+    'Помогу с подбором, ценами и заявкой. Напишите, что нужно, и оставьте телефон или почту — передам менеджеру.';
+
+const HELP =
+    'Что можно спросить:\n\n' +
+    '• «цена» / «стоимость» — как рассчитываем\n' +
+    '• «доставка» — условия доставки\n' +
+    '• «гарантия» — гарантийные условия\n' +
+    '• «контакты» — как связаться\n' +
+    '• «каталог» — что есть в наличии\n\n' +
+    'Или просто напишите ваш вопрос с телефоном — менеджер ответит.';
+
+const FAQ = [
+    { k: ['цена', 'стоимост', 'сколько', 'прайс'], a: 'Цены рассчитываем индивидуально — зависят от модели и комплектации. Напишите, что нужно, и менеджер пришлёт расчёт.' },
+    { k: ['доставк', 'доставл'], a: 'Доставляем по всей России транспортными компаниями. Срок и стоимость уточним по вашему адресу.' },
+    { k: ['гарант'], a: 'На всё оборудование действует гарантия производителя. Условия зависят от модели — уточним у менеджера.' },
+    { k: ['контакт', 'телефон', 'почт', 'связ', 'менеджер'], a: 'Связаться можно здесь в чате, по почте Agm159@mail.ru или кнопкой «Позвонить» на сайте.' },
+    { k: ['каталог', 'оборудован', 'ассортимент', 'ротор', 'лебед', 'лебёд', 'установк', 'захват'], a: 'В каталоге — буровые установки, роторы, лебёдки, захваты и услуги. Откройте раздел «Каталог» на сайте или напишите модель — подскажу цену и наличие.' }
+];
+
+function faqAnswer(text) {
+    const t = (text || '').toLowerCase();
+    for (const item of FAQ) {
+        for (const k of item.k) {
+            if (t.indexOf(k) !== -1) return item.a;
+        }
+    }
+    return null;
+}
+
+// ===== API =====
 async function call(method, path, body) {
     const res = await fetch(API + path, { method, headers: HEADERS, body: body ? JSON.stringify(body) : undefined });
     const text = await res.text();
@@ -46,22 +79,36 @@ async function handleUpdate(u) {
             if (MANAGER_ID) await sendTo(MANAGER_ID, text);
             if (userId) await sendTo(userId, 'Спасибо! Заявка принята. Менеджер свяжется с вами.');
         } else if (userId) {
-            await sendTo(userId, 'Здравствуйте! Это бот МобилМаш. Оставьте заявку на сайте — мы свяжемся с вами.');
+            await sendTo(userId, WELCOME);
         }
         return;
     }
 
     if (type === 'message_created' && u.message) {
         const sender = u.message.sender && u.message.sender.user_id;
-        const chat = u.message.recipient && u.message.recipient.chat_id;
         const text = (u.message.body && u.message.body.text) || '';
-        console.log('Сообщение от user_id=' + sender + ', chat_id=' + chat + ': ' + text);
-        if (MANAGER_ID && sender && text) {
-            await sendTo(MANAGER_ID, '💬 Сообщение с сайта от ' + sender + ':\n' + text);
+        console.log('Сообщение от user_id=' + sender + ': ' + text);
+
+        if (!sender) return;
+
+        if (/^\/help/i.test(text)) { await sendTo(sender, HELP); return; }
+        if (/^\/start/i.test(text)) { await sendTo(sender, WELCOME); return; }
+
+        const faq = faqAnswer(text);
+        if (faq) {
+            await sendTo(sender, faq);
+        }
+
+        if (MANAGER_ID) {
+            await sendTo(MANAGER_ID, '💬 Сообщение с сайта от user_id ' + sender + ':\n' + text);
+            if (!faq) await sendTo(sender, 'Спасибо! Передал ваш вопрос менеджеру — он свяжется с вами.');
+        } else if (!faq) {
+            await sendTo(sender, 'Спасибо! Сообщение принято. Менеджер свяжется с вами.');
         }
     }
 }
 
+// ===== Long polling =====
 let marker = null;
 async function poll() {
     try {
