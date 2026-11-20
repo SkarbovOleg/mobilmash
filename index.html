@@ -2759,18 +2759,21 @@
             const specsHtml = (product.specs && product.specs.length)
                 ? '<div class="qv-specs">' + product.specs.map(s => { const p = s.split(':'); const val = p.slice(1).join(':').trim(); const cls = /механическ/i.test(val) ? ' style="color:var(--color-red);"' : ''; return '<div class="qv-spec"><span>' + escapeHtml(p[0]) + '</span><b' + cls + '>' + escapeHtml(val) + '</b></div>'; }).join('') + '</div>'
                 : '';
+            // Блок «Вы можете заказать у нас» — только для товаров (не для услуг)
+            const ordersHtml = product.icon ? '' :
+                '<div style="margin-top:16px; text-align:center;">' +
+                    '<div style="font-weight:600; font-size:16px; margin-bottom:10px; color:var(--text-primary);">Вы можете заказать у нас:</div>' +
+                    '<div class="qv-orders">' +
+                        '<span class="qv-order-btn">Изготовление</span>' +
+                        '<span class="qv-order-btn">Ремонт</span>' +
+                        '<span class="qv-order-btn">Запасные части</span>' +
+                    '</div>' +
+                '</div>';
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1.2; min-width:320px;">
                             ${mediaHtml}
-                            <div style="margin-top:16px; text-align:center;">
-                                <div style="font-weight:600; font-size:16px; margin-bottom:10px; color:var(--text-primary);">Вы можете заказать у нас:</div>
-                                <div class="qv-orders">
-                                    <span class="qv-order-btn">Изготовление</span>
-                                    <span class="qv-order-btn">Ремонт</span>
-                                    <span class="qv-order-btn">Запасные части</span>
-                                </div>
-                            </div>
+                            ${ordersHtml}
                         </div>
                         <div style="flex:1; min-width:280px;">
                             <div style="color:var(--color-red); font-weight:600;">${product.type}</div>
