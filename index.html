@@ -1671,6 +1671,7 @@
         #reinigenModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
         #kdModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
         #izgotModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
+        .blog-link { display: inline-block; margin-top: 10px; color: var(--color-red); font-weight: 600; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -2493,6 +2494,10 @@
         ];
 
         const blogPosts = [
+            { tag: "СМИ О НАС", title: "«МОБИЛМАШ»: производство оборудования и запчастей для промышленных предприятий",
+                excerpt: "Интервью технического директора Ильи Сарапулова: опыт, выставка «Металлообработка. Сварка» в Екатеринбурге и новые направления.",
+                img: "img/blog/mobilmash-article.jpg",
+                link: "https://indpages.ru/equipment/mobilmash-proizvodstvo-oborudovaniya-i-zapchastei-ms26/" },
             { tag: "СОВЕТЫ", title: "Как выбрать складской погрузчик",
                 excerpt: "Разбираем типы погрузчиков, грузоподъёмность и высоту подъёма.",
                 img: "img/blog/blog-1.png" },
@@ -3012,6 +3017,7 @@
                             <div class="blog-tag">${post.tag}</div>
                             <div class="blog-title">${post.title}</div>
                             <div class="blog-excerpt">${post.excerpt}</div>
+                            ${post.link ? '<a class="blog-link" href="' + post.link + '" target="_blank" rel="noopener">Читать статью →</a>' : ''}
                         </div>
                     </div>
                 `).join('');
