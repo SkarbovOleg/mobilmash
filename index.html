@@ -1660,6 +1660,15 @@
         .qv-orders { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
         .qv-order-btn { display: inline-block; background: var(--color-red); color: #fff; font-weight: 600; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
         #quickViewModal .modal-content { border: 3px solid var(--color-red); }
+        .reinigen-page h1 { font-size: 30px; margin-bottom: 12px; }
+        .reinigen-page h2 { font-size: 22px; margin: 24px 0 10px; }
+        .reinigen-page p { color: var(--text-secondary); margin-bottom: 10px; }
+        .reinigen-page ul { margin: 0 0 12px 20px; color: var(--text-secondary); }
+        .reinigen-page li { margin-bottom: 6px; }
+        .reinigen-lead { font-size: 16px; }
+        .reinigen-q { font-weight: 700; color: var(--text-primary); margin-top: 14px; }
+        .reinigen-cta { margin-top: 24px; text-align: center; }
+        #reinigenModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
     </style>
 </head>
 <body>
@@ -2163,6 +2172,58 @@
         </div>
     </div>
 
+    <div id="reinigenModal" class="modal">
+        <div class="modal-content reinigen-modal">
+            <button class="close-modal" onclick="document.getElementById('reinigenModal').classList.remove('show')">&times;</button>
+            <div class="reinigen-page">
+                <h1>Реверс-инжиниринг оборудования</h1>
+                <p class="reinigen-lead">Восстанавливаем конструкцию, документацию и аналог узла, когда нет чертежей производителя. Обследование, 3D-модель, КД и изготовление — в одном цикле.</p>
+
+                <h2>Что получает заказчик</h2>
+                <p>Итог зависит от согласованного объёма работ. В него могут входить:</p>
+                <ul>
+                    <li>параметрическая 3D-модель узла или сборочной единицы;</li>
+                    <li>комплект чертежей и спецификаций;</li>
+                    <li>рекомендации по материалам, покрытиям и технологии;</li>
+                    <li>данные для изготовления на станках с ЧПУ;</li>
+                    <li>опытный образец и протоколы проверки.</li>
+                </ul>
+                <p>Состав фиксируется в техническом задании до старта работ.</p>
+
+                <h2>Когда нужен реверс-инжиниринг</h2>
+                <ul>
+                    <li>оборудование работает, но нет актуальной документации;</li>
+                    <li>нужно заменить изношенный или недоступный узел;</li>
+                    <li>требуется аналог импортного оборудования;</li>
+                    <li>нужно адаптировать конструкцию под новые условия эксплуатации;</li>
+                    <li>нужно подготовить локальное производство.</li>
+                </ul>
+
+                <h2>Какие исходные данные помогают оценить проект</h2>
+                <p>Для предварительной оценки достаточно описать задачу, приложить фото или видео узла, указать критические параметры: производительность, габариты, нагрузки, точность, материалы и условия эксплуатации. Если данных не хватает — начинаем с инженерного обследования.</p>
+
+                <h2>Как мы ведём проект</h2>
+                <p>Формируем задачу и критерии приёмки, проводим обследование и обмеры, восстанавливаем инженерную модель, выпускаем документацию, при необходимости изготавливаем аналог, проводим испытания и передаём решение для внедрения.</p>
+
+                <h2>Частые вопросы</h2>
+                <div class="reinigen-faq">
+                    <div class="reinigen-q">Сколько стоит реверс-инжиниринг?</div>
+                    <p>Стоимость зависит от доступа к объекту, объёма обмеров, состава результата (КД, образец или внедрённый аналог) и критериев приёмки. Оценка — после фото/видео и описания задачи.</p>
+                    <div class="reinigen-q">Как заказать?</div>
+                    <p>Опишите задачу, приложите фото или видео узла и желаемый результат. Дальше согласуем состав работ и критерии приёмки.</p>
+                    <div class="reinigen-q">Чем реверс-инжиниринг отличается от копирования детали?</div>
+                    <p>Копирование — это повтор геометрии одной позиции. Реверс-инжиниринг восстанавливает конструкцию, сопряжения, функцию узла и КД для изготовления аналога.</p>
+                    <div class="reinigen-q">Нужны ли оригинальные чертежи производителя?</div>
+                    <p>Нет. Достаточно объекта, узла, образца или данных о работе. Чертежи ускоряют работу, но не обязательны.</p>
+                </div>
+
+                <div class="reinigen-cta">
+                    <button class="btn" onclick="document.getElementById('reinigenModal').classList.remove('show'); document.getElementById('contactSection').scrollIntoView({behavior:'smooth'});">Обсудить проект</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ============================================================
         // ========== СЛАЙДЕР ==========
@@ -2274,6 +2335,7 @@
             { id: 202, name: "Проектирование по ТЗ", category: "проект", type: "Проектирование", price: 0, imageData: "", icon: "fa-drafting-compass", description: "Проектирование по техническому заданию, в том числе реинжиниринг.", features: ["Разработка по ТЗ", "3D-моделирование", "Реинжиниринг"] },
             { id: 203, name: "Изготовление узлов по КД", category: "проект", type: "Производство", price: 0, imageData: "", icon: "fa-gears", description: "Изготовление узлов и оборудования по конструкторской документации заказчика или по образцу.", features: ["По КД заказчика", "По образцу", "Механическая обработка"] },
             { id: 204, name: "Литьевые заготовки", category: "проект", type: "Литьё", price: 0, imageData: "", icon: "fa-fire", description: "Изготовление литьевых заготовок из стали, чугуна, алюминия с последующей механической обработкой.", features: ["Сталь", "Чугун", "Алюминий", "Механическая обработка"] },
+            { id: 205, name: "Реверс-инжиниринг", category: "проект", type: "Проектирование", price: 0, imageData: "", icon: "fa-arrows-rotate", description: "Восстановление конструкции, документации и аналога узла, когда нет чертежей производителя: обследование, 3D-модель, КД, изготовление.", features: ["Обмер и 3D-сканирование", "3D-модель и КД", "Аналог узла", "Изготовление"] },
             { id: 301, name: "Буровая установка УРБ 3А3", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "УРБ 3А3", description: "Буровая установка для бурения и ремонта скважин." },
             { id: 302, name: "Буровая установка БА 15", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "БА 15", description: "Буровая установка для бурения и ремонта скважин." },
             { id: 303, name: "Буровая установка МОБИЛМАШ 20", category: "буровые", type: "Буровые установки", price: 0, imageData: "", icon: "fa-industry", model: "МОБИЛМАШ 20", description: "Буровая установка для бурения и ремонта скважин." },
@@ -2722,6 +2784,7 @@
                         '<span class="qv-order-btn">Запасные части</span>' +
                     '</div>' +
                 '</div>';
+            const reinigenBtnHtml = (product.id === 205 || product.id === 202) ? '<button class="btn" style="width:100%; margin-bottom:10px; background:#111;" onclick="showReinigenPage()">Подробнее о реверс-инжиниринге</button>' : '';
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1.2; min-width:320px;">
@@ -2738,10 +2801,16 @@
                         </div>
                     </div>
                     <div style="margin-top:22px; padding-top:18px; border-top:1px solid var(--border-light);">
+                        ${reinigenBtnHtml}
                         <button class="btn" style="width:100%;" onclick="document.getElementById('quickViewModal').classList.remove('show'); document.getElementById('contactSection').scrollIntoView({behavior:'smooth'});">Связаться с нами</button>
                     </div>
                 `;
             document.getElementById('quickViewModal').classList.add('show');
+        }
+
+        function showReinigenPage() {
+            document.getElementById('quickViewModal').classList.remove('show');
+            document.getElementById('reinigenModal').classList.add('show');
         }
 
         // ============================================================
