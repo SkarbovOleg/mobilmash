@@ -2890,7 +2890,7 @@
             const imgSrc = product.imageData || 'https://placehold.co/400x300/e8e4dd/cc0000?text=' + encodeURIComponent(product.name);
             const mediaHtml = product.icon
                 ? '<div class="qv-service-icon"><i class="fas ' + product.icon + '"></i></div>'
-                : '<img src="' + imgSrc + '" alt="' + product.name + '" style="width:100%; border-radius:12px; object-fit:contain; background:var(--bg-primary);">';
+                : '<img src="' + imgSrc + '" alt="' + product.name + '" style="width:100%; max-height:420px; border-radius:12px; object-fit:contain; background:var(--bg-primary);">';
             const featsHtml = (product.features && product.features.length)
                 ? '<ul class="qv-features">' + product.features.map(f => '<li>' + escapeHtml(f) + '</li>').join('') + '</ul>'
                 : '';
