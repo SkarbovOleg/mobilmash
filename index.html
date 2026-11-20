@@ -1670,6 +1670,7 @@
         .reinigen-cta { margin-top: 24px; text-align: center; }
         #reinigenModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
         #kdModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
+        #izgotModal .modal-content { max-width: 820px; border: 3px solid var(--color-red); }
     </style>
 </head>
 <body>
@@ -2284,6 +2285,63 @@
         </div>
     </div>
 
+    <div id="izgotModal" class="modal">
+        <div class="modal-content reinigen-modal">
+            <button class="close-modal" onclick="document.getElementById('izgotModal').classList.remove('show')">&times;</button>
+            <div class="reinigen-page">
+                <h1>Изготовление по КД или образцу</h1>
+                <p class="reinigen-lead">Изготавливаем узлы и оборудование по ТЗ, чертежам заказчика или образцу: проверка КД, производство узлов, сборка, испытания и передача с документацией.</p>
+
+                <h2>Изготовление по чертежам заказчика</h2>
+                <p>Работаем по готовой или доработанной конструкторской документации. Перед запуском в производство проверяем комплектность чертежей, технологичность конструкции, материалы и покрытия, посадки и допуски, перечень покупных изделий и доступность компонентов. На этапе изготовления выполняем механообработку, изготовление металлоконструкций, сварку, сборку механики и испытания по согласованной программе.</p>
+
+                <h2>Что можно изготовить</h2>
+                <ul>
+                    <li>специальные узлы, оснастку, позиционеры и приспособления под конкретную операцию;</li>
+                    <li>испытательные стенды и контрольные установки;</li>
+                    <li>производственные модули и участки линий под согласованную технологию;</li>
+                    <li>рамы, кожухи и металлоконструкции под нагрузки и габариты площадки;</li>
+                    <li>опытные и тестовые образцы для проверки конструкции и технологии.</li>
+                </ul>
+
+                <h2>Как формируется оценка изготовления</h2>
+                <p>Предварительную оценку формируем после разбора ТЗ, чертежей и условий эксплуатации. На стоимость и сроки влияют:</p>
+                <ul>
+                    <li>состав и качество КД, необходимость доработки документации;</li>
+                    <li>материалы, точность и объём механообработки, сварных и листовых работ;</li>
+                    <li>перечень и сроки поставки покупных компонентов;</li>
+                    <li>сложность сборки и электромонтажа;</li>
+                    <li>программа испытаний и критерии приёмки;</li>
+                    <li>монтаж, ПНР на площадке и состав передаваемой документации.</li>
+                </ul>
+
+                <h2>Почему это снижает риск переделок</h2>
+                <ul>
+                    <li><b>Проверка КД до производства.</b> Выявляем технологические риски и недостающие данные до запуска в цех.</li>
+                    <li><b>Собственное производство.</b> Механообработка, сварка и сборка на одной площадке — проще контролировать сопряжения и сроки.</li>
+                    <li><b>Испытания до передачи.</b> Проверяем работу по согласованной методике и устраняем замечания на стенде.</li>
+                    <li><b>Документация и приёмка.</b> Передаём комплект документов и результаты испытаний в объёме, согласованном в договоре.</li>
+                </ul>
+
+                <h2>Частые вопросы</h2>
+                <div class="reinigen-faq">
+                    <div class="reinigen-q">Что нужно для оценки изготовления?</div>
+                    <p>ТЗ или чертежи, описание операции и условий эксплуатации, требования к габаритам, производительности, точности, материалам, автоматизации и критериям приёмки. Если документация неполная — сначала уточним состав КД и технологичность.</p>
+                    <div class="reinigen-q">Можно ли изготовить по готовой КД заказчика?</div>
+                    <p>Да. Проверяем комплектность, технологичность, материалы, посадки и покупные изделия, согласуем замечания и переходим к производству, сборке и испытаниям.</p>
+                    <div class="reinigen-q">Изготавливаете ли опытный образец?</div>
+                    <p>Да. Опытный или тестовый образец изготавливаем, когда нужно подтвердить конструкцию, технологию или критерии приёмки до серийного изготовления.</p>
+                    <div class="reinigen-q">От чего зависят сроки и стоимость?</div>
+                    <p>От состава и качества КД, сложности узлов, объёма механообработки, сроков поставки покупных компонентов, уровня автоматизации, программы испытаний и необходимости доработок.</p>
+                </div>
+
+                <div class="reinigen-cta">
+                    <button class="btn" onclick="document.getElementById('izgotModal').classList.remove('show'); document.getElementById('contactSection').scrollIntoView({behavior:'smooth'});">Обсудить проект</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // ============================================================
         // ========== СЛАЙДЕР ==========
@@ -2847,6 +2905,7 @@
                 '</div>';
             const reinigenBtnHtml = (product.id === 205 || product.id === 202) ? '<button class="btn" style="width:100%; margin-bottom:10px; background:#111;" onclick="showReinigenPage()">Подробнее о реверс-инжиниринге</button>' : '';
             const kdBtnHtml = (product.id === 206) ? '<button class="btn" style="width:100%; margin-bottom:10px; background:#111;" onclick="showKdPage()">Подробнее о разработке КД</button>' : '';
+            const izgotBtnHtml = (product.id === 203) ? '<button class="btn" style="width:100%; margin-bottom:10px; background:#111;" onclick="showIzgotPage()">Подробнее об изготовлении</button>' : '';
             container.innerHTML = `
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1.2; min-width:320px;">
@@ -2865,6 +2924,7 @@
                     <div style="margin-top:22px; padding-top:18px; border-top:1px solid var(--border-light);">
                         ${reinigenBtnHtml}
                         ${kdBtnHtml}
+                        ${izgotBtnHtml}
                         <button class="btn" style="width:100%;" onclick="document.getElementById('quickViewModal').classList.remove('show'); document.getElementById('contactSection').scrollIntoView({behavior:'smooth'});">Связаться с нами</button>
                     </div>
                 `;
@@ -2879,6 +2939,11 @@
         function showKdPage() {
             document.getElementById('quickViewModal').classList.remove('show');
             document.getElementById('kdModal').classList.add('show');
+        }
+
+        function showIzgotPage() {
+            document.getElementById('quickViewModal').classList.remove('show');
+            document.getElementById('izgotModal').classList.add('show');
         }
 
         // ============================================================
