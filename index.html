@@ -1657,6 +1657,9 @@
         .calc-panel .mc-result { font-size: 12px; padding: 10px 12px; }
         .calc-panel .mc-result b { font-size: 16px; }
         .calc-panel .btn.btn-submit { width: 100%; padding: 10px; font-size: 13px; }
+        .qv-orders { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .qv-order-btn { display: inline-block; background: var(--color-red); color: #fff; font-weight: 600; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+        #quickViewModal .modal-content { border: 3px solid var(--color-red); }
     </style>
 </head>
 <body>
@@ -2758,6 +2761,14 @@
                     <div style="display:flex; flex-wrap:wrap; gap:20px;">
                         <div style="flex:1.2; min-width:320px;">
                             ${mediaHtml}
+                            <div style="margin-top:16px; text-align:center;">
+                                <div style="font-weight:600; font-size:16px; margin-bottom:10px; color:var(--text-primary);">Вы можете заказать у нас:</div>
+                                <div class="qv-orders">
+                                    <span class="qv-order-btn">Изготовление</span>
+                                    <span class="qv-order-btn">Ремонт</span>
+                                    <span class="qv-order-btn">Запасные части</span>
+                                </div>
+                            </div>
                         </div>
                         <div style="flex:1; min-width:280px;">
                             <div style="color:var(--color-red); font-weight:600;">${product.type}</div>
@@ -3251,7 +3262,7 @@
     (function(){
         var KB = [
             { k: ['привет','здравств','добрый','хай'], a: 'Здравствуйте! Я помощник МОБИЛМАШ. Помогу с выбором оборудования, доставкой и ценами. С чего начнём?' },
-            { k: ['каталог','товар','техник','погрузчик','штабел','ричтрак','тележк','рамп','зарядн'], a: ['В каталоге: погрузчики, штабелёры, ричтраки, тележки, рампы, зарядные станции. По подбору и покупке оборудования поможет менеджер Станислав:', ['goods']] },
+            { k: ['каталог','товар','техник','погрузчик','штабел','ричтрак','тележк','рамп','зарядн'], a: ['По подбору оборудования поможет менеджер Станислав:', ['goods']] },
             { k: ['услуг','гаранти','сервис','ремонт','обслуж','обучен'], a: ['По услугам — сервис, ремонт, обучение и гарантия — поможет менеджер Иван:', ['service']] },
             { k: ['подбор','подобрать','выбрать','консультац','расчёт','расчет'], a: ['Заполните форму «Подбор оборудования» на сайте — инженеры подберут модель под ваши задачи и бюджет. Это бесплатно. Или напрямую свяжитесь со Станиславом:', ['goods']] },
             { k: ['цен','стоимост','сколько','прайс','дорог'], a: ['Цены указаны в каталоге. Точный расчёт по вашей задаче сделает менеджер Станислав:', ['goods']] },
