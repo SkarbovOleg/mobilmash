@@ -3488,11 +3488,12 @@
                 bCall.addEventListener('click', function(){ showCallbackForm(m); });
                 btns.appendChild(bCall);
                 if (m.phone) {
-                    var aTel = document.createElement('a');
-                    aTel.className = 'mm-mgr-btn';
-                    aTel.href = 'tel:' + m.phone;
-                    aTel.textContent = 'Позвонить';
-                    btns.appendChild(aTel);
+                    var bTel = document.createElement('button');
+                    bTel.type = 'button';
+                    bTel.className = 'mm-mgr-btn';
+                    bTel.textContent = 'Позвонить';
+                    bTel.addEventListener('click', function(){ window.location.href = 'tel:' + m.phone; });
+                    btns.appendChild(bTel);
                 }
                 row.appendChild(btns);
                 d.appendChild(row);
@@ -3556,7 +3557,7 @@
             if (manager.phone) {
                 var phoneLine = document.createElement('div');
                 phoneLine.className = 'mm-cb-status';
-                phoneLine.innerHTML = 'Или <a href="tel:' + manager.phone + '" style="color:var(--color-red); font-weight:700;">позвоните</a>.';
+                phoneLine.innerHTML = 'Или <button type="button" style="background:none; border:none; padding:0; color:var(--color-red); font-weight:700; cursor:pointer; font-family:inherit; font-size:inherit;" onclick="window.location.href=\'tel:' + manager.phone + '\'">позвоните</button>.';
                 d.appendChild(phoneLine);
             }
 
