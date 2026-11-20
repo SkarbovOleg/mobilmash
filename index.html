@@ -2658,7 +2658,7 @@
                     ? '<ul class="card-specs">' + prod.specs.map(s => { const p = s.split(':'); const val = p.slice(1).join(':').trim(); const cls = /механическ/i.test(val) ? ' class="spec-red"' : ''; return '<li>' + escapeHtml(p[0]) + ': <b' + cls + '>' + escapeHtml(val) + '</b></li>'; }).join('') + '</ul>'
                     : '';
                 card.innerHTML = `
-                        <button class="quick-view-btn" data-id="${prod.id}">Быстрый просмотр</button>
+                        <button class="quick-view-btn" data-id="${prod.id}">${[202,203,205,206].includes(prod.id) ? 'Подробнее' : 'Быстрый просмотр'}</button>
                         ${mediaHtml}
                         <div class="product-info">
                             <div class="product-category">${prod.type}</div>
@@ -2944,6 +2944,14 @@
         function showIzgotPage() {
             document.getElementById('quickViewModal').classList.remove('show');
             document.getElementById('izgotModal').classList.add('show');
+        }
+
+        // Услуги с подробной страницей: «Подробнее» открывает её сразу, без промежуточного окна
+        function showDetailPage(id) {
+            if (id === 202 || id === 205) { showReinigenPage(); return true; }
+            if (id === 203) { showIzgotPage(); return true; }
+            if (id === 206) { showKdPage(); return true; }
+            return false;
         }
 
         // ============================================================
@@ -3264,7 +3272,11 @@
 
             document.getElementById('productsGrid').addEventListener('click', (e) => {
                 const quick = e.target.closest('.quick-view-btn');
-                if (quick) { showQuickView(parseInt(quick.dataset.id)); return; }
+                if (quick) {
+                    const id = parseInt(quick.dataset.id);
+                    if (!showDetailPage(id)) showQuickView(id);
+                    return;
+                }
             });
 
             document.getElementById('searchBtn').addEventListener('click', () => {
