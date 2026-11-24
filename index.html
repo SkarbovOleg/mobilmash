@@ -1676,6 +1676,7 @@
         .calc-panel-close { position: absolute; top: 6px; right: 10px; background: none; border: none; font-size: 22px; line-height: 1; color: var(--text-muted); cursor: pointer; }
         .mobik { position: relative; width: min(100%, 300px); margin: 0 auto 40px; }
         .mobik-hero { width: 150px; margin: 18px 0 0; }
+        .mobik-fixed { position: fixed; left: 10px; top: 84px; width: 110px; z-index: 60; margin: 0; pointer-events: none; }
         .mobik .mobik-body { display: block; width: 100%; height: auto; }
         .mobik .mobik-hand {
             position: absolute; left: 69.4%; top: 4.14%; width: 20.03%;
@@ -1711,6 +1712,11 @@
                 <a href="#" data-nav="blog">Блог</a>
             </div>
         </nav>
+    </div>
+
+    <div class="mobik mobik-fixed">
+        <img class="mobik-body" src="img/mobik-body.webp" alt="Робот МОБИК">
+        <img class="mobik-hand" src="img/mobik-hand.webp" alt="" aria-hidden="true">
     </div>
 
     <div id="calcPanel" class="calc-panel">
@@ -1763,10 +1769,6 @@
                     <h1 class="serif">Техника, <br>которой доверяют</h1>
                     <p style="color:var(--color-red);">С нами вам доступны современные технологии машиностроения</p>
                     <a href="#" class="btn" data-nav="catalog">Смотреть каталог →</a>
-                    <div class="mobik mobik-hero">
-                        <img class="mobik-body" src="img/mobik-body.webp" alt="Робот МОБИК">
-                        <img class="mobik-hand" src="img/mobik-hand.webp" alt="" aria-hidden="true">
-                    </div>
                 </div>
 
                 <!-- ===== СЛАЙДЕР ===== -->
