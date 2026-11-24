@@ -1687,7 +1687,8 @@
             </div>
             <div class="nav-links">
                 <a href="#" class="active" data-nav="home">Главная</a>
-                <a href="#" data-nav="catalog">Каталог</a>
+                <a href="#" data-nav="catalog" data-cat-filter="all">Продукция</a>
+                <a href="#" data-nav="catalog" data-cat-filter="проект">Услуги</a>
                 <button class="calc-nav-btn" type="button" id="calcNavBtn"><i class="fas fa-calculator"></i> Калькулятор металла</button>
                 <a href="#" data-nav="events">События</a>
                 <a href="#" data-nav="blog">Блог</a>
@@ -3108,6 +3109,12 @@
                     };
                     const el = document.getElementById(ids[target]);
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    if (link.dataset.catFilter) {
+                        currentFilter = link.dataset.catFilter;
+                        currentModel = null;
+                        currentPage = 1;
+                        renderCatalog();
+                    }
                     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
                     link.classList.add('active');
                 });
