@@ -1682,12 +1682,30 @@
             position: absolute; left: 65.26%; top: 4.6%; width: 23.48%;
             transform-origin: 26.5% 82%;
         }
+        .mobik-eye {
+            position: absolute; top: 10.4%; width: 3.8%; height: 5%;
+            background: #141414; border-radius: 50%;
+            transform: scaleY(0); transform-origin: 50% 50%;
+            pointer-events: none;
+        }
+        .mobik-eye-l { left: 44.0%; }
+        .mobik-eye-r { left: 52.3%; }
+        .mobik-smile {
+            position: absolute; left: 48.3%; top: 19.5%; width: 5.6%; height: 2.8%;
+            border-bottom: 3px solid #cc0000; border-radius: 0 0 60% 60%;
+            pointer-events: none;
+        }
         @media (prefers-reduced-motion: no-preference) {
-            .mobik .mobik-arm { animation: mobik-wave 2.6s ease-in-out infinite; }
+            .mobik .mobik-arm { animation: mobik-wave 3.4s ease-in-out infinite; }
+            .mobik-eye { animation: mobik-blink 5s ease-in-out infinite; }
         }
         @keyframes mobik-wave {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(-10deg); }
+            50% { transform: rotate(-7deg); }
+        }
+        @keyframes mobik-blink {
+            0%, 92%, 100% { transform: scaleY(0); }
+            95% { transform: scaleY(1); }
         }
     </style>
 </head>
@@ -1717,6 +1735,9 @@
     <div class="mobik mobik-fixed">
         <img class="mobik-body" src="img/mobik-body.webp" alt="Робот МОБИК">
         <img class="mobik-arm" src="img/mobik-arm.webp" alt="" aria-hidden="true">
+        <span class="mobik-eye mobik-eye-l" aria-hidden="true"></span>
+        <span class="mobik-eye mobik-eye-r" aria-hidden="true"></span>
+        <span class="mobik-smile" aria-hidden="true"></span>
     </div>
 
     <div id="calcPanel" class="calc-panel">
