@@ -1690,10 +1690,11 @@
                 <a href="#" class="active" data-nav="home">Главная</a>
                 <a href="#" data-nav="catalog" data-cat-filter="all">Продукция</a>
                 <a href="#" data-nav="catalog" data-cat-filter="проект">Услуги</a>
-                <a href="#" data-nav="events">События</a>
-                <a href="#" data-nav="blog">Блог</a>
+                <a href="#" data-nav="certs">Сертификаты и лицензии</a>
                 <a href="#" data-nav="about">О компании</a>
                 <a href="#" data-nav="contact">Контакты</a>
+                <a href="#" data-nav="events">События</a>
+                <a href="#" data-nav="blog">Блог</a>
             </div>
         </nav>
     </div>
@@ -1995,7 +1996,7 @@
                     </div>
                 </div>
 
-                <div class="certificates-section">
+                <div class="certificates-section" id="certsSection">
                     <h2 style="display:table; margin:0 auto 16px; background:#fff; border:2px solid #111; border-radius:10px; padding:8px 26px; text-align:center;">Сертификаты и лицензии</h2>
                     <div class="certificates-grid">
                         <a class="cert" href="certs/eae-se-vertyugi.pdf" target="_blank" rel="noopener">
@@ -3108,6 +3109,7 @@
                         events: 'eventsSection',
                         blog: 'blogSection',
                         about: 'aboutSection',
+                        certs: 'certsSection',
                         contact: 'contactSection'
                     };
                     const el = document.getElementById(ids[target]);
