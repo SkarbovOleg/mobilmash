@@ -2095,20 +2095,19 @@
             <div class="contact-form">
                 <h2>Нужна консультация?</h2>
                 <p class="subtitle">Закажите обратный звонок — мы поможем подобрать оборудование или услугу</p>
-                <p style="text-align:center; margin-bottom:22px; font-size:17px;">Или позвоните: <a href="tel:+79024781996" style="color:var(--color-red); font-weight:700;">+7 902 478-19-96</a></p>
                 <form id="feedbackForm" novalidate>
                     <div class="form-grid">
                         <div class="form-group" id="nameGroup">
                             <input type="text" id="userName" placeholder="Ваше имя" required>
                             <div class="error-message">Пожалуйста, введите ваше имя</div>
                         </div>
-                        <div class="form-group" id="emailGroup">
-                            <input type="email" id="userEmail" placeholder="Email" required>
-                            <div class="error-message">Введите корректный email</div>
+                        <div class="form-group" id="phoneGroup">
+                            <input type="tel" id="userPhone" placeholder="Ваш телефон" required>
+                            <div class="error-message">Пожалуйста, введите ваш телефон</div>
                         </div>
-                        <div class="form-group" id="msgGroup" style="flex: 0 0 100%;">
-                            <textarea id="userMsg" rows="3" placeholder="Вопрос" required></textarea>
-                            <div class="error-message">Пожалуйста, напишите ваш вопрос</div>
+                        <div class="form-group" id="emailGroup">
+                            <input type="email" id="userEmail" placeholder="Ваш email" required>
+                            <div class="error-message">Введите корректный email</div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-submit" id="submitFormBtn"><i class="fas fa-paper-plane"></i> Отправить</button>
@@ -3381,31 +3380,34 @@
             document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('userName').value.trim();
+                const phone = document.getElementById('userPhone').value.trim();
                 const email = document.getElementById('userEmail').value.trim();
-                const msg = document.getElementById('userMsg').value.trim();
+                ['nameGroup', 'phoneGroup', 'emailGroup'].forEach(id => document.getElementById(id).classList.remove('error'));
                 let isValid = true;
                 if (!name) { document.getElementById('nameGroup').classList.add('error');
                     isValid = false; }
+                if (phone.replace(/\D/g, '').length < 10) {
+                    document.getElementById('phoneGroup').classList.add('error');
+                    isValid = false;
+                }
                 if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                     document.getElementById('emailGroup').classList.add('error');
                     isValid = false;
                 }
-                if (!msg) { document.getElementById('msgGroup').classList.add('error');
-                    isValid = false; }
                 if (!isValid) return;
 
                 const btn = document.getElementById('submitFormBtn');
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-                const ok = await sendEmailToManager('Сообщение с сайта', {
+                const ok = await sendEmailToManager('Заявка на консультацию', {
                     'Имя': name,
-                    'Email': email,
-                    'Сообщение': msg
+                    'Телефон': phone,
+                    'Email': email
                 });
                 document.getElementById('formStatus').style.display = 'block';
                 document.getElementById('formStatus').style.color = 'var(--color-red)';
-                document.getElementById('formStatus').innerHTML = ok ? '✅ Спасибо! Письмо отправлено, мы свяжемся с вами.' : '⚠️ Не удалось отправить. Напишите на Agm159@mail.ru.';
-                if (ok) { document.getElementById('feedbackForm').reset(); showToast('✅ Письмо отправлено!'); }
+                document.getElementById('formStatus').innerHTML = ok ? '✅ Спасибо! Заявка отправлена, мы свяжемся с вами.' : '⚠️ Не удалось отправить. Напишите на Agm159@mail.ru.';
+                if (ok) { document.getElementById('feedbackForm').reset(); showToast('✅ Заявка отправлена!'); }
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
             });
