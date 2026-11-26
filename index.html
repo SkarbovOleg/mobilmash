@@ -2095,6 +2095,7 @@
             <div class="contact-form">
                 <h2>Нужна консультация?</h2>
                 <p class="subtitle">Закажите обратный звонок — мы поможем подобрать оборудование или услугу</p>
+                <p style="text-align:center; margin-bottom:22px; font-size:17px;">Или позвоните: <a href="tel:+79024781996" style="color:var(--color-red); font-weight:700;">+7 902 478-19-96</a></p>
                 <form id="feedbackForm" novalidate>
                     <div class="form-grid">
                         <div class="form-group" id="nameGroup">
@@ -3272,6 +3273,10 @@
                     showCatalogBanner(item.textContent.trim(), groupName);
                     showCatalogTabs(group && group.dataset.cat === 'буровые');
                     renderCatalog();
+                    if (group && group.dataset.cat === 'прочие') {
+                        const contact = document.getElementById('contactSection');
+                        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             });
             const allBtn = document.getElementById('csAll');
