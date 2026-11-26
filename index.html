@@ -1955,13 +1955,6 @@
                             <input type="text" id="searchInput" placeholder="🔍 Поиск по каталогу...">
                             <button id="searchBtn"><i class="fas fa-search"></i></button>
                         </div>
-                        <div class="filter-sort-group">
-                            <select id="sortSelect">
-                                <option value="default">По умолчанию</option>
-                                <option value="price-asc">Сначала дешёвые</option>
-                                <option value="price-desc">Сначала дорогие</option>
-                            </select>
-                        </div>
                     </div>
 
                     <div class="catalog-tabs" id="catalogTabs" style="display:none;">
@@ -3358,12 +3351,6 @@
                     currentPage = 1;
                     renderCatalog();
                 }
-            });
-
-            document.getElementById('sortSelect').addEventListener('change', (e) => {
-                currentSort = e.target.value;
-                currentPage = 1;
-                renderCatalog();
             });
 
             document.querySelectorAll('.filter-btn').forEach(btn => {
